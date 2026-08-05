@@ -52,8 +52,10 @@ def create_app(config_class=Config):
 
     return app
 
+# Top-level Flask application instance exported for Vercel Serverless Functions
+app = create_app()
+
 if __name__ == '__main__':
-    app = create_app()
     port = int(os.getenv('PORT', app.config.get('PORT', 5001)))
     print(f"🚀 Sathik Groups Flask Catalogue Platform starting on http://localhost:{port}")
     try:
