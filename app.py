@@ -16,7 +16,13 @@ from routes.order_routes import order_bp
 from routes.payment_routes import payment_bp
 
 def create_app(config_class=Config):
-    app = Flask(__name__)
+    root_dir = os.path.dirname(os.path.abspath(__file__))
+    app = Flask(
+        __name__,
+        static_folder=os.path.join(root_dir, 'static'),
+        template_folder=os.path.join(root_dir, 'templates'),
+        static_url_path='/static'
+    )
     app.config.from_object(config_class)
 
     # Initialize Supabase Client
