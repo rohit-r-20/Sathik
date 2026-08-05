@@ -195,7 +195,7 @@
       {% for p in featured_products %}
       <div class="product-card">
         <div class="product-image">
-          <img src="{{ p.images[0].url if p.images else '/static/images/placeholder.jpg' }}" alt="{{ p.name }}">
+          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}">
         </div>
         <div class="product-info">
           <div class="product-brand">{{ p.brand_name }}</div>

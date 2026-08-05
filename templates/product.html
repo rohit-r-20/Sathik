@@ -25,7 +25,7 @@
       <!-- Image Gallery -->
       <div class="product-gallery">
         <div class="main-image-frame">
-          <img id="main-product-image" src="{{ product.images[0].url if product.images else '/static/images/placeholder.jpg' }}" alt="{{ product.name }}">
+          <img id="main-product-image" src="{{ product.images[0].url if product.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ product.name }}">
         </div>
         {% if product.images and product.images|length > 1 %}
         <div class="gallery-thumbs">
