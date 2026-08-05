@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>{% block title %}Sathik Groups | Commercial Building Materials &amp; Sanitaryware Distributor{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Sathik Groups is an authorized commercial distributor of 20+ premier brands in plumbing, hardware, and sanitaryware.{% endblock %}">
+  
+  <!-- Fonts: Playfair Display for luxury headings, Inter for clean body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- BOLD & BIG SATHIK GROUPS BRAND ENTRANCE INTRO SCREEN -->
+  <div id="brand-splash" class="brand-splash">
+    <div class="splash-content">
+      <div class="splash-logo-box">
+        <div class="splash-crest">
+          <span>SG</span>
+        </div>
+        <h1 class="splash-title">SATHIK GROUPS</h1>
+        <div class="splash-divider"></div>
+        <p class="splash-sub">COMMERCIAL BUILDING MATERIALS &amp; SANITARYWARE</p>
+      </div>
+      <div class="splash-progress-bar">
+        <div class="splash-progress-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  {% include 'navbar.html' %}
+
+  <!-- Flash Messages -->
+  <div class="container" style="margin-top: 1rem;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category if category != 'error' else 'danger' }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
+  <!-- Main Content Body -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Mobile Bottom Sticky Action Bar (visible on mobile < 768px) -->
+  <div class="mobile-sticky-bar">
+    <a href="https://wa.me/{{ company.whatsapp if company else '919999999999' }}" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn whatsapp">
+      💬 WhatsApp
+    </a>
+    <a href="tel:{{ company.phone if company else '+91 9999999999' }}" class="mobile-bar-btn call">
+      📞 Call Sales
+    </a>
+    <button type="button" class="mobile-bar-btn quote" onclick="openModal('quick-enquiry-modal')">
+      📄 Get Quote
+    </button>
+  </div>
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+
+  <!-- Global Request Quote Modal -->
+  <div id="quote-modal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.125rem;">Request Product Quote</h3>
+        <button type="button" onclick="closeModal('quote-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--primary-500);">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleEnquirySubmit(event, this)">
+          <div class="form-alert" style="display:none;"></div>
+          <input type="hidden" name="type" value="quote">
+          <input type="hidden" id="modal-product-id" name="product_id">
+          <input type="hidden" id="modal-product-sku" name="product_sku">
+          
+          <div class="form-group">
+            <label class="form-label">Product Name</label>
+            <input type="text" id="modal-product-name" name="product_name" class="form-input" readonly style="background-color:var(--surface);">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input type="text" name="name" class="form-input" placeholder="Full Name" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Phone Number *</label>
+            <input type="tel" name="phone" class="form-input" placeholder="10-digit mobile number" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">City *</label>
+            <input type="text" name="city" class="form-input" placeholder="Your City" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Quantity Required</label>
+            <input type="text" name="quantity" class="form-input" placeholder="e.g. 50 pcs, 2 boxes">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Additional Message *</label>
+            <textarea name="message" class="form-textarea" placeholder="Please specify any technical or project requirements..." required>Hi, please send a price quote and availability details for this product.</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Submit Quote Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reusable Quick Enquiry Modal & FAB Component -->
+  {% include 'components/enquiry_modal.html' %}
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

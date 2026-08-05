@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Supplied Projects | Sathik Groups{% endblock %}
+
+{% block content %}
+<section class="section bg-dark text-center">
+  <div class="container">
+    <div class="section-tag" style="color: var(--accent);">Track Record</div>
+    <h1 style="font-size: 3rem; color: #ffffff; margin-bottom: 1rem;">Projects We Have Supplied</h1>
+    <p style="color: var(--primary-300); font-size: 1.125rem; max-width: 38rem; margin: 0 auto;">
+      Supplying plumbing systems, hardware, and sanitaryware for residential towers, commercial spaces, and industrial facilities.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if projects %}
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+      {% for p in projects %}
+      <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="height: 12rem; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+          🏗️
+        </div>
+        <div style="padding: 1.5rem;">
+          <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">{{ p.title }}</h3>
+          <p style="font-size: 0.875rem; color: var(--primary-500); margin-bottom: 1rem;">{{ p.description }}</p>
+          <div style="font-size: 0.75rem; color: var(--primary-600); font-weight: 600;">
+            Location: {{ p.location or 'India' }} | Year: {{ p.year or '2024' }}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 4rem 0; color: var(--primary-500);">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">🏗️</div>
+      <h3>Supplied Projects Portfolio Coming Soon</h3>
+      <p style="margin-top: 0.5rem;">We are compiling case studies of recent commercial and residential supplies.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

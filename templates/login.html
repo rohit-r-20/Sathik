@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Login | Sathik Groups{% endblock %}
+
+{% block content %}
+<section class="section bg-surface" style="min-height: 70vh; display: flex; align-items: center;">
+  <div class="container" style="max-width: 26rem;">
+    <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md);">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="brand-icon" style="margin: 0 auto 1rem; width: 3rem; height: 3rem; font-size: 1.25rem;">SG</div>
+        <h2 style="font-size: 1.5rem;">Admin Portal Sign In</h2>
+        <p style="font-size: 0.875rem; color: var(--primary-500); margin-top: 0.25rem;">Sathik Groups Catalogue Management</p>
+      </div>
+
+      <form action="{{ url_for('auth.login') }}" method="POST">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-input" placeholder="admin@sathikgroups.com" value="{{ email or 'admin@sathikgroups.com' }}" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-input" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-block">Sign In to Dashboard</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.5rem; font-size: 0.75rem; color: var(--primary-500);">
+        Demo Login: <strong>admin@sathikgroups.com</strong> / <strong>ChangeMe@2024!</strong>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

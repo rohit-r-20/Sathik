@@ -1,0 +1,287 @@
+/* ============================================================
+   Sathik Groups — Products Page Styles (Mobile-First)
+   ============================================================ */
+
+/* ── Layout: sidebar + product grid ── */
+.products-layout {
+  display: grid;
+  grid-template-columns: 1fr;   /* Mobile: stacked */
+  gap: 1.5rem;
+}
+
+/* On tablet+, show sidebar beside the grid */
+@media (min-width: 768px) {
+  .products-layout {
+    grid-template-columns: 15rem 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* ── Filter Sidebar ── */
+.filter-sidebar {
+  background: #ffffff;
+}
+
+/* Mobile filter toggle button */
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary-900);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 48px;
+  margin-bottom: 0.75rem;
+  touch-action: manipulation;
+}
+
+/* Hide filter toggle on desktop */
+@media (min-width: 768px) {
+  .filter-toggle-btn {
+    display: none;
+  }
+}
+
+/* Filter panel: collapsed on mobile, expanded on desktop */
+.filter-panel {
+  display: none;
+}
+
+.filter-panel.open,
+.filter-panel {
+  /* Desktop: always visible */
+}
+
+@media (min-width: 768px) {
+  .filter-panel {
+    display: block !important;  /* always shown on desktop */
+  }
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-700);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.25rem;
+  font-size: 0.875rem;
+  color: var(--primary-600);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  min-height: 40px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.filter-link:hover,
+.filter-link.active {
+  color: var(--accent);
+  background: var(--accent-light);
+  padding-left: 0.5rem;
+}
+
+/* ── Products Grid ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* Mobile: 2 columns */
+  gap: 0.875rem;
+}
+
+@media (min-width: 480px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ── Product Card ── */
+.product-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+
+.product-card:hover,
+.product-card.touched {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-color: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem;
+}
+
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-info {
+  padding: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media (min-width: 640px) {
+  .product-info {
+    padding: 1rem;
+  }
+}
+
+.product-brand {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.2rem;
+  letter-spacing: 0.04em;
+}
+
+.product-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.375rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .product-name {
+    font-size: 0.9375rem;
+  }
+}
+
+.product-sku {
+  font-size: 0.6875rem;
+  color: var(--primary-500);
+  font-family: monospace;
+  margin-bottom: 0.875rem;
+}
+
+.product-card-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.product-card-footer .btn {
+  flex: 1;
+  font-size: 0.8125rem;
+  padding: 0.5rem 0.5rem;
+  min-height: 40px;
+}
+
+/* On very small screens, stack the buttons */
+@media (max-width: 360px) {
+  .product-card-footer {
+    flex-direction: column;
+  }
+}
+
+/* ── Results bar (sort + count) ── */
+.products-results-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.results-count {
+  font-size: 0.875rem;
+  color: var(--primary-500);
+  font-weight: 500;
+}
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 3rem;
+}
+
+.page-link {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: var(--primary-700);
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+.page-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.page-link.active {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}

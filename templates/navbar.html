@@ -1,0 +1,106 @@
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="container">
+    <!-- Brand Logo -->
+    <a href="{{ url_for('home.index') }}" class="nav-brand" aria-label="Sathik Groups Home">
+      <div class="brand-icon" aria-hidden="true">SG</div>
+      <div class="brand-text">
+        <span class="brand-name">SATHIK GROUPS</span>
+        <span class="brand-sub">COMMERCIAL CATALOGUE</span>
+      </div>
+    </a>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      type="button"
+      class="mobile-toggle"
+      id="mobile-toggle-btn"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      onclick="toggleMobileMenu()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <!-- Navigation Menu -->
+    <ul class="nav-menu" id="nav-menu" role="menubar">
+      <li role="none">
+        <a href="{{ url_for('home.index') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'home.index' %}active{% endif %}">
+          Home
+        </a>
+      </li>
+
+      <li class="dropdown" role="none">
+        <a href="{{ url_for('product.product_list') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'product.product_list' %}active{% endif %}">
+          Products &#9662;
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-label="Product categories">
+          <li role="none"><a href="{{ url_for('product.product_list', business='plumbing') }}" role="menuitem" class="dropdown-item">🔧 Plumbing Products</a></li>
+          <li role="none"><a href="{{ url_for('product.product_list', business='hardware') }}" role="menuitem" class="dropdown-item">🔨 Hardware Products</a></li>
+          <li role="none"><a href="{{ url_for('product.product_list', business='bath-kitchen') }}" role="menuitem" class="dropdown-item">🛁 Bath &amp; Kitchen</a></li>
+          <li role="none" style="border-top: 1px solid var(--border); margin-top: 0.25rem; padding-top: 0.25rem;">
+            <a href="{{ url_for('product.product_list') }}" role="menuitem" class="dropdown-item">📦 Full Catalogue</a>
+          </li>
+        </ul>
+      </li>
+
+      <li role="none">
+        <a href="{{ url_for('brand.brand_list') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'brand.brand_list' %}active{% endif %}">
+          Brands
+        </a>
+      </li>
+      <li role="none">
+        <a href="{{ url_for('home.projects') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'home.projects' %}active{% endif %}">
+          Projects
+        </a>
+      </li>
+      <li role="none">
+        <a href="{{ url_for('home.about') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'home.about' %}active{% endif %}">
+          About Us
+        </a>
+      </li>
+      <li role="none">
+        <a href="{{ url_for('enquiry.contact') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'enquiry.contact' %}active{% endif %}">
+          Contact
+        </a>
+      </li>
+
+      <!-- Mobile-only CTA Buttons (shown inside hamburger drawer) -->
+      <li class="mobile-only-actions" style="display: none;">
+        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary btn-block">
+          📄 Request Quote
+        </a>
+        <a href="tel:{{ company.phone if company else '+91 9999999999' }}" class="btn btn-outline btn-block">
+          📞 Call Sales Team
+        </a>
+      </li>
+    </ul>
+
+    <!-- Desktop Navigation Actions (hidden on mobile) -->
+    <div class="nav-actions-desktop" style="display: flex; gap: 0.875rem; align-items: center;">
+      <a href="{{ url_for('product.product_list') }}" title="Search Products"
+         style="color: var(--primary-600); font-size: 1.125rem; display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md); transition: background 0.2s;"
+         aria-label="Search Products">
+        🔍
+      </a>
+
+      {% if session.get('user_id') %}
+        {% if session.get('role') in ('admin', 'super_admin') %}
+          <a href="{{ url_for('admin.dashboard') }}" class="btn btn-secondary btn-sm">Admin Portal</a>
+        {% endif %}
+        <a href="{{ url_for('auth.logout') }}" class="btn btn-outline btn-sm">Logout</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}" class="btn btn-outline btn-sm">Admin Sign In</a>
+        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary btn-sm">Request Quote</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>

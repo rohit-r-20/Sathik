@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - Manage Enquiries | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="font-weight: 800; font-family: var(--font-heading); font-size: 1.125rem;">ADMIN PORTAL</div>
+    <ul class="admin-nav">
+      <li><a href="{{ url_for('admin.dashboard') }}">📊 Dashboard</a></li>
+      <li><a href="{{ url_for('admin.products') }}">📦 Products</a></li>
+      <li><a href="{{ url_for('admin.brands') }}">🏷️ Brands</a></li>
+      <li><a href="{{ url_for('admin.enquiries') }}" class="active">📩 Enquiries</a></li>
+      <li><a href="{{ url_for('admin.settings') }}">⚙️ Settings</a></li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h1 style="font-size: 1.75rem;">Customer Enquiries &amp; Quotes</h1>
+      
+      <div style="display: flex; gap: 0.5rem;">
+        <a href="{{ url_for('admin.enquiries') }}" class="btn btn-sm {% if not current_status %}btn-secondary{% else %}btn-outline{% endif %}">All ({{ stats.total }})</a>
+        <a href="{{ url_for('admin.enquiries', status='new') }}" class="btn btn-sm {% if current_status == 'new' %}btn-secondary{% else %}btn-outline{% endif %}">New ({{ stats.new }})</a>
+        <a href="{{ url_for('admin.enquiries', status='responded') }}" class="btn btn-sm {% if current_status == 'responded' %}btn-secondary{% else %}btn-outline{% endif %}">Responded ({{ stats.responded }})</a>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name &amp; Company</th>
+            <th>Contact</th>
+            <th>Product / Message</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if enquiries %}
+            {% for e in enquiries %}
+            <tr>
+              <td style="font-size: 0.75rem; color: var(--primary-500);">{{ e.created_at.strftime('%Y-%m-%d %H:%M') if e.created_at else '' }}</td>
+              <td>
+                <strong>{{ e.name }}</strong><br>
+                <span style="font-size: 0.75rem; color: var(--primary-500);">{{ e.company or 'Individual' }}</span>
+              </td>
+              <td style="font-size: 0.8125rem;">
+                📞 {{ e.phone }}<br>
+                ✉️ {{ e.email }}
+              </td>
+              <td>
+                {% if e.product_name %}
+                  <strong style="color: var(--accent);">{{ e.product_name }}</strong> (SKU: {{ e.product_sku }})<br>
+                {% endif %}
+                <span style="font-size: 0.8125rem; color: var(--primary-600);">{{ e.message }}</span>
+              </td>
+              <td>
+                <span class="badge {% if e.status == 'new' %}badge-new{% elif e.status == 'responded' %}badge-featured{% else %}badge{% endif %}">
+                  {{ e.status }}
+                </span>
+              </td>
+              <td>
+                <form action="{{ url_for('admin.update_enquiry_status', enquiry_id=e._id) }}" method="POST" style="display: flex; gap: 0.25rem;">
+                  <select name="status" class="form-select" style="padding: 0.25rem; font-size: 0.75rem;" onchange="this.form.submit()">
+                    <option value="new" {% if e.status == 'new' %}selected{% endif %}>New</option>
+                    <option value="read" {% if e.status == 'read' %}selected{% endif %}>Read</option>
+                    <option value="responded" {% if e.status == 'responded' %}selected{% endif %}>Responded</option>
+                    <option value="closed" {% if e.status == 'closed' %}selected{% endif %}>Closed</option>
+                  </select>
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="6" style="text-align: center; color: var(--primary-500); padding: 3rem;">No customer enquiries matching current filter.</td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Account | Sathik Groups{% endblock %}
+
+{% block content %}
+<section class="section bg-surface" style="min-height: 70vh; display: flex; align-items: center;">
+  <div class="container" style="max-width: 26rem;">
+    <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md);">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 1.5rem;">Create Account</h2>
+        <p style="font-size: 0.875rem; color: var(--primary-500); margin-top: 0.25rem;">Register for custom dealer quotes &amp; wishlist</p>
+      </div>
+
+      <form action="{{ url_for('auth.register') }}" method="POST">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" name="name" class="form-input" placeholder="Your Name" value="{{ name or '' }}" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" name="email" class="form-input" placeholder="your@email.com" value="{{ email or '' }}" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-input" placeholder="Minimum 6 characters" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Register Account</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

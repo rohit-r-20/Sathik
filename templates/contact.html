@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact &amp; Enquiry | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="section-tag">Get In Touch</div>
+    <h1 style="font-size: clamp(1.5rem, 5vw, 2.25rem);">Contact Us &amp; Product Enquiries</h1>
+    <p style="color: var(--primary-500); margin-top: 0.5rem; font-size: 0.9375rem;">
+      Mon – Sat, 9am – 7pm &nbsp;•&nbsp; Replies within 24 hours
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- ── Contact Info Column ── -->
+      <div>
+        <h3 style="font-size: 1.125rem; margin-bottom: 1.25rem; font-weight: 700;">Contact Information</h3>
+
+        <a href="tel:{{ company.phone if company else '' }}" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Phone</div>
+            <div style="font-weight: 700; font-size: 1rem; color: var(--primary-900);">{{ company.phone if company else 'Call Us' }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500);">Tap to call directly</div>
+          </div>
+        </a>
+
+        <a href="https://wa.me/{{ company.whatsapp if company else '919999999999' }}" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
+          <div class="contact-icon">💬</div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">WhatsApp</div>
+            <div style="font-weight: 700; font-size: 1rem; color: #16A34A;">+{{ company.whatsapp if company else '' }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500);">Instant quotes &amp; assistance</div>
+          </div>
+        </a>
+
+        <div class="contact-info-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Email</div>
+            <div style="font-weight: 600; word-break: break-all;">{{ company.email if company else 'info@sathikgroups.com' }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500);">Replies within 24 hours</div>
+          </div>
+        </div>
+
+        <div class="contact-info-card">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Address</div>
+            <div style="font-weight: 600; line-height: 1.5;">{{ company.address if company else 'Address' }}</div>
+          </div>
+        </div>
+
+        <!-- Business Hours Card -->
+        <div style="background: var(--accent-light); border: 1px solid rgba(194,65,12,0.2); border-radius: var(--radius-lg); padding: 1.25rem; margin-top: 0.5rem;">
+          <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem;">Business Hours</div>
+          <div style="font-size: 0.875rem; color: var(--primary-700); display: flex; flex-direction: column; gap: 0.35rem;">
+            <div>Mon – Sat &nbsp;•&nbsp; <strong>9:00 AM – 7:00 PM</strong></div>
+            <div style="color: var(--primary-500);">Sunday: Closed</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Enquiry Form Column ── -->
+      <div class="contact-form-card">
+        <h3 style="font-size: 1.125rem; margin-bottom: 1.5rem; font-weight: 700;">Send an Enquiry</h3>
+
+        <form onsubmit="handleEnquirySubmit(event, this)" novalidate>
+          <div class="form-alert" style="display:none;"></div>
+          <input type="hidden" name="type" value="general">
+
+          <!-- Row 1: Name + Phone -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="c-name">Your Name *</label>
+              <input type="text" id="c-name" name="name" class="form-input" placeholder="Full Name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-phone">Phone Number *</label>
+              <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="10-digit mobile" required autocomplete="tel" inputmode="tel">
+            </div>
+          </div>
+
+          <!-- Row 2: Email + City -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="c-email">Email Address *</label>
+              <input type="email" id="c-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-city">City *</label>
+              <input type="text" id="c-city" name="city" class="form-input" placeholder="Your City" required autocomplete="address-level2">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-company">Company / Firm Name</label>
+            <input type="text" id="c-company" name="company" class="form-input" placeholder="e.g. Acme Builders" autocomplete="organization">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-product">Product / Category Interest</label>
+            <input type="text" id="c-product" name="product_name" class="form-input" placeholder="e.g. CPVC Pipes, Basin Mixers">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="c-message">Message / Details *</label>
+            <textarea id="c-message" name="message" class="form-textarea" placeholder="Please specify your product requirements or project needs..." required style="min-height: 120px;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" style="min-height: 52px; font-size: 1rem;">
+            Submit Enquiry →
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

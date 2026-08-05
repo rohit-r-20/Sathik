@@ -1,0 +1,86 @@
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- ── Company Info Column ── -->
+      <div>
+        <div class="nav-brand" style="margin-bottom: 1.25rem;">
+          <div class="brand-icon" style="background: linear-gradient(135deg, #F97316, #EA580C);">SG</div>
+          <div class="brand-text">
+            <span class="brand-name" style="color: #ffffff;">SATHIK GROUPS</span>
+            <span class="brand-sub">PLUMBING • HARDWARE • BATH &amp; KITCHEN</span>
+          </div>
+        </div>
+
+        <p style="color: #94A3B8; font-size: 0.9rem; max-width: 22rem; line-height: 1.7; margin-bottom: 1.5rem;">
+          Authorized B2B dealer and distributor for 20+ premier building material brands. Supplying high-grade plumbing systems, hardware, and luxury sanitaryware across India.
+        </p>
+
+        <!-- Clickable contact links — tap targets on mobile -->
+        <div style="font-size: 0.875rem; color: #CBD5E1; display: flex; flex-direction: column; gap: 0.625rem;">
+          <a href="tel:{{ company.phone if company else '' }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+            📞 <strong>{{ company.phone if company else 'Call Us' }}</strong>
+          </a>
+          <a href="https://wa.me/{{ company.whatsapp if company else '919999999999' }}" target="_blank" rel="noopener noreferrer" style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+            💬 <strong>WhatsApp Sales</strong>
+          </a>
+          <a href="mailto:{{ company.email if company else 'info@sathikgroups.com' }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
+            ✉️ {{ company.email if company else 'info@sathikgroups.com' }}
+          </a>
+          <div style="display: flex; align-items: flex-start; gap: 0.5rem; color: #94A3B8; font-size: 0.8125rem; line-height: 1.5;">
+            📍 {{ company.address if company else 'Tamil Nadu, India' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Business Verticals Column ── -->
+      <div class="footer-col">
+        <h4>Business Verticals</h4>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('product.product_list', business='plumbing') }}">🔧 Plumbing Products</a></li>
+          <li><a href="{{ url_for('product.product_list', business='hardware') }}">🔨 Hardware Products</a></li>
+          <li><a href="{{ url_for('product.product_list', business='bath-kitchen') }}">🛁 Bath &amp; Kitchen</a></li>
+          <li><a href="{{ url_for('product.product_list') }}">📦 Full Catalogue</a></li>
+        </ul>
+      </div>
+
+      <!-- ── Authorized Brands Column ── -->
+      <div class="footer-col">
+        <h4>Authorized Brands</h4>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('brand.brand_detail', slug='jaquar') }}">Jaquar</a></li>
+          <li><a href="{{ url_for('brand.brand_detail', slug='hindware') }}">Hindware</a></li>
+          <li><a href="{{ url_for('brand.brand_detail', slug='cera') }}">CERA</a></li>
+          <li><a href="{{ url_for('brand.brand_detail', slug='astral') }}">Astral Pipes</a></li>
+          <li><a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}">Ashirvad Pipes</a></li>
+          <li><a href="{{ url_for('brand.brand_list') }}" style="color: var(--accent); font-weight: 600;">View All Brands →</a></li>
+        </ul>
+      </div>
+
+      <!-- ── Quick Links Column ── -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="{{ url_for('home.about') }}">About Sathik Groups</a></li>
+          <li><a href="{{ url_for('home.projects') }}">Supplied Projects</a></li>
+          <li><a href="{{ url_for('enquiry.contact') }}">Contact &amp; Enquiry</a></li>
+          <li><a href="{{ url_for('enquiry.contact') }}" style="color: var(--accent); font-weight: 600;">Request Quote →</a></li>
+          <li><a href="{{ url_for('auth.login') }}" style="color: #64748B;">Admin Sign In</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- ── Footer Bottom Bar ── -->
+    <div class="footer-bottom">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <p style="font-size: 0.8125rem;">
+          &copy; 2024 Sathik Groups. All rights reserved.
+        </p>
+        <p style="font-size: 0.75rem; color: #64748B; text-align: right;">
+          Non-E-Commerce Catalogue &nbsp;•&nbsp; Enquiries via WhatsApp &amp; Quote Form
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

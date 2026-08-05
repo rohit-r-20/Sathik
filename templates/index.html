@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+
+{% block title %}Sathik Groups | Commercial Building Materials &amp; Sanitaryware Distributor{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        ★ Authorized Commercial Distributor &amp; Dealer
+      </div>
+      <h1 class="hero-title">
+        Building India's Infrastructure with <span>Brand Excellence</span>
+      </h1>
+      <p class="hero-desc">
+        Direct wholesale distributor for India's premier plumbing, hardware, and sanitaryware brands — Jaquar, Hindware, CERA, Astral, Ashirvad, CRI, EESCO, Supreme, and Prince.
+      </p>
+      <div class="hero-actions">
+        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">
+          Request Price Quote &rarr;
+        </a>
+        <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
+          Browse Product Catalogue
+        </a>
+        <a href="tel:{{ company.phone }}" class="btn btn-outline" style="border-color: transparent; background: transparent; color: var(--primary-700);">
+          📞 Direct Sales: {{ company.phone }}
+        </a>
+      </div>
+    </div>
+
+    <!-- STATS COUNTER CARDS -->
+    <div class="hero-stats">
+      <div class="stat-card-inner">
+        <div class="stat-number">15<span>+</span></div>
+        <div class="stat-label">Years Commercial Supply</div>
+      </div>
+      <div class="stat-card-inner">
+        <div class="stat-number">20<span>+</span></div>
+        <div class="stat-label">Authorized Partner Brands</div>
+      </div>
+      <div class="stat-card-inner">
+        <div class="stat-number">5,000<span>+</span></div>
+        <div class="stat-label">Verified Products Catalogue</div>
+      </div>
+      <div class="stat-card-inner">
+        <div class="stat-number">1,000<span>+</span></div>
+        <div class="stat-label">Project Sites Supplied</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHORIZED BRANDS SECTION -->
+<section class="brand-bar-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3rem;">
+      <div class="section-tag">Authorized Partners</div>
+      <h2 class="section-title">Leading Brands We Distribute</h2>
+      <p class="section-desc">Direct factory supply from India's most trusted manufacturers.</p>
+    </div>
+
+    <div class="brand-grid">
+      {% if featured_brands %}
+        {% for b in featured_brands %}
+          <a href="{{ url_for('brand.brand_detail', slug=b.slug) }}" class="brand-card-item">
+            <div class="brand-card-name">{{ b.name }}</div>
+            <div class="brand-card-category">{{ b.country or 'Authorized Partner' }}</div>
+          </a>
+        {% endfor %}
+      {% else %}
+        <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}" class="brand-card-item">
+          <div class="brand-card-name">JAQUAR</div>
+          <div class="brand-card-category">Bath &amp; Sanitaryware</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='hindware') }}" class="brand-card-item">
+          <div class="brand-card-name">HINDWARE</div>
+          <div class="brand-card-category">Sanitaryware &amp; Fittings</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='cera') }}" class="brand-card-item">
+          <div class="brand-card-name">CERA</div>
+          <div class="brand-card-category">Sanitaryware &amp; Tiles</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='astral') }}" class="brand-card-item">
+          <div class="brand-card-name">ASTRAL</div>
+          <div class="brand-card-category">Pipes &amp; Plumbing Systems</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}" class="brand-card-item">
+          <div class="brand-card-name">ASHIRVAD</div>
+          <div class="brand-card-category">CPVC &amp; UPVC Plumbing</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='cri') }}" class="brand-card-item">
+          <div class="brand-card-name">CRI PUMPS</div>
+          <div class="brand-card-category">Pumps &amp; Motors</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='eesco') }}" class="brand-card-item">
+          <div class="brand-card-name">EESCO</div>
+          <div class="brand-card-category">Hardware &amp; Tools</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='supreme') }}" class="brand-card-item">
+          <div class="brand-card-name">SUPREME</div>
+          <div class="brand-card-category">Pipes &amp; Water Tanks</div>
+        </a>
+        <a href="{{ url_for('brand.brand_detail', slug='prince') }}" class="brand-card-item">
+          <div class="brand-card-name">PRINCE</div>
+          <div class="brand-card-category">Pipes &amp; Drainage</div>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS DIVISIONS SECTION -->
+<section class="section bg-surface">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Core Divisions</div>
+      <h2 class="section-title">Explore Business Verticals</h2>
+      <p class="section-desc">Complete material supply pipelines engineered for plumbers, contractors, builders, and architectural specifiers.</p>
+    </div>
+
+    <div class="business-grid">
+      {% for b in businesses %}
+      <div class="business-card">
+        <div class="business-header">{{ b.icon }}</div>
+        <div class="business-body">
+          <h3 class="business-title">{{ b.name }}</h3>
+          <p class="business-desc">{{ b.short_description }}</p>
+          <a href="{{ url_for('product.product_list', business=b.slug) }}" class="btn btn-outline btn-sm">
+            Explore {{ b.name }} &rarr;
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Why Sathik Groups</div>
+      <h2 class="section-title">Engineered for Reliability &amp; Trust</h2>
+      <p class="section-desc">We bridge high-volume manufacturing with site delivery timelines across India.</p>
+    </div>
+
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">🏭</div>
+        <h3 class="trust-title">100% Factory Direct</h3>
+        <p class="trust-desc">Sourced directly from official manufacturer plants with full warranty guarantees.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">📦</div>
+        <h3 class="trust-title">Wholesale B2B Pricing</h3>
+        <p class="trust-desc">Tiered pricing structures designed specifically for dealers, builders, and contractors.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">🚚</div>
+        <h3 class="trust-title">On-Site Fast Logistics</h3>
+        <p class="trust-desc">Rapid material dispatch directly to your commercial or residential project site.</p>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">🛡️</div>
+        <h3 class="trust-title">Technical Support</h3>
+        <p class="trust-desc">Dedicated engineering advice for plumbing schematics and fixture specifications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS SHOWCASE -->
+{% if featured_products %}
+<section class="section bg-surface">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div class="section-tag">Catalogue Showcase</div>
+        <h2 class="section-title">Featured Products</h2>
+      </div>
+      <a href="{{ url_for('product.product_list') }}" class="btn btn-outline btn-sm">
+        View Full Product Catalogue &rarr;
+      </a>
+    </div>
+
+    <div class="products-grid">
+      {% for p in featured_products %}
+      <div class="product-card">
+        <div class="product-image">
+          <img src="{{ p.images[0].url if p.images else '/static/images/placeholder.jpg' }}" alt="{{ p.name }}">
+        </div>
+        <div class="product-info">
+          <div class="product-brand">{{ p.brand_name }}</div>
+          <h4 class="product-name">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{ p.name }}</a>
+          </h4>
+          <div class="product-sku">SKU: {{ p.sku }}</div>
+          <div class="product-card-footer">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="flex:1;">
+              Details
+            </a>
+            <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">
+              Request Quote
+            </button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- SUPPLIED PROJECTS SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Track Record</div>
+      <h2 class="section-title">Supplied Project Portfolio</h2>
+      <p class="section-desc">Delivering high-volume building materials to landmark infrastructure across India.</p>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-header">🏢</div>
+        <div class="project-body">
+          <h3 class="project-title">Commercial IT Park Tower</h3>
+          <p class="project-desc">Complete Astral CPVC plumbing systems and Jaquar luxury sanitaryware supply.</p>
+          <div class="project-meta">Scope: Plumbing &amp; Bath • Chennai</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">🏬</div>
+        <div class="project-body">
+          <h3 class="project-title">Grand Residential Enclave</h3>
+          <p class="project-desc">500+ units supplied with Hindware ceramic sanitaryware and Ashirvad fittings.</p>
+          <div class="project-meta">Scope: Sanitaryware &amp; Fittings • Bengaluru</div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">🏭</div>
+        <div class="project-body">
+          <h3 class="project-title">Industrial Processing Facility</h3>
+          <p class="project-desc">Heavy-duty Supreme SWR piping, CRI industrial pumps, and EESCO hardware valves.</p>
+          <div class="project-meta">Scope: Industrial Plumbing &amp; Pumps • Coimbatore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGH-IMPACT B2B CTA BANNER SECTION -->
+<section class="section bg-surface" style="padding-bottom: 6rem;">
+  <div class="container">
+    <div class="cta-banner">
+      <div class="cta-banner-content">
+        <div class="section-tag" style="color: var(--accent);">B2B &amp; Project Quotes</div>
+        <h2 class="cta-banner-title">Need a Custom Quote or Bulk Supply Estimate?</h2>
+        <p class="cta-banner-desc">
+          Connect directly with our commercial sales team. We analyze your BOQ and supply timeline to deliver competitive wholesale rates within 24 hours.
+        </p>
+      </div>
+
+      <div class="cta-banner-actions">
+        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">
+          Request Quote Now
+        </a>
+        <a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+          WhatsApp Direct
+        </a>
+        <a href="tel:{{ company.phone }}" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color: #ffffff;">
+          📞 Call {{ company.phone }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

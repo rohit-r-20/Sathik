@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+
+{% block title %}Product Catalogue | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div class="section-tag">Product Catalogue</div>
+        <h1 style="font-size: clamp(1.5rem, 5vw, 2rem);">Explore Our Products</h1>
+      </div>
+
+      <!-- Search Input -->
+      <div style="display: flex; gap: 0.5rem; width: 100%; max-width: 28rem;">
+        <input
+          type="search"
+          id="search-input"
+          class="form-input"
+          placeholder="Search product name, SKU..."
+          value="{{ search_query or '' }}"
+          onkeyup="if(event.key==='Enter') triggerSearch()"
+          inputmode="search"
+          autocomplete="off"
+          style="flex: 1;"
+        >
+        <button type="button" class="btn btn-secondary" onclick="triggerSearch()" style="white-space: nowrap;">
+          🔍 Search
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="products-layout">
+
+      <!-- ── Sidebar Filters ── -->
+      <aside class="filter-sidebar">
+
+        <!-- Mobile: collapsible filter toggle -->
+        <button
+          type="button"
+          class="filter-toggle-btn"
+          id="filter-toggle-btn"
+          aria-expanded="false"
+          aria-controls="filter-panel"
+          onclick="toggleFilterPanel()"
+        >
+          <span>🔧 Filters{% if current_business or current_category or current_brand %} (Active){% endif %}</span>
+          <span id="filter-toggle-icon">▼</span>
+        </button>
+
+        <div class="filter-panel" id="filter-panel">
+          <!-- Filter Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; display: none;" class="filter-header-desktop">
+            <h3 style="font-size: 0.9375rem; text-transform: uppercase; letter-spacing: 0.05em;">Filters</h3>
+            {% if current_business or current_category or current_brand or search_query %}
+              <a href="{{ url_for('product.product_list') }}" style="font-size: 0.75rem; color: var(--accent); font-weight: 600;">Clear All</a>
+            {% endif %}
+          </div>
+
+          <!-- Business Vertical Filter -->
+          <div class="filter-group">
+            <div class="filter-title">Business Vertical</div>
+            <select class="form-select" onchange="location = this.value;" style="min-height: 44px;">
+              <option value="{{ url_for('product.product_list', category=current_category, brand=current_brand, q=search_query) }}">All Businesses</option>
+              {% for b in businesses %}
+                <option value="{{ url_for('product.product_list', business=b.slug, category=current_category, brand=current_brand, q=search_query) }}" {% if current_business == b.slug %}selected{% endif %}>
+                  {{ b.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <!-- Category Filter -->
+          {% if categories %}
+          <div class="filter-group">
+            <div class="filter-title">Category</div>
+            <select class="form-select" onchange="location = this.value;" style="min-height: 44px;">
+              <option value="{{ url_for('product.product_list', business=current_business, brand=current_brand, q=search_query) }}">All Categories</option>
+              {% for c in categories %}
+                <option value="{{ url_for('product.product_list', business=current_business, category=c.slug, brand=current_brand, q=search_query) }}" {% if current_category == c.slug %}selected{% endif %}>
+                  {{ c.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+
+          <!-- Brand Filter -->
+          {% if brands %}
+          <div class="filter-group">
+            <div class="filter-title">Brand</div>
+            <select class="form-select" onchange="location = this.value;" style="min-height: 44px;">
+              <option value="{{ url_for('product.product_list', business=current_business, category=current_category, q=search_query) }}">All Brands</option>
+              {% for br in brands %}
+                <option value="{{ url_for('product.product_list', business=current_business, category=current_category, brand=br.slug, q=search_query) }}" {% if current_brand == br.slug %}selected{% endif %}>
+                  {{ br.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+
+          {% if current_business or current_category or current_brand or search_query %}
+          <a href="{{ url_for('product.product_list') }}" class="btn btn-outline btn-block" style="font-size: 0.875rem; min-height: 44px;">
+            ✕ Clear All Filters
+          </a>
+          {% endif %}
+        </div>
+      </aside>
+
+      <!-- ── Main Products Area ── -->
+      <div>
+        <!-- Results bar -->
+        <div class="products-results-bar">
+          <div class="results-count">
+            Showing <strong>{{ products|length }}</strong> of <strong>{{ total_products }}</strong> products
+            {% if current_business %}<span style="color: var(--accent);"> · {{ current_business|title }}</span>{% endif %}
+          </div>
+          {% if current_business or current_category or current_brand or search_query %}
+          <a href="{{ url_for('product.product_list') }}" style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">
+            Clear filters ✕
+          </a>
+          {% endif %}
+        </div>
+
+        {% if products %}
+          <div class="products-grid">
+            {% for p in products %}
+            <div class="product-card">
+              <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; text-decoration:none;">
+                <img src="{{ p.images[0].url if p.images else '/static/images/placeholder.jpg' }}" alt="{{ p.name }}" loading="lazy">
+              </a>
+              <div class="product-info">
+                <div class="product-brand">{{ p.brand_name }}</div>
+                <h4 class="product-name">
+                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" style="color: inherit; text-decoration:none;">{{ p.name }}</a>
+                </h4>
+                <div class="product-sku">SKU: {{ p.sku }}</div>
+                <div class="product-card-footer">
+                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm">
+                    Details
+                  </a>
+                  <button type="button" class="btn btn-primary btn-sm" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">
+                    Quote
+                  </button>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+          <!-- Pagination -->
+          {% if total_pages > 1 %}
+          <div class="pagination" role="navigation" aria-label="Product pages">
+            {% if page > 1 %}
+              <a href="{{ url_for('product.product_list', page=page-1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Previous page">‹</a>
+            {% endif %}
+
+            {% for page_num in range(1, total_pages + 1) %}
+              <a href="{{ url_for('product.product_list', page=page_num, business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
+                 class="page-link {% if page_num == page %}active{% endif %}"
+                 aria-label="Page {{ page_num }}"
+                 {% if page_num == page %}aria-current="page"{% endif %}>
+                {{ page_num }}
+              </a>
+            {% endfor %}
+
+            {% if page < total_pages %}
+              <a href="{{ url_for('product.product_list', page=page+1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Next page">›</a>
+            {% endif %}
+          </div>
+          {% endif %}
+
+        {% else %}
+          <div style="text-align: center; padding: 4rem 0; color: var(--primary-500);">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">📦</div>
+            <h3 style="margin-bottom: 0.5rem;">No products found</h3>
+            <p>Try adjusting your filters or search terms.</p>
+            <a href="{{ url_for('product.product_list') }}" class="btn btn-primary" style="margin-top: 1.5rem;">
+              Browse All Products
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script>
+  // Mobile filter panel toggle
+  function toggleFilterPanel() {
+    const panel = document.getElementById('filter-panel');
+    const btn   = document.getElementById('filter-toggle-btn');
+    const icon  = document.getElementById('filter-toggle-icon');
+    if (!panel) return;
+    const isOpen = panel.classList.toggle('open');
+    panel.style.display = isOpen ? 'block' : 'none';
+    if (btn)  btn.setAttribute('aria-expanded', isOpen);
+    if (icon) icon.textContent = isOpen ? '▲' : '▼';
+  }
+
+  // On desktop: always show filter panel regardless
+  function initFilterPanel() {
+    const panel = document.getElementById('filter-panel');
+    if (!panel) return;
+    if (window.innerWidth >= 768) {
+      panel.style.display = 'block';
+    } else {
+      panel.style.display = 'none';
+    }
+  }
+
+  initFilterPanel();
+  window.addEventListener('resize', initFilterPanel);
+</script>
+{% endblock %}

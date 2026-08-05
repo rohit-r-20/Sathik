@@ -1,0 +1,498 @@
+/* ============================================================
+   Sathik Groups — Mobile-First Responsive Stylesheet
+   Priority: Mobile users (< 768px) get the best experience
+   ============================================================ */
+
+/* ──────────────────────────────────────────────────────────
+   HAMBURGER TOGGLE BUTTON — shown on mobile only
+   ────────────────────────────────────────────────────────── */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.625rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  z-index: 101;
+  border-radius: var(--radius-md);
+  transition: background 0.2s;
+  /* large tap target for thumbs */
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+}
+
+.mobile-toggle:active {
+  background: var(--primary-100);
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--primary-900);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+  transform-origin: center;
+}
+
+/* X animation when menu is open */
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ──────────────────────────────────────────────────────────
+   MOBILE STICKY BOTTOM ACTION BAR
+   ────────────────────────────────────────────────────────── */
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #ffffff;
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.10);
+  padding: 0.625rem 0.875rem;
+  /* safe area inset for iOS home indicator */
+  padding-bottom: calc(0.625rem + env(safe-area-inset-bottom, 0px));
+  gap: 0.5rem;
+}
+
+.mobile-bar-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.375rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  min-height: 44px;
+  /* active state press feedback */
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.mobile-bar-btn:active {
+  opacity: 0.85;
+  transform: scale(0.97);
+}
+
+.mobile-bar-btn.whatsapp {
+  background-color: #16A34A;
+  color: #ffffff;
+}
+
+.mobile-bar-btn.call {
+  background-color: var(--primary-900);
+  color: #ffffff;
+}
+
+.mobile-bar-btn.quote {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* ──────────────────────────────────────────────────────────
+   NAVBAR SCROLL STATE
+   ────────────────────────────────────────────────────────── */
+.navbar.scrolled {
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.1);
+}
+
+/* ──────────────────────────────────────────────────────────
+   BODY LOCK WHEN MENU / MODAL IS OPEN
+   ────────────────────────────────────────────────────────── */
+body.menu-open,
+body.modal-open {
+  overflow: hidden;
+  /* prevent iOS bounce scroll */
+  position: fixed;
+  width: 100%;
+}
+
+/* ============================================================
+   TABLET BREAKPOINT — max-width: 1024px
+   ============================================================ */
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .brand-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* ============================================================
+   MOBILE BREAKPOINT — max-width: 768px
+   Priority zone: Most of your users are HERE
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* ── Viewport & Global ── */
+  .container {
+    padding: 0 1rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  /* ── Show sticky bar & hamburger ── */
+  .mobile-sticky-bar {
+    display: flex;
+  }
+
+  /* Quick Enquiry FAB Mobile position above bottom sticky bar */
+  .quick-enquiry-fab {
+    bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+    right: 1rem;
+    padding: 0.75rem 1.125rem;
+    font-size: 0.84rem;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.40);
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-actions-desktop {
+    display: none !important;
+  }
+
+  /* Pad body so sticky bar doesn't cover footer content */
+  body {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* ── Mobile Navigation Drawer (full-width slide-down) ── */
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid var(--border);
+    border-bottom: 2px solid var(--accent);
+    padding: 1.25rem 1rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    animation: menuSlideDown 0.25s ease;
+  }
+
+  @keyframes menuSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.875rem 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    min-height: 48px;
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .nav-link.active::after {
+    display: none;
+  }
+
+  /* Mobile Products dropdown — always visible inline */
+  .dropdown-menu {
+    position: static;
+    display: block;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 0.5rem 1rem;
+    min-width: auto;
+    background: var(--surface);
+    border-left: 2px solid var(--accent);
+    margin: 0 0 0.25rem 0.25rem;
+  }
+
+  .dropdown-item {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.9375rem;
+    min-height: 44px;
+  }
+
+  /* Mobile-only CTA buttons inside menu */
+  .mobile-only-actions {
+    display: flex !important;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Splash Screen ── */
+  .splash-title {
+    font-size: 2.25rem;
+    letter-spacing: 0.08em;
+  }
+  .splash-crest {
+    width: 4.5rem;
+    height: 4.5rem;
+    font-size: 2rem;
+  }
+  .splash-progress-bar {
+    width: 80vw;
+    max-width: 280px;
+  }
+
+  /* ── Hero Section ── */
+  .hero {
+    padding: 2.75rem 0 2.5rem;
+  }
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .hero-desc {
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+    line-height: 1.65;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.875rem;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  /* ── Stats Bar ── */
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  /* ── Business Divisions ── */
+  .business-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .business-header {
+    height: 8rem;
+    font-size: 3.5rem;
+  }
+
+  /* ── Brands Grid ── */
+  .brand-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .brand-card-item {
+    padding: 1rem 0.75rem;
+  }
+  .brand-card-name {
+    font-size: 1rem;
+  }
+
+  /* ── Products Grid ── */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.875rem;
+  }
+  .product-card-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .product-card-footer .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  /* ── Why Choose Us ── */
+  .trust-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.875rem;
+  }
+  .trust-card {
+    padding: 1.25rem 1rem;
+  }
+
+  /* ── Projects ── */
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  /* ── CTA Banner ── */
+  .cta-banner {
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    gap: 1.75rem;
+  }
+  .cta-banner-title {
+    font-size: 1.5rem;
+  }
+  .cta-banner-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .cta-banner-actions .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  /* ── Modal ── */
+  .modal-card {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+  }
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-body {
+    max-height: 75vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Footer ── */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* ── Forms ── */
+  .form-input,
+  .form-textarea,
+  .form-select {
+    font-size: 1rem; /* prevents iOS auto-zoom on focus (must be ≥16px equiv) */
+    padding: 0.875rem 1rem;
+    min-height: 48px;
+  }
+  .form-textarea {
+    min-height: 100px;
+  }
+
+}
+
+/* ============================================================
+   SMALL MOBILE — max-width: 480px
+   ============================================================ */
+@media (max-width: 480px) {
+  .splash-title {
+    font-size: 1.75rem;
+    letter-spacing: 0.06em;
+  }
+  .splash-sub {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .stat-number {
+    font-size: 1.875rem;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE — max-width: 360px (very small Android devices)
+   ============================================================ */
+@media (max-width: 360px) {
+  .brand-name {
+    font-size: 0.875rem;
+  }
+  .mobile-bar-btn {
+    font-size: 0.7rem;
+    padding: 0.625rem 0.25rem;
+  }
+  .hero-title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - Manage Brands | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div style="font-weight: 800; font-family: var(--font-heading); font-size: 1.125rem;">ADMIN PORTAL</div>
+    <ul class="admin-nav">
+      <li><a href="{{ url_for('admin.dashboard') }}">📊 Dashboard</a></li>
+      <li><a href="{{ url_for('admin.products') }}">📦 Products</a></li>
+      <li><a href="{{ url_for('admin.brands') }}" class="active">🏷️ Brands</a></li>
+      <li><a href="{{ url_for('admin.enquiries') }}">📩 Enquiries</a></li>
+      <li><a href="{{ url_for('admin.settings') }}">⚙️ Settings</a></li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <h1 style="font-size: 1.75rem; margin-bottom: 2rem;">Authorized Partner Brands</h1>
+    <div class="table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Brand Name</th>
+            <th>Slug</th>
+            <th>Country</th>
+            <th>Featured</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in brands %}
+          <tr>
+            <td><strong>{{ b.name }}</strong></td>
+            <td>{{ b.slug }}</td>
+            <td>{{ b.country or 'India' }}</td>
+            <td>
+              {% if b.featured %}
+                <span class="badge badge-featured">Featured</span>
+              {% else %}
+                <span class="badge">Standard</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Authorized Brands | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/brands.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="section bg-dark text-center">
+  <div class="container">
+    <div class="section-tag" style="color: var(--accent);">Authorized Dealer &amp; Distributor</div>
+    <h1 style="font-size: 3rem; color: #ffffff; margin-bottom: 1rem;">Brands We Distribute</h1>
+    <p style="color: var(--primary-300); font-size: 1.125rem; max-width: 38rem; margin: 0 auto;">
+      We partner directly with India's premier manufacturers in plumbing, hardware, and bath &amp; kitchen solutions.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if featured_brands %}
+    <div style="margin-bottom: 4rem;">
+      <h2 class="section-title">Featured Brands</h2>
+      <div class="brands-grid" style="margin-top: 1.5rem;">
+        {% for b in featured_brands %}
+        <a href="{{ url_for('brand.brand_detail', slug=b.slug) }}" class="brand-card">
+          <div class="brand-logo-text">{{ b.name }}</div>
+          <div style="font-size: 0.75rem; color: var(--primary-500); uppercase;">{{ b.country or 'India' }}</div>
+          <span style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">View Catalogue &rarr;</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div>
+      <h2 class="section-title">All Partner Brands</h2>
+      <div class="brands-grid" style="margin-top: 1.5rem;">
+        {% for b in brands %}
+        <a href="{{ url_for('brand.brand_detail', slug=b.slug) }}" class="brand-card">
+          <div class="brand-logo-text">{{ b.name }}</div>
+          <div style="font-size: 0.75rem; color: var(--primary-500);">{{ b.country or 'India' }}</div>
+          <span style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">View Catalogue &rarr;</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

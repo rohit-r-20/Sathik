@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.name }} by {{ product.brand_name }} | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div style="font-size: 0.875rem; color: var(--primary-500);">
+      <a href="{{ url_for('home.index') }}">Home</a> &rarr; 
+      <a href="{{ url_for('product.product_list') }}">Products</a> &rarr; 
+      <a href="{{ url_for('product.product_list', business=product.business_slug) }}">{{ product.business_name or product.business_slug|title }}</a> &rarr; 
+      <span style="color: var(--primary-900); font-weight: 600;">{{ product.name }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="product-detail-grid">
+      <!-- Image Gallery -->
+      <div class="product-gallery">
+        <div class="main-image-frame">
+          <img id="main-product-image" src="{{ product.images[0].url if product.images else '/static/images/placeholder.jpg' }}" alt="{{ product.name }}">
+        </div>
+        {% if product.images and product.images|length > 1 %}
+        <div class="gallery-thumbs">
+          {% for img in product.images %}
+          <div class="thumb-frame {% if loop.first %}active{% endif %}" onclick="switchMainImage(this, '{{ img.url }}')">
+            <img src="{{ img.url }}" alt="{{ product.name }}" style="width:100%; height:100%; object-fit:contain;">
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Details & Quote CTAs -->
+      <div>
+        <div style="font-size: 0.875rem; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;">
+          {{ product.brand_name }}
+        </div>
+        <h1 style="font-size: 2.25rem; margin-bottom: 0.75rem;">{{ product.name }}</h1>
+        <div style="font-family: monospace; font-size: 0.875rem; color: var(--primary-500); margin-bottom: 1.5rem;">
+          SKU: {{ product.sku }}
+        </div>
+
+        {% if product.short_description %}
+        <p style="font-size: 1.0625rem; color: var(--primary-600); line-height: 1.6; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1rem;">
+          {{ product.short_description }}
+        </p>
+        {% endif %}
+
+        <!-- NO PRICE SHOWN — ENQUIRY BOX -->
+        <div class="cta-box">
+          <div style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; color: var(--primary-700);">
+            Request Price Quote &amp; Availability
+          </div>
+          <button type="button" class="btn btn-primary btn-block" onclick="prepareQuoteModal('{{ product.name }}', '{{ product._id }}', '{{ product.sku }}')">
+            Request Quote Now
+          </button>
+          <a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+            Enquire via WhatsApp
+          </a>
+          <a href="tel:{{ company.phone }}" class="btn btn-outline btn-block">
+            Call Sales: {{ company.phone }}
+          </a>
+        </div>
+
+        {% if product.features %}
+        <div style="margin-top: 2rem;">
+          <h3 style="font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem;">Key Features</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+            {% for f in product.features %}
+            <li style="display: flex; items-center; gap: 0.5rem; font-size: 0.9375rem; color: var(--primary-700);">
+              <span style="color: var(--accent);">&#10004;</span> {{ f }}
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Description & Specs Section -->
+    <div style="margin-top: 4rem;">
+      <h3 style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary-900); padding-bottom: 0.5rem; display: inline-block;">Description</h3>
+      <div style="color: var(--primary-700); line-height: 1.8; font-size: 0.9375rem; whitespace: pre-line;">
+        {{ product.description or product.short_description }}
+      </div>
+
+      {% if product.specifications %}
+      <h3 style="font-size: 1.25rem; margin-top: 3rem; margin-bottom: 1rem; border-bottom: 2px solid var(--primary-900); padding-bottom: 0.5rem; display: inline-block;">Specifications</h3>
+      <table class="specs-table">
+        <tbody>
+          {% for spec in product.specifications %}
+          <tr>
+            <td>{{ spec.key }}</td>
+            <td>{{ spec.value }} {% if spec.unit %}{{ spec.unit }}{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+
+    <!-- Related Products -->
+    {% if related_products %}
+    <div style="margin-top: 5rem;">
+      <h2 className="section-title">Related Products</h2>
+      <div class="products-grid" style="margin-top: 1.5rem;">
+        {% for p in related_products %}
+        <div class="product-card">
+          <div class="product-image">
+            <img src="{{ p.images[0].url if p.images else '/static/images/placeholder.jpg' }}" alt="{{ p.name }}">
+          </div>
+          <div class="product-info">
+            <div class="product-brand">{{ p.brand_name }}</div>
+            <h4 class="product-name">
+              <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{ p.name }}</a>
+            </h4>
+            <div class="product-sku">SKU: {{ p.sku }}</div>
+            <div class="product-card-footer">
+              <button type="button" class="btn btn-primary btn-sm btn-block" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">Request Quote</button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/products.js') }}"></script>
+{% endblock %}

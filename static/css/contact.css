@@ -1,0 +1,86 @@
+/* ============================================================
+   Sathik Groups — Contact Page Styles (Mobile-First)
+   ============================================================ */
+
+/* Contact page layout: info column + form */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;  /* Mobile: stacked */
+  gap: 2rem;
+}
+
+/* On tablet+ go side by side */
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+}
+
+/* Individual contact info cards */
+.contact-info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+
+.contact-info-card:hover {
+  border-color: var(--accent);
+}
+
+/* Make phone/whatsapp links easily tappable on mobile */
+.contact-info-card a {
+  color: var(--accent);
+  font-weight: 600;
+  display: inline-block;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;           /* prevents shrinking */
+  background-color: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+/* Form two-column grid — stacked on mobile */
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+@media (min-width: 640px) {
+  .form-row-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Contact form container card */
+.contact-form-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .contact-form-card {
+    padding: 2.5rem;
+  }
+}

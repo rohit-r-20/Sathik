@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us | Sathik Groups{% endblock %}
+
+{% block content %}
+<section class="section bg-dark text-center">
+  <div class="container">
+    <div class="section-tag" style="color: var(--accent);">About Sathik Groups</div>
+    <h1 style="font-size: 3rem; color: #ffffff; margin-bottom: 1rem;">Your Trusted Partner in Building Materials</h1>
+    <p style="color: var(--primary-300); font-size: 1.125rem; max-width: 38rem; margin: 0 auto;">
+      Over 15 years of excellence in dealer &amp; distributor solutions for plumbing, hardware, and bath &amp; kitchen products.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+      <div>
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">Building Trust, One Quality Product at a Time</h2>
+        <p style="color: var(--primary-600); margin-bottom: 1.25rem;">
+          Sathik Groups was established with a clear mission: to provide architects, builders, contractors, and homeowners with authentic, top-tier building materials sourced directly from India's most trusted manufacturers.
+        </p>
+        <p style="color: var(--primary-600); margin-bottom: 1.5rem;">
+          As an official dealer and distributor, we carry over 20 leading brands including Jaquar, Hindware, CERA, Astral, Ashirvad, Supreme, Prince, CRI, and EESCO.
+        </p>
+        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">Get in Touch</a>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+        <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">15+</div>
+          <div style="font-weight: 600; margin-top: 0.5rem;">Years Experience</div>
+        </div>
+        <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">20+</div>
+          <div style="font-weight: 600; margin-top: 0.5rem;">Partner Brands</div>
+        </div>
+        <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">5000+</div>
+          <div style="font-weight: 600; margin-top: 0.5rem;">Products</div>
+        </div>
+        <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div style="font-size: 2.5rem; font-weight: 800; color: var(--accent);">1000+</div>
+          <div style="font-weight: 600; margin-top: 0.5rem;">Projects</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
