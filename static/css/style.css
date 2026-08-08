@@ -55,6 +55,15 @@ a {
   text-decoration: none;
 }
 
+.section-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /* ============================================================
    BOLD & BIG BRAND INTRO ENTRANCE SCREEN (SATHIK GROUPS)
    ============================================================ */
