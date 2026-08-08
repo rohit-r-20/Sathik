@@ -2,15 +2,92 @@
    Sathik Groups — Homepage Handcrafted Commercial Architecture
    ============================================================ */
 
-/* 1. HERO SECTION (Warm Luxury Light Aesthetic) */
+/* 1. HERO SECTION (Video Background with Light/Dark Fallback) */
 .hero {
   position: relative;
-  background-color: #F8FAFC;
-  background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
-  background-size: 28px 28px;
-  color: var(--primary-900);
+  background-color: #0f172a;
+  color: #ffffff;
   padding: 5.5rem 0 4.5rem;
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.60) 100%);
+  z-index: 1;
+}
+
+.desktop-video {
+  display: block;
+}
+
+.hero-audio-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 30px;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero-audio-btn:hover {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: var(--accent-light, #38bdf8);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .hero-audio-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* Ensure text & elements are visible over video background */
+.hero .hero-title {
+  color: #ffffff;
+}
+
+.hero .hero-title span {
+  color: var(--accent-light, #38bdf8);
+}
+
+.hero .hero-desc {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .hero-content {

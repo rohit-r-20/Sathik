@@ -34,18 +34,25 @@
       </li>
 
       <li class="dropdown" role="none">
-        <a href="{{ url_for('product.product_list') }}" role="menuitem"
-           class="nav-link {% if request.endpoint == 'product.product_list' %}active{% endif %}">
-          Products &#9662;
+        <a href="{{ url_for('category.store_list') }}" role="menuitem"
+           class="nav-link {% if request.endpoint in ('category.store_list', 'category.store_detail') %}active{% endif %}">
+          Stores &#9662;
         </a>
-        <ul class="dropdown-menu" role="menu" aria-label="Product categories">
-          <li role="none"><a href="{{ url_for('product.product_list', business='plumbing') }}" role="menuitem" class="dropdown-item">🔧 Plumbing Products</a></li>
-          <li role="none"><a href="{{ url_for('product.product_list', business='hardware') }}" role="menuitem" class="dropdown-item">🔨 Hardware Products</a></li>
-          <li role="none"><a href="{{ url_for('product.product_list', business='bath-kitchen') }}" role="menuitem" class="dropdown-item">🛁 Bath &amp; Kitchen</a></li>
+        <ul class="dropdown-menu" role="menu" aria-label="Commercial Stores">
+          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" role="menuitem" class="dropdown-item">🛁 Bath &amp; Kitchen Store</a></li>
+          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" role="menuitem" class="dropdown-item">🔧 Plumbing Store</a></li>
+          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='hardware') }}" role="menuitem" class="dropdown-item">🔨 Hardware Store</a></li>
           <li role="none" style="border-top: 1px solid var(--border); margin-top: 0.25rem; padding-top: 0.25rem;">
-            <a href="{{ url_for('product.product_list') }}" role="menuitem" class="dropdown-item">📦 Full Catalogue</a>
+            <a href="{{ url_for('category.store_list') }}" role="menuitem" class="dropdown-item">🏬 All Stores Directory</a>
           </li>
         </ul>
+      </li>
+
+      <li role="none">
+        <a href="{{ url_for('product.product_list') }}" role="menuitem"
+           class="nav-link {% if request.endpoint == 'product.product_list' %}active{% endif %}">
+          Catalogue
+        </a>
       </li>
 
       <li role="none">
@@ -54,6 +61,7 @@
           Brands
         </a>
       </li>
+
       <li role="none">
         <a href="{{ url_for('home.projects') }}" role="menuitem"
            class="nav-link {% if request.endpoint == 'home.projects' %}active{% endif %}">

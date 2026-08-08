@@ -11,6 +11,7 @@ product_bp = Blueprint('product', __name__)
 def product_list():
     business_filter = request.args.get('business', '').strip()
     category_filter = request.args.get('category', '').strip()
+    subcategory_filter = request.args.get('subcategory', '').strip()
     brand_filter = request.args.get('brand', '').strip()
     search_query = request.args.get('q', '').strip()
     page = int(request.args.get('page', 1))
@@ -21,6 +22,8 @@ def product_list():
         filter_query['business_slug'] = business_filter
     if category_filter:
         filter_query['category_slug'] = category_filter
+    if subcategory_filter:
+        filter_query['subcategory_slug'] = subcategory_filter
     if brand_filter:
         filter_query['brand_slug'] = brand_filter
     if search_query:
@@ -38,6 +41,16 @@ def product_list():
     )
 
     categories = CategoryModel.find_all(business_slug=business_filter or None)
+    
+    # Fetch subcategories for active category/business
+    from services.category_service import SubcategoryService
+    if category_filter:
+        subcategories = SubcategoryService.get_by_category(category_filter)
+    elif business_filter:
+        subcategories = SubcategoryService.get_by_business(business_filter)
+    else:
+        subcategories = SubcategoryService.get_all()
+
     brands = BrandModel.find_all(business_slug=business_filter or None)
 
     total_pages = (total + limit - 1) // limit if total > 0 else 1
@@ -47,9 +60,11 @@ def product_list():
         products=products,
         businesses=BUSINESSES,
         categories=categories,
+        subcategories=subcategories,
         brands=brands,
         current_business=business_filter,
         current_category=category_filter,
+        current_subcategory=subcategory_filter,
         current_brand=brand_filter,
         search_query=search_query,
         page=page,
@@ -57,6 +72,7 @@ def product_list():
         total_products=total,
         company=COMPANY_INFO
     )
+
 
 @product_bp.route('/products/<subcategory_slug>/<product_slug>')
 def product_detail(subcategory_slug, product_slug):

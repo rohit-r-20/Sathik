@@ -75,7 +75,7 @@
           {% if recent_enquiries %}
             {% for e in recent_enquiries %}
             <tr>
-              <td>{{ e.created_at.strftime('%b %d, %Y') if e.created_at else '' }}</td>
+              <td>{{ e.created_at.strftime('%b %d, %Y') if e.created_at and e.created_at.strftime else (e.created_at[:10] if e.created_at else '') }}</td>
               <td><strong>{{ e.name }}</strong></td>
               <td>{{ e.phone }}</td>
               <td>{{ e.city }}</td>

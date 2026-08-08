@@ -482,8 +482,17 @@ body.modal-open {
 }
 
 /* ============================================================
-   SMALL MOBILE — max-width: 360px (very small Android devices)
+   HERO BACKGROUND VIDEO RESPONSIVE TOGGLE
    ============================================================ */
+@media (max-width: 768px) {
+  .desktop-video {
+    display: none !important;
+  }
+  .mobile-video {
+    display: block !important;
+  }
+}
+
 @media (max-width: 360px) {
   .brand-name {
     font-size: 0.875rem;
@@ -496,3 +505,4 @@ body.modal-open {
     font-size: 1.5rem;
   }
 }
+

@@ -9,7 +9,26 @@
 {% block content %}
 <!-- HERO SECTION -->
 <section class="hero">
-  <div class="container">
+  <!-- Desktop Background Video -->
+  <video class="hero-video desktop-video" autoplay loop muted playsinline preload="auto">
+    <source src="{{ url_for('static', filename='videos/hero_desktop.mp4') }}" type="video/mp4">
+  </video>
+
+  <!-- Mobile Background Video -->
+  <video class="hero-video mobile-video" autoplay loop muted playsinline preload="auto">
+    <source src="{{ url_for('static', filename='videos/hero_mobile.mp4') }}" type="video/mp4">
+  </video>
+
+  <!-- Dark Overlay for Contrast & Text Readability -->
+  <div class="hero-video-overlay"></div>
+
+  <!-- Hero Audio Enable / Disable Control Button -->
+  <button type="button" class="hero-audio-btn" id="hero-audio-btn" onclick="toggleHeroAudio()" aria-label="Toggle hero video sound">
+    <span id="hero-audio-icon">🔇</span>
+    <span id="hero-audio-text">Unmute Audio</span>
+  </button>
+
+  <div class="container" style="position: relative; z-index: 2;">
     <div class="hero-content">
       <div class="hero-badge">
         ★ Authorized Commercial Distributor &amp; Dealer
@@ -130,8 +149,8 @@
         <div class="business-body">
           <h3 class="business-title">{{ b.name }}</h3>
           <p class="business-desc">{{ b.short_description }}</p>
-          <a href="{{ url_for('product.product_list', business=b.slug) }}" class="btn btn-outline btn-sm">
-            Explore {{ b.name }} &rarr;
+          <a href="{{ url_for('category.store_detail', business_slug=b.slug) }}" class="btn btn-outline btn-sm">
+            Enter {{ b.name }} Store &rarr;
           </a>
         </div>
       </div>

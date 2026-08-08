@@ -94,14 +94,29 @@
           </div>
           {% endif %}
 
+          <!-- Subcategory Filter -->
+          {% if subcategories %}
+          <div class="filter-group">
+            <div class="filter-title">Element / Subcategory</div>
+            <select class="form-select" onchange="location = this.value;" style="min-height: 44px;">
+              <option value="{{ url_for('product.product_list', business=current_business, category=current_category, brand=current_brand, q=search_query) }}">All Elements</option>
+              {% for sub in subcategories %}
+                <option value="{{ url_for('product.product_list', business=current_business, category=current_category, subcategory=sub.slug, brand=current_brand, q=search_query) }}" {% if current_subcategory == sub.slug %}selected{% endif %}>
+                  {{ sub.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+
           <!-- Brand Filter -->
           {% if brands %}
           <div class="filter-group">
             <div class="filter-title">Brand</div>
             <select class="form-select" onchange="location = this.value;" style="min-height: 44px;">
-              <option value="{{ url_for('product.product_list', business=current_business, category=current_category, q=search_query) }}">All Brands</option>
+              <option value="{{ url_for('product.product_list', business=current_business, category=current_category, subcategory=current_subcategory, q=search_query) }}">All Brands</option>
               {% for br in brands %}
-                <option value="{{ url_for('product.product_list', business=current_business, category=current_category, brand=br.slug, q=search_query) }}" {% if current_brand == br.slug %}selected{% endif %}>
+                <option value="{{ url_for('product.product_list', business=current_business, category=current_category, subcategory=current_subcategory, brand=br.slug, q=search_query) }}" {% if current_brand == br.slug %}selected{% endif %}>
                   {{ br.name }}
                 </option>
               {% endfor %}
@@ -109,7 +124,7 @@
           </div>
           {% endif %}
 
-          {% if current_business or current_category or current_brand or search_query %}
+          {% if current_business or current_category or current_subcategory or current_brand or search_query %}
           <a href="{{ url_for('product.product_list') }}" class="btn btn-outline btn-block" style="font-size: 0.875rem; min-height: 44px;">
             ✕ Clear All Filters
           </a>
@@ -119,18 +134,38 @@
 
       <!-- ── Main Products Area ── -->
       <div>
+        <!-- Subcategory Element Pill Bar -->
+        {% if subcategories %}
+        <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; background: var(--bg-surface); padding: 0.875rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-right: 0.5rem;">Elements:</span>
+          <a href="{{ url_for('product.product_list', business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
+             style="font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 20px; text-decoration: none; border: 1px solid var(--border); font-weight: 600; {% if not current_subcategory %}background: var(--primary-600); color: #fff; border-color: var(--primary-600);{% else %}background: var(--bg-light); color: var(--text-dark);{% endif %}">
+            All Elements
+          </a>
+          {% for sub in subcategories %}
+          <a href="{{ url_for('product.product_list', business=current_business, category=current_category, subcategory=sub.slug, brand=current_brand, q=search_query) }}"
+             style="font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 20px; text-decoration: none; border: 1px solid var(--border); font-weight: 600; {% if current_subcategory == sub.slug %}background: var(--primary-600); color: #fff; border-color: var(--primary-600);{% else %}background: var(--bg-light); color: var(--text-dark);{% endif %}">
+            {{ sub.icon or '•' }} {{ sub.name }}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         <!-- Results bar -->
         <div class="products-results-bar">
           <div class="results-count">
             Showing <strong>{{ products|length }}</strong> of <strong>{{ total_products }}</strong> products
             {% if current_business %}<span style="color: var(--accent);"> · {{ current_business|title }}</span>{% endif %}
+            {% if current_category %}<span style="color: var(--primary-600);"> · {{ current_category|title }}</span>{% endif %}
+            {% if current_subcategory %}<span style="color: var(--primary-800);"> · {{ current_subcategory|title }}</span>{% endif %}
           </div>
-          {% if current_business or current_category or current_brand or search_query %}
+          {% if current_business or current_category or current_subcategory or current_brand or search_query %}
           <a href="{{ url_for('product.product_list') }}" style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">
             Clear filters ✕
           </a>
           {% endif %}
         </div>
+
 
         {% if products %}
           <div class="products-grid">

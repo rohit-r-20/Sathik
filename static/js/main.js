@@ -320,4 +320,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  /* ──────────────────────────────────────────────────────────
+     9. HERO VIDEO AUDIO ENABLE / DISABLE CONTROL
+     ────────────────────────────────────────────────────────── */
+  window.toggleHeroAudio = function() {
+    const desktopVid = document.querySelector('.desktop-video');
+    const mobileVid  = document.querySelector('.mobile-video');
+    const btnIcon    = document.getElementById('hero-audio-icon');
+    const btnText    = document.getElementById('hero-audio-text');
+
+    const activeVideo = window.innerWidth <= 768 ? (mobileVid || desktopVid) : (desktopVid || mobileVid);
+    if (!activeVideo) return;
+
+    if (activeVideo.muted) {
+      if (desktopVid) desktopVid.muted = false;
+      if (mobileVid) mobileVid.muted = false;
+      if (btnIcon) btnIcon.textContent = '🔊';
+      if (btnText) btnText.textContent = 'Mute Audio';
+    } else {
+      if (desktopVid) desktopVid.muted = true;
+      if (mobileVid) mobileVid.muted = true;
+      if (btnIcon) btnIcon.textContent = '🔇';
+      if (btnText) btnText.textContent = 'Unmute Audio';
+    }
+  };
+
 });
+

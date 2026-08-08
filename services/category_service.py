@@ -1,6 +1,6 @@
 from datetime import datetime
 from database.supabase import get_supabase
-from utils.constants import MOCK_CATEGORIES
+from utils.constants import MOCK_CATEGORIES, MOCK_SUBCATEGORIES
 
 def format_record(record):
     """Ensure record has _id field for template backward compatibility."""
@@ -24,7 +24,13 @@ class CategoryService:
             if business_slug:
                 query = query.eq('business_slug', business_slug)
             res = query.order('order', desc=False).execute()
-            return [format_record(c) for c in (res.data or [])]
+            data = res.data or []
+            if not data:
+                results = MOCK_CATEGORIES.copy()
+                if business_slug:
+                    results = [c for c in results if c.get('business_slug') == business_slug]
+                return [format_record(c) for c in results]
+            return [format_record(c) for c in data]
         except Exception as e:
             print(f"CategoryService.get_all error: {e}")
             results = MOCK_CATEGORIES.copy()
@@ -45,9 +51,15 @@ class CategoryService:
             res = client.table('categories').select('*').eq('slug', slug).eq('is_active', True).limit(1).execute()
             if res.data:
                 return format_record(res.data[0])
+            for c in MOCK_CATEGORIES:
+                if c['slug'] == slug:
+                    return format_record(c)
             return None
         except Exception as e:
             print(f"CategoryService.get_by_slug error: {e}")
+            for c in MOCK_CATEGORIES:
+                if c['slug'] == slug:
+                    return format_record(c)
             return None
 
     @staticmethod
@@ -73,30 +85,76 @@ class SubcategoryService:
     def get_by_category(category_id_or_slug):
         client = get_supabase()
         if client is None:
-            return []
+            return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('category_slug') == str(category_id_or_slug) or s.get('category_id') == str(category_id_or_slug)]
 
         try:
             res = client.table('subcategories').select('*')\
                 .or_(f"category_id.eq.{category_id_or_slug},category_slug.eq.{category_id_or_slug}")\
                 .eq('is_active', True)\
                 .order('order', desc=False).execute()
-            return [format_record(s) for s in (res.data or [])]
+            data = res.data or []
+            if not data:
+                return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('category_slug') == str(category_id_or_slug) or s.get('category_id') == str(category_id_or_slug)]
+            return [format_record(s) for s in data]
         except Exception as e:
             print(f"SubcategoryService.get_by_category error: {e}")
-            return []
+            return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('category_slug') == str(category_id_or_slug) or s.get('category_id') == str(category_id_or_slug)]
+
+    @staticmethod
+    def get_by_business(business_slug):
+        client = get_supabase()
+        if client is None:
+            return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('business_slug') == business_slug]
+
+        try:
+            res = client.table('subcategories').select('*').eq('business_slug', business_slug).eq('is_active', True).order('order', desc=False).execute()
+            data = res.data or []
+            if not data:
+                return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('business_slug') == business_slug]
+            return [format_record(s) for s in data]
+        except Exception as e:
+            print(f"SubcategoryService.get_by_business error: {e}")
+            return [format_record(s) for s in MOCK_SUBCATEGORIES if s.get('business_slug') == business_slug]
+
+    @staticmethod
+    def get_by_slug(slug):
+        client = get_supabase()
+        if client is None:
+            for s in MOCK_SUBCATEGORIES:
+                if s['slug'] == slug:
+                    return format_record(s)
+            return None
+
+        try:
+            res = client.table('subcategories').select('*').eq('slug', slug).eq('is_active', True).limit(1).execute()
+            if res.data:
+                return format_record(res.data[0])
+            for s in MOCK_SUBCATEGORIES:
+                if s['slug'] == slug:
+                    return format_record(s)
+            return None
+        except Exception as e:
+            print(f"SubcategoryService.get_by_slug error: {e}")
+            for s in MOCK_SUBCATEGORIES:
+                if s['slug'] == slug:
+                    return format_record(s)
+            return None
 
     @staticmethod
     def get_all():
         client = get_supabase()
         if client is None:
-            return []
+            return [format_record(s) for s in MOCK_SUBCATEGORIES]
 
         try:
             res = client.table('subcategories').select('*').eq('is_active', True).order('order', desc=False).execute()
-            return [format_record(s) for s in (res.data or [])]
+            data = res.data or []
+            if not data:
+                return [format_record(s) for s in MOCK_SUBCATEGORIES]
+            return [format_record(s) for s in data]
         except Exception as e:
             print(f"SubcategoryService.get_all error: {e}")
-            return []
+            return [format_record(s) for s in MOCK_SUBCATEGORIES]
 
     @staticmethod
     def create(data):
@@ -115,3 +173,4 @@ class SubcategoryService:
         except Exception as e:
             print(f"SubcategoryService.create error: {e}")
             return None
+

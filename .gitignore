@@ -40,5 +40,8 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 
-# Uploads
+# Uploads & Large Media
 uploads/
+*.mp4
+static/videos/*.mp4
+

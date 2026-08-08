@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ business.name }} Store | Sathik Groups Wholesale Catalogue{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+<style>
+  .store-hero {
+    background: linear-gradient(135deg, var(--primary-900, #0f172a) 0%, var(--primary-800, #1e293b) 100%);
+    color: #ffffff;
+    padding: 3.5rem 0 3rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .store-hero .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .store-hero .breadcrumb a {
+    color: var(--accent-light, #38bdf8);
+    text-decoration: none;
+  }
+  .store-hero .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  .store-hero-icon {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+  }
+  .store-hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .store-hero-desc {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 750px;
+    line-height: 1.6;
+  }
+  
+  /* Category Breakdown Section */
+  .category-section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark, #0f172a);
+  }
+  .category-section-subtitle {
+    color: var(--text-muted, #64748b);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  
+  .category-card {
+    background: var(--bg-surface, #ffffff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    padding: 1.5rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+  }
+  .category-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-500, #0284c7);
+    box-shadow: 0 12px 24px rgba(2, 132, 199, 0.12);
+  }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .category-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .category-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark, #0f172a);
+    margin: 0;
+  }
+  .category-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted, #64748b);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  
+  /* Subcategory Element Pills */
+  .elements-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted, #64748b);
+    margin-bottom: 0.75rem;
+  }
+  .elements-pill-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+  .element-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: var(--bg-light, #f8fafc);
+    border: 1px solid var(--border, #e2e8f0);
+    padding: 0.4rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dark, #334155);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .element-pill:hover {
+    background: var(--primary-50, #f0f9ff);
+    border-color: var(--primary-400, #38bdf8);
+    color: var(--primary-700, #0369a1);
+    transform: scale(1.03);
+  }
+  
+  .store-catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- STORE HERO -->
+<section class="store-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="{{ url_for('home.index') }}">Home</a>
+      <span>&rsaquo;</span>
+      <a href="{{ url_for('category.store_list') }}">Commercial Stores</a>
+      <span>&rsaquo;</span>
+      <span style="color: #ffffff;">{{ business.name }} Store</span>
+    </div>
+
+    <div class="store-hero-icon">{{ business.icon }}</div>
+    <h1 class="store-hero-title">{{ business.name }} Store</h1>
+    <p class="store-hero-desc">
+      {{ business.short_description }} Select a category or element below to view filtered items.
+    </p>
+  </div>
+</section>
+
+<div class="container" style="margin-bottom: 5rem;">
+  <!-- MAJOR CATEGORIES & ELEMENTS BREAKDOWN -->
+  <div style="margin-bottom: 3.5rem;">
+    <h2 class="category-section-title">Major Categories &amp; Elements</h2>
+    <p class="category-section-subtitle">Click on any element (e.g. Taps, Towel Rods, Lights, Geysers, Sinks) to view specific products.</p>
+
+    <div class="category-grid">
+      {% for cat in categories %}
+      <div class="category-card">
+        <div class="category-header">
+          <span class="category-icon">{{ cat.icon or '📦' }}</span>
+          <h3 class="category-name">{{ cat.name }}</h3>
+        </div>
+        <p class="category-desc">{{ cat.description or 'High performance commercial quality material fixtures and fittings.' }}</p>
+
+        {% if cat.subcategories %}
+        <div class="elements-label">Available Elements:</div>
+        <div class="elements-pill-wrap">
+          {% for sub in cat.subcategories %}
+          <a href="{{ url_for('product.product_list', business=business.slug, category=cat.slug, subcategory=sub.slug) }}" class="element-pill">
+            <span>{{ sub.icon or '•' }}</span>
+            <span>{{ sub.name }}</span>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- STORE CATALOGUE PRODUCTS SHOWCASE -->
+  <div>
+    <div class="store-catalog-header">
+      <div>
+        <h2 class="category-section-title" style="margin: 0;">Featured Products in {{ business.name }}</h2>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">Showing {{ products|length }} of {{ total_products }} available items</span>
+      </div>
+      <a href="{{ url_for('product.product_list', business=business.slug) }}" class="btn btn-outline btn-sm">
+        View All {{ business.name }} Products &rarr;
+      </a>
+    </div>
+
+    <div class="products-grid">
+      {% for p in products %}
+      <div class="product-card">
+        <div class="product-image">
+          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}">
+        </div>
+        <div class="product-info">
+          <div class="product-brand">{{ p.brand_name }}</div>
+          <h4 class="product-name">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{ p.name }}</a>
+          </h4>
+          <div class="product-sku">SKU: {{ p.sku }}</div>
+          <div class="product-card-footer">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="flex:1;">
+              Details
+            </a>
+            <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">
+              Request Quote
+            </button>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div style="grid-column: 1 / -1; padding: 3rem; text-align: center; background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border);">
+        <p style="color: var(--text-muted); font-size: 1.1rem;">No products found under this store filter.</p>
+        <a href="{{ url_for('product.product_list') }}" class="btn btn-primary btn-sm" style="margin-top: 1rem;">View Full Catalogue</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
