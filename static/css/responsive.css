@@ -133,9 +133,8 @@ body.modal-open {
   .products-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .brand-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .brand-ticker-wrapper {
+    padding: 0.25rem 0;
   }
   .trust-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -336,27 +335,19 @@ body.modal-open {
     font-size: 3.5rem;
   }
 
-  /* ── Brands Grid ── */
+  /* ── Brands Marquee Ticker ── */
   .brand-bar-section {
-    padding: 2.5rem 0;
+    padding: 2.5rem 0 1.75rem;
   }
-  .brand-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+  .brand-chip {
+    padding: 0.7rem 1rem;
+    min-width: 95px;
   }
-  .brand-card-item {
-    padding: 1.1rem 0.6rem;
-    border-radius: 10px;
-    min-height: 80px;
+  .brand-chip-name {
+    font-size: 0.82rem;
   }
-  .brand-card-name {
-    font-size: 0.9rem;
-    word-break: break-word;
-    line-height: 1.2;
-  }
-  .brand-card-category {
-    font-size: 0.65rem;
-    letter-spacing: 0.03em;
+  .brand-chip-cat {
+    font-size: 0.6rem;
   }
 
   /* ── Products Grid ── */
@@ -468,19 +459,15 @@ body.modal-open {
     font-size: 1.75rem;
   }
 
-  .brand-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.6rem;
+  .brand-chip {
+    padding: 0.6rem 0.85rem;
+    min-width: 82px;
   }
-  .brand-card-item {
-    padding: 0.9rem 0.5rem;
-    min-height: 70px;
+  .brand-chip-name {
+    font-size: 0.75rem;
   }
-  .brand-card-name {
-    font-size: 0.82rem;
-  }
-  .brand-card-category {
-    font-size: 0.62rem;
+  .brand-chip-cat {
+    font-size: 0.56rem;
   }
 
   .products-grid {

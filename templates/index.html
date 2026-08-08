@@ -68,61 +68,67 @@
 </section>
 
 
-<!-- AUTHORIZED BRANDS SECTION -->
+<!-- AUTHORIZED BRANDS SECTION — Infinite marquee ticker -->
 <section class="brand-bar-section">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 3rem;">
+    <div class="text-center" style="margin-bottom: 2rem;">
       <div class="section-tag">Authorized Partners</div>
       <h2 class="section-title">Leading Brands We Distribute</h2>
       <p class="section-desc">Direct factory supply from India's most trusted manufacturers.</p>
     </div>
+  </div>
 
-    <div class="brand-grid">
-      {% if featured_brands %}
-        {% for b in featured_brands %}
-          <a href="{{ url_for('brand.brand_detail', slug=b.slug) }}" class="brand-card-item">
-            <div class="brand-card-name">{{ b.name }}</div>
-            <div class="brand-card-category">{{ b.country or 'Authorized Partner' }}</div>
-          </a>
-        {% endfor %}
-      {% else %}
-        <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}" class="brand-card-item">
-          <div class="brand-card-name">JAQUAR</div>
-          <div class="brand-card-category">Bath &amp; Sanitaryware</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='hindware') }}" class="brand-card-item">
-          <div class="brand-card-name">HINDWARE</div>
-          <div class="brand-card-category">Sanitaryware &amp; Fittings</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='cera') }}" class="brand-card-item">
-          <div class="brand-card-name">CERA</div>
-          <div class="brand-card-category">Sanitaryware &amp; Tiles</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='astral') }}" class="brand-card-item">
-          <div class="brand-card-name">ASTRAL</div>
-          <div class="brand-card-category">Pipes &amp; Plumbing Systems</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}" class="brand-card-item">
-          <div class="brand-card-name">ASHIRVAD</div>
-          <div class="brand-card-category">CPVC &amp; UPVC Plumbing</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='cri') }}" class="brand-card-item">
-          <div class="brand-card-name">CRI PUMPS</div>
-          <div class="brand-card-category">Pumps &amp; Motors</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='eesco') }}" class="brand-card-item">
-          <div class="brand-card-name">EESCO</div>
-          <div class="brand-card-category">Hardware &amp; Tools</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='supreme') }}" class="brand-card-item">
-          <div class="brand-card-name">SUPREME</div>
-          <div class="brand-card-category">Pipes &amp; Water Tanks</div>
-        </a>
-        <a href="{{ url_for('brand.brand_detail', slug='prince') }}" class="brand-card-item">
-          <div class="brand-card-name">PRINCE</div>
-          <div class="brand-card-category">Pipes &amp; Drainage</div>
-        </a>
-      {% endif %}
+  <!-- Row 1: scrolls left → -->
+  <div class="brand-ticker-wrapper">
+    <div class="brand-ticker brand-ticker--left">
+      <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}"    class="brand-chip"><span class="brand-chip-name">JAQUAR</span><span class="brand-chip-cat">Bath &amp; Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='hindware') }}"  class="brand-chip"><span class="brand-chip-name">HINDWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='cera') }}"      class="brand-chip"><span class="brand-chip-name">CERA</span><span class="brand-chip-cat">Sanitaryware &amp; Tiles</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='astral') }}"    class="brand-chip"><span class="brand-chip-name">ASTRAL</span><span class="brand-chip-cat">Pipes &amp; Plumbing</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}"  class="brand-chip"><span class="brand-chip-name">ASHIRVAD</span><span class="brand-chip-cat">CPVC Plumbing</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='cri') }}"       class="brand-chip"><span class="brand-chip-name">CRI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='bosch') }}"     class="brand-chip"><span class="brand-chip-name">BOSCH</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='skf') }}"       class="brand-chip"><span class="brand-chip-name">SKF</span><span class="brand-chip-cat">Bearings</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='vguard') }}"    class="brand-chip"><span class="brand-chip-name">V-GUARD</span><span class="brand-chip-cat">Electricals</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='eesco') }}"     class="brand-chip"><span class="brand-chip-name">ÉSSCO</span><span class="brand-chip-cat">Bath Fittings</span></a>
+      <!-- duplicate set for seamless loop -->
+      <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">JAQUAR</span><span class="brand-chip-cat">Bath &amp; Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='hindware') }}"  class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">HINDWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='cera') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">CERA</span><span class="brand-chip-cat">Sanitaryware &amp; Tiles</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='astral') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ASTRAL</span><span class="brand-chip-cat">Pipes &amp; Plumbing</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}"  class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ASHIRVAD</span><span class="brand-chip-cat">CPVC Plumbing</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='cri') }}"       class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">CRI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='bosch') }}"     class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">BOSCH</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='skf') }}"       class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">SKF</span><span class="brand-chip-cat">Bearings</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='vguard') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">V-GUARD</span><span class="brand-chip-cat">Electricals</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='eesco') }}"     class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ÉSSCO</span><span class="brand-chip-cat">Bath Fittings</span></a>
+    </div>
+  </div>
+
+  <!-- Row 2: scrolls right ← -->
+  <div class="brand-ticker-wrapper" style="margin-top: 0.75rem;">
+    <div class="brand-ticker brand-ticker--right">
+      <a href="{{ url_for('brand.brand_detail', slug='makita') }}"    class="brand-chip"><span class="brand-chip-name">MAKITA</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='lubi') }}"      class="brand-chip"><span class="brand-chip-name">LUBI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='parryware') }}" class="brand-chip"><span class="brand-chip-name">PARRYWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='dewalt') }}"    class="brand-chip"><span class="brand-chip-name">DEWALT</span><span class="brand-chip-cat">Tools &amp; Hardware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='finolex') }}"   class="brand-chip"><span class="brand-chip-name">FINOLEX</span><span class="brand-chip-cat">Pipes &amp; Cables</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='taparia') }}"   class="brand-chip"><span class="brand-chip-name">TAPARIA</span><span class="brand-chip-cat">Hand Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='legrand') }}"   class="brand-chip"><span class="brand-chip-name">LEGRAND</span><span class="brand-chip-cat">Electrical</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='hikoki') }}"    class="brand-chip"><span class="brand-chip-name">HiKOKI</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='ekki') }}"      class="brand-chip"><span class="brand-chip-name">EKKI</span><span class="brand-chip-cat">Water Tech</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='supreme') }}"   class="brand-chip"><span class="brand-chip-name">SUPREME</span><span class="brand-chip-cat">Pipes &amp; Tanks</span></a>
+      <!-- duplicate set for seamless loop -->
+      <a href="{{ url_for('brand.brand_detail', slug='makita') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">MAKITA</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='lubi') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">LUBI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='parryware') }}" class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">PARRYWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='dewalt') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">DEWALT</span><span class="brand-chip-cat">Tools &amp; Hardware</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='finolex') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">FINOLEX</span><span class="brand-chip-cat">Pipes &amp; Cables</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='taparia') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">TAPARIA</span><span class="brand-chip-cat">Hand Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='legrand') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">LEGRAND</span><span class="brand-chip-cat">Electrical</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='hikoki') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">HiKOKI</span><span class="brand-chip-cat">Power Tools</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='ekki') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">EKKI</span><span class="brand-chip-cat">Water Tech</span></a>
+      <a href="{{ url_for('brand.brand_detail', slug='supreme') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">SUPREME</span><span class="brand-chip-cat">Pipes &amp; Tanks</span></a>
     </div>
   </div>
 </section>
