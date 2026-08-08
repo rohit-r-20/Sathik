@@ -18,17 +18,20 @@
 
         <!-- Clickable contact links — tap targets on mobile -->
         <div style="font-size: 0.875rem; color: #CBD5E1; display: flex; flex-direction: column; gap: 0.625rem;">
-          <a href="tel:{{ company.phone if company else '' }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
-            📞 <strong>{{ company.phone if company else 'Call Us' }}</strong>
+          <a href="tel:04426322644" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+            📞 <strong>Ph: 044-26322644</strong> &nbsp;|&nbsp; <strong>Cell: 94443 23644</strong>
           </a>
-          <a href="https://wa.me/{{ company.whatsapp if company else '919999999999' }}" target="_blank" rel="noopener noreferrer" style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
-            💬 <strong>WhatsApp Sales</strong>
+          <a href="https://wa.me/{{ company.whatsapp if company else '919444323644' }}" target="_blank" rel="noopener noreferrer" style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+            💬 <strong>WhatsApp: +91 94443 23644</strong>
           </a>
-          <a href="mailto:{{ company.email if company else 'info@sathikgroups.com' }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
-            ✉️ {{ company.email if company else 'info@sathikgroups.com' }}
+          <a href="mailto:{{ company.email }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
+            ✉️ {{ company.email }}
+          </a>
+          <a href="mailto:{{ company.email_alt }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
+            ✉️ {{ company.email_alt }}
           </a>
           <div style="display: flex; align-items: flex-start; gap: 0.5rem; color: #94A3B8; font-size: 0.8125rem; line-height: 1.5;">
-            📍 {{ company.address if company else 'Tamil Nadu, India' }}
+            📍 {{ company.address }}
           </div>
         </div>
       </div>

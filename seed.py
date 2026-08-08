@@ -40,7 +40,7 @@ def seed_database():
             # 4. Seed Brands
             for br in BRANDS_LIST:
                 client.table('brands').upsert(br, on_conflict='slug').execute()
-            print("  - 9 Authorized Brands seeded")
+            print(f"  - {len(BRANDS_LIST)} Authorized Brands seeded")
 
             # 5. Seed Initial Products
             for p in MOCK_PRODUCTS:

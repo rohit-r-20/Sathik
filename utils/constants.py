@@ -26,27 +26,59 @@ BUSINESSES = [
     }
 ]
 
-# Authorized Brands
+# Authorized Brands (All official dealers & suppliers for Sathik Traders)
 BRANDS_LIST = [
     {'name': 'Jaquar', 'slug': 'jaquar', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
     {'name': 'Hindware', 'slug': 'hindware', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
     {'name': 'CERA', 'slug': 'cera', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
-    {'name': 'Astral', 'slug': 'astral', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
-    {'name': 'Ashirvad', 'slug': 'ashirvad', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
-    {'name': 'Supreme', 'slug': 'supreme', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
-    {'name': 'Prince', 'slug': 'prince', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
-    {'name': 'CRI', 'slug': 'cri', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
-    {'name': 'EESCO', 'slug': 'eesco', 'businesses': ['plumbing', 'hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Astral Pipes', 'slug': 'astral', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Ashirvad Pipes', 'slug': 'ashirvad', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'C.R.I. Pumps', 'slug': 'cri', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'BOSCH', 'slug': 'bosch', 'businesses': ['hardware'], 'featured': True, 'country': 'Germany / India'},
+    {'name': 'SKF Bearings', 'slug': 'skf', 'businesses': ['hardware'], 'featured': True, 'country': 'Sweden / India'},
+    {'name': 'V-GUARD', 'slug': 'v-guard', 'businesses': ['plumbing', 'hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'ÉSSCO Bath Fittings', 'slug': 'eesco', 'businesses': ['bath-kitchen', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Makita Power Tools', 'slug': 'makita', 'businesses': ['hardware'], 'featured': True, 'country': 'Japan / India'},
+    {'name': 'Lubi Pumps & Motors', 'slug': 'lubi', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Parryware', 'slug': 'parryware', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
+    {'name': 'DeWALT', 'slug': 'dewalt', 'businesses': ['hardware'], 'featured': True, 'country': 'USA / India'},
+    {'name': 'Finolex Pipes', 'slug': 'finolex', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'TAPARIA Tools', 'slug': 'taparia', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Legrand Electrical', 'slug': 'legrand', 'businesses': ['hardware'], 'featured': True, 'country': 'France / India'},
+    {'name': 'HiKOKI Power Tools', 'slug': 'hikoki', 'businesses': ['hardware'], 'featured': True, 'country': 'Japan / India'},
+    {'name': 'EKKI Water Tech', 'slug': 'ekki', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Almaa Pumps', 'slug': 'almaa-pumps', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'Kore Arc GB', 'slug': 'kore-arc', 'businesses': ['hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Niagara Automations', 'slug': 'niagara-automations', 'businesses': ['hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Fenner Belts', 'slug': 'fenner', 'businesses': ['hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Ramesh Hitechk Pumps', 'slug': 'ramesh-pumps', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'Aqua Tech Tanks', 'slug': 'aqua-tech', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'Best Arc Electrodes', 'slug': 'best-arc', 'businesses': ['hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Greenfos Pumps', 'slug': 'greenfos', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'Star Pipes & Fittings', 'slug': 'star-pipes', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'RE Rasi Hardware', 'slug': 'rasi', 'businesses': ['hardware'], 'featured': False, 'country': 'India'},
+    {'name': 'Supreme Pipes', 'slug': 'supreme', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
+    {'name': 'Prince Pipes', 'slug': 'prince', 'businesses': ['plumbing'], 'featured': False, 'country': 'India'},
 ]
 
-# Contact info
+# Official Sathik Traders Contact & Location Info
 COMPANY_INFO = {
-    'name': 'Sathik Groups',
-    'phone': '+91 99999 99999',
-    'whatsapp': '919999999999',
-    'email': 'info@sathikgroups.com',
-    'address': 'Your City, State, India',
-    'hours': 'Mon – Sat, 9:00 AM – 7:00 PM'
+    'name': 'Sathik Traders',
+    'full_name': 'Sathik Traders (Sathik Groups)',
+    'phone': '044-26322644',
+    'mobile': '94443 23644',
+    'mobile_formatted': '+91 94443 23644',
+    'whatsapp': '919444323644',
+    'email': 'sathiktradersredhills@gmail.com',
+    'email_alt': 'sathik_traders@yahoo.co.in',
+    'address': 'No.6, Dharga Street, G.N.T. Road, Redhills, Chennai - 600 052',
+    'street': 'No.6, Dharga Street, G.N.T. Road',
+    'area': 'Redhills',
+    'city': 'Chennai',
+    'state': 'Tamil Nadu',
+    'pincode': '600 052',
+    'website': 'www.sathiktraders.com',
+    'hours': 'Mon – Sat, 9:00 AM – 7:30 PM'
 }
 
 # MOCK CATEGORIES & SUBCATEGORIES FOR CLIENT PREVIEW
