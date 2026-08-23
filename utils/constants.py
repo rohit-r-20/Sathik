@@ -629,7 +629,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Miniature Circuit Breakers (MCB) from Legrand.',
         'features': ['High breaking capacity', 'Touch-proof terminals', 'Bi-stable DIN rail clip'],
         'specifications': [{'key': 'Brand', 'value': 'Legrand'}, {'key': 'Current Rating', 'value': '6A - 63A'}],
-        'images': [{'url': '/static/images/placeholder.jpg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/legrand_mcb.jpg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'electrical-mcb',
@@ -649,7 +649,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Flame retardant electrical wires from Finolex and Orbit.',
         'features': ['100% Electrolytic copper conductor', 'Flame Retardant (FR) PVC insulation', 'RoHS and ISI certified'],
         'specifications': [{'key': 'Product Type', 'value': 'Electrical Wires'}],
-        'images': [{'url': '/static/images/placeholder.jpg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/wires_common.jpg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipes',
         'subcategory_slug': 'electrical-wires',
@@ -660,13 +660,13 @@ MOCK_PRODUCTS = [
                 'brand_name': 'Finolex',
                 'name': 'Finolex Electrical Wires',
                 'sku': 'IND-ELC-WIRE-FINOLEX',
-                'image': '/static/images/placeholder.jpg'
+                'image': '/static/images/products/plumbing/wires_common.jpg'
             },
             {
                 'brand_name': 'Orbit',
                 'name': 'Orbit Electrical Wires',
                 'sku': 'IND-ELC-WIRE-ORBIT',
-                'image': '/static/images/placeholder.jpg'
+                'image': '/static/images/products/plumbing/wires_common.jpg'
             }
         ],
         'available_brand_slugs': ['finolex', 'orbit'],
