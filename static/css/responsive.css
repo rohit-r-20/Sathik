@@ -3,9 +3,11 @@
    Priority: Mobile users (< 768px) get the best experience
    ============================================================ */
 
-/* ──────────────────────────────────────────────────────────
-   HAMBURGER TOGGLE BUTTON — shown on mobile only
-   ────────────────────────────────────────────────────────── */
+/* Hide mobile nav actions container on desktop */
+.nav-mobile-actions {
+  display: none;
+}
+
 .mobile-toggle {
   display: none;
   background: none;
@@ -204,6 +206,45 @@ body.modal-open {
     box-shadow: 0 6px 20px rgba(249, 115, 22, 0.40);
   }
 
+  .nav-mobile-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 0.15rem;
+    margin-right: -0.625rem; /* Shunts hamburger slightly right */
+    z-index: 102;
+  }
+  .mobile-cart-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+    color: var(--primary-600);
+    position: relative;
+    z-index: 103;
+    border-radius: var(--radius-md);
+    transition: background 0.2s;
+  }
+  .mobile-cart-btn:active {
+    background: var(--primary-100);
+  }
+  .cart-badge-mobile {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.55rem;
+    font-weight: 700;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid white;
+  }
   .mobile-toggle {
     display: flex;
   }

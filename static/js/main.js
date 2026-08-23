@@ -441,6 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const badge = document.getElementById('cart-badge');
     const badgeDesktop = document.getElementById('cart-badge-desktop');
+    const badgeMobile = document.getElementById('cart-badge-mobile');
     
     if (badge) {
       badge.textContent = count;
@@ -449,6 +450,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (badgeDesktop) {
       badgeDesktop.textContent = count;
       badgeDesktop.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    if (badgeMobile) {
+      badgeMobile.textContent = count;
+      badgeMobile.style.display = count > 0 ? 'flex' : 'none';
     }
     
     // Render list in modal
