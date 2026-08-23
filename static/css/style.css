@@ -2,6 +2,10 @@
    Sathik Groups — Handcrafted Luxury Commercial Design System
    ============================================================ */
 
+html {
+  font-size: 14px;
+}
+
 :root {
   --primary-900: #0F172A;
   --primary-800: #1E293B;
@@ -322,7 +326,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 100;
   background: #ffffff;
   border-bottom: 1px solid var(--border);
-  height: 4.75rem;
+  height: 4rem;
   display: flex;
   align-items: center;
 }
