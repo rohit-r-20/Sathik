@@ -43,6 +43,10 @@ def seed_database():
             print(f"  - {len(BRANDS_LIST)} Authorized Brands seeded")
 
             # 5. Seed Initial Products
+            # Clear existing products to prevent leftover mock records
+            client.table('products').delete().eq('business_slug', 'plumbing').execute()
+            client.table('products').delete().eq('business_slug', 'hardware').execute()
+            client.table('products').delete().eq('business_slug', 'bath-kitchen').execute()
             for p in MOCK_PRODUCTS:
                 prod = p.copy()
                 if '_id' in prod:

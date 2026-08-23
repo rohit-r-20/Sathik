@@ -3,7 +3,15 @@
 {% block title %}About Us | Sathik Groups{% endblock %}
 
 {% block content %}
-<section class="section bg-dark text-center">
+<div class="container" style="margin-top: 1.5rem; margin-bottom: -1.5rem;">
+  <div class="breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-muted, #64748b); flex-wrap: wrap;">
+    <a href="{{ url_for('home.index') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Home</a>
+    <span style="color: #94a3b8;">&rsaquo;</span>
+    <span style="color: #475569; font-weight: 600;">About Us</span>
+  </div>
+</div>
+
+<section class="section bg-dark text-center" style="margin-top: 2rem;">
   <div class="container">
     <div class="section-tag" style="color: var(--accent);">About Sathik Groups</div>
     <h1 style="font-size: 3rem; color: #ffffff; margin-bottom: 1rem;">Your Trusted Partner in Building Materials</h1>

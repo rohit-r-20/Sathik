@@ -2,9 +2,9 @@ from services.product_service import ProductService
 
 class ProductModel:
     @classmethod
-    def find_all(cls, filter_query=None, sort_field='created_at', sort_order=-1, page=1, limit=12):
+    def find_all(cls, filter_query=None, sort_field='created_at', sort_order=-1, page=1, limit=12, active_only=True):
         s_order = 'desc' if sort_order in (-1, 'desc', 'DESC') else 'asc'
-        return ProductService.get_all(filter_query=filter_query, sort_field=sort_field, sort_order=s_order, page=page, limit=limit)
+        return ProductService.get_all(filter_query=filter_query, sort_field=sort_field, sort_order=s_order, page=page, limit=limit, active_only=active_only)
 
     @classmethod
     def find_by_slug(cls, subcategory_slug, product_slug):

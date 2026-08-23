@@ -50,6 +50,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ──────────────────────────────────────────────────────────
+     2b. MOBILE VIEW STORE TITLE SCROLL TRANSITION
+     ────────────────────────────────────────────────────────── */
+  const brandText = document.getElementById('navbar-brand-text');
+  const storeTitle = document.getElementById('navbar-store-title');
+  if (brandText && storeTitle) {
+    const handleScroll = () => {
+      if (window.innerWidth <= 768) {
+        if (window.scrollY > 120) {
+          brandText.style.opacity = '0';
+          brandText.style.transform = 'translateY(-8px)';
+          brandText.style.pointerEvents = 'none';
+
+          storeTitle.style.opacity = '1';
+          storeTitle.style.transform = 'translateY(0)';
+          storeTitle.style.pointerEvents = 'auto';
+        } else {
+          brandText.style.opacity = '1';
+          brandText.style.transform = 'translateY(0)';
+          brandText.style.pointerEvents = 'auto';
+
+          storeTitle.style.opacity = '0';
+          storeTitle.style.transform = 'translateY(8px)';
+          storeTitle.style.pointerEvents = 'none';
+        }
+      } else {
+        brandText.style.opacity = '1';
+        brandText.style.transform = 'translateY(0)';
+        brandText.style.pointerEvents = 'auto';
+
+        storeTitle.style.opacity = '0';
+        storeTitle.style.transform = 'translateY(8px)';
+        storeTitle.style.pointerEvents = 'none';
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    handleScroll();
+  }
+
   // Close menu on outside tap (mobile)
   document.addEventListener('click', (e) => {
     if (
@@ -321,29 +361,226 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ──────────────────────────────────────────────────────────
-     9. HERO VIDEO AUDIO ENABLE / DISABLE CONTROL
+     9. HERO ADVERTISEMENT SLIDESHOW CONTROL
      ────────────────────────────────────────────────────────── */
-  window.toggleHeroAudio = function() {
-    const desktopVid = document.querySelector('.desktop-video');
-    const mobileVid  = document.querySelector('.mobile-video');
-    const btnIcon    = document.getElementById('hero-audio-icon');
-    const btnText    = document.getElementById('hero-audio-text');
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.indicator-dot');
+  let slideInterval = null;
 
-    const activeVideo = window.innerWidth <= 768 ? (mobileVid || desktopVid) : (desktopVid || mobileVid);
-    if (!activeVideo) return;
+  window.setSlide = function(index) {
+    if (!slides.length) return;
+    
+    // Stop auto-play timer temporarily on manual click
+    resetSlideTimer();
+    
+    // Deactivate current active slide and dot
+    slides[currentSlide].classList.remove('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+    
+    // Activate target slide and dot
+    currentSlide = (index + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    
+    // Resume auto-play timer
+    startSlideTimer();
+  };
 
-    if (activeVideo.muted) {
-      if (desktopVid) desktopVid.muted = false;
-      if (mobileVid) mobileVid.muted = false;
-      if (btnIcon) btnIcon.textContent = '🔊';
-      if (btnText) btnText.textContent = 'Mute Audio';
-    } else {
-      if (desktopVid) desktopVid.muted = true;
-      if (mobileVid) mobileVid.muted = true;
-      if (btnIcon) btnIcon.textContent = '🔇';
-      if (btnText) btnText.textContent = 'Unmute Audio';
+  function nextSlide() {
+    window.setSlide(currentSlide + 1);
+  }
+
+  function startSlideTimer() {
+    if (slides.length > 1 && !slideInterval) {
+      slideInterval = setInterval(nextSlide, 6000); // rotate every 6 seconds
+    }
+  }
+
+  function resetSlideTimer() {
+    if (slideInterval) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
+  }
+
+  // Initialize auto-rotation if slides exist
+  if (slides.length > 0) {
+    startSlideTimer();
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     10. SHOPPING / QUOTE CART LOGIC
+     ────────────────────────────────────────────────────────── */
+  let quoteCart = [];
+  try {
+    quoteCart = JSON.parse(localStorage.getItem('quote_cart') || '[]');
+  } catch (e) {
+    quoteCart = [];
+  }
+
+  // Toast function
+  window.showCartToast = function(message) {
+    // Remove existing toasts
+    document.querySelectorAll('.cart-toast').forEach(t => t.remove());
+    
+    const toast = document.createElement('div');
+    toast.className = 'cart-toast';
+    toast.innerHTML = `<span>🛒</span> <span>${message}</span>`;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.transition = 'opacity 0.5s';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 500);
+    }, 3000);
+  };
+
+  window.updateCartUI = function() {
+    const count = quoteCart.length;
+    
+    const badge = document.getElementById('cart-badge');
+    const badgeDesktop = document.getElementById('cart-badge-desktop');
+    
+    if (badge) {
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    if (badgeDesktop) {
+      badgeDesktop.textContent = count;
+      badgeDesktop.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    
+    // Render list in modal
+    const container = document.getElementById('cart-items-container');
+    const formContainer = document.getElementById('cart-form-container');
+    
+    if (container) {
+      if (count === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding: 2rem 0; color: var(--text-muted);">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🛒</div>
+            <p>Your quote request list is empty.</p>
+          </div>
+        `;
+        if (formContainer) formContainer.style.display = 'none';
+      } else {
+        if (formContainer) formContainer.style.display = 'block';
+        let html = '';
+        quoteCart.forEach(item => {
+          const imgUrl = item.image || '/static/images/placeholder.jpg';
+          html += `
+            <div class="cart-item-row">
+              <img src="${imgUrl}" alt="${item.name}" class="cart-item-img">
+              <div class="cart-item-info">
+                <h5 class="cart-item-title">${item.name}</h5>
+                <span class="cart-item-sku">SKU: ${item.sku}</span>
+              </div>
+              <button type="button" class="cart-item-remove" onclick="removeFromQuoteCart('${item.id}')" title="Remove item">&times;</button>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+        
+        // Update pre-filled message text in form
+        const messageField = document.getElementById('cart-message');
+        if (messageField) {
+          let text = 'Hi, please send a price quote and availability details for the following products:\n';
+          quoteCart.forEach(item => {
+            text += `- ${item.name} (SKU: ${item.sku})\n`;
+          });
+          text += '\nThank you!';
+          messageField.value = text;
+        }
+      }
     }
   };
+
+  window.addToQuoteCart = function(id, name, sku, slug, subcategory_slug, image) {
+    if (quoteCart.some(item => item.id === id)) {
+      window.showCartToast(`"${name}" is already in your quote list.`);
+      return;
+    }
+    
+    quoteCart.push({ id, name, sku, slug, subcategory_slug, image });
+    localStorage.setItem('quote_cart', JSON.stringify(quoteCart));
+    window.updateCartUI();
+    window.showCartToast(`Added "${name}" to quote request list!`);
+  };
+
+  window.removeFromQuoteCart = function(id) {
+    quoteCart = quoteCart.filter(item => item.id !== id);
+    localStorage.setItem('quote_cart', JSON.stringify(quoteCart));
+    window.updateCartUI();
+  };
+
+  window.clearQuoteCart = function() {
+    quoteCart = [];
+    localStorage.setItem('quote_cart', JSON.stringify(quoteCart));
+    window.updateCartUI();
+  };
+
+  window.handleCartEnquirySubmit = function(event, formEl) {
+    event.preventDefault();
+    
+    const submitBtn = formEl.querySelector('button[type="submit"]');
+    const alertEl = formEl.querySelector('.form-alert');
+    
+    if (submitBtn) submitBtn.disabled = true;
+    if (alertEl) {
+      alertEl.style.display = 'none';
+      alertEl.className = 'alert';
+    }
+    
+    const formData = new FormData(formEl);
+    
+    let productDetails = '';
+    quoteCart.forEach((item, idx) => {
+      productDetails += `${idx + 1}. ${item.name} (SKU: ${item.sku})\n`;
+    });
+    
+    formData.append('product_name', 'Multiple Products Quote List');
+    formData.append('interested_in', 'Multiple Showrooms');
+    formData.append('message', `[Quote Request List]\n${productDetails}\n[User Message]\n${formData.get('message')}`);
+    
+    fetch('/enquiry/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (submitBtn) submitBtn.disabled = false;
+      if (data.success) {
+        if (alertEl) {
+          alertEl.className = 'alert alert-success';
+          alertEl.textContent = data.message;
+          alertEl.style.display = 'block';
+        } else {
+          alert(data.message);
+        }
+        formEl.reset();
+        window.clearQuoteCart();
+        setTimeout(() => {
+          window.closeModal('cart-modal');
+        }, 2500);
+      } else {
+        const errText = data.errors ? Object.values(data.errors).join(', ') : (data.message || 'Submission failed');
+        if (alertEl) {
+          alertEl.className = 'alert alert-danger';
+          alertEl.textContent = errText;
+          alertEl.style.display = 'block';
+        } else {
+          alert(errText);
+        }
+      }
+    })
+    .catch(err => {
+      if (submitBtn) submitBtn.disabled = false;
+      alert('An error occurred. Please try again or contact us by phone.');
+    });
+  };
+
+  window.updateCartUI();
 
 });
 

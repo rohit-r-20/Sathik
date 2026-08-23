@@ -9,6 +9,12 @@
 {% block content %}
 <section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
   <div class="container">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-muted, #64748b); margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('home.index') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Home</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      <span style="color: #475569; font-weight: 600;">Contact Us</span>
+    </div>
     <div class="section-tag">Get In Touch</div>
     <h1 style="font-size: clamp(1.5rem, 5vw, 2.25rem);">Contact Us &amp; Product Enquiries</h1>
     <p style="color: var(--primary-500); margin-top: 0.5rem; font-size: 0.9375rem;">

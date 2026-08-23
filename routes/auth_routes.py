@@ -4,7 +4,7 @@ from utils.validators import validate_login_input
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/ashiksathik', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         if session.get('user_id'):

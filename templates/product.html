@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ product.name }} by {{ product.brand_name }} | Sathik Groups{% endblock %}
+{% block title %}{{ product.name }}{% if not product.hide_brand_badge and product.brand_name %} by {{ product.brand_name }}{% endif %} | Sathik Groups{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
@@ -10,11 +10,14 @@
 {% block content %}
 <section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
   <div class="container">
-    <div style="font-size: 0.875rem; color: var(--primary-500);">
-      <a href="{{ url_for('home.index') }}">Home</a> &rarr; 
-      <a href="{{ url_for('product.product_list') }}">Products</a> &rarr; 
-      <a href="{{ url_for('product.product_list', business=product.business_slug) }}">{{ product.business_name or product.business_slug|title }}</a> &rarr; 
-      <span style="color: var(--primary-900); font-weight: 600;">{{ product.name }}</span>
+    <div class="breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-muted, #64748b); flex-wrap: wrap;">
+      <a href="{{ url_for('home.index') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Home</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      <a href="{{ url_for('product.product_list') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Products</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      <a href="{{ url_for('category.store_detail', business_slug=product.business_slug) }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">{{ product.business_name or product.business_slug|title }} Store</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      <span style="color: #475569; font-weight: 600;">{{ product.name }}</span>
     </div>
   </div>
 </section>
@@ -40,13 +43,16 @@
 
       <!-- Product Details & Quote CTAs -->
       <div>
+        {% if not product.hide_brand_badge and product.brand_name %}
         <div style="font-size: 0.875rem; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;">
           {{ product.brand_name }}
         </div>
+        {% endif %}
         <h1 style="font-size: 2.25rem; margin-bottom: 0.75rem;">{{ product.name }}</h1>
         <div style="font-family: monospace; font-size: 0.875rem; color: var(--primary-500); margin-bottom: 1.5rem;">
           SKU: {{ product.sku }}
         </div>
+
 
         {% if product.short_description %}
         <p style="font-size: 1.0625rem; color: var(--primary-600); line-height: 1.6; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1rem;">
@@ -61,6 +67,9 @@
           </div>
           <button type="button" class="btn btn-primary btn-block" onclick="prepareQuoteModal('{{ product.name }}', '{{ product._id }}', '{{ product.sku }}')">
             Request Quote Now
+          </button>
+          <button type="button" class="btn btn-outline btn-block" onclick="addToQuoteCart('{{ product._id }}', '{{ product.name|escape }}', '{{ product.sku }}', '{{ product.slug }}', '{{ product.subcategory_slug }}', '{{ product.images[0].url if product.images else "" }}')" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; border-color: var(--primary-600); color: var(--primary-600);">
+            <span>+ Add to Quote List</span>
           </button>
           <a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
             Enquire via WhatsApp
@@ -82,8 +91,30 @@
           </ul>
         </div>
         {% endif %}
+    </div>
+
+    {% if product.available_brands %}
+    <div style="margin-top: 4rem; margin-bottom: 2rem;">
+      <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--primary-900); padding-bottom: 0.5rem; display: inline-block;">Available Brand Options</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+        {% for variant in product.available_brands %}
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02); transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 10px 20px rgba(15,23,42,0.06)'" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 12px rgba(15, 23, 42, 0.02)'">
+          <div style="aspect-ratio: 4 / 3; background-color: var(--surface-light); border-radius: var(--radius-md); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 1rem; border: 1px solid var(--border);">
+            <img src="{{ variant.image }}" alt="{{ variant.name }}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          </div>
+          <div style="flex-grow: 1;">
+            <span style="display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; letter-spacing: 0.05em;">{{ variant.brand_name }}</span>
+            <h4 style="font-size: 1.0625rem; font-weight: 700; margin: 0 0 0.5rem 0; color: var(--primary-900); line-height: 1.4;">{{ variant.name }}</h4>
+            <div style="font-family: monospace; font-size: 0.8125rem; color: var(--primary-500);">SKU: {{ variant.sku }}</div>
+          </div>
+          <button type="button" class="btn btn-outline btn-block" style="margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 0.875rem;" onclick="prepareQuoteModal('{{ variant.name }}', '{{ product._id }}', '{{ variant.sku }}')">
+            Request Quote
+          </button>
+        </div>
+        {% endfor %}
       </div>
     </div>
+    {% endif %}
 
     <!-- Description & Specs Section -->
     <div style="margin-top: 4rem;">
@@ -114,17 +145,24 @@
       <div class="products-grid" style="margin-top: 1.5rem;">
         {% for p in related_products %}
         <div class="product-card">
-          <div class="product-image">
+          <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; text-decoration:none;">
             <img src="{{ p.images[0].url if p.images else '/static/images/placeholder.jpg' }}" alt="{{ p.name }}">
-          </div>
+          </a>
           <div class="product-info">
+            {% if not p.hide_brand_badge and p.brand_name %}
             <div class="product-brand">{{ p.brand_name }}</div>
+            {% endif %}
             <h4 class="product-name">
               <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{ p.name }}</a>
             </h4>
             <div class="product-sku">SKU: {{ p.sku }}</div>
-            <div class="product-card-footer">
-              <button type="button" class="btn btn-primary btn-sm btn-block" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">Request Quote</button>
+            <div class="product-card-footer" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 1.25rem;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="event.preventDefault(); event.stopPropagation(); addToQuoteCart('{{ p._id }}', '{{ p.name|escape }}', '{{ p.sku }}', '{{ p.slug }}', '{{ p.subcategory_slug }}', '{{ p.images[0].url if p.images else "" }}')" style="width: 100%; text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.35rem;">
+                🛒 Add to Cart
+              </button>
+              <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+                Details
+              </a>
             </div>
           </div>
         </div>

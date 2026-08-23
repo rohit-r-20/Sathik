@@ -10,6 +10,24 @@
 <!-- Page Header -->
 <section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
   <div class="container">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-muted, #64748b); margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('home.index') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Home</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      {% if current_business %}
+        <a href="{{ url_for('category.store_list') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Commercial Stores</a>
+        <span style="color: #94a3b8;">&rsaquo;</span>
+        {% set active_biz = namespace(found=none) %}
+        {% for b in businesses %}{% if b.slug == current_business %}{% set active_biz.found = b %}{% endif %}{% endfor %}
+        {% if active_biz.found %}
+          <a href="{{ url_for('category.store_detail', business_slug=current_business) }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">{{ active_biz.found.name }} Store</a>
+        {% else %}
+          <a href="{{ url_for('category.store_detail', business_slug=current_business) }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">{{ current_business|title }} Store</a>
+        {% endif %}
+        <span style="color: #94a3b8;">&rsaquo;</span>
+      {% endif %}
+      <span style="color: #475569; font-weight: 600;">Products</span>
+    </div>
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
       <div>
         <div class="section-tag">Product Catalogue</div>
@@ -175,18 +193,20 @@
                 <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" loading="lazy">
               </a>
               <div class="product-info">
+                {% if not p.hide_brand_badge and p.brand_name %}
                 <div class="product-brand">{{ p.brand_name }}</div>
+                {% endif %}
                 <h4 class="product-name">
                   <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" style="color: inherit; text-decoration:none;">{{ p.name }}</a>
                 </h4>
                 <div class="product-sku">SKU: {{ p.sku }}</div>
-                <div class="product-card-footer">
-                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm">
+                <div class="product-card-footer" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 1.25rem;">
+                  <button type="button" class="btn btn-primary btn-sm" onclick="event.preventDefault(); event.stopPropagation(); addToQuoteCart('{{ p._id }}', '{{ p.name|escape }}', '{{ p.sku }}', '{{ p.slug }}', '{{ p.subcategory_slug }}', '{{ p.images[0].url if p.images else "" }}')" style="width: 100%; text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.35rem;">
+                    🛒 Add to Cart
+                  </button>
+                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
                     Details
                   </a>
-                  <button type="button" class="btn btn-primary btn-sm" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">
-                    Quote
-                  </button>
                 </div>
               </div>
             </div>

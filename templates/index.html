@@ -1,66 +1,181 @@
 {% extends 'base.html' %}
 
-{% block title %}Sathik Groups | Commercial Building Materials &amp; Sanitaryware Distributor{% endblock %}
+{% block title %}Sathik Groups | Premier Building Materials &amp; Sanitaryware Retail Store{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- HERO SECTION -->
-<section class="hero">
-  <!-- Desktop Background Video (landscape) -->
-  <video class="hero-video desktop-video" autoplay loop muted playsinline preload="auto">
-    <source src="{{ url_for('static', filename='videos/hero_desktop.mp4') }}" type="video/mp4">
-  </video>
-  <!-- Mobile Background Video (portrait) -->
-  <video class="hero-video mobile-video" autoplay loop muted playsinline preload="auto">
-    <source src="{{ url_for('static', filename='videos/hero_mobile.mp4') }}" type="video/mp4">
-  </video>
-
-  <!-- Mute / Unmute Button -->
-  <button type="button" class="hero-audio-btn" id="hero-audio-btn" onclick="toggleHeroAudio()" aria-label="Toggle hero video sound">
-    <span id="hero-audio-icon">🔇</span>
-    <span id="hero-audio-text">Unmute Audio</span>
-  </button>
-
-  <!-- Hero Content (z-index: 2, above video) -->
-  <div class="hero-inner">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">★ Authorized Commercial Distributor &amp; Dealer</div>
-        <h1 class="hero-title">
-          Building India's Infrastructure with <span>Brand Excellence</span>
-        </h1>
-        <p class="hero-desc">
-          Authorized B2B dealer &amp; distributor based in Redhills, Chennai — C.R.I. Pumps, BOSCH, SKF, V-GUARD, ÉSSCO, Makita, Lubi, Parryware, DeWALT, Finolex, Taparia, Legrand, HiKOKI, EKKI, and 20+ more brands.
-        </p>
-        <div class="hero-actions">
-          <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">Request Price Quote &rarr;</a>
-          <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">Browse Catalogue</a>
-          <a href="tel:04426322644" class="hero-phone-link">
-            📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
-          </a>
+<!-- ABOUT SATHIK - LEGACY & TRUST SECTION (Traditional and Emotional Connection) -->
+<section class="legacy-about-section">
+  <div class="container">
+    <div class="legacy-about-grid">
+      <!-- Left side: The Story -->
+      <div class="legacy-story-content">
+        <div class="section-tag legacy-tag">Our Roots &amp; Heritage</div>
+        <h2 class="legacy-title">Sathik groups</h2>
+        <div class="legacy-story-body">
+          <p>
+            For over six decades, <strong>Sathik Groups</strong> has been more than just a supplier of building materials. Sourced directly from authorized manufacturer plants and chosen with care, we have stood side-by-side with local families as they laid the foundation stones of their dream homes.
+          </p>
+          <p>
+            In our traditions, a house is not merely concrete and steel—it is the sanctuary of your family's aspirations, a legacy built on hard work and shared dreams. We honor this sacred trust by offering transparent retail prices, genuine products, and personalized guidance that spans generations.
+          </p>
+          <blockquote>
+            "We do not just sell materials; we build relations that last a lifetime."
+          </blockquote>
+        </div>
+        <div class="legacy-pillars">
+          <div class="pillar-item">
+            <span class="pillar-icon">🏛️</span>
+            <div>
+              <h4>60+ Years Legacy</h4>
+              <p>Serving homeowners with honesty &amp; care since 1964.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-icon">🤝</span>
+            <div>
+              <h4>Family-First Relations</h4>
+              <p>Treating every builder's dream as our very own.</p>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- Right side: Beautiful graphic or warm local illustration -->
+      <div class="legacy-image-frame">
+        <img src="{{ url_for('static', filename='images/hero/sathik_legacy.jpg') }}" alt="Sathik Legacy Trust" class="legacy-img" loading="lazy">
+        <div class="legacy-badge-floating">
+          <div class="legacy-badge-year">1964</div>
+          <div class="legacy-badge-text">Trust In Every Brick</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <!-- STATS COUNTER CARDS -->
-      <div class="hero-stats">
-        <div class="stat-card-inner">
-          <div class="stat-number">15<span>+</span></div>
-          <div class="stat-label">Years Supply</div>
+<!-- HERO SECTION — Premium Store Advertisement Slideshow -->
+<section class="hero">
+  <!-- Slideshow slides -->
+  <div class="hero-slides">
+    <!-- Slide 1: Bath & Kitchen Store (Default Active Slide) -->
+    <div class="hero-slide active"
+      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}');">
+      <div class="hero-inner">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Prioritizing Customer's <span>Satisfaction Since 1964</span>
+            </h1>
+            <p class="hero-desc">
+              Your premier retail showroom in Redhills, Chennai. Discover an exquisite range of luxury bath fittings,
+              sanitaryware, modular kitchen fixtures, and home wellness accessories from top-tier brands.
+            </p>
+            <div class="hero-actions">
+              <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="btn btn-primary">
+                Explore Bath and sanitaryware &rarr;
+              </a>
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
+                Browse Catalogue
+              </a>
+              <a href="tel:04426322644" class="hero-phone-link">
+                📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="stat-card-inner">
-          <div class="stat-number">30<span>+</span></div>
-          <div class="stat-label">Partner Brands</div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Plumbing Products Store -->
+    <div class="hero-slide"
+      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}');">
+      <div class="hero-inner">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Premium Plumbing <span>&amp; Water Solutions</span>
+            </h1>
+            <p class="hero-desc">
+              Building leak-free homes with high-grade CPVC/UPVC pipes, SWR systems, and heavy-duty water pumps.
+              Authentic products with factory warranties for retail buyers.
+            </p>
+            <div class="hero-actions">
+              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="btn btn-primary">
+                Explore Plumbing and Industrial materials &rarr;
+              </a>
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
+                Browse Catalogue
+              </a>
+              <a href="tel:04426322644" class="hero-phone-link">
+                📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="stat-card-inner">
-          <div class="stat-number">5,000<span>+</span></div>
-          <div class="stat-label">Products</div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Hardware & Power Tools Store -->
+    <div class="hero-slide"
+      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}');">
+      <div class="hero-inner">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Professional Hardware <span>&amp; Power Tools</span>
+            </h1>
+            <p class="hero-desc">
+              From robust security locksets and fasteners to high-performance cordless drills and hand tools. Get
+              reliable gear for all your home renovation and DIY projects.
+            </p>
+            <div class="hero-actions">
+              <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="btn btn-primary">
+                Explore Paints,Hardwares and doorfittings &rarr;
+              </a>
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
+                Browse Catalogue
+              </a>
+              <a href="tel:04426322644" class="hero-phone-link">
+                📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="stat-card-inner">
-          <div class="stat-number">1,000<span>+</span></div>
-          <div class="stat-label">Project Sites</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Stats Bar (Static at the bottom of the hero) -->
+  <div class="hero-overlay-bottom">
+    <div class="container">
+      <div class="hero-bottom-flex">
+        <!-- Slide Navigation Indicators (dots) -->
+        <div class="hero-indicators">
+          <button class="indicator-dot active" onclick="setSlide(0)" aria-label="Go to Slide 1"></button>
+          <button class="indicator-dot" onclick="setSlide(1)" aria-label="Go to Slide 2"></button>
+          <button class="indicator-dot" onclick="setSlide(2)" aria-label="Go to Slide 3"></button>
+        </div>
+
+        <!-- STATS COUNTER CARDS -->
+        <div class="hero-stats">
+          <div class="stat-card-inner">
+            <div class="stat-number">60<span>+</span></div>
+            <div class="stat-label">Years of Trust (Since 1964)</div>
+          </div>
+          <div class="stat-card-inner">
+            <div class="stat-number">20<span>+</span></div>
+            <div class="stat-label">Authorized Partner Brands</div>
+          </div>
+          <div class="stat-card-inner">
+            <div class="stat-number">5,000<span>+</span></div>
+            <div class="stat-label">Retail Products</div>
+          </div>
+          <div class="stat-card-inner">
+            <div class="stat-number">10,000<span>+</span></div>
+            <div class="stat-label">Happy Homeowners</div>
+          </div>
         </div>
       </div>
     </div>
@@ -72,89 +187,147 @@
 <section class="brand-bar-section">
   <div class="container">
     <div class="text-center" style="margin-bottom: 2rem;">
-      <div class="section-tag">Authorized Partners</div>
-      <h2 class="section-title">Leading Brands We Distribute</h2>
-      <p class="section-desc">Direct factory supply from India's most trusted manufacturers.</p>
+      <div class="section-tag">Authorized distributors and Dealers</div>
+      <h2 class="section-title">Leading Brands We Deal With</h2>
+      <p class="section-desc">Authentic products from India's most trusted manufacturers.</p>
     </div>
   </div>
 
   <!-- Row 1: scrolls left → -->
   <div class="brand-ticker-wrapper">
     <div class="brand-ticker brand-ticker--left">
-      <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}"    class="brand-chip"><span class="brand-chip-name">JAQUAR</span><span class="brand-chip-cat">Bath &amp; Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='hindware') }}"  class="brand-chip"><span class="brand-chip-name">HINDWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='cera') }}"      class="brand-chip"><span class="brand-chip-name">CERA</span><span class="brand-chip-cat">Sanitaryware &amp; Tiles</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='astral') }}"    class="brand-chip"><span class="brand-chip-name">ASTRAL</span><span class="brand-chip-cat">Pipes &amp; Plumbing</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}"  class="brand-chip"><span class="brand-chip-name">ASHIRVAD</span><span class="brand-chip-cat">CPVC Plumbing</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='cri') }}"       class="brand-chip"><span class="brand-chip-name">CRI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='bosch') }}"     class="brand-chip"><span class="brand-chip-name">BOSCH</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='skf') }}"       class="brand-chip"><span class="brand-chip-name">SKF</span><span class="brand-chip-cat">Bearings</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='vguard') }}"    class="brand-chip"><span class="brand-chip-name">V-GUARD</span><span class="brand-chip-cat">Electricals</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='eesco') }}"     class="brand-chip"><span class="brand-chip-name">ÉSSCO</span><span class="brand-chip-cat">Bath Fittings</span></a>
-      <!-- duplicate set for seamless loop -->
-      <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">JAQUAR</span><span class="brand-chip-cat">Bath &amp; Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='hindware') }}"  class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">HINDWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='cera') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">CERA</span><span class="brand-chip-cat">Sanitaryware &amp; Tiles</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='astral') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ASTRAL</span><span class="brand-chip-cat">Pipes &amp; Plumbing</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}"  class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ASHIRVAD</span><span class="brand-chip-cat">CPVC Plumbing</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='cri') }}"       class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">CRI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='bosch') }}"     class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">BOSCH</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='skf') }}"       class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">SKF</span><span class="brand-chip-cat">Bearings</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='vguard') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">V-GUARD</span><span class="brand-chip-cat">Electricals</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='eesco') }}"     class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">ÉSSCO</span><span class="brand-chip-cat">Bath Fittings</span></a>
+      {% for slug, ext, name, cat in [
+      ('jaquar', 'png', 'JAQUAR', 'Bath & Sanitaryware'),
+      ('hindware', 'png', 'HINDWARE', 'Sanitaryware'),
+      ('cri', 'png', 'C.R.I. PUMPS', 'Pumps & Motors'),
+      ('ekki', 'png', 'EKKI WATER TECH', 'Water Tech'),
+      ('eesco', 'jpg', 'ÉSSCO', 'Bath Fittings'),
+      ('parryware', 'jpg', 'PARRYWARE', 'Sanitaryware'),
+      ('geberit', 'png', 'GEBERIT', 'Sanitary Systems'),
+      ('grohe', 'png', 'GROHE', 'Showers & Fittings')
+      ] %}
+      <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip">
+        <div class="brand-logo-img">
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}" alt="{{ name }}"
+            class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
+        </div>
+      </a>
+      {% endfor %}
+
+      <!-- Duplicate set for seamless loop -->
+      {% for slug, ext, name, cat in [
+      ('jaquar', 'png', 'JAQUAR', 'Bath & Sanitaryware'),
+      ('hindware', 'png', 'HINDWARE', 'Sanitaryware'),
+      ('cri', 'png', 'C.R.I. PUMPS', 'Pumps & Motors'),
+      ('ekki', 'png', 'EKKI WATER TECH', 'Water Tech'),
+      ('eesco', 'jpg', 'ÉSSCO', 'Bath Fittings'),
+      ('parryware', 'jpg', 'PARRYWARE', 'Sanitaryware'),
+      ('geberit', 'png', 'GEBERIT', 'Sanitary Systems'),
+      ('grohe', 'png', 'GROHE', 'Showers & Fittings')
+      ] %}
+      <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip" aria-hidden="true" tabindex="-1">
+        <div class="brand-logo-img">
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}" alt="{{ name }}"
+            class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
+        </div>
+      </a>
+      {% endfor %}
     </div>
   </div>
 
   <!-- Row 2: scrolls right ← -->
   <div class="brand-ticker-wrapper" style="margin-top: 0.75rem;">
     <div class="brand-ticker brand-ticker--right">
-      <a href="{{ url_for('brand.brand_detail', slug='makita') }}"    class="brand-chip"><span class="brand-chip-name">MAKITA</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='lubi') }}"      class="brand-chip"><span class="brand-chip-name">LUBI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='parryware') }}" class="brand-chip"><span class="brand-chip-name">PARRYWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='dewalt') }}"    class="brand-chip"><span class="brand-chip-name">DEWALT</span><span class="brand-chip-cat">Tools &amp; Hardware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='finolex') }}"   class="brand-chip"><span class="brand-chip-name">FINOLEX</span><span class="brand-chip-cat">Pipes &amp; Cables</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='taparia') }}"   class="brand-chip"><span class="brand-chip-name">TAPARIA</span><span class="brand-chip-cat">Hand Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='legrand') }}"   class="brand-chip"><span class="brand-chip-name">LEGRAND</span><span class="brand-chip-cat">Electrical</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='hikoki') }}"    class="brand-chip"><span class="brand-chip-name">HiKOKI</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='ekki') }}"      class="brand-chip"><span class="brand-chip-name">EKKI</span><span class="brand-chip-cat">Water Tech</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='supreme') }}"   class="brand-chip"><span class="brand-chip-name">SUPREME</span><span class="brand-chip-cat">Pipes &amp; Tanks</span></a>
-      <!-- duplicate set for seamless loop -->
-      <a href="{{ url_for('brand.brand_detail', slug='makita') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">MAKITA</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='lubi') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">LUBI PUMPS</span><span class="brand-chip-cat">Pumps &amp; Motors</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='parryware') }}" class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">PARRYWARE</span><span class="brand-chip-cat">Sanitaryware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='dewalt') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">DEWALT</span><span class="brand-chip-cat">Tools &amp; Hardware</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='finolex') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">FINOLEX</span><span class="brand-chip-cat">Pipes &amp; Cables</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='taparia') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">TAPARIA</span><span class="brand-chip-cat">Hand Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='legrand') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">LEGRAND</span><span class="brand-chip-cat">Electrical</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='hikoki') }}"    class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">HiKOKI</span><span class="brand-chip-cat">Power Tools</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='ekki') }}"      class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">EKKI</span><span class="brand-chip-cat">Water Tech</span></a>
-      <a href="{{ url_for('brand.brand_detail', slug='supreme') }}"   class="brand-chip" aria-hidden="true" tabindex="-1"><span class="brand-chip-name">SUPREME</span><span class="brand-chip-cat">Pipes &amp; Tanks</span></a>
+      {% for slug, ext, name, cat in [
+      ('aquatech', 'jpeg', 'AQUATECH', 'Water Tanks'),
+      ('waterman', 'jpeg', 'WATERMAN', 'Luxury Faucets'),
+      ('waterstar', 'png', 'WATERSTAR', 'Pipes & Fittings'),
+      ('g-bath', 'png', 'G-BATH', 'Bath Accessories'),
+      ('germa', 'png', 'GERMA', 'Bath Fittings'),
+      ('kreesta', 'png', 'KREESTA', 'Kitchen Sinks'),
+      ('benicio', 'png', 'BENICIO', 'Designer Faucets'),
+      ('clayware', 'png', 'CLAYWARE', 'Sanitaryware')
+      ] %}
+      <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip">
+        <div class="brand-logo-img">
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}" alt="{{ name }}"
+            class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
+        </div>
+      </a>
+      {% endfor %}
+
+      <!-- Duplicate set for seamless loop -->
+      {% for slug, ext, name, cat in [
+      ('aquatech', 'jpeg', 'AQUATECH', 'Water Tanks'),
+      ('waterman', 'jpeg', 'WATERMAN', 'Luxury Faucets'),
+      ('waterstar', 'png', 'WATERSTAR', 'Pipes & Fittings'),
+      ('g-bath', 'png', 'G-BATH', 'Bath Accessories'),
+      ('germa', 'png', 'GERMA', 'Bath Fittings'),
+      ('kreesta', 'png', 'KREESTA', 'Kitchen Sinks'),
+      ('benicio', 'png', 'BENICIO', 'Designer Faucets'),
+      ('clayware', 'png', 'CLAYWARE', 'Sanitaryware')
+      ] %}
+      <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip" aria-hidden="true" tabindex="-1">
+        <div class="brand-logo-img">
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}" alt="{{ name }}"
+            class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+          <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
+        </div>
+      </a>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- BUSINESS DIVISIONS SECTION -->
-<section class="section bg-surface">
+<!-- HOMEPAGE STORES SECTION (visible below Brands We Deal With on desktop and mobile) -->
+<section class="homepage-stores-section">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 3.5rem;">
-      <div class="section-tag">Core Divisions</div>
-      <h2 class="section-title">Explore Business Verticals</h2>
-      <p class="section-desc">Complete material supply pipelines engineered for plumbers, contractors, builders, and architectural specifiers.</p>
+    <div class="text-center" style="margin-bottom: 2rem;">
+      <div class="section-tag">Explore Our Showrooms</div>
+      <h2 class="section-title">Our Stores</h2>
+      <p class="section-desc">Find premium products in our specialized showrooms.</p>
     </div>
 
-    <div class="business-grid">
-      {% for b in businesses %}
-      <div class="business-card">
-        <div class="business-header">{{ b.icon }}</div>
-        <div class="business-body">
-          <h3 class="business-title">{{ b.name }}</h3>
-          <p class="business-desc">{{ b.short_description }}</p>
-          <a href="{{ url_for('category.store_detail', business_slug=b.slug) }}" class="btn btn-outline btn-sm">
-            Enter {{ b.name }} Store &rarr;
-          </a>
+    <div class="homepage-stores-grid">
+      <!-- Store 1: Bath and sanitaryware -->
+      <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}"
+        class="homepage-store-card bath-kitchen">
+        <div class="store-card-content">
+          <span class="store-card-icon">🛁</span>
+          <div>
+            <h3 class="store-card-title">Bath and sanitaryware</h3>
+            <p class="store-card-desc">Sanitaryware, faucets, showers, and accessories from top luxury brands.</p>
+          </div>
         </div>
-      </div>
-      {% endfor %}
+        <div class="store-card-arrow">&rarr;</div>
+      </a>
+
+      <!-- Store 2: Plumbing and Industrial materials -->
+      <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="homepage-store-card plumbing">
+        <div class="store-card-content">
+          <span class="store-card-icon">🔧</span>
+          <div>
+            <h3 class="store-card-title">Plumbing and Industrial materials</h3>
+            <p class="store-card-desc">Pipes, fittings, valves, pumps, and water management solutions.</p>
+          </div>
+        </div>
+        <div class="store-card-arrow">&rarr;</div>
+      </a>
+
+      <!-- Store 3: Paints, Hardwares and doorfittings -->
+      <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="homepage-store-card hardware">
+        <div class="store-card-content">
+          <span class="store-card-icon">🔨</span>
+          <div>
+            <h3 class="store-card-title">Paints,Hardwares and doorfittings</h3>
+            <p class="store-card-desc">Door fittings, locks, paints, hand tools, and industrial hardware.</p>
+          </div>
+        </div>
+        <div class="store-card-arrow">&rarr;</div>
+      </a>
     </div>
   </div>
 </section>
@@ -163,34 +336,36 @@
 <section class="section">
   <div class="container">
     <div class="text-center" style="margin-bottom: 3.5rem;">
-      <div class="section-tag">Why Sathik Groups</div>
-      <h2 class="section-title">Engineered for Reliability &amp; Trust</h2>
-      <p class="section-desc">We bridge high-volume manufacturing with site delivery timelines across India.</p>
+      <div class="section-tag">Why Sathik Traders</div>
+      <h2 class="section-title">Reliability &amp; Trust Since 1964</h2>
+      <p class="section-desc">Delivering unmatched customer satisfaction, high-quality products, and support for all
+        your home building needs since 1964.</p>
     </div>
 
     <div class="trust-grid">
       <div class="trust-card">
         <div class="trust-icon">🏭</div>
-        <h3 class="trust-title">100% Factory Direct</h3>
-        <p class="trust-desc">Sourced directly from official manufacturer plants with full warranty guarantees.</p>
+        <h3 class="trust-title">100% Genuine Products</h3>
+        <p class="trust-desc">Sourced directly from authorized manufacturer plants with official company warranties.</p>
       </div>
 
       <div class="trust-card">
-        <div class="trust-icon">📦</div>
-        <h3 class="trust-title">Wholesale B2B Pricing</h3>
-        <p class="trust-desc">Tiered pricing structures designed specifically for dealers, builders, and contractors.</p>
+        <div class="trust-icon">🏷️</div>
+        <h3 class="trust-title">Genuine Retail Pricing</h3>
+        <p class="trust-desc">Fair, transparent retail prices with additional bulk savings for homeowners and
+          contractors.</p>
       </div>
 
       <div class="trust-card">
         <div class="trust-icon">🚚</div>
-        <h3 class="trust-title">On-Site Fast Logistics</h3>
-        <p class="trust-desc">Rapid material dispatch directly to your commercial or residential project site.</p>
+        <h3 class="trust-title">On-Time Home Delivery</h3>
+        <p class="trust-desc">Timely home delivery directly to your building site or residential address in Chennai.</p>
       </div>
 
       <div class="trust-card">
-        <div class="trust-icon">🛡️</div>
-        <h3 class="trust-title">Technical Support</h3>
-        <p class="trust-desc">Dedicated engineering advice for plumbing schematics and fixture specifications.</p>
+        <div class="trust-icon">🤝</div>
+        <h3 class="trust-title">Personalized Guidance</h3>
+        <p class="trust-desc">Helpful support and guidance to choose the right materials and fixtures for your home.</p>
       </div>
     </div>
   </div>
@@ -213,22 +388,25 @@
     <div class="products-grid">
       {% for p in featured_products %}
       <div class="product-card">
-        <div class="product-image">
-          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}">
-        </div>
+        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
+          class="product-image" style="display:flex; text-decoration:none;">
+          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}"
+            alt="{{ p.name }}">
+        </a>
         <div class="product-info">
+          {% if not p.hide_brand_badge and p.brand_name %}
           <div class="product-brand">{{ p.brand_name }}</div>
+          {% endif %}
           <h4 class="product-name">
-            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{ p.name }}</a>
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{
+              p.name }}</a>
           </h4>
           <div class="product-sku">SKU: {{ p.sku }}</div>
           <div class="product-card-footer">
-            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="flex:1;">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
+              class="btn btn-primary btn-sm" style="width: 100%; text-align: center; justify-content: center;">
               Details
             </a>
-            <button type="button" class="btn btn-primary btn-sm" style="flex:1;" onclick="prepareQuoteModal('{{ p.name }}', '{{ p._id }}', '{{ p.sku }}')">
-              Request Quote
-            </button>
           </div>
         </div>
       </div>
@@ -278,26 +456,29 @@
   </div>
 </section>
 
-<!-- HIGH-IMPACT B2B CTA BANNER SECTION -->
+<!-- HIGH-IMPACT B2C CTA BANNER SECTION -->
 <section class="section bg-surface" style="padding-bottom: 6rem;">
   <div class="container">
     <div class="cta-banner">
       <div class="cta-banner-content">
-        <div class="section-tag" style="color: var(--accent);">B2B &amp; Project Quotes</div>
-        <h2 class="cta-banner-title">Need a Custom Quote or Bulk Supply Estimate?</h2>
+        <div class="section-tag" style="color: var(--accent);">Get a Custom Estimate</div>
+        <h2 class="cta-banner-title">Planning to Build or Renovate Your Home?</h2>
         <p class="cta-banner-desc">
-          Connect directly with our commercial sales team. We analyze your BOQ and supply timeline to deliver competitive wholesale rates within 24 hours.
+          Speak directly with our showroom experts. Send us your material list or floor plan to get a customized price
+          estimate and friendly product recommendations within 24 hours.
         </p>
       </div>
 
       <div class="cta-banner-actions">
         <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">
-          Request Quote Now
+          Send Enquiry &rarr;
         </a>
-        <a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+        <a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener noreferrer"
+          class="btn btn-whatsapp">
           WhatsApp Direct
         </a>
-        <a href="tel:{{ company.phone }}" class="btn btn-outline" style="border-color: rgba(255,255,255,0.4); color: #ffffff;">
+        <a href="tel:{{ company.phone }}" class="btn btn-outline"
+          style="border-color: rgba(255,255,255,0.4); color: #ffffff;">
           📞 Call {{ company.phone }}
         </a>
       </div>

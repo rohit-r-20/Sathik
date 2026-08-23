@@ -61,15 +61,18 @@
 
   <!-- Mobile Bottom Sticky Action Bar (visible on mobile < 768px) -->
   <div class="mobile-sticky-bar">
-    <a href="https://wa.me/{{ company.whatsapp if company else '919999999999' }}" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn whatsapp">
-      💬 WhatsApp
+    <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="mobile-bar-btn bath-kitchen">
+      <span class="btn-icon">🛁</span>
+      <span class="btn-text">Bath and sanitaryware</span>
     </a>
-    <a href="tel:{{ company.phone if company else '+91 9999999999' }}" class="mobile-bar-btn call">
-      📞 Call Sales
+    <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="mobile-bar-btn plumbing">
+      <span class="btn-icon">🔧</span>
+      <span class="btn-text">Plumbing and Industrial materials</span>
     </a>
-    <button type="button" class="mobile-bar-btn quote" onclick="openModal('quick-enquiry-modal')">
-      📄 Get Quote
-    </button>
+    <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="mobile-bar-btn hardware">
+      <span class="btn-icon">🔨</span>
+      <span class="btn-text">Paints,Hardwares and doorfittings</span>
+    </a>
   </div>
 
   <!-- Footer -->
@@ -126,6 +129,58 @@
 
           <button type="submit" class="btn btn-primary btn-block">Submit Quote Request</button>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Quote Cart Modal -->
+  <div id="cart-modal" class="modal-backdrop">
+    <div class="modal-card" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary-900);">My Quote Request List</h3>
+        <button type="button" onclick="closeModal('cart-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--primary-500);">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="cart-items-container" style="margin-bottom: 1.5rem; max-height: 250px; overflow-y: auto;">
+          <!-- Items populated by JS -->
+        </div>
+        
+        <div id="cart-form-container">
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem; border-top: 1px solid var(--border, #e2e8f0); padding-top: 1rem; color: var(--primary-900);">Send Quote Request for Selected Items</h4>
+          <form onsubmit="handleCartEnquirySubmit(event, this)">
+            <div class="form-alert" style="display:none;"></div>
+            <input type="hidden" name="type" value="quote_list">
+            
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Your Name *</label>
+                <input type="text" name="name" class="form-input" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" name="phone" class="form-input" placeholder="10-digit mobile number" required>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">City *</label>
+                <input type="text" name="city" class="form-input" placeholder="Your City" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Message / Special Instructions</label>
+              <textarea name="message" id="cart-message" class="form-textarea" placeholder="Specify any requirements or timing details..." style="min-height: 80px;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="min-height: 48px;">Submit Quote Request</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

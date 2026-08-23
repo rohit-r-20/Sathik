@@ -3,7 +3,15 @@
 {% block title %}Register Account | Sathik Groups{% endblock %}
 
 {% block content %}
-<section class="section bg-surface" style="min-height: 70vh; display: flex; align-items: center;">
+<div class="container" style="margin-top: 1.5rem; margin-bottom: -1rem; max-width: 26rem;">
+  <div class="breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-muted, #64748b); flex-wrap: wrap;">
+    <a href="{{ url_for('home.index') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Home</a>
+    <span style="color: #94a3b8;">&rsaquo;</span>
+    <span style="color: #475569; font-weight: 600;">Register</span>
+  </div>
+</div>
+
+<section class="section bg-surface" style="min-height: 70vh; display: flex; align-items: center; padding-top: 2rem;">
   <div class="container" style="max-width: 26rem;">
     <div style="background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-md);">
       <div style="text-align: center; margin-bottom: 2rem;">
