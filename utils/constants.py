@@ -349,7 +349,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Mild steel welding electrodes from premium brands.',
         'features': ['Stable arc characteristics', 'Minimal spatter', 'Easy slag detachability'],
         'specifications': [{'key': 'Product Type', 'value': 'Welding Electrodes'}],
-        'images': [{'url': '/static/images/products/plumbing/Welding rods.jpg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/welding_rods.jpg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'welding-equipment',
@@ -360,19 +360,19 @@ MOCK_PRODUCTS = [
                 'brand_name': 'Rasi',
                 'name': 'Rasi welding Rods',
                 'sku': 'IND-WLD-RASI',
-                'image': '/static/images/products/plumbing/Rasi welding Rods.jpg'
+                'image': '/static/images/products/plumbing/rasi_welding_rods.jpg'
             },
             {
                 'brand_name': 'Best Arc',
                 'name': 'Best Arc welding rods',
                 'sku': 'IND-WLD-BARC',
-                'image': '/static/images/products/plumbing/Best Arc welding rods.jpeg'
+                'image': '/static/images/products/plumbing/best_arc_welding_rods.jpeg'
             },
             {
                 'brand_name': 'Supron',
                 'name': 'Supron Welding Rod',
                 'sku': 'IND-WLD-SUPRON',
-                'image': '/static/images/products/plumbing/Supron Welding Rod.jpg'
+                'image': '/static/images/products/plumbing/supron_welding_rod.jpg'
             }
         ],
         'available_brand_slugs': ['rasi', 'best-arc', 'supron'],
@@ -389,7 +389,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Heavy duty inverter arc welding machine from GB Company.',
         'features': ['IGBT Inverter technology', 'Digital current display', 'Thermal overload protection'],
         'specifications': [{'key': 'Brand', 'value': 'GB Company'}, {'key': 'Current Range', 'value': '20-200A'}],
-        'images': [{'url': '/static/images/products/plumbing/GB company welding Machine.jpg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/gb_company_welding_machine.jpg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'welding-equipment',
@@ -409,7 +409,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Spiral-reinforced PVC suction hose from Alpha.',
         'features': ['Reinforced rigid PVC spiral helix', 'Smooth inner bore for flow efficiency', 'Crush & weather resistant'],
         'specifications': [{'key': 'Brand', 'value': 'Alpha'}, {'key': 'Working Temp', 'value': '-10°C to +60°C'}],
-        'images': [{'url': '/static/images/products/plumbing/Suction hose.webp', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/suction_hose.webp', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipes',
         'subcategory_slug': 'hoses-tubes',
@@ -429,7 +429,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Standard braided PVC water utility hose.',
         'features': ['High flexibility & kink resistance', 'Braided fiber reinforcement', 'Standard 1/2 inch and 3/4 inch sizes'],
         'specifications': [{'key': 'Material', 'value': 'Braided PVC'}, {'key': 'Reinforcement', 'value': 'Polyester Yarn'}],
-        'images': [{'url': '/static/images/products/plumbing/Normal hose.png', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/normal_hose.png', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipes',
         'subcategory_slug': 'hoses-tubes',
@@ -449,7 +449,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Grade 8.8 galvanized hex head structural bolts and nuts.',
         'features': ['High tensile steel (Grade 8.8)', 'Hot-dip galvanized coating', 'Full threads for secure fastening'],
         'specifications': [{'key': 'Material', 'value': 'Carbon Steel'}],
-        'images': [{'url': '/static/images/products/plumbing/Bolts and nuts.webp', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/bolts_and_nuts.webp', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'bolts-nuts',
@@ -489,7 +489,7 @@ MOCK_PRODUCTS = [
         'short_description': 'CRI high-performance stainless steel submersible pump.',
         'features': ['Stainless Steel Grade 304 body', 'Energy efficient copper winding motor', 'High water discharge head capacity'],
         'specifications': [{'key': 'Brand', 'value': 'CRI'}, {'key': 'Phase', 'value': 'Single Phase / Three Phase'}],
-        'images': [{'url': '/static/images/products/plumbing/CRI submirsible pumps.png', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/cri_submersible_pumps.png', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pumps',
         'subcategory_slug': 'submersible-pumps',
@@ -509,7 +509,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Heavy duty industrial power tools from global brands.',
         'features': ['Brushless motor technology', 'High impact drilling power', 'Long jobsite durability'],
         'specifications': [{'key': 'Product Type', 'value': 'Power Tools'}],
-        'images': [{'url': '/static/images/products/plumbing/Power tools.avif', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/power_tools.avif', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pumps',
         'subcategory_slug': 'power-tools',
@@ -526,19 +526,19 @@ MOCK_PRODUCTS = [
                 'brand_name': 'DeWalt',
                 'name': 'DeWalt Heavy Duty Power Tools',
                 'sku': 'IND-PWT-DEWALT',
-                'image': '/static/images/products/plumbing/Dewalt power tools.jpeg'
+                'image': '/static/images/products/plumbing/dewalt_power_tools.jpeg'
             },
             {
                 'brand_name': 'Polymach',
                 'name': 'Polymak powertools',
                 'sku': 'IND-PWT-POLY',
-                'image': '/static/images/products/plumbing/Polymak powertools.jpg'
+                'image': '/static/images/products/plumbing/polymak_powertools.jpg'
             },
             {
                 'brand_name': 'Valley Wolf',
                 'name': 'Ralli wolf power tools',
                 'sku': 'IND-PWT-VWOLF',
-                'image': '/static/images/products/plumbing/Ralli wolf power tools.jpg'
+                'image': '/static/images/products/plumbing/ralli_wolf_power_tools.jpg'
             }
         ],
         'available_brand_slugs': ['bosch', 'dewalt', 'polymach', 'valley-wolf'],
@@ -555,7 +555,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Professional grade spanners, wrenches, and hand tools from Taparia.',
         'features': ['Drop forged chrome vanadium steel', 'Rust preventive black phosphate finish', 'Meets IS/DIN industrial quality standards'],
         'specifications': [{'key': 'Brand', 'value': 'Taparia'}, {'key': 'Material', 'value': 'Chrome Vanadium Steel'}],
-        'images': [{'url': '/static/images/products/plumbing/Taparia Engineering tools.jpeg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/taparia_engineering_tools.jpeg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pumps',
         'subcategory_slug': 'engineering-tools',
@@ -575,7 +575,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Replacement brass tap spindles for standard plumbing taps.',
         'features': ['Solid extruded brass construction', 'Ceramic disc leak-proof seal', 'Universal standard thread sizing'],
         'specifications': [{'key': 'Material', 'value': 'Brass'}],
-        'images': [{'url': '/static/images/products/plumbing/Tap spindle.jpeg', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/tap_spindle.jpeg', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'tap-spindles',
@@ -595,7 +595,7 @@ MOCK_PRODUCTS = [
         'short_description': 'Premium modular switches from Roma and Oswin.',
         'features': ['Modular design', 'Fire-retardant polycarbonate material', 'Smooth quiet operation'],
         'specifications': [{'key': 'Product Type', 'value': 'Modular Switches'}],
-        'images': [{'url': '/static/images/products/plumbing/Switches.png', 'is_primary': True}],
+        'images': [{'url': '/static/images/products/plumbing/switches.png', 'is_primary': True}],
         'business_slug': 'plumbing',
         'category_slug': 'pipe-fittings',
         'subcategory_slug': 'electrical-switches',
@@ -606,13 +606,13 @@ MOCK_PRODUCTS = [
                 'brand_name': 'Roma',
                 'name': 'Anchor Roma Switches',
                 'sku': 'IND-ELC-SWITCH-ROMA',
-                'image': '/static/images/products/plumbing/Anchor Roma Switches.jpeg'
+                'image': '/static/images/products/plumbing/anchor_roma_switches.jpeg'
             },
             {
                 'brand_name': 'Oswin',
                 'name': 'Switches',
                 'sku': 'IND-ELC-SWITCH-OSWIN',
-                'image': '/static/images/products/plumbing/Switches.png'
+                'image': '/static/images/products/plumbing/switches.png'
             }
         ],
         'available_brand_slugs': ['roma', 'oswin'],
