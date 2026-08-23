@@ -63,11 +63,11 @@
   background: #ffffff;
   border-top: 1px solid var(--border);
   box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.10);
-  padding: 0.5rem 0.625rem;
+  padding: 0.15rem 0.625rem;
   /* safe area inset for iOS home indicator */
-  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
-  gap: 0.375rem;
-  height: 5.9rem;
+  padding-bottom: calc(0.15rem + env(safe-area-inset-bottom, 0px));
+  gap: 0.25rem;
+  height: 1.75rem;
 }
 
 .mobile-bar-btn {
@@ -76,28 +76,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.15rem;
-  padding: 0.5rem 0.25rem;
-  font-size: 0.72rem;
+  gap: 0;
+  padding: 0.1rem 0.25rem;
+  font-size: 0.65rem;
   font-weight: 700;
   border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
   text-decoration: none;
   letter-spacing: 0.005em;
-  min-height: 4.6rem;
+  min-height: 1.45rem;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.15;
   transition: opacity 0.15s, transform 0.15s;
 }
 
 .mobile-bar-btn .btn-icon {
-  font-size: 1.05rem;
-  line-height: 1;
+  display: none !important;
 }
 
 .mobile-bar-btn .btn-text {
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .mobile-bar-btn:active {
@@ -197,7 +200,7 @@ body.modal-open {
 
   /* Quick Enquiry FAB Mobile position above bottom sticky bar */
   .quick-enquiry-fab {
-    bottom: calc(6.4rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(2.25rem + env(safe-area-inset-bottom, 0px));
     right: 1rem;
     padding: 0.75rem 1.125rem;
     font-size: 0.84rem;
@@ -214,7 +217,7 @@ body.modal-open {
 
   /* Pad body so sticky bar doesn't cover footer content */
   body {
-    padding-bottom: calc(7.9rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px));
   }
 
   /* ── Mobile Navigation Drawer (full-width slide-down) ── */
