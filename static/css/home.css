@@ -835,3 +835,140 @@
     gap: 0;
   }
 }
+
+/* ============================================================
+   Sathik Groups — Single Page Grid & Testimonial Styles
+   ============================================================ */
+
+/* ── PRODUCT RANGE GRID ── */
+.product-range-sec {
+  padding: 5rem 0;
+  background-color: var(--bg);
+}
+
+.s-prod-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  text-decoration: none;
+}
+
+.s-prod-box:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.s-prod-box:hover img {
+  transform: scale(1.05);
+}
+
+.s-prod-box .prod-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+  transition: gap 0.2s;
+}
+
+.s-prod-box .prod-link:hover {
+  gap: 0.5rem;
+}
+
+/* Horizontal card adjustments */
+.s-prod-box img {
+  transition: transform 0.3s ease;
+}
+
+.s-prod-box .s-prod-img img {
+  max-width: 100%;
+  height: 80px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+/* Vertical card layout */
+.s-prod-box.vertical-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.s-prod-box.vertical-box .prod-img-wrap {
+  text-align: right;
+  margin-top: auto;
+}
+
+.s-prod-box.vertical-box .prod-img-wrap img {
+  max-height: 200px;
+  object-fit: contain;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* ── TESTIMONIALS SECTION ── */
+.testimonial-sec {
+  background-color: var(--surface-light, #f8fafc);
+  padding: 5rem 0;
+}
+
+.s-testimonial-box-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.s-testimonial-box-wrap:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.testimonial-left-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.testimonial-left-img:hover img {
+  transform: scale(1.03);
+}
+
+/* Responsive adjustments for grids */
+@media (max-width: 992px) {
+  .product-range-sec .row {
+    flex-direction: column !important;
+  }
+  .product-range-sec .col-md-6 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .testimonial-sec .row {
+    flex-direction: column !important;
+  }
+  .testimonial-sec .col-md-5, .testimonial-sec .col-md-7 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .testimonial-left-img {
+    height: 250px !important;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+

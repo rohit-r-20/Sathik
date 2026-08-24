@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 from models.product import ProductModel
 from models.brand import BrandModel
 from models.project import ProjectModel
@@ -20,7 +20,7 @@ def index():
 
 @home_bp.route('/about')
 def about():
-    return render_template('about.html', company=COMPANY_INFO)
+    return redirect(url_for('home.index') + '#aboutUs')
 
 @home_bp.route('/projects')
 def projects():

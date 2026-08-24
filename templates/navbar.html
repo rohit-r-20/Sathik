@@ -43,42 +43,31 @@
     <ul class="nav-menu" id="nav-menu" role="menubar">
       <li role="none">
         <a href="{{ url_for('home.index') }}" role="menuitem"
-           class="nav-link {% if request.endpoint == 'home.index' %}active{% endif %}">
+           class="nav-link {% if request.endpoint == 'home.index' and not request.query_string %}active{% endif %}">
           Home
         </a>
       </li>
 
-      <li class="dropdown" role="none">
-        <a href="{{ url_for('category.store_list') }}" role="menuitem"
-           class="nav-link {% if request.endpoint in ('category.store_list', 'category.store_detail') %}active{% endif %}">
-          Stores &#9662;
+      <li role="none">
+        <a href="{{ url_for('home.index') }}#aboutUs" role="menuitem" class="nav-link">
+          About Us
         </a>
-        <ul class="dropdown-menu" role="menu" aria-label="Commercial Stores">
-          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" role="menuitem" class="dropdown-item">🛁 Bath and sanitaryware</a></li>
-          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" role="menuitem" class="dropdown-item">🔧 Plumbing and Industrial materials</a></li>
-          <li role="none"><a href="{{ url_for('category.store_detail', business_slug='hardware') }}" role="menuitem" class="dropdown-item">🔨 Paints,Hardwares and doorfittings</a></li>
-          <li role="none" style="border-top: 1px solid var(--border); margin-top: 0.25rem; padding-top: 0.25rem;">
-            <a href="{{ url_for('category.store_list') }}" role="menuitem" class="dropdown-item">🏬 All Stores Directory</a>
-          </li>
-        </ul>
       </li>
 
       <li role="none">
-        <a href="{{ url_for('brand.brand_list') }}" role="menuitem"
-           class="nav-link {% if request.endpoint == 'brand.brand_list' %}active{% endif %}">
+        <a href="{{ url_for('home.index') }}#product-range" role="menuitem" class="nav-link">
+          Product Range
+        </a>
+      </li>
+
+      <li role="none">
+        <a href="{{ url_for('home.index') }}#brands" role="menuitem" class="nav-link">
           Brands
         </a>
       </li>
 
       <li role="none">
-        <a href="{{ url_for('home.about') }}" role="menuitem"
-           class="nav-link {% if request.endpoint == 'home.about' %}active{% endif %}">
-          About Us
-        </a>
-      </li>
-      <li role="none">
-        <a href="{{ url_for('enquiry.contact') }}" role="menuitem"
-           class="nav-link {% if request.endpoint == 'enquiry.contact' %}active{% endif %}">
+        <a href="{{ url_for('home.index') }}#contactUs" role="menuitem" class="nav-link">
           Contact Us
         </a>
       </li>

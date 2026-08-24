@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from services.enquiry_service import EnquiryService
 from services.email_service import send_enquiry_email
 from utils.constants import COMPANY_INFO
@@ -7,7 +7,7 @@ enquiry_bp = Blueprint('enquiry', __name__)
 
 @enquiry_bp.route('/contact')
 def contact():
-    return render_template('contact.html', company=COMPANY_INFO)
+    return redirect(url_for('home.index') + '#contactUs')
 
 @enquiry_bp.route('/enquiry/submit', methods=['POST'])
 def submit_enquiry():

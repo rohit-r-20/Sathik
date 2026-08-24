@@ -4,59 +4,12 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 {% endblock %}
 
 {% block content %}
-<!-- ABOUT SATHIK - LEGACY & TRUST SECTION (Traditional and Emotional Connection) -->
-<section class="legacy-about-section">
-  <div class="container">
-    <div class="legacy-about-grid">
-      <!-- Left side: The Story -->
-      <div class="legacy-story-content">
-        <div class="section-tag legacy-tag">Our Roots &amp; Heritage</div>
-        <h2 class="legacy-title">Sathik groups</h2>
-        <div class="legacy-story-body">
-          <p>
-            For over six decades, <strong>Sathik Groups</strong> has been more than just a supplier of building materials. Sourced directly from authorized manufacturer plants and chosen with care, we have stood side-by-side with local families as they laid the foundation stones of their dream homes.
-          </p>
-          <p>
-            In our traditions, a house is not merely concrete and steel—it is the sanctuary of your family's aspirations, a legacy built on hard work and shared dreams. We honor this sacred trust by offering transparent retail prices, genuine products, and personalized guidance that spans generations.
-          </p>
-          <blockquote>
-            "We do not just sell materials; we build relations that last a lifetime."
-          </blockquote>
-        </div>
-        <div class="legacy-pillars">
-          <div class="pillar-item">
-            <span class="pillar-icon">🏛️</span>
-            <div>
-              <h4>60+ Years Legacy</h4>
-              <p>Serving homeowners with honesty &amp; care since 1964.</p>
-            </div>
-          </div>
-          <div class="pillar-item">
-            <span class="pillar-icon">🤝</span>
-            <div>
-              <h4>Family-First Relations</h4>
-              <p>Treating every builder's dream as our very own.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Right side: Beautiful graphic or warm local illustration -->
-      <div class="legacy-image-frame">
-        <img src="{{ url_for('static', filename='images/hero/sathik_legacy.jpg') }}" alt="Sathik Legacy Trust" class="legacy-img" loading="lazy">
-        <div class="legacy-badge-floating">
-          <div class="legacy-badge-year">1964</div>
-          <div class="legacy-badge-text">Trust In Every Brick</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- HERO SECTION — Premium Store Advertisement Slideshow -->
-<section class="hero">
+<section class="hero" id="hero">
   <!-- Slideshow slides -->
   <div class="hero-slides">
     <!-- Slide 1: Bath & Kitchen Store (Default Active Slide) -->
@@ -73,11 +26,11 @@
               sanitaryware, modular kitchen fixtures, and home wellness accessories from top-tier brands.
             </p>
             <div class="hero-actions">
-              <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="btn btn-primary">
-                Explore Bath and sanitaryware &rarr;
+              <a href="#product-range" class="btn btn-primary">
+                Explore Product Range &rarr;
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
-                Browse Catalogue
+              <a href="#contactUs" class="btn btn-outline">
+                Contact Us
               </a>
               <a href="tel:04426322644" class="hero-phone-link">
                 📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
@@ -102,11 +55,11 @@
               Authentic products with factory warranties for retail buyers.
             </p>
             <div class="hero-actions">
-              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="btn btn-primary">
-                Explore Plumbing and Industrial materials &rarr;
+              <a href="#product-range" class="btn btn-primary">
+                Explore Product Range &rarr;
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
-                Browse Catalogue
+              <a href="#contactUs" class="btn btn-outline">
+                Contact Us
               </a>
               <a href="tel:04426322644" class="hero-phone-link">
                 📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
@@ -131,11 +84,11 @@
               reliable gear for all your home renovation and DIY projects.
             </p>
             <div class="hero-actions">
-              <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="btn btn-primary">
-                Explore Paints,Hardwares and doorfittings &rarr;
+              <a href="#product-range" class="btn btn-primary">
+                Explore Product Range &rarr;
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-outline">
-                Browse Catalogue
+              <a href="#contactUs" class="btn btn-outline">
+                Contact Us
               </a>
               <a href="tel:04426322644" class="hero-phone-link">
                 📞 044-26322644 &nbsp;|&nbsp; 📱 94443 23644
@@ -182,9 +135,244 @@
   </div>
 </section>
 
+<!-- ABOUT SATHIK - LEGACY & TRUST SECTION (Traditional and Emotional Connection) -->
+<section class="legacy-about-section" id="aboutUs">
+  <div class="container">
+    <div class="legacy-about-grid">
+      <!-- Left side: Beautiful graphic or warm local illustration -->
+      <div class="legacy-image-frame">
+        <img src="{{ url_for('static', filename='images/hero/sathik_legacy.jpg') }}" alt="Sathik Legacy Trust" class="legacy-img" loading="lazy">
+        <div class="legacy-badge-floating">
+          <div class="legacy-badge-year">1964</div>
+          <div class="legacy-badge-text">Trust In Every Brick</div>
+        </div>
+      </div>
+
+      <!-- Right side: The Story -->
+      <div class="legacy-story-content">
+        <div class="section-tag legacy-tag">Our Roots &amp; Heritage</div>
+        <h2 class="legacy-title">Building Confidence, Supplying Excellence</h2>
+        <div class="legacy-story-body">
+          <p>
+            For over six decades, <strong>Sathik Groups</strong> has been more than just a supplier of building materials. Sourced directly from authorized manufacturer plants and chosen with care, we have stood side-by-side with local families as they laid the foundation stones of their dream homes.
+          </p>
+          <p>
+            Our legacy originated in <strong>1964 by Mohamed Ibrahim Sahib</strong>, laying a solid foundation of trust, values, and client satisfaction. Carrying this legacy forward, <strong>Sathik Traders</strong> was originated on <strong>2007 by Haji Shiek Abdul Kader</strong>, expanding our services to offer complete hardware, plumbing, and sanitaryware retail solutions under one roof.
+          </p>
+          <p>
+            In our traditions, a house is not merely concrete and steel—it is the sanctuary of your family's aspirations, a legacy built on hard work and shared dreams. We honor this sacred trust by offering transparent retail prices, genuine products, and personalized guidance that spans generations.
+          </p>
+          <div class="offers-wrap" style="display: flex; gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <div class="s-offer-box" style="display: flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+              <span style="font-size: 1.5rem;">⭐</span>
+              <span style="font-weight: 600; font-size: 0.9rem;">Quality Product Range</span>
+            </div>
+            <div class="s-offer-box" style="display: flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+              <span style="font-size: 1.5rem;">🤝</span>
+              <span style="font-weight: 600; font-size: 0.9rem;">Builder-Centric Service</span>
+            </div>
+          </div>
+          <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--primary-700);"><span style="color: var(--accent);">✔</span> Top Brands Across Every Category</li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--primary-700);"><span style="color: var(--accent);">✔</span> Tailored Solutions for Builders &amp; Contractors</li>
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; color: var(--primary-700);"><span style="color: var(--accent);">✔</span> Trusted by Leading Construction Firms</li>
+          </ul>
+          <div class="btn-wrap">
+            <a class="btn btn-primary" href="#contactUs">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS COUNTERS SECTION (A-One Hardware Style) -->
+<section class="red-bg" style="background: var(--primary-900, #0F172A); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <div class="row counters py-5" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center;">
+      <div class="s-counter-box" style="padding: 1rem;">
+        <div class="counter-inner">
+          <div class="d-flex justify-content-center align-items-center" style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
+            <span class="counter-number">20</span><span>+</span>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Authorized Brands</p>
+        </div>
+      </div>
+      <div class="s-counter-box" style="padding: 1rem;">
+        <div class="counter-inner">
+          <div class="d-flex justify-content-center align-items-center" style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
+            <span class="counter-number">5,000</span><span>+</span>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Products in Stock</p>
+        </div>
+      </div>
+      <div class="s-counter-box" style="padding: 1rem;">
+        <div class="counter-inner">
+          <div class="d-flex justify-content-center align-items-center" style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
+            <span class="counter-number">60</span><span>+</span>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Years of Legacy</p>
+        </div>
+      </div>
+      <div class="s-counter-box" style="padding: 1rem;">
+        <div class="counter-inner">
+          <div class="d-flex justify-content-center align-items-center" style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
+            <span class="counter-number">100</span><span>%</span>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">Genuine Products</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT RANGE SECTION (A-One Hardware Grid layout) -->
+<section class="product-range-sec py-5" id="product-range" style="background: var(--bg); position: relative;">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Showroom Categories</div>
+      <h2 class="section-title">Our Product Range</h2>
+      <p class="section-desc">Explore our top-tier materials curated across specialized building verticals.</p>
+    </div>
+
+    <div class="products-wrap">
+      <div class="row align-items-stretch mb-4" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+        <!-- Left Section: Bath & Sanitaryware (Tall Vertical Card) -->
+        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
+          <div class="s-prod-box vertical-box w-100" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: all 0.3s ease;">
+            <div class="s-prod-cont" style="margin-bottom: 1.5rem; z-index: 2;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Bath & Sanitaryware</span>
+              <h3 style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.75rem; color: var(--primary-900);">Where Elegance Meets Everyday Essentials</h3>
+              <p style="color: var(--primary-600); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">Sleek, durable sanitaryware and wellness fittings that elevate your bathroom experience.</p>
+              <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="btn btn-outline btn-sm" style="font-size: 0.85rem;">Explore Store &rarr;</a>
+            </div>
+            <div class="prod-img-wrap" style="text-align: right; margin-top: auto; z-index: 1;">
+              <img src="/static/images/products/bath-kitchen/orca_bathtub.jpg" alt="Bathware" style="max-height: 250px; object-fit: contain; max-width: 100%; border-radius: var(--radius-md); transition: transform 0.3s ease;">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Section: Kitchenware & Paints (Two Horizontal Cards) -->
+        <div class="col-md-6 d-flex flex-column gap-4" style="padding: 15px; flex: 0 0 50%; max-width: 50%; display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Box 1: Kitchenware -->
+          <div class="products-top-right flex-fill d-flex">
+            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Kitchenware</span>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Style at the Heart of Home</h3>
+                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Discover modular sinks, chimneys, hobs, and premium accessories.</p>
+                <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+              </div>
+              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+                <img src="/static/images/products/bath-kitchen/stainless_sink.jpg" alt="Kitchenware" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 2: Paints -->
+          <div class="products-top-right flex-fill d-flex">
+            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Paints</span>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Colour Your World</h3>
+                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Vibrant, long-lasting paints from trusted and iconic brands.</p>
+                <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+              </div>
+              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+                <img src="/static/images/products/hardware/paints_common.jpg" alt="Paints" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+        <!-- Box 3: Adhesives -->
+        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
+          <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+            <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Adhesives & Chemicals</span>
+              <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Bonds Built with Strength</h3>
+              <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Premium adhesives and waterproofing solutions to hold every layer.</p>
+              <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+            </div>
+            <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+              <img src="/static/images/products/hardware/adhesives_common.jpg" alt="Adhesives" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 4: Pipes -->
+        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
+          <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+            <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Pipes & Tubing</span>
+              <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Flow Matters. Quality Pipes Matter</h3>
+              <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Leak-proof, tough CPVC/UPVC and SWR piping systems.</p>
+              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+            </div>
+            <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+              <img src="/static/images/products/plumbing/suction_hose.webp" alt="Pipes" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row align-items-stretch" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+        <!-- Left Section: CP Fittings & Water Tanks (Two Horizontal Cards) -->
+        <div class="col-md-6 d-flex flex-column gap-4" style="padding: 15px; flex: 0 0 50%; max-width: 50%; display: flex; flex-direction: column; gap: 1.5rem;">
+          <!-- Box 5: CP Fittings -->
+          <div class="products-btm-left flex-fill d-flex">
+            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">CP Fittings</span>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Shine & Function Lasts</h3>
+                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">High-performance wall mixers, taps, and showers.</p>
+                <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+              </div>
+              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+                <img src="/static/images/products/bath-kitchen/diverter.jpg" alt="CP Fittings" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+              </div>
+            </div>
+          </div>
+
+          <!-- Box 6: Water Tanks -->
+          <div class="products-btm-right flex-fill d-flex">
+            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
+              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
+                <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Water Tanks</span>
+                <h3 style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">Engineered to Last</h3>
+                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Durable multi-layer tanks for hygienic water storage.</p>
+                <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="prod-link" style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store &rarr;</a>
+              </div>
+              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
+                <img src="/static/images/products/plumbing/suction_hose.webp" alt="Water Tanks" style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Section: Motors (Tall Vertical Card) -->
+        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
+          <div class="s-prod-box vertical-box w-100" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: all 0.3s ease;">
+            <div class="s-prod-cont" style="margin-bottom: 1.5rem; z-index: 2;">
+              <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Motors & Pumps</span>
+              <h3 style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.75rem; color: var(--primary-900);">Power That Drives Your Flow</h3>
+              <p style="color: var(--primary-600); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">Reliable submersible pumps, monoblocks, and automated boosters.</p>
+              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="btn btn-outline btn-sm" style="font-size: 0.85rem;">Explore Store &rarr;</a>
+            </div>
+            <div class="prod-img-wrap" style="text-align: right; margin-top: auto; z-index: 1;">
+              <img src="/static/images/products/plumbing/cri_submersible_pumps.png" alt="Motors" style="max-height: 250px; object-fit: contain; max-width: 100%; border-radius: var(--radius-md); transition: transform 0.3s ease;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- AUTHORIZED BRANDS SECTION — Infinite marquee ticker -->
-<section class="brand-bar-section">
+<section class="brand-bar-section" id="brands">
   <div class="container">
     <div class="text-center" style="margin-bottom: 2rem;">
       <div class="section-tag">Authorized distributors and Dealers</div>
@@ -282,56 +470,6 @@
   </div>
 </section>
 
-<!-- HOMEPAGE STORES SECTION (visible below Brands We Deal With on desktop and mobile) -->
-<section class="homepage-stores-section">
-  <div class="container">
-    <div class="text-center" style="margin-bottom: 2rem;">
-      <div class="section-tag">Explore Our Showrooms</div>
-      <h2 class="section-title">Our Stores</h2>
-      <p class="section-desc">Find premium products in our specialized showrooms.</p>
-    </div>
-
-    <div class="homepage-stores-grid">
-      <!-- Store 1: Bath and sanitaryware -->
-      <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}"
-        class="homepage-store-card bath-kitchen">
-        <div class="store-card-content">
-          <span class="store-card-icon">🛁</span>
-          <div>
-            <h3 class="store-card-title">Bath and sanitaryware</h3>
-            <p class="store-card-desc">Sanitaryware, faucets, showers, and accessories from top luxury brands.</p>
-          </div>
-        </div>
-        <div class="store-card-arrow">&rarr;</div>
-      </a>
-
-      <!-- Store 2: Plumbing and Industrial materials -->
-      <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="homepage-store-card plumbing">
-        <div class="store-card-content">
-          <span class="store-card-icon">🔧</span>
-          <div>
-            <h3 class="store-card-title">Plumbing and Industrial materials</h3>
-            <p class="store-card-desc">Pipes, fittings, valves, pumps, and water management solutions.</p>
-          </div>
-        </div>
-        <div class="store-card-arrow">&rarr;</div>
-      </a>
-
-      <!-- Store 3: Paints, Hardwares and doorfittings -->
-      <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="homepage-store-card hardware">
-        <div class="store-card-content">
-          <span class="store-card-icon">🔨</span>
-          <div>
-            <h3 class="store-card-title">Paints,Hardwares and doorfittings</h3>
-            <p class="store-card-desc">Door fittings, locks, paints, hand tools, and industrial hardware.</p>
-          </div>
-        </div>
-        <div class="store-card-arrow">&rarr;</div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- WHY CHOOSE US -->
 <section class="section">
   <div class="container">
@@ -416,8 +554,73 @@
 </section>
 {% endif %}
 
+<!-- TESTIMONIALS SECTION (A-One Hardware Style) -->
+<section class="testimonial-sec py-5" id="testimonials" style="background: var(--bg); border-top: 1px solid var(--border);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Client Feedback</div>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-desc">Delivering excellence that shapes relationships across generations.</p>
+    </div>
+
+    <div class="row align-items-stretch" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
+      <div class="col-md-5" style="padding: 15px; flex: 0 0 41.66%; max-width: 41.66%;">
+        <div class="testimonial-left-img h-100" style="overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <img src="{{ url_for('static', filename='images/hero/sathik_legacy.jpg') }}" alt="Sathik Trust" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;">
+        </div>
+      </div>
+      <div class="col-md-7 d-flex flex-column gap-4" style="padding: 15px; flex: 0 0 58.33%; max-width: 58.33%; display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Box 1 -->
+        <div class="s-testimonial-box-wrap flex-fill d-flex" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; position: relative;">
+          <div class="s-testimonial-box w-100">
+            <div class="rating-stars" style="color: #FBBF24; font-size: 1.1rem; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+            <p style="color: var(--primary-700); font-style: italic; font-size: 0.925rem; line-height: 1.5; margin-bottom: 1rem;">"Sathik Groups has been our go-to partner for all our commercial projects. Their range of authorized brands and timely delivery makes our job easier. Truly reliable!"</p>
+            <div class="author d-flex align-items-center" style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="author-img" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">AR</div>
+              <div class="author-cont">
+                <h5 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: var(--primary-900);">Mr. Aravind R</h5>
+                <span style="font-size: 0.8rem; color: var(--primary-500);">Project Manager, Sri Dhanalakshmi Builders</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="s-testimonial-box-wrap flex-fill d-flex" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; position: relative;">
+          <div class="s-testimonial-box w-100">
+            <div class="rating-stars" style="color: #FBBF24; font-size: 1.1rem; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+            <p style="color: var(--primary-700); font-style: italic; font-size: 0.925rem; line-height: 1.5; margin-bottom: 1rem;">"The quality of materials supplied by Sathik Traders is top-tier. From Hindware sanitaryware to CRI pumps, every product has met our strict building expectations. Their staff is extremely helpful."</p>
+            <div class="author d-flex align-items-center" style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="author-img" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">KM</div>
+              <div class="author-cont">
+                <h5 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: var(--primary-900);">Ms. Keerthana M</h5>
+                <span style="font-size: 0.8rem; color: var(--primary-500);">Elite Homes &amp; Constructions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="s-testimonial-box-wrap flex-fill d-flex" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; position: relative;">
+          <div class="s-testimonial-box w-100">
+            <div class="rating-stars" style="color: #FBBF24; font-size: 1.1rem; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+            <p style="color: var(--primary-700); font-style: italic; font-size: 0.925rem; line-height: 1.5; margin-bottom: 1rem;">"We've worked with many building material suppliers, but Sathik Traders stands out for their honest approach, pricing, and authentic stock. They truly understand local construction needs."</p>
+            <div class="author d-flex align-items-center" style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="author-img" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem;">SK</div>
+              <div class="author-cont">
+                <h5 style="margin: 0; font-size: 0.95rem; font-weight: 700; color: var(--primary-900);">Mr. Santhosh K</h5>
+                <span style="font-size: 0.8rem; color: var(--primary-500);">Managing Director, SKR Infra Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SUPPLIED PROJECTS SECTION -->
-<section class="section">
+<section class="section" id="projects">
   <div class="container">
     <div class="text-center" style="margin-bottom: 3.5rem;">
       <div class="section-tag">Track Record</div>
@@ -462,31 +665,117 @@
   </div>
 </section>
 
-<!-- HIGH-IMPACT B2C CTA BANNER SECTION -->
-<section class="section bg-surface" style="padding-bottom: 6rem;">
+<!-- CONTACT & ENQUIRY SECTION (A-One Hardware Grid layout) -->
+<section class="contact-sec py-5" id="contactUs" style="background: var(--bg); border-top: 1px solid var(--border); padding-bottom: 6rem;">
   <div class="container">
-    <div class="cta-banner">
-      <div class="cta-banner-content">
-        <div class="section-tag" style="color: var(--accent);">Get a Custom Estimate</div>
-        <h2 class="cta-banner-title">Planning to Build or Renovate Your Home?</h2>
-        <p class="cta-banner-desc">
-          Speak directly with our showroom experts. Send us your material list or floor plan to get a customized price
-          estimate and friendly product recommendations within 24 hours.
-        </p>
+    <div class="text-center" style="margin-bottom: 3.5rem;">
+      <div class="section-tag">Get a Custom Estimate</div>
+      <h2 class="section-title">Contact &amp; Enquiry Form</h2>
+      <p class="section-desc">Speak directly with our showroom experts. Send us your material list to get an estimate within 24 hours.</p>
+    </div>
+
+    <div class="contact-grid" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3.5rem; align-items: start;">
+      <!-- Contact Info Column -->
+      <div class="contact-info-col" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary-900); margin-bottom: 0.5rem;">Contact Information</h3>
+
+        <a href="tel:{{ company.phone }}" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border); transition: transform 0.2s;">
+          <div class="contact-icon" style="font-size: 1.5rem;">📞</div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">Landline &amp; Mobile</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--primary-900);">Ph: {{ company.phone }}</div>
+            <div style="font-weight: 700; font-size: 1rem; color: var(--accent);">Cell: {{ company.mobile_formatted }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Tap to call directly</div>
+          </div>
+        </a>
+
+        <a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border); transition: transform 0.2s;">
+          <div class="contact-icon" style="font-size: 1.5rem;">💬</div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">WhatsApp Support</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: #16A34A;">+91 {{ company.mobile }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Instant price quotes &amp; assistance</div>
+          </div>
+        </a>
+
+        <div class="contact-info-card" style="display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div class="contact-icon" style="font-size: 1.5rem;">✉️</div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">Official Emails</div>
+            <div style="font-weight: 600; color: var(--primary-900); word-break: break-all; font-size: 0.95rem;">{{ company.email }}</div>
+            <div style="font-weight: 600; color: var(--primary-700); word-break: break-all; font-size: 0.85rem; margin-top: 0.2rem;">{{ company.email_alt }}</div>
+          </div>
+        </div>
+
+        <div class="contact-info-card" style="display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <div class="contact-icon" style="font-size: 1.5rem;">📍</div>
+          <div>
+            <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">Showroom Address</div>
+            <div style="font-weight: 600; line-height: 1.5; color: var(--primary-900); font-size: 0.95rem;">{{ company.address }}</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Website: {{ company.website }}</div>
+          </div>
+        </div>
+
+        <div class="business-hours-card" style="background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.2); border-radius: var(--radius-lg); padding: 1.25rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.5rem;">Business Hours</div>
+          <div style="font-size: 0.875rem; color: var(--primary-700); display: flex; flex-direction: column; gap: 0.35rem;">
+            <div>Mon – Sat &nbsp;•&nbsp; <strong>{{ company.hours }}</strong></div>
+            <div style="color: var(--primary-500);">Sunday: Closed</div>
+          </div>
+        </div>
       </div>
 
-      <div class="cta-banner-actions">
-        <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary">
-          Send Enquiry &rarr;
-        </a>
-        <a href="https://wa.me/{{ company.whatsapp }}" target="_blank" rel="noopener noreferrer"
-          class="btn btn-whatsapp">
-          WhatsApp Direct
-        </a>
-        <a href="tel:{{ company.phone }}" class="btn btn-outline"
-          style="border-color: rgba(255,255,255,0.4); color: #ffffff;">
-          📞 Call {{ company.phone }}
-        </a>
+      <!-- Enquiry Form Column -->
+      <div class="contact-form-card" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--primary-900); margin-bottom: 1.5rem;">Send an Enquiry</h3>
+
+        <form onsubmit="handleEnquirySubmit(event, this)" novalidate>
+          <div class="form-alert" style="display:none; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.9rem;"></div>
+          <input type="hidden" name="type" value="general">
+
+          <!-- Row 1: Name + Phone -->
+          <div class="form-row-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-name">Your Name *</label>
+              <input type="text" id="c-name" name="name" class="form-input" placeholder="Full Name" required autocomplete="name" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-phone">Phone Number *</label>
+              <input type="tel" id="c-phone" name="phone" class="form-input" placeholder="10-digit mobile" required autocomplete="tel" inputmode="tel" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+            </div>
+          </div>
+
+          <!-- Row 2: Email + City -->
+          <div class="form-row-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div class="form-group">
+              <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-email">Email Address *</label>
+              <input type="email" id="c-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-city">City *</label>
+              <input type="text" id="c-city" name="city" class="form-input" placeholder="Your City" required autocomplete="address-level2" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-company">Company / Firm Name</label>
+            <input type="text" id="c-company" name="company" class="form-input" placeholder="e.g. Acme Builders" autocomplete="organization" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-product">Product / Category Interest</label>
+            <input type="text" id="c-product" name="product_name" class="form-input" placeholder="e.g. CPVC Pipes, Basin Mixers" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s;">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label class="form-label" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--primary-700); margin-bottom: 0.375rem;" for="c-message">Message / Details *</label>
+            <textarea id="c-message" name="message" class="form-textarea" placeholder="Please specify your product requirements or project needs..." required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg); font-family: inherit; font-size: 0.925rem; outline: none; transition: border-color 0.2s; min-height: 120px; resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block" style="min-height: 52px; font-size: 1rem; display: flex; align-items: center; justify-content: center; width: 100%;">
+            Submit Enquiry →
+          </button>
+        </form>
       </div>
     </div>
   </div>

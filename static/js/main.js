@@ -90,6 +90,62 @@ document.addEventListener('DOMContentLoaded', () => {
     handleScroll();
   }
 
+  /* ──────────────────────────────────────────────────────────
+     2c. SINGLE PAGE SCROLL SPY (NAVBAR ACTIVE STATE DYNAMIC SYNC)
+     ────────────────────────────────────────────────────────── */
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-menu .nav-link');
+
+  const onScroll = () => {
+    let scrollPos = window.scrollY || document.documentElement.scrollTop;
+    const headerHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+    
+    // Map section IDs to corresponding navbar anchor targets
+    const sectionToAnchor = {
+      'hero': 'hero',
+      'aboutUs': 'aboutUs',
+      'product-range': 'product-range',
+      'brands': 'brands',
+      'testimonials': 'brands',
+      'projects': 'contactUs',
+      'contactUs': 'contactUs'
+    };
+    
+    let currentSectionId = 'hero';
+    
+    // Check if we are at the bottom of the page
+    if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
+      currentSectionId = 'contactUs';
+    } else {
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - headerHeight - 140;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+    }
+    
+    const targetAnchor = sectionToAnchor[currentSectionId] || currentSectionId;
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href) {
+        if (targetAnchor === 'hero') {
+          if (href === '/' || href.endsWith('/') || href.endsWith('#hero')) {
+            link.classList.add('active');
+          }
+        } else if (href.endsWith('#' + targetAnchor)) {
+          link.classList.add('active');
+        }
+      }
+    });
+  };
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
   // Close menu on outside tap (mobile)
   document.addEventListener('click', (e) => {
     if (
