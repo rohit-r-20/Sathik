@@ -533,45 +533,31 @@
   </div>
 </section>
 
-<!-- OUR 3 SPECIALIZED SHOWROOMS & STORES (Image 3 Style) -->
+<!-- OUR 3 SPECIALIZED SHOWROOMS & STORES (Stacked One After Another) -->
 <section class="showrooms-section" id="showrooms">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 2.5rem;">
+    <div class="text-center" style="margin-bottom: 3.5rem;">
       <div class="section-tag">Direct Factory Outlets &amp; Retail Hubs</div>
       <h2 class="section-title">Our 3 Specialized Showrooms</h2>
-      <p class="section-desc">Experience our comprehensive physical stores and specialized product galleries in
-        Redhills, Chennai.</p>
+      <p class="section-desc">Experience our comprehensive physical stores and specialized product galleries in Redhills, Chennai.</p>
     </div>
 
-    <!-- Store Switcher Tabs -->
-    <div class="showroom-switcher-bar">
-      <button class="showroom-tab-btn active" onclick="switchShowroom(0, this)">
-        <span>🛁</span> Store 1: Bath &amp; Sanitaryware
-      </button>
-      <button class="showroom-tab-btn" onclick="switchShowroom(1, this)">
-        <span>🔧</span> Store 2: Plumbing &amp; Water Tech
-      </button>
-      <button class="showroom-tab-btn" onclick="switchShowroom(2, this)">
-        <span>🔨</span> Store 3: Hardware &amp; Paints
-      </button>
-    </div>
-
-    <!-- Panel 1: Bath & Sanitaryware Showroom -->
-    <div class="showroom-card-panel active" id="showroom-panel-0">
+    <div class="showrooms-stack">
+      <!-- Store 1: Sathik Enterprises — Bathware & Sanitaryware -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}"
-            alt="Sathik Bath & Sanitaryware Showroom">
-          <div class="showroom-badge-tag">Luxury Bathware Showroom</div>
+          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" alt="Sathik Enterprises Bathware & Sanitaryware Showroom" loading="lazy">
+          <div class="showroom-badge-tag">Store 01 • Bath &amp; Sanitaryware</div>
         </div>
         <div class="showroom-details">
-          <h3 class="showroom-name">Sathik Traders — Luxury Bath &amp; Sanitaryware Showroom</h3>
+          <div class="showroom-number-badge">Showroom 01 &bull; Direct Retail Hub</div>
+          <h3 class="showroom-name">Sathik Enterprises — Bathware &amp; Sanitaryware Showroom</h3>
 
           <div class="showroom-address-row">
             <span style="font-size: 1.25rem;">📍</span>
             <div>
               <strong>Showroom Address:</strong><br>
-              #6, Dharga Street, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+              # 16/4, Old No. 502, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
             </div>
           </div>
 
@@ -582,57 +568,50 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
-                class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
-                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
+              <span class="showroom-brand-pill">CERA</span>
               <span class="showroom-brand-pill">Jaquar</span>
               <span class="showroom-brand-pill">Hindware</span>
               <span class="showroom-brand-pill">Parryware</span>
               <span class="showroom-brand-pill">Grohe</span>
               <span class="showroom-brand-pill">Geberit</span>
-              <span class="showroom-brand-pill">CERA</span>
               <span class="showroom-brand-pill">Éssco</span>
             </div>
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Bath%20and%20Sanitaryware"
-              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Enterprises,%20I%20am%20enquiring%20about%20Bathware%20and%20Sanitaryware" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
-              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Enterprises+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Panel 2: Plumbing & Water Solutions Showroom -->
-    <div class="showroom-card-panel" id="showroom-panel-1">
+      <!-- Store 2: Sathik Plumbing & Water Tech Solutions -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/plumbing_slide.png') }}" alt="Sathik Plumbing Solutions">
-          <div class="showroom-badge-tag">Plumbing &amp; Water Tech</div>
+          <img src="{{ url_for('static', filename='images/hero/plumbing_slide.png') }}" alt="Sathik Plumbing & Water Tech Solutions" loading="lazy">
+          <div class="showroom-badge-tag">Store 02 • Plumbing &amp; Water Tech</div>
         </div>
         <div class="showroom-details">
+          <div class="showroom-number-badge">Showroom 02 &bull; Industrial Piping &amp; Pumps</div>
           <h3 class="showroom-name">Sathik Plumbing &amp; Industrial Water Solutions</h3>
 
           <div class="showroom-address-row">
@@ -650,21 +629,17 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
-                class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
-                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Astral Pipes</span>
               <span class="showroom-brand-pill">Ashirvad</span>
@@ -676,30 +651,27 @@
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Plumbing%20and%20Pumps"
-              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Plumbing%20and%20Pumps" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
-              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Panel 3: Hardware & Paints Showroom -->
-    <div class="showroom-card-panel" id="showroom-panel-2">
+      <!-- Store 3: Sathik Hardware, Paints & Power Tools -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/hardware_slide.png') }}" alt="Sathik Hardware & Paints">
-          <div class="showroom-badge-tag">Hardware, Paints &amp; Tools</div>
+          <img src="{{ url_for('static', filename='images/hero/hardware_slide.png') }}" alt="Sathik Hardware, Paints & Tools" loading="lazy">
+          <div class="showroom-badge-tag">Store 03 • Hardware &amp; Paints</div>
         </div>
         <div class="showroom-details">
+          <div class="showroom-number-badge">Showroom 03 &bull; Hardware &amp; Construction Supplies</div>
           <h3 class="showroom-name">Sathik Hardware, Paints &amp; Power Tools Center</h3>
 
           <div class="showroom-address-row">
@@ -717,21 +689,17 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
-                class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
-                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Asian Paints</span>
               <span class="showroom-brand-pill">Berger</span>
@@ -743,15 +711,13 @@
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Hardware%20and%20Paints"
-              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Hardware%20and%20Paints" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
-              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
@@ -765,9 +731,9 @@
 <section class="legacy-about-section" id="aboutUs" style="border-top: 1px solid var(--border);">
   <div class="container">
     <div class="legacy-about-grid">
-      <!-- Left side: Beautiful graphic or warm local illustration -->
+      <!-- Left side: Authentic Storefront Photo -->
       <div class="legacy-image-frame">
-        <img src="{{ url_for('static', filename='images/hero/sathik_legacy.jpg') }}" alt="Sathik Legacy Trust"
+        <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" alt="Sathik Enterprises Storefront"
           class="legacy-img" loading="lazy">
         <div class="legacy-badge-floating">
           <div class="legacy-badge-year">1964</div>
