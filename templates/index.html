@@ -32,7 +32,8 @@
               <a href="#contactUs" class="btn btn-outline">
                 Contact Us
               </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="hero-phone-link">
+              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
+                rel="noopener noreferrer" class="hero-phone-link">
                 💬 WhatsApp: +91 98406 37307
               </a>
             </div>
@@ -61,7 +62,8 @@
               <a href="#contactUs" class="btn btn-outline">
                 Contact Us
               </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="hero-phone-link">
+              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
+                rel="noopener noreferrer" class="hero-phone-link">
                 💬 WhatsApp: +91 98406 37307
               </a>
             </div>
@@ -90,7 +92,8 @@
               <a href="#contactUs" class="btn btn-outline">
                 Contact Us
               </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="hero-phone-link">
+              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
+                rel="noopener noreferrer" class="hero-phone-link">
                 💬 WhatsApp: +91 98406 37307
               </a>
             </div>
@@ -122,11 +125,11 @@
             <div class="stat-label">Authorized Partner Brands</div>
           </div>
           <div class="stat-card-inner">
-            <div class="stat-number">5,000<span>+</span></div>
+            <div class="stat-number">10,000<span>+</span></div>
             <div class="stat-label">Retail Products</div>
           </div>
           <div class="stat-card-inner">
-            <div class="stat-number">10,000<span>+</span></div>
+            <div class="stat-number">10,00,000<span>+</span></div>
             <div class="stat-label">Happy Homeowners</div>
           </div>
         </div>
@@ -135,219 +138,62 @@
   </div>
 </section>
 
-<!-- PRODUCT RANGE SECTION (A-One Hardware Grid layout) -->
-<section class="product-range-sec py-5" id="product-range" style="background: var(--bg); position: relative;">
+<!-- KALANJIAM-STYLE PRODUCTS CATALOGUE SECTION (Image 2) -->
+<section class="k-products-section" id="product-range">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 3.5rem;">
-      <div class="section-tag">Showroom Categories</div>
-      <h2 class="section-title">Our Product Range</h2>
-      <p class="section-desc">Explore our top-tier materials curated across specialized building verticals.</p>
+    <div class="k-header-row">
+      <div class="k-title-box">
+        <div class="k-accent-bar"></div>
+        <h2 class="k-title">PRODUCTS CATALOGUE</h2>
+      </div>
+
+      <!-- Store Category Filter Tabs -->
+      <div class="k-filter-tabs">
+        <button class="k-tab-btn active" onclick="filterHomeCategory('all', this)">All Stores</button>
+        <button class="k-tab-btn" onclick="filterHomeCategory('bath-kitchen', this)">🛁 Bath &amp; Sanitaryware</button>
+        <button class="k-tab-btn" onclick="filterHomeCategory('plumbing', this)">🔧 Plumbing Solutions</button>
+        <button class="k-tab-btn" onclick="filterHomeCategory('hardware', this)">🔨 Hardware &amp; Paints</button>
+      </div>
     </div>
 
-    <div class="products-wrap">
-      <div class="row align-items-stretch mb-4"
-        style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
-        <!-- Left Section: Bath & Sanitaryware (Tall Vertical Card) -->
-        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
-          <div class="s-prod-box vertical-box w-100"
-            style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: all 0.3s ease;">
-            <div class="s-prod-cont" style="margin-bottom: 1.5rem; z-index: 2;">
-              <span
-                style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Bath
-                & Sanitaryware</span>
-              <h3
-                style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.75rem; color: var(--primary-900);">
-                Where Elegance Meets Everyday Essentials</h3>
-              <p style="color: var(--primary-600); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">Sleek,
-                durable sanitaryware and wellness fittings that elevate your bathroom experience.</p>
-              <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}"
-                class="btn btn-outline btn-sm" style="font-size: 0.85rem;">Explore Store &rarr;</a>
-            </div>
-            <div class="prod-img-wrap" style="text-align: right; margin-top: auto; z-index: 1;">
-              <img src="/static/images/products/bath-kitchen/orca_bathtub.jpg" alt="Bathware"
-                style="max-height: 250px; object-fit: contain; max-width: 100%; border-radius: var(--radius-md); transition: transform 0.3s ease;">
-            </div>
-          </div>
+    <!-- Products Grid (4 columns desktop, 2 columns mobile) -->
+    <div class="k-products-grid" id="home-products-grid">
+      {% for p in featured_products %}
+      <div class="k-prod-card" data-category="{{ p.business_slug }}">
+        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
+          class="k-prod-img-box">
+          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}"
+            alt="{{ p.name }}" loading="lazy">
+        </a>
+        <div class="k-prod-content">
+          <h4 class="k-prod-title">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">
+              {{ p.name }}
+            </a>
+          </h4>
+          <div class="k-prod-brand">{{ p.brand_name or (p.business_slug | replace('-', ' ') | title) }}</div>
+          <div class="k-prod-meta">{{ p.sku }}</div>
         </div>
-
-        <!-- Right Section: Kitchenware & Paints (Two Horizontal Cards) -->
-        <div class="col-md-6 d-flex flex-column gap-4"
-          style="padding: 15px; flex: 0 0 50%; max-width: 50%; display: flex; flex-direction: column; gap: 1.5rem;">
-          <!-- Box 1: Kitchenware -->
-          <div class="products-top-right flex-fill d-flex">
-            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-              style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-                <span
-                  style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Kitchenware</span>
-                <h3
-                  style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                  Style at the Heart of Home</h3>
-                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
-                  Discover modular sinks, chimneys, hobs, and premium accessories.</p>
-                <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="prod-link"
-                  style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore
-                  Store &rarr;</a>
-              </div>
-              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-                <img src="/static/images/products/bath-kitchen/stainless_sink.jpg" alt="Kitchenware"
-                  style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-              </div>
-            </div>
-          </div>
-
-          <!-- Box 2: Paints -->
-          <div class="products-top-right flex-fill d-flex">
-            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-              style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-                <span
-                  style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Paints</span>
-                <h3
-                  style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                  Colour Your World</h3>
-                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
-                  Vibrant, long-lasting paints from trusted and iconic brands.</p>
-                <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="prod-link"
-                  style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore
-                  Store &rarr;</a>
-              </div>
-              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-                <img src="/static/images/products/hardware/paints_common.jpg" alt="Paints"
-                  style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-              </div>
-            </div>
-          </div>
+        <div class="k-prod-footer">
+          <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
+            class="k-prod-more-link">
+            More &rarr;
+          </a>
+          <button class="k-prod-quote-btn"
+            onclick="addToQuoteCart('{{ p.name | escape }}', '{{ p.sku }}', '{{ p.brand_name or '' }}')"
+            title="Add to Quote List">
+            + Quote
+          </button>
         </div>
       </div>
+      {% endfor %}
+    </div>
 
-      <div class="row mb-4" style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
-        <!-- Box 3: Adhesives -->
-        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
-          <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-            style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-            <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-              <span
-                style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Adhesives
-                & Chemicals</span>
-              <h3
-                style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                Bonds Built with Strength</h3>
-              <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Premium
-                adhesives and waterproofing solutions to hold every layer.</p>
-              <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="prod-link"
-                style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store
-                &rarr;</a>
-            </div>
-            <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-              <img src="/static/images/products/hardware/adhesives_common.jpg" alt="Adhesives"
-                style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-            </div>
-          </div>
-        </div>
-
-        <!-- Box 4: Pipes -->
-        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
-          <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-            style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-            <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-              <span
-                style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Pipes
-                & Tubing</span>
-              <h3
-                style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                Flow Matters. Quality Pipes Matter</h3>
-              <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
-                Leak-proof, tough CPVC/UPVC and SWR piping systems.</p>
-              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="prod-link"
-                style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore Store
-                &rarr;</a>
-            </div>
-            <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-              <img src="/static/images/products/plumbing/suction_hose.webp" alt="Pipes"
-                style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row align-items-stretch"
-        style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
-        <!-- Left Section: CP Fittings & Water Tanks (Two Horizontal Cards) -->
-        <div class="col-md-6 d-flex flex-column gap-4"
-          style="padding: 15px; flex: 0 0 50%; max-width: 50%; display: flex; flex-direction: column; gap: 1.5rem;">
-          <!-- Box 5: CP Fittings -->
-          <div class="products-btm-left flex-fill d-flex">
-            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-              style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-                <span
-                  style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">CP
-                  Fittings</span>
-                <h3
-                  style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                  Shine & Function Lasts</h3>
-                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">
-                  High-performance wall mixers, taps, and showers.</p>
-                <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="prod-link"
-                  style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore
-                  Store &rarr;</a>
-              </div>
-              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-                <img src="/static/images/products/bath-kitchen/diverter.jpg" alt="CP Fittings"
-                  style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-              </div>
-            </div>
-          </div>
-
-          <!-- Box 6: Water Tanks -->
-          <div class="products-btm-right flex-fill d-flex">
-            <div class="s-prod-box w-100 d-flex align-items-center justify-content-between"
-              style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 2rem; transition: all 0.3s ease;">
-              <div class="s-prod-cont" style="flex: 1; padding-right: 1.5rem;">
-                <span
-                  style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Water
-                  Tanks</span>
-                <h3
-                  style="font-size: 1.25rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.5rem; color: var(--primary-900);">
-                  Engineered to Last</h3>
-                <p style="color: var(--primary-600); font-size: 0.85rem; line-height: 1.4; margin-bottom: 1rem;">Durable
-                  multi-layer tanks for hygienic water storage.</p>
-                <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="prod-link"
-                  style="color: var(--accent); font-weight: 600; font-size: 0.85rem; text-decoration: none;">Explore
-                  Store &rarr;</a>
-              </div>
-              <div class="s-prod-img" style="width: 120px; flex-shrink: 0; text-align: center;">
-                <img src="/static/images/products/plumbing/suction_hose.webp" alt="Water Tanks"
-                  style="max-width: 100%; height: auto; border-radius: var(--radius-md);">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Section: Motors (Tall Vertical Card) -->
-        <div class="col-md-6 d-flex" style="padding: 15px; flex: 0 0 50%; max-width: 50%;">
-          <div class="s-prod-box vertical-box w-100"
-            style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; position: relative; transition: all 0.3s ease;">
-            <div class="s-prod-cont" style="margin-bottom: 1.5rem; z-index: 2;">
-              <span
-                style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em;">Motors
-                & Pumps</span>
-              <h3
-                style="font-size: 1.5rem; font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.75rem; color: var(--primary-900);">
-                Power That Drives Your Flow</h3>
-              <p style="color: var(--primary-600); font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.25rem;">
-                Reliable submersible pumps, monoblocks, and automated boosters.</p>
-              <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="btn btn-outline btn-sm"
-                style="font-size: 0.85rem;">Explore Store &rarr;</a>
-            </div>
-            <div class="prod-img-wrap" style="text-align: right; margin-top: auto; z-index: 1;">
-              <img src="/static/images/products/plumbing/cri_submersible_pumps.png" alt="Motors"
-                style="max-height: 250px; object-fit: contain; max-width: 100%; border-radius: var(--radius-md); transition: transform 0.3s ease;">
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="text-center" style="margin-top: 2.5rem;">
+      <a href="{{ url_for('product.product_list') }}" class="btn btn-primary"
+        style="padding: 0.75rem 2rem; font-weight: 700;">
+        Explore Complete Catalogue &rarr;
+      </a>
     </div>
   </div>
 </section>
@@ -362,7 +208,7 @@
         <div class="counter-inner">
           <div class="d-flex justify-content-center align-items-center"
             style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
-            <span class="counter-number">20</span><span>+</span>
+            <span class="counter-number">250</span><span>+</span>
           </div>
           <p
             style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">
@@ -373,7 +219,7 @@
         <div class="counter-inner">
           <div class="d-flex justify-content-center align-items-center"
             style="font-size: 2.5rem; font-weight: 800; color: var(--accent, #f97316); margin-bottom: 0.5rem;">
-            <span class="counter-number">5,000</span><span>+</span>
+            <span class="counter-number">10,00,000</span><span>+</span>
           </div>
           <p
             style="color: #94a3b8; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin: 0;">
@@ -546,51 +392,6 @@
   </div>
 </section>
 
-<!-- FEATURED PRODUCTS SHOWCASE -->
-{% if featured_products %}
-<section class="section bg-surface">
-  <div class="container">
-    <div class="section-header-flex">
-      <div>
-        <div class="section-tag">Catalogue Showcase</div>
-        <h2 class="section-title">Featured Products</h2>
-      </div>
-      <a href="{{ url_for('product.product_list') }}" class="btn btn-outline btn-sm">
-        View Full Product Catalogue &rarr;
-      </a>
-    </div>
-
-    <div class="products-grid">
-      {% for p in featured_products %}
-      <div class="product-card">
-        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
-          class="product-image" style="display:flex; text-decoration:none;">
-          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}"
-            alt="{{ p.name }}">
-        </a>
-        <div class="product-info">
-          {% if not p.hide_brand_badge and p.brand_name %}
-          <div class="product-brand">{{ p.brand_name }}</div>
-          {% endif %}
-          <h4 class="product-name">
-            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">{{
-              p.name }}</a>
-          </h4>
-          <div class="product-sku">SKU: {{ p.sku }}</div>
-          <div class="product-card-footer">
-            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
-              class="btn btn-primary btn-sm" style="width: 100%; text-align: center; justify-content: center;">
-              Details
-            </a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-{% endif %}
-
 <!-- TESTIMONIALS SECTION (A-One Hardware Style) -->
 <section class="testimonial-sec py-5" id="testimonials"
   style="background: var(--bg); border-top: 1px solid var(--border);">
@@ -732,6 +533,234 @@
   </div>
 </section>
 
+<!-- OUR 3 SPECIALIZED SHOWROOMS & STORES (Image 3 Style) -->
+<section class="showrooms-section" id="showrooms">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: 2.5rem;">
+      <div class="section-tag">Direct Factory Outlets &amp; Retail Hubs</div>
+      <h2 class="section-title">Our 3 Specialized Showrooms</h2>
+      <p class="section-desc">Experience our comprehensive physical stores and specialized product galleries in
+        Redhills, Chennai.</p>
+    </div>
+
+    <!-- Store Switcher Tabs -->
+    <div class="showroom-switcher-bar">
+      <button class="showroom-tab-btn active" onclick="switchShowroom(0, this)">
+        <span>🛁</span> Store 1: Bath &amp; Sanitaryware
+      </button>
+      <button class="showroom-tab-btn" onclick="switchShowroom(1, this)">
+        <span>🔧</span> Store 2: Plumbing &amp; Water Tech
+      </button>
+      <button class="showroom-tab-btn" onclick="switchShowroom(2, this)">
+        <span>🔨</span> Store 3: Hardware &amp; Paints
+      </button>
+    </div>
+
+    <!-- Panel 1: Bath & Sanitaryware Showroom -->
+    <div class="showroom-card-panel active" id="showroom-panel-0">
+      <div class="showroom-card-grid">
+        <div class="showroom-img-frame">
+          <img src="{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}"
+            alt="Sathik Bath & Sanitaryware Showroom">
+          <div class="showroom-badge-tag">Luxury Bathware Showroom</div>
+        </div>
+        <div class="showroom-details">
+          <h3 class="showroom-name">Sathik Traders — Luxury Bath &amp; Sanitaryware Showroom</h3>
+
+          <div class="showroom-address-row">
+            <span style="font-size: 1.25rem;">📍</span>
+            <div>
+              <strong>Showroom Address:</strong><br>
+              #6, Dharga Street, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+            </div>
+          </div>
+
+          <div class="showroom-phone-block">
+            <div class="showroom-phone-line">
+              <span>📞 <strong>Primary Phone:</strong></span>
+              <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
+            </div>
+            <div class="showroom-phone-line">
+              <span>💬 <strong>WhatsApp Support:</strong></span>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
+            </div>
+          </div>
+
+          <div class="showroom-hours-line">
+            <span style="font-size: 1.1rem;">⏰</span>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+          </div>
+
+          <div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
+            <div class="showroom-brands-pill-wrap">
+              <span class="showroom-brand-pill">Jaquar</span>
+              <span class="showroom-brand-pill">Hindware</span>
+              <span class="showroom-brand-pill">Parryware</span>
+              <span class="showroom-brand-pill">Grohe</span>
+              <span class="showroom-brand-pill">Geberit</span>
+              <span class="showroom-brand-pill">CERA</span>
+              <span class="showroom-brand-pill">Éssco</span>
+            </div>
+          </div>
+
+          <div class="showroom-actions">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Bath%20and%20Sanitaryware"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              💬 Chat on WhatsApp
+            </a>
+            <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
+              📦 Explore Store Products &rarr;
+            </a>
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+              🗺️ Open Map
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 2: Plumbing & Water Solutions Showroom -->
+    <div class="showroom-card-panel" id="showroom-panel-1">
+      <div class="showroom-card-grid">
+        <div class="showroom-img-frame">
+          <img src="{{ url_for('static', filename='images/hero/plumbing_slide.png') }}" alt="Sathik Plumbing Solutions">
+          <div class="showroom-badge-tag">Plumbing &amp; Water Tech</div>
+        </div>
+        <div class="showroom-details">
+          <h3 class="showroom-name">Sathik Plumbing &amp; Industrial Water Solutions</h3>
+
+          <div class="showroom-address-row">
+            <span style="font-size: 1.25rem;">📍</span>
+            <div>
+              <strong>Store Address:</strong><br>
+              #6, Dharga Street, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+            </div>
+          </div>
+
+          <div class="showroom-phone-block">
+            <div class="showroom-phone-line">
+              <span>📞 <strong>Primary Phone:</strong></span>
+              <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
+            </div>
+            <div class="showroom-phone-line">
+              <span>💬 <strong>WhatsApp Support:</strong></span>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
+            </div>
+          </div>
+
+          <div class="showroom-hours-line">
+            <span style="font-size: 1.1rem;">⏰</span>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+          </div>
+
+          <div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
+            <div class="showroom-brands-pill-wrap">
+              <span class="showroom-brand-pill">Astral Pipes</span>
+              <span class="showroom-brand-pill">Ashirvad</span>
+              <span class="showroom-brand-pill">Supreme</span>
+              <span class="showroom-brand-pill">C.R.I. Pumps</span>
+              <span class="showroom-brand-pill">Ekki Water Tech</span>
+              <span class="showroom-brand-pill">Aquatech</span>
+            </div>
+          </div>
+
+          <div class="showroom-actions">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Plumbing%20and%20Pumps"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              💬 Chat on WhatsApp
+            </a>
+            <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-outline btn-sm">
+              📦 Explore Store Products &rarr;
+            </a>
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+              🗺️ Open Map
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Hardware & Paints Showroom -->
+    <div class="showroom-card-panel" id="showroom-panel-2">
+      <div class="showroom-card-grid">
+        <div class="showroom-img-frame">
+          <img src="{{ url_for('static', filename='images/hero/hardware_slide.png') }}" alt="Sathik Hardware & Paints">
+          <div class="showroom-badge-tag">Hardware, Paints &amp; Tools</div>
+        </div>
+        <div class="showroom-details">
+          <h3 class="showroom-name">Sathik Hardware, Paints &amp; Power Tools Center</h3>
+
+          <div class="showroom-address-row">
+            <span style="font-size: 1.25rem;">📍</span>
+            <div>
+              <strong>Store Address:</strong><br>
+              #6, Dharga Street, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+            </div>
+          </div>
+
+          <div class="showroom-phone-block">
+            <div class="showroom-phone-line">
+              <span>📞 <strong>Primary Phone:</strong></span>
+              <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
+            </div>
+            <div class="showroom-phone-line">
+              <span>💬 <strong>WhatsApp Support:</strong></span>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
+            </div>
+          </div>
+
+          <div class="showroom-hours-line">
+            <span style="font-size: 1.1rem;">⏰</span>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+          </div>
+
+          <div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
+            <div class="showroom-brands-pill-wrap">
+              <span class="showroom-brand-pill">Asian Paints</span>
+              <span class="showroom-brand-pill">Berger</span>
+              <span class="showroom-brand-pill">Bosch Tools</span>
+              <span class="showroom-brand-pill">Stanley</span>
+              <span class="showroom-brand-pill">Godrej Locks</span>
+              <span class="showroom-brand-pill">Pidilite Fevicol</span>
+            </div>
+          </div>
+
+          <div class="showroom-actions">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Hardware%20and%20Paints"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              💬 Chat on WhatsApp
+            </a>
+            <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
+              📦 Explore Store Products &rarr;
+            </a>
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+              🗺️ Open Map
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT SATHIK - LEGACY & TRUST SECTION (Traditional and Emotional Connection) -->
 <section class="legacy-about-section" id="aboutUs" style="border-top: 1px solid var(--border);">
   <div class="container">
@@ -829,8 +858,8 @@
           </div>
         </a>
 
-        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer"
-          class="contact-info-card"
+        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
+          rel="noopener noreferrer" class="contact-info-card"
           style="text-decoration:none; color:inherit; display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border); transition: transform 0.2s;">
           <div class="contact-icon" style="font-size: 1.5rem;">💬</div>
           <div>

@@ -8,12 +8,18 @@ home_bp = Blueprint('home', __name__)
 
 @home_bp.route('/')
 def index():
-    featured_products = ProductModel.find_featured(limit=8)
+    featured_products = ProductModel.find_featured(limit=12)
+    bath_products, _ = ProductModel.find_all(filter_query={'business_slug': 'bath-kitchen'}, limit=6)
+    plumbing_products, _ = ProductModel.find_all(filter_query={'business_slug': 'plumbing'}, limit=6)
+    hardware_products, _ = ProductModel.find_all(filter_query={'business_slug': 'hardware'}, limit=6)
     featured_brands = BrandModel.find_all(featured_only=True)
     return render_template(
         'index.html',
         businesses=BUSINESSES,
         featured_products=featured_products,
+        bath_products=bath_products,
+        plumbing_products=plumbing_products,
+        hardware_products=hardware_products,
         featured_brands=featured_brands,
         company=COMPANY_INFO
     )

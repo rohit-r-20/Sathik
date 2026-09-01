@@ -660,5 +660,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.updateCartUI();
 
+  /* ──────────────────────────────────────────────────────────
+     11. HOMEPAGE KALANJIAM PRODUCT CATEGORY FILTER
+     ────────────────────────────────────────────────────────── */
+  window.filterHomeCategory = function(storeSlug, btnEl) {
+    document.querySelectorAll('.k-tab-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+
+    const cards = document.querySelectorAll('.k-prod-card');
+    cards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      if (storeSlug === 'all' || category === storeSlug) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  };
+
+  /* ──────────────────────────────────────────────────────────
+     12. HOMEPAGE SHOWROOM SWITCHER TABS
+     ────────────────────────────────────────────────────────── */
+  window.switchShowroom = function(index, btnEl) {
+    document.querySelectorAll('.showroom-tab-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+
+    document.querySelectorAll('.showroom-card-panel').forEach(panel => panel.classList.remove('active'));
+    const targetPanel = document.getElementById(`showroom-panel-${index}`);
+    if (targetPanel) {
+      targetPanel.classList.add('active');
+    }
+  };
+
 });
 

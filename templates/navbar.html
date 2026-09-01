@@ -1,9 +1,9 @@
 <nav class="navbar" role="navigation" aria-label="Main Navigation">
-  <div class="container">
+  <div class="container navbar-container">
     <a href="{{ url_for('home.index') }}" class="nav-brand" aria-label="Sathik Groups Home">
       <div class="brand-icon" aria-hidden="true">SG</div>
-      <div style="position: relative; display: flex; align-items: center; min-width: 0; flex: 1;">
-        <div class="brand-text" id="navbar-brand-text" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
+      <div style="position: relative; display: flex; align-items: center; min-width: 0;">
+        <div class="brand-text" id="navbar-brand-text">
           <span class="brand-name">SATHIK GROUPS</span>
           <span class="brand-sub">HARDWARE SOLUTIONS</span>
         </div>
@@ -14,35 +14,6 @@
         {% endif %}
       </div>
     </a>
-
-    <!-- Mobile Menu Actions Group -->
-    <div class="nav-mobile-actions">
-      <!-- Mobile WhatsApp Direct Link -->
-      <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="mobile-whatsapp-btn" style="color: #16a34a; font-size: 1.25rem; text-decoration: none; display: flex; align-items: center;" aria-label="WhatsApp Contact">
-        💬
-      </a>
-
-      <!-- Mobile Cart/Quote List Indicator -->
-      <a href="javascript:void(0)" onclick="openModal('cart-modal')" class="mobile-cart-btn" aria-label="View Quote List">
-        🛒
-        <span id="cart-badge-mobile" class="cart-badge-mobile" style="display:none;">0</span>
-      </a>
-
-      <!-- Mobile Menu Toggle Button -->
-      <button
-        type="button"
-        class="mobile-toggle"
-        id="mobile-toggle-btn"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="nav-menu"
-        onclick="toggleMobileMenu()"
-      >
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </button>
-    </div>
 
     <!-- Navigation Menu -->
     <ul class="nav-menu" id="nav-menu" role="menubar">
@@ -66,6 +37,12 @@
       </li>
 
       <li role="none">
+        <a href="{{ url_for('home.index') }}#showrooms" role="menuitem" class="nav-link">
+          Showrooms
+        </a>
+      </li>
+
+      <li role="none">
         <a href="{{ url_for('home.index') }}#aboutUs" role="menuitem" class="nav-link">
           About Us
         </a>
@@ -76,14 +53,9 @@
           Contact Us
         </a>
       </li>
-      <li role="none">
-        <a href="javascript:void(0)" onclick="openModal('cart-modal')" role="menuitem" class="nav-link" style="display: flex; align-items: center; gap: 0.35rem;">
-          🛒 Quote List <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
-        </a>
-      </li>
 
-      <!-- Mobile-only CTA Buttons (shown inside hamburger drawer) -->
-      <li class="mobile-only-actions" style="display: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+      <!-- Mobile-only CTA Buttons (shown strictly inside hamburger drawer) -->
+      <li class="mobile-only-actions">
         <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block" style="border-color: #16a34a; color: #16a34a; font-weight: 700; text-align: center; justify-content: center;">
           💬 WhatsApp: +91 98406 37307
         </a>
@@ -97,25 +69,20 @@
     </ul>
 
     <!-- Desktop Navigation Actions (hidden on mobile) -->
-    <div class="nav-actions-desktop" style="display: flex; gap: 0.875rem; align-items: center;">
+    <div class="nav-actions-desktop">
       <!-- WhatsApp Direct Mobile Number Link -->
       <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer"
          class="nav-whatsapp-link"
-         style="display: inline-flex; align-items: center; gap: 0.4rem; color: #15803d; font-weight: 700; font-size: 0.875rem; text-decoration: none; padding: 0.45rem 0.875rem; border-radius: var(--radius-md); background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.25); transition: all 0.2s;"
          title="Chat on WhatsApp (+91 98406 37307)">
-        <span style="font-size: 1.1rem; line-height: 1;">💬</span>
+        <span style="font-size: 1.05rem; line-height: 1;">💬</span>
         <span>+91 98406 37307</span>
       </a>
 
-      <a href="{{ url_for('product.product_list') }}" title="Search Products"
-         style="color: var(--primary-600); font-size: 1.125rem; display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md); transition: background 0.2s;"
-         aria-label="Search Products">
+      <a href="{{ url_for('product.product_list') }}" title="Search Products" class="nav-icon-btn" aria-label="Search Products">
         🔍
       </a>
 
-      <a href="javascript:void(0)" onclick="openModal('cart-modal')" title="View Quote List"
-         style="color: var(--primary-600); font-size: 1.125rem; display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md); transition: background 0.2s; position: relative;"
-         aria-label="View Quote List">
+      <a href="javascript:void(0)" onclick="openModal('cart-modal')" title="View Quote List" class="nav-icon-btn" aria-label="View Quote List">
         🛒
         <span id="cart-badge-desktop" class="cart-badge" style="display:none;">0</span>
       </a>
@@ -124,6 +91,35 @@
         <a href="{{ url_for('auth.logout') }}" class="btn btn-outline btn-sm">Logout</a>
       {% endif %}
       <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary btn-sm">Request Quote</a>
+    </div>
+
+    <!-- Mobile Menu Actions Group -->
+    <div class="nav-mobile-actions">
+      <!-- Mobile WhatsApp Direct Link -->
+      <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="mobile-whatsapp-btn" aria-label="WhatsApp Contact">
+        💬
+      </a>
+
+      <!-- Mobile Cart/Quote List Indicator -->
+      <a href="javascript:void(0)" onclick="openModal('cart-modal')" class="mobile-cart-btn" aria-label="View Quote List">
+        🛒
+        <span id="cart-badge-mobile" class="cart-badge-mobile" style="display:none;">0</span>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button
+        type="button"
+        class="mobile-toggle"
+        id="mobile-toggle-btn"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        onclick="toggleMobileMenu()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </nav>
