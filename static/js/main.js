@@ -5,19 +5,36 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ──────────────────────────────────────────────────────────
-     1. BRAND SPLASH ENTRANCE SCREEN
+     1. BRAND SPLASH ENTRANCE SCREEN (Only on initial entry)
      ────────────────────────────────────────────────────────── */
   const splash = document.getElementById('brand-splash');
   if (splash) {
-    // Hide after 1.5s (progress bar animation duration)
-    setTimeout(() => {
-      splash.classList.add('hide');
-    }, 1500);
+    let alreadyShown = false;
+    try {
+      alreadyShown = sessionStorage.getItem('sathik_splash_shown');
+    } catch (e) {}
 
-    // Allow tapping on mobile to skip early
-    splash.addEventListener('click', () => {
+    if (alreadyShown) {
+      splash.style.display = 'none';
       splash.classList.add('hide');
-    });
+    } else {
+      try {
+        sessionStorage.setItem('sathik_splash_shown', 'true');
+      } catch (e) {}
+
+      const hideSplash = () => {
+        splash.classList.add('hide');
+        setTimeout(() => {
+          splash.style.display = 'none';
+        }, 750);
+      };
+
+      // Hide after 1.5s (progress bar animation duration)
+      setTimeout(hideSplash, 1500);
+
+      // Allow tapping on mobile or desktop to skip early
+      splash.addEventListener('click', hideSplash);
+    }
   }
 
   /* ──────────────────────────────────────────────────────────

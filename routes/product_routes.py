@@ -34,6 +34,27 @@ def product_list():
             {'sku': {'$regex': search_query, '$options': 'i'}}
         ]
 
+    grouped_mode = False
+    bath_kitchen_products = []
+    plumbing_products = []
+    hardware_products = []
+
+    # Check if we should render in grouped mode (no active filters or search and page is 1)
+    if not (business_filter or category_filter or subcategory_filter or brand_filter or search_query) and page == 1:
+        grouped_mode = True
+        bath_kitchen_products, _ = ProductModel.find_all(
+            filter_query={'business_slug': 'bath-kitchen'},
+            limit=4
+        )
+        plumbing_products, _ = ProductModel.find_all(
+            filter_query={'business_slug': 'plumbing'},
+            limit=4
+        )
+        hardware_products, _ = ProductModel.find_all(
+            filter_query={'business_slug': 'hardware'},
+            limit=4
+        )
+
     products, total = ProductModel.find_all(
         filter_query=filter_query,
         page=page,
@@ -70,7 +91,11 @@ def product_list():
         page=page,
         total_pages=total_pages,
         total_products=total,
-        company=COMPANY_INFO
+        company=COMPANY_INFO,
+        grouped_mode=grouped_mode,
+        bath_kitchen_products=bath_kitchen_products,
+        plumbing_products=plumbing_products,
+        hardware_products=hardware_products
     )
 
 

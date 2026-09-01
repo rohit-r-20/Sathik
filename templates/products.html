@@ -7,6 +7,40 @@
 {% endblock %}
 
 {% block content %}
+{% macro render_product_card(p) %}
+<div class="product-card">
+  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; text-decoration:none;">
+    <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" loading="lazy">
+  </a>
+  <div class="product-info">
+    <div class="product-top-meta" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+      <span class="store-badge {{ p.business_slug }}">
+        {% if p.business_slug == 'plumbing' %}🔧 Plumbing
+        {% elif p.business_slug == 'hardware' %}🔨 Hardware
+        {% elif p.business_slug == 'bath-kitchen' %}🛁 Bathware
+        {% else %}📦 General
+        {% endif %}
+      </span>
+      {% if not p.hide_brand_badge and p.brand_name %}
+      <div class="product-brand" style="margin: 0; font-size: 0.65rem;">{{ p.brand_name }}</div>
+      {% endif %}
+    </div>
+    <h4 class="product-name">
+      <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" style="color: inherit; text-decoration:none;">{{ p.name }}</a>
+    </h4>
+    <div class="product-sku">SKU: {{ p.sku }}</div>
+    <div class="product-card-footer" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: auto;">
+      <button type="button" class="btn btn-primary btn-sm" onclick="event.preventDefault(); event.stopPropagation(); addToQuoteCart('{{ p._id }}', '{{ p.name|escape }}', '{{ p.sku }}', '{{ p.slug }}', '{{ p.subcategory_slug }}', '{{ p.images[0].url if p.images else "" }}')" style="width: 100%; text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.35rem;">
+        🛒 Add to Cart
+      </button>
+      <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+        Details
+      </a>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
 <!-- Page Header -->
 <section class="section-sm bg-surface" style="border-bottom: 1px solid var(--border);">
   <div class="container">
@@ -152,8 +186,30 @@
 
       <!-- ── Main Products Area ── -->
       <div>
+        <!-- Store Switcher Tabs -->
+        <div class="store-switcher-tabs">
+          <a href="{{ url_for('product.product_list', category=current_category, brand=current_brand, q=search_query) }}" class="store-tab {% if not current_business %}active{% endif %}">
+            <span class="store-tab-icon">📦</span>
+            <span class="store-tab-label">All Stores</span>
+          </a>
+          {% for b in businesses %}
+            {% if b.slug != 'catalogue' %}
+            <a href="{{ url_for('product.product_list', business=b.slug, category=current_category, brand=current_brand, q=search_query) }}" class="store-tab {{ b.slug }} {% if current_business == b.slug %}active{% endif %}">
+              <span class="store-tab-icon">{{ b.icon }}</span>
+              <span class="store-tab-label">
+                {% if b.slug == 'plumbing' %}Plumbing
+                {% elif b.slug == 'hardware' %}Hardware &amp; Paints
+                {% elif b.slug == 'bath-kitchen' %}Bath &amp; Sanitaryware
+                {% else %}{{ b.name }}
+                {% endif %}
+              </span>
+            </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+
         <!-- Subcategory Element Pill Bar -->
-        {% if subcategories %}
+        {% if subcategories and (current_business or current_category) %}
         <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; background: var(--bg-surface); padding: 0.875rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
           <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-right: 0.5rem;">Elements:</span>
           <a href="{{ url_for('product.product_list', business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
@@ -169,81 +225,149 @@
         </div>
         {% endif %}
 
-        <!-- Results bar -->
-        <div class="products-results-bar">
-          <div class="results-count">
-            Showing <strong>{{ products|length }}</strong> of <strong>{{ total_products }}</strong> products
-            {% if current_business %}<span style="color: var(--accent);"> · {{ current_business|title }}</span>{% endif %}
-            {% if current_category %}<span style="color: var(--primary-600);"> · {{ current_category|title }}</span>{% endif %}
-            {% if current_subcategory %}<span style="color: var(--primary-800);"> · {{ current_subcategory|title }}</span>{% endif %}
-          </div>
-          {% if current_business or current_category or current_subcategory or current_brand or search_query %}
-          <a href="{{ url_for('product.product_list') }}" style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">
-            Clear filters ✕
-          </a>
-          {% endif %}
-        </div>
-
-
-        {% if products %}
-          <div class="products-grid">
-            {% for p in products %}
-            <div class="product-card">
-              <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; text-decoration:none;">
-                <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" loading="lazy">
-              </a>
-              <div class="product-info">
-                {% if not p.hide_brand_badge and p.brand_name %}
-                <div class="product-brand">{{ p.brand_name }}</div>
-                {% endif %}
-                <h4 class="product-name">
-                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" style="color: inherit; text-decoration:none;">{{ p.name }}</a>
-                </h4>
-                <div class="product-sku">SKU: {{ p.sku }}</div>
-                <div class="product-card-footer" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: 1.25rem;">
-                  <button type="button" class="btn btn-primary btn-sm" onclick="event.preventDefault(); event.stopPropagation(); addToQuoteCart('{{ p._id }}', '{{ p.name|escape }}', '{{ p.sku }}', '{{ p.slug }}', '{{ p.subcategory_slug }}', '{{ p.images[0].url if p.images else "" }}')" style="width: 100%; text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.35rem;">
-                    🛒 Add to Cart
-                  </button>
-                  <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
-                    Details
-                  </a>
+        {% if grouped_mode %}
+          <!-- Grouped Mode: Display three stores and their featured products -->
+          
+          <!-- Store 1: Bath and sanitaryware -->
+          <div class="store-group-section bath-kitchen">
+            <div class="store-group-header">
+              <div class="store-group-title-area">
+                <span class="store-group-icon">🛁</span>
+                <div>
+                  <h3 class="store-group-name">Bath &amp; Sanitaryware</h3>
+                  <p class="store-group-desc">Elevate your home with premium bathware, faucets, showers, and vanity accessories.</p>
                 </div>
               </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          <!-- Pagination -->
-          {% if total_pages > 1 %}
-          <div class="pagination" role="navigation" aria-label="Product pages">
-            {% if page > 1 %}
-              <a href="{{ url_for('product.product_list', page=page-1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Previous page">‹</a>
-            {% endif %}
-
-            {% for page_num in range(1, total_pages + 1) %}
-              <a href="{{ url_for('product.product_list', page=page_num, business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
-                 class="page-link {% if page_num == page %}active{% endif %}"
-                 aria-label="Page {{ page_num }}"
-                 {% if page_num == page %}aria-current="page"{% endif %}>
-                {{ page_num }}
+              <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm store-explore-btn">
+                Explore Store &rarr;
               </a>
-            {% endfor %}
-
-            {% if page < total_pages %}
-              <a href="{{ url_for('product.product_list', page=page+1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Next page">›</a>
+            </div>
+            
+            {% if bath_kitchen_products %}
+              <div class="products-grid">
+                {% for p in bath_kitchen_products %}
+                  {{ render_product_card(p) }}
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="no-products-placeholder">
+                <p>No products currently displayed for this store vertical.</p>
+              </div>
             {% endif %}
           </div>
-          {% endif %}
+          
+          <!-- Store 2: Plumbing and Industrial materials -->
+          <div class="store-group-section plumbing">
+            <div class="store-group-header">
+              <div class="store-group-title-area">
+                <span class="store-group-icon">🔧</span>
+                <div>
+                  <h3 class="store-group-name">Plumbing &amp; Industrial Materials</h3>
+                  <p class="store-group-desc">Heavy-duty water pipes, leak-free CPVC/UPVC fittings, and automated water pump systems.</p>
+                </div>
+              </div>
+              <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-outline btn-sm store-explore-btn">
+                Explore Store &rarr;
+              </a>
+            </div>
+            
+            {% if plumbing_products %}
+              <div class="products-grid">
+                {% for p in plumbing_products %}
+                  {{ render_product_card(p) }}
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="no-products-placeholder">
+                <p>No products currently displayed for this store vertical.</p>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Store 3: Paints, Hardwares and doorfittings -->
+          <div class="store-group-section hardware">
+            <div class="store-group-header">
+              <div class="store-group-title-area">
+                <span class="store-group-icon">🔨</span>
+                <div>
+                  <h3 class="store-group-name">Paints, Hardware &amp; Door Fittings</h3>
+                  <p class="store-group-desc">Premium wall paints, secure door locks, fasteners, tools, and construction chemicals.</p>
+                </div>
+              </div>
+              <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm store-explore-btn">
+                Explore Store &rarr;
+              </a>
+            </div>
+            
+            {% if hardware_products %}
+              <div class="products-grid">
+                {% for p in hardware_products %}
+                  {{ render_product_card(p) }}
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="no-products-placeholder">
+                <p>No products currently displayed for this store vertical.</p>
+              </div>
+            {% endif %}
+          </div>
 
         {% else %}
-          <div style="text-align: center; padding: 4rem 0; color: var(--primary-500);">
-            <div style="font-size: 3.5rem; margin-bottom: 1rem;">📦</div>
-            <h3 style="margin-bottom: 0.5rem;">No products found</h3>
-            <p>Try adjusting your filters or search terms.</p>
-            <a href="{{ url_for('product.product_list') }}" class="btn btn-primary" style="margin-top: 1.5rem;">
-              Browse All Products
+          <!-- Standard Mode (filtered results or search) -->
+          <!-- Results bar -->
+          <div class="products-results-bar">
+            <div class="results-count">
+              Showing <strong>{{ products|length }}</strong> of <strong>{{ total_products }}</strong> products
+              {% if current_business %}<span class="active-filter-badge business">{{ current_business|title }}</span>{% endif %}
+              {% if current_category %}<span class="active-filter-badge category">{{ current_category|title }}</span>{% endif %}
+              {% if current_subcategory %}<span class="active-filter-badge subcategory">{{ current_subcategory|title }}</span>{% endif %}
+            </div>
+            {% if current_business or current_category or current_subcategory or current_brand or search_query %}
+            <a href="{{ url_for('product.product_list') }}" style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">
+              Clear filters ✕
             </a>
+            {% endif %}
           </div>
+
+          {% if products %}
+            <div class="products-grid">
+              {% for p in products %}
+                {{ render_product_card(p) }}
+              {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if total_pages > 1 %}
+            <div class="pagination" role="navigation" aria-label="Product pages">
+              {% if page > 1 %}
+                <a href="{{ url_for('product.product_list', page=page-1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Previous page">‹</a>
+              {% endif %}
+
+              {% for page_num in range(1, total_pages + 1) %}
+                <a href="{{ url_for('product.product_list', page=page_num, business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
+                   class="page-link {% if page_num == page %}active{% endif %}"
+                   aria-label="Page {{ page_num }}"
+                   {% if page_num == page %}aria-current="page"{% endif %}>
+                  {{ page_num }}
+                </a>
+              {% endfor %}
+
+              {% if page < total_pages %}
+                <a href="{{ url_for('product.product_list', page=page+1, business=current_business, category=current_category, brand=current_brand, q=search_query) }}" class="page-link" aria-label="Next page">›</a>
+              {% endif %}
+            </div>
+            {% endif %}
+
+          {% else %}
+            <div style="text-align: center; padding: 4rem 0; color: var(--primary-500);">
+              <div style="font-size: 3.5rem; margin-bottom: 1rem;">📦</div>
+              <h3 style="margin-bottom: 0.5rem;">No products found</h3>
+              <p>Try adjusting your filters or search terms.</p>
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-primary" style="margin-top: 1.5rem;">
+                Browse All Products
+              </a>
+            </div>
+          {% endif %}
         {% endif %}
       </div>
 

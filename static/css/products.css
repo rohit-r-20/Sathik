@@ -292,3 +292,323 @@
   color: #ffffff;
   border-color: var(--accent);
 }
+
+/* ============================================================
+   Sathik Groups — Store Switching Tabs & Grouped Sections
+   ============================================================ */
+
+/* ── Store Switcher Tabs ── */
+.store-switcher-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.store-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  color: var(--primary-700, #334155);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  white-space: nowrap;
+}
+
+.store-tab-icon {
+  font-size: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.store-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+}
+
+.store-tab:hover .store-tab-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Active tabs styles */
+.store-tab.active {
+  border-color: var(--accent, #f97316);
+  color: var(--accent, #f97316);
+  background: rgba(249, 115, 22, 0.03);
+}
+
+.store-tab.active.bath-kitchen {
+  border-color: #0d9488;
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.03);
+}
+
+.store-tab.active.plumbing {
+  border-color: #0284c7;
+  color: #0284c7;
+  background: rgba(2, 130, 199, 0.03);
+}
+
+.store-tab.active.hardware {
+  border-color: #ea580c;
+  color: #ea580c;
+  background: rgba(234, 88, 12, 0.03);
+}
+
+/* Mobile responsive scrollable tabs switcher */
+@media (max-width: 768px) {
+  .store-switcher-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 0.625rem;
+    margin-bottom: 1.5rem;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+
+  .store-switcher-tabs::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  .store-tab {
+    flex: 0 0 auto;
+    padding: 0.75rem 1.125rem;
+    font-size: 0.8125rem;
+    border-radius: 20px; /* Pill style on mobile */
+  }
+}
+
+/* ── Store Specific Badges on Product Cards ── */
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.store-badge.bath-kitchen {
+  background-color: rgba(13, 148, 136, 0.08);
+  color: #0d9488;
+  border: 1px solid rgba(13, 148, 136, 0.15);
+}
+
+.store-badge.plumbing {
+  background-color: rgba(2, 130, 199, 0.08);
+  color: #0284c7;
+  border: 1px solid rgba(2, 130, 199, 0.15);
+}
+
+.store-badge.hardware {
+  background-color: rgba(234, 88, 12, 0.08);
+  color: #ea580c;
+  border: 1px solid rgba(234, 88, 12, 0.15);
+}
+
+.store-badge.catalogue {
+  background-color: rgba(139, 92, 246, 0.08);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+/* ── Grouped Store Sections ── */
+.store-group-section {
+  margin-bottom: 3.5rem;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  border-radius: var(--radius-xl, 16px);
+  padding: 1.75rem 2rem 2.25rem;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+  position: relative;
+  overflow: hidden;
+}
+
+/* Color accents on top of group section boxes */
+.store-group-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+}
+
+.store-group-section.bath-kitchen::before { background: #0d9488; }
+.store-group-section.plumbing::before { background: #0284c7; }
+.store-group-section.hardware::before { background: #ea580c; }
+
+.store-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border, #e2e8f0);
+}
+
+.store-group-title-area {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.store-group-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+.store-group-section.bath-kitchen .store-group-icon {
+  background: rgba(13, 148, 136, 0.06);
+  color: #0d9488;
+  border-color: rgba(13, 148, 136, 0.12);
+}
+
+.store-group-section.plumbing .store-group-icon {
+  background: rgba(2, 130, 199, 0.06);
+  color: #0284c7;
+  border-color: rgba(2, 130, 199, 0.12);
+}
+
+.store-group-section.hardware .store-group-icon {
+  background: rgba(234, 88, 12, 0.06);
+  color: #ea580c;
+  border-color: rgba(234, 88, 12, 0.12);
+}
+
+.store-group-name {
+  font-size: 1.35rem;
+  font-weight: 850;
+  color: var(--primary-900, #0f172a);
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.01em;
+}
+
+.store-group-desc {
+  font-size: 0.9rem;
+  color: var(--primary-500, #64748b);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.store-explore-btn {
+  font-weight: 700;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.store-group-section.bath-kitchen .store-explore-btn:hover {
+  background-color: #0d9488;
+  color: #ffffff;
+  border-color: #0d9488;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.store-group-section.plumbing .store-explore-btn:hover {
+  background-color: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 130, 199, 0.2);
+}
+
+.store-group-section.hardware .store-explore-btn:hover {
+  background-color: #ea580c;
+  color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.2);
+}
+
+/* Placeholders & Misc */
+.no-products-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--primary-400, #94a3b8);
+  border: 2px dashed var(--border, #e2e8f0);
+  border-radius: var(--radius-lg, 12px);
+  background: var(--bg-light, #f8fafc);
+}
+
+.active-filter-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 20px;
+  background: var(--border, #e2e8f0);
+  color: var(--primary-700, #334155);
+  margin-left: 0.35rem;
+  text-transform: capitalize;
+}
+
+.active-filter-badge.business { background-color: rgba(249, 115, 22, 0.1); color: var(--accent); }
+.active-filter-badge.category { background-color: rgba(2, 130, 199, 0.1); color: #0284c7; }
+.active-filter-badge.subcategory { background-color: rgba(13, 148, 136, 0.1); color: #0d9488; }
+
+/* Responsive adjustments for grouped sections on mobile */
+@media (max-width: 640px) {
+  .store-group-section {
+    padding: 1.25rem 1rem 1.75rem;
+    margin-bottom: 2.25rem;
+    border-radius: 12px;
+  }
+  
+  .store-group-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  
+  .store-group-title-area {
+    gap: 0.875rem;
+  }
+  
+  .store-group-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.35rem;
+  }
+  
+  .store-group-name {
+    font-size: 1.15rem;
+  }
+  
+  .store-group-desc {
+    font-size: 0.8125rem;
+  }
+  
+  .store-explore-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

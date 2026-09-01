@@ -18,6 +18,17 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   {% block extra_css %}{% endblock %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+
+  <!-- Immediate Splash Check (Prevent flash on subsequent pages) -->
+  <script>
+    (function() {
+      try {
+        if (sessionStorage.getItem('sathik_splash_shown')) {
+          document.documentElement.classList.add('splash-already-shown');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
 
