@@ -5,7 +5,7 @@
       <div style="position: relative; display: flex; align-items: center; min-width: 0; flex: 1;">
         <div class="brand-text" id="navbar-brand-text" style="transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);">
           <span class="brand-name">SATHIK GROUPS</span>
-          <span class="brand-sub">COMMERCIAL CATALOGUE</span>
+          <span class="brand-sub">HARDWARE SOLUTIONS</span>
         </div>
         {% if business %}
         <div id="navbar-store-title" class="navbar-store-title" style="position: absolute; left: 0; opacity: 0; pointer-events: none; font-size: 0.9rem; font-weight: 600; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100vw - 120px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(8px);">
@@ -17,6 +17,11 @@
 
     <!-- Mobile Menu Actions Group -->
     <div class="nav-mobile-actions">
+      <!-- Mobile WhatsApp Direct Link -->
+      <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="mobile-whatsapp-btn" style="color: #16a34a; font-size: 1.25rem; text-decoration: none; display: flex; align-items: center;" aria-label="WhatsApp Contact">
+        💬
+      </a>
+
       <!-- Mobile Cart/Quote List Indicator -->
       <a href="javascript:void(0)" onclick="openModal('cart-modal')" class="mobile-cart-btn" aria-label="View Quote List">
         🛒
@@ -49,12 +54,6 @@
       </li>
 
       <li role="none">
-        <a href="{{ url_for('home.index') }}#aboutUs" role="menuitem" class="nav-link">
-          About Us
-        </a>
-      </li>
-
-      <li role="none">
         <a href="{{ url_for('home.index') }}#product-range" role="menuitem" class="nav-link">
           Product Range
         </a>
@@ -63,6 +62,12 @@
       <li role="none">
         <a href="{{ url_for('home.index') }}#brands" role="menuitem" class="nav-link">
           Brands
+        </a>
+      </li>
+
+      <li role="none">
+        <a href="{{ url_for('home.index') }}#aboutUs" role="menuitem" class="nav-link">
+          About Us
         </a>
       </li>
 
@@ -78,18 +83,30 @@
       </li>
 
       <!-- Mobile-only CTA Buttons (shown inside hamburger drawer) -->
-      <li class="mobile-only-actions" style="display: none;">
+      <li class="mobile-only-actions" style="display: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-block" style="border-color: #16a34a; color: #16a34a; font-weight: 700; text-align: center; justify-content: center;">
+          💬 WhatsApp: +91 98406 37307
+        </a>
         <a href="{{ url_for('enquiry.contact') }}" class="btn btn-primary btn-block">
           📄 Request Quote
         </a>
-        <a href="tel:{{ company.phone if company else '+91 9999999999' }}" class="btn btn-outline btn-block">
-          📞 Call Sales Team
+        <a href="tel:{{ company.mobile if company else '+919840637307' }}" class="btn btn-outline btn-block">
+          📞 Call: +91 98406 37307
         </a>
       </li>
     </ul>
 
     <!-- Desktop Navigation Actions (hidden on mobile) -->
     <div class="nav-actions-desktop" style="display: flex; gap: 0.875rem; align-items: center;">
+      <!-- WhatsApp Direct Mobile Number Link -->
+      <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer"
+         class="nav-whatsapp-link"
+         style="display: inline-flex; align-items: center; gap: 0.4rem; color: #15803d; font-weight: 700; font-size: 0.875rem; text-decoration: none; padding: 0.45rem 0.875rem; border-radius: var(--radius-md); background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.25); transition: all 0.2s;"
+         title="Chat on WhatsApp (+91 98406 37307)">
+        <span style="font-size: 1.1rem; line-height: 1;">💬</span>
+        <span>+91 98406 37307</span>
+      </a>
+
       <a href="{{ url_for('product.product_list') }}" title="Search Products"
          style="color: var(--primary-600); font-size: 1.125rem; display: flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md); transition: background 0.2s;"
          aria-label="Search Products">

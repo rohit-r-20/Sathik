@@ -31,22 +31,21 @@
       <div>
         <h3 style="font-size: 1.125rem; margin-bottom: 1.25rem; font-weight: 700;">Contact Information</h3>
 
-        <a href="tel:04426322644" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
-          <div class="contact-icon">📞</div>
+        <a href="tel:{{ company.mobile if company else '+919840637307' }}" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
+          <div class="contact-icon">📱</div>
           <div>
-            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Landline &amp; Mobile</div>
-            <div style="font-weight: 700; font-size: 1rem; color: var(--primary-900);">Ph: 044-26322644</div>
-            <div style="font-weight: 700; font-size: 0.95rem; color: var(--accent);">Cell: 94443 23644</div>
-            <div style="font-size: 0.75rem; color: var(--primary-500);">Tap to call directly</div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Mobile Number</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--primary-900);">+91 98406 37307</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Tap to call directly</div>
           </div>
         </a>
 
-        <a href="https://wa.me/{{ company.whatsapp if company else '919444323644' }}" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
+        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
           <div class="contact-icon">💬</div>
           <div>
             <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">WhatsApp Support</div>
-            <div style="font-weight: 700; font-size: 1rem; color: #16A34A;">+91 {{ company.mobile if company else '94443 23644' }}</div>
-            <div style="font-size: 0.75rem; color: var(--primary-500);">Instant price quotes &amp; assistance</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: #16A34A;">+91 98406 37307</div>
+            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Instant price quotes &amp; assistance</div>
           </div>
         </a>
 

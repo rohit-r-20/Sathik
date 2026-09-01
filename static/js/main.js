@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startSlideTimer() {
     if (slides.length > 1 && !slideInterval) {
-      slideInterval = setInterval(nextSlide, 6000); // rotate every 6 seconds
+      slideInterval = setInterval(nextSlide, 10000); // rotate every 10 seconds as requested
     }
   }
 
