@@ -46,7 +46,7 @@ def store_detail(business_slug):
     # Fetch store products
     products, total = ProductModel.find_all(
         filter_query={'business_slug': business_slug},
-        limit=12
+        limit=24
     )
 
     brands = BrandModel.find_all(business_slug=business_slug)
@@ -74,7 +74,7 @@ def store_category_detail(business_slug, category_slug):
     subcategories = SubcategoryService.get_by_category(category_slug)
     products, total = ProductModel.find_all(
         filter_query={'business_slug': business_slug, 'category_slug': category_slug},
-        limit=12
+        limit=24
     )
 
     categories = CategoryModel.find_all(business_slug=business_slug)

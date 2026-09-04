@@ -54,15 +54,19 @@ def products():
         active_only=False
     )
     categories = CategoryModel.find_all()
+    from services.category_service import SubcategoryService
+    subcategories = SubcategoryService.get_all()
     brands = BrandModel.find_all()
+    valid_businesses = [b for b in BUSINESSES if b['slug'] != 'catalogue']
     total_pages = (total + 19) // 20 if total > 0 else 1
     
     return render_template(
         'admin/products.html',
         products=products_list,
         categories=categories,
+        subcategories=subcategories,
         brands=brands,
-        businesses=BUSINESSES,
+        businesses=valid_businesses,
         current_business=business_filter,
         page=page,
         total_pages=total_pages
@@ -81,17 +85,24 @@ def create_product():
 
     # Handle image upload
     image_url = ''
-    if 'image' in request.files:
+    if 'image' in request.files and request.files['image'].filename:
         file = request.files['image']
         ok, res = save_uploaded_image(file, current_app.config['UPLOAD_FOLDER'], current_app.config['ALLOWED_EXTENSIONS'])
         if ok:
             image_url = res
 
     # Resolve taxonomy
-    business_slug = data.get('business_slug', 'plumbing')
-    category_slug = data.get('category_slug', 'pipes')
-    subcategory_slug = data.get('subcategory_slug', 'cpvc-pipes')
-    brand_slug = data.get('brand_slug', 'astral')
+    business_slug = data.get('business_slug', 'plumbing').strip()
+    category_slug = data.get('category_slug', 'pipes').strip()
+    subcategory_slug = data.get('subcategory_slug', 'hoses-tubes').strip()
+    brand_slug = data.get('brand_slug', 'standard').strip()
+
+    # Look up proper brand name
+    brand_name = brand_slug.replace('-', ' ').title()
+    for b in BrandModel.find_all():
+        if b.get('slug') == brand_slug:
+            brand_name = b.get('name', brand_name)
+            break
 
     product_data = {
         'name': name,
@@ -105,14 +116,14 @@ def create_product():
         'category_slug': category_slug,
         'subcategory_slug': subcategory_slug,
         'brand_slug': brand_slug,
-        'brand_name': brand_slug.title(),
+        'brand_name': brand_name,
         'is_active': True,
         'is_featured': 'is_featured' in request.form,
         'is_new': 'is_new' in request.form,
     }
 
     ProductModel.create(product_data)
-    flash('Product created successfully!', 'success')
+    flash(f'Product "{name}" added successfully!', 'success')
     return redirect(url_for('admin.products', business=business_slug))
 
 @admin_bp.route('/products/<product_id>/edit', methods=['POST'])
@@ -129,8 +140,8 @@ def edit_product(product_id):
     # Retain old image url if none uploaded
     existing = ProductModel.find_by_id(product_id)
     image_url = ''
-    if existing and existing.get('images'):
-        image_url = existing['images'][0]['url']
+    if existing and existing.get('images') and len(existing['images']) > 0:
+        image_url = existing['images'][0].get('url', '')
 
     if 'image' in request.files and request.files['image'].filename:
         file = request.files['image']
@@ -138,10 +149,17 @@ def edit_product(product_id):
         if ok:
             image_url = res
 
-    business_slug = data.get('business_slug', 'plumbing')
-    category_slug = data.get('category_slug', 'pipes')
-    subcategory_slug = data.get('subcategory_slug', 'cpvc-pipes')
-    brand_slug = data.get('brand_slug', 'astral')
+    business_slug = data.get('business_slug', 'plumbing').strip()
+    category_slug = data.get('category_slug', 'pipes').strip()
+    subcategory_slug = data.get('subcategory_slug', 'hoses-tubes').strip()
+    brand_slug = data.get('brand_slug', 'standard').strip()
+
+    # Look up proper brand name
+    brand_name = brand_slug.replace('-', ' ').title()
+    for b in BrandModel.find_all():
+        if b.get('slug') == brand_slug:
+            brand_name = b.get('name', brand_name)
+            break
 
     product_data = {
         'name': name,
@@ -155,7 +173,7 @@ def edit_product(product_id):
         'category_slug': category_slug,
         'subcategory_slug': subcategory_slug,
         'brand_slug': brand_slug,
-        'brand_name': brand_slug.title(),
+        'brand_name': brand_name,
         'is_active': 'is_active' in request.form,
         'is_featured': 'is_featured' in request.form,
         'is_new': 'is_new' in request.form,
@@ -163,7 +181,7 @@ def edit_product(product_id):
 
     success = ProductModel.update(product_id, product_data)
     if success:
-        flash('Product updated successfully!', 'success')
+        flash(f'Product "{name}" updated successfully!', 'success')
     else:
         flash('Failed to update product.', 'danger')
     return redirect(url_for('admin.products', business=business_slug))
