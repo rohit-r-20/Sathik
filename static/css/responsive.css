@@ -504,17 +504,16 @@ body.modal-open {
 
   /* ── Brands Marquee Ticker ── */
   .brand-bar-section {
-    padding: 2.5rem 0 1.75rem;
+    padding: 2.75rem 0 2rem;
   }
   .brand-chip {
-    padding: 0.7rem 1rem;
-    min-width: 95px;
+    padding: 0.75rem 1.25rem;
+    min-width: 175px;
+    height: 80px;
   }
-  .brand-chip-name {
-    font-size: 0.82rem;
-  }
-  .brand-chip-cat {
-    font-size: 0.6rem;
+  .brand-logo-raw {
+    max-width: 140px;
+    max-height: 58px;
   }
 
   /* ── Section Header Flex Alignment ── */
@@ -809,14 +808,14 @@ body.modal-open {
   }
 
   .brand-chip {
-    padding: 0.6rem 0.85rem;
-    min-width: 82px;
+    padding: 0.6rem 1rem;
+    min-width: 145px;
+    height: 70px;
+    border-radius: 12px;
   }
-  .brand-chip-name {
-    font-size: 0.75rem;
-  }
-  .brand-chip-cat {
-    font-size: 0.56rem;
+  .brand-logo-raw {
+    max-width: 120px;
+    max-height: 48px;
   }
 
   .products-grid {
