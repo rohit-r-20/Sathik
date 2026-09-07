@@ -12,30 +12,36 @@
 <section class="hero" id="hero">
   <!-- Slideshow slides -->
   <div class="hero-slides">
-    <!-- Slide 1: Bath & Kitchen Store (Default Active Slide) -->
+    <!-- Slide 1: Luxury Bath & Sanitaryware (Default Active Slide) -->
     <div class="hero-slide active"
       style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
             <h1 class="hero-title">
-              Prioritizing Customer's <span>Satisfaction Since 1964</span>
+              SATHIK GROUPS Crafted for <span>Modern Luxury Living</span>
             </h1>
             <p class="hero-desc">
-              Your premier retail showroom in Redhills, Chennai. Discover an exquisite range of luxury bath fittings,
-              sanitaryware, modular kitchen fixtures, and home wellness accessories from top-tier brands.
+              Premium quality sanitaryware and luxury fittings designed for elegance and built to last.
             </p>
             <div class="hero-actions">
-              <a href="#product-range" class="btn btn-primary">
-                Explore Product Range &rarr;
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-secondary">
+                VIEW ALL PRODUCTS
               </a>
-              <a href="#contactUs" class="btn btn-outline">
-                Contact Us
-              </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
-                rel="noopener noreferrer" class="hero-phone-link">
-                💬 WhatsApp: +91 98406 37307
-              </a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Premium Quality</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>10+ Year Warranty*</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>Since 1964 Trust</span>
+              </div>
             </div>
           </div>
         </div>
@@ -52,20 +58,26 @@
               Premium Plumbing <span>&amp; Water Solutions</span>
             </h1>
             <p class="hero-desc">
-              Building leak-free homes with high-grade CPVC/UPVC pipes, SWR systems, and heavy-duty water pumps.
-              Authentic products with factory warranties for retail buyers.
+              Precision-engineered CPVC/UPVC pipes, SWR fittings, and industrial grade pumps for lasting performance.
             </p>
             <div class="hero-actions">
-              <a href="#product-range" class="btn btn-primary">
-                Explore Product Range &rarr;
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-secondary">
+                VIEW ALL PRODUCTS
               </a>
-              <a href="#contactUs" class="btn btn-outline">
-                Contact Us
-              </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
-                rel="noopener noreferrer" class="hero-phone-link">
-                💬 WhatsApp: +91 98406 37307
-              </a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Certified Genuine</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Factory Warranty</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>250+ Brands</span>
+              </div>
             </div>
           </div>
         </div>
@@ -82,20 +94,26 @@
               Professional Hardware <span>&amp; Power Tools</span>
             </h1>
             <p class="hero-desc">
-              From robust security locksets and fasteners to high-performance cordless drills and hand tools. Get
-              reliable gear for all your home renovation and DIY projects.
+              High-performance cordless tools, architectural hardware, and premium finishes for master craftsmanship.
             </p>
             <div class="hero-actions">
-              <a href="#product-range" class="btn btn-primary">
-                Explore Product Range &rarr;
+              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-secondary">
+                VIEW ALL PRODUCTS
               </a>
-              <a href="#contactUs" class="btn btn-outline">
-                Contact Us
-              </a>
-              <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
-                rel="noopener noreferrer" class="hero-phone-link">
-                💬 WhatsApp: +91 98406 37307
-              </a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Heavy Duty Quality</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Authorised Dealer</span>
+              </div>
+              <div class="trust-badge-item">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>10,000+ Products</span>
+              </div>
             </div>
           </div>
         </div>
@@ -103,35 +121,36 @@
     </div>
   </div>
 
-  <!-- Global Stats Bar (Static at the bottom of the hero) -->
-  <div class="hero-overlay-bottom">
-    <div class="container">
-      <div class="hero-bottom-flex">
-        <!-- Slide Navigation Indicators (dots) -->
-        <div class="hero-indicators">
-          <button class="indicator-dot active" onclick="setSlide(0)" aria-label="Go to Slide 1"></button>
-          <button class="indicator-dot" onclick="setSlide(1)" aria-label="Go to Slide 2"></button>
-          <button class="indicator-dot" onclick="setSlide(2)" aria-label="Go to Slide 3"></button>
-        </div>
+  <!-- Slide Navigation Indicators (Clean bottom dots) -->
+  <div class="hero-indicators-wrap">
+    <div class="hero-indicators">
+      <button class="indicator-dot active" onclick="setSlide(0)" aria-label="Go to Slide 1"></button>
+      <button class="indicator-dot" onclick="setSlide(1)" aria-label="Go to Slide 2"></button>
+      <button class="indicator-dot" onclick="setSlide(2)" aria-label="Go to Slide 3"></button>
+    </div>
+  </div>
+</section>
 
-        <!-- STATS COUNTER CARDS -->
-        <div class="hero-stats">
-          <div class="stat-card-inner">
-            <div class="stat-number">60<span>+</span></div>
-            <div class="stat-label">Years of Trust (Since 1964)</div>
-          </div>
-          <div class="stat-card-inner">
-            <div class="stat-number">250<span>+</span></div>
-            <div class="stat-label">Authorized Partner Brands</div>
-          </div>
-          <div class="stat-card-inner">
-            <div class="stat-number">10,000<span>+</span></div>
-            <div class="stat-label">Retail Products</div>
-          </div>
-          <div class="stat-card-inner">
-            <div class="stat-number">10,00,000<span>+</span></div>
-            <div class="stat-label">Happy Homeowners</div>
-          </div>
+<!-- DEDICATED STATS STRIP SECTION (Translucent Glass Effect & Horizontal Numbers) -->
+<section class="stats-strip-section" id="stats">
+  <div class="container">
+    <div class="stats-glass-card">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">60<span>+</span></div>
+          <div class="stat-label">Years of Trust (Since 1964)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">250<span>+</span></div>
+          <div class="stat-label">Authorized Partner Brands</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10,000<span>+</span></div>
+          <div class="stat-label">Retail Products</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">10,00,000<span>+</span></div>
+          <div class="stat-label">Happy Homeowners</div>
         </div>
       </div>
     </div>
@@ -539,14 +558,16 @@
     <div class="text-center" style="margin-bottom: 3.5rem;">
       <div class="section-tag">Direct Factory Outlets &amp; Retail Hubs</div>
       <h2 class="section-title">Our 3 Specialized Showrooms</h2>
-      <p class="section-desc">Experience our comprehensive physical stores and specialized product galleries in Redhills, Chennai.</p>
+      <p class="section-desc">Experience our comprehensive physical stores and specialized product galleries in
+        Redhills, Chennai.</p>
     </div>
 
     <div class="showrooms-stack">
       <!-- Store 1: Sathik Enterprises — Bathware & Sanitaryware -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" alt="Sathik Enterprises Bathware & Sanitaryware Showroom" loading="lazy">
+          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}"
+            alt="Sathik Enterprises Bathware & Sanitaryware Showroom" loading="lazy">
           <div class="showroom-badge-tag">Store 01 • Bath &amp; Sanitaryware</div>
         </div>
         <div class="showroom-details">
@@ -568,17 +589,21 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">CERA</span>
               <span class="showroom-brand-pill">Jaquar</span>
@@ -591,28 +616,31 @@
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Enterprises,%20I%20am%20enquiring%20about%20Bathware%20and%20Sanitaryware" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Enterprises,%20I%20am%20enquiring%20about%20Bathware%20and%20Sanitaryware"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Enterprises+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Enterprises+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Store 2: Sathik Plumbing & Water Tech Solutions -->
+      <!-- Store 2: Sathik Traders — Plumbing & Water Tech Solutions -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/plumbing_slide.png') }}" alt="Sathik Plumbing & Water Tech Solutions" loading="lazy">
+          <img src="{{ url_for('static', filename='images/hero/sathik_traders_storefront.jpg') }}"
+            alt="Sathik Traders — Plumbing & Industrial Water Solutions Showroom" loading="lazy">
           <div class="showroom-badge-tag">Store 02 • Plumbing &amp; Water Tech</div>
         </div>
         <div class="showroom-details">
           <div class="showroom-number-badge">Showroom 02 &bull; Industrial Piping &amp; Pumps</div>
-          <h3 class="showroom-name">Sathik Plumbing &amp; Industrial Water Solutions</h3>
+          <h3 class="showroom-name">Sathik Traders — Plumbing &amp; Industrial Water Solutions</h3>
 
           <div class="showroom-address-row">
             <span style="font-size: 1.25rem;">📍</span>
@@ -629,17 +657,21 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Astral Pipes</span>
               <span class="showroom-brand-pill">Ashirvad</span>
@@ -651,13 +683,15 @@
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Plumbing%20and%20Pumps" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Plumbing%20and%20Pumps"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
@@ -667,7 +701,8 @@
       <!-- Store 3: Sathik Hardware, Paints & Power Tools -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/hardware_slide.png') }}" alt="Sathik Hardware, Paints & Tools" loading="lazy">
+          <img src="{{ url_for('static', filename='images/hero/hardware_slide.png') }}"
+            alt="Sathik Hardware, Paints & Tools" loading="lazy">
           <div class="showroom-badge-tag">Store 03 • Hardware &amp; Paints</div>
         </div>
         <div class="showroom-details">
@@ -689,17 +724,21 @@
             </div>
             <div class="showroom-phone-line">
               <span>💬 <strong>WhatsApp Support:</strong></span>
-              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer" class="phone-val whatsapp-val">+91 98406 37307</a>
+              <a href="https://wa.me/919840637307" target="_blank" rel="noopener noreferrer"
+                class="phone-val whatsapp-val">+91 98406 37307</a>
             </div>
           </div>
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
+            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 7:30 PM &nbsp;|&nbsp; <span
+                style="color:#ef4444; font-weight:600;">Sunday: Closed</span></div>
           </div>
 
           <div>
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">Available Brands in Store:</div>
+            <div
+              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
+              Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Asian Paints</span>
               <span class="showroom-brand-pill">Berger</span>
@@ -711,13 +750,15 @@
           </div>
 
           <div class="showroom-actions">
-            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Hardware%20and%20Paints" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Traders,%20I%20am%20enquiring%20about%20Hardware%20and%20Paints"
+              target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
               💬 Chat on WhatsApp
             </a>
             <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+              rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
           </div>
@@ -733,8 +774,8 @@
     <div class="legacy-about-grid">
       <!-- Left side: Authentic Storefront Photo -->
       <div class="legacy-image-frame">
-        <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" alt="Sathik Enterprises Storefront"
-          class="legacy-img" loading="lazy">
+        <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}"
+          alt="Sathik Enterprises Storefront" class="legacy-img" loading="lazy">
         <div class="legacy-badge-floating">
           <div class="legacy-badge-year">1964</div>
           <div class="legacy-badge-text">Trust In Every Brick</div>
@@ -747,15 +788,19 @@
         <h2 class="legacy-title">Building Confidence, Supplying Excellence</h2>
         <div class="legacy-story-body">
           <p>
-            For over six decades, <strong>Sathik Groups</strong> has been more than just a supplier of Hardware & Plumbing 
+            For over six decades, <strong>Sathik Groups</strong> has been more than just a supplier of Hardware &
+            Plumbing
             materials. Sourced directly from authorized manufacturer plants and chosen with care, we have stood
             side-by-side with local families as they laid the foundation stones of their dream homes.
           </p>
           <p>
-            Our legacy originated in <strong>1964 by Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong>, laying a solid foundation of trust,
+            Our legacy originated in <strong>1964 by Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong>, laying a
+            solid foundation of trust,
             values, and client satisfaction. Carrying this legacy forward, <strong>Sathik Traders</strong> was
-            originated on <strong>2003 ,with Pumps and Plumbing materials</strong>and followed by Sathik traders, on <strong>2024 , Sathik Enterprises</strong> was originated with<strong>Bath and Kitchen wares,</strong> expanding our services to offer complete
-            hardware, plumbing, and sanitaryware wholesale & retail , Industrial material  solutions under one roof.
+            originated on <strong>2003 ,with Pumps and Plumbing materials</strong>and followed by Sathik traders, on
+            <strong>2024 , Sathik Enterprises</strong> was originated with<strong>Bath and Kitchen wares,</strong>
+            expanding our services to offer complete
+            hardware, plumbing, and sanitaryware wholesale & retail , Industrial material solutions under one roof.
           </p>
           <p>
             In our traditions, a house is not merely concrete and steel—it is the sanctuary of your family's

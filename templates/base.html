@@ -19,35 +19,8 @@
   {% block extra_css %}{% endblock %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
 
-  <!-- Immediate Splash Check (Prevent flash on subsequent pages) -->
-  <script>
-    (function() {
-      try {
-        if (sessionStorage.getItem('sathik_splash_shown')) {
-          document.documentElement.classList.add('splash-already-shown');
-        }
-      } catch (e) {}
-    })();
-  </script>
 </head>
 <body>
-
-  <!-- BOLD & BIG SATHIK GROUPS BRAND ENTRANCE INTRO SCREEN -->
-  <div id="brand-splash" class="brand-splash">
-    <div class="splash-content">
-      <div class="splash-logo-box">
-        <div class="splash-crest">
-          <span>SG</span>
-        </div>
-        <h1 class="splash-title">SATHIK GROUPS</h1>
-        <div class="splash-divider"></div>
-        <p class="splash-sub">COMMERCIAL BUILDING MATERIALS &amp; SANITARYWARE</p>
-      </div>
-      <div class="splash-progress-bar">
-        <div class="splash-progress-fill"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- Navbar -->
   {% include 'navbar.html' %}
@@ -70,21 +43,7 @@
     {% block content %}{% endblock %}
   </main>
 
-  <!-- Mobile Bottom Sticky Action Bar (visible on mobile < 768px) -->
-  <div class="mobile-sticky-bar">
-    <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="mobile-bar-btn bath-kitchen">
-      <span class="btn-icon">🛁</span>
-      <span class="btn-text">Bath and sanitaryware</span>
-    </a>
-    <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="mobile-bar-btn plumbing">
-      <span class="btn-icon">🔧</span>
-      <span class="btn-text">Plumbing and Industrial materials</span>
-    </a>
-    <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="mobile-bar-btn hardware">
-      <span class="btn-icon">🔨</span>
-      <span class="btn-text">Paints,Hardwares and doorfittings</span>
-    </a>
-  </div>
+
 
   <!-- Footer -->
   {% include 'footer.html' %}
@@ -198,6 +157,9 @@
 
   <!-- Reusable Quick Enquiry Modal & FAB Component -->
   {% include 'components/enquiry_modal.html' %}
+
+  <!-- Floating WhatsApp Action Button -->
+  {% include 'components/whatsapp_fab.html' %}
 
   <!-- Scripts -->
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>

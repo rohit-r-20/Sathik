@@ -27,14 +27,14 @@
 }
 
 .mobile-toggle:active {
-  background: var(--primary-100);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .mobile-toggle span {
   display: block;
   width: 22px;
-  height: 2px;
-  background-color: var(--primary-900);
+  height: 2.5px;
+  background-color: #FFFFFF;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
   transform-origin: center;
@@ -194,68 +194,85 @@ body.modal-open {
     font-size: 0.55rem !important;
   }
   .mobile-sticky-bar {
-    display: flex;
+    display: none !important;
   }
 
-  /* Quick Enquiry FAB Mobile position above bottom sticky bar */
-  .quick-enquiry-fab {
-    bottom: calc(4.3rem + env(safe-area-inset-bottom, 0px));
-    right: 1rem;
-    padding: 0.75rem 1.125rem;
-    font-size: 0.84rem;
-    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.40);
+  /* Floating WhatsApp Button Mobile position */
+  .whatsapp-fab {
+    bottom: 1.5rem;
+    right: 1.25rem;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+  }
+  .whatsapp-fab-icon {
+    width: 26px;
+    height: 26px;
   }
 
   .nav-mobile-actions {
     display: flex !important;
     align-items: center;
-    gap: 0.15rem;
-    margin-right: -0.625rem; /* Shunts hamburger slightly right */
+    gap: 0.4rem;
     z-index: 102;
+    margin-left: auto;
   }
+
+  .mobile-nav-icon-btn,
   .mobile-cart-btn {
     display: flex !important;
     align-items: center;
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    font-size: 1.25rem;
-    color: var(--primary-600);
+    color: #FFFFFF !important;
     position: relative;
     z-index: 103;
     border-radius: var(--radius-md);
     transition: background 0.2s;
+    text-decoration: none;
   }
+
+  .mobile-nav-icon-btn:active,
   .mobile-cart-btn:active {
-    background: var(--primary-100);
+    background: rgba(255, 255, 255, 0.12) !important;
   }
+
   .cart-badge-mobile {
     position: absolute;
-    top: -2px;
-    right: -2px;
-    background: var(--accent);
-    color: white;
+    top: 0;
+    right: 0;
+    background: #D97706 !important;
+    color: white !important;
     font-size: 0.55rem;
     font-weight: 700;
-    min-width: 15px;
-    height: 15px;
+    min-width: 14px;
+    height: 14px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1.5px solid white;
+    border: 1.5px solid #0F172A !important;
   }
+
   .mobile-toggle {
     display: flex;
+    margin-right: 0.5rem;
+  }
+
+  .nav-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-actions-desktop {
     display: none !important;
   }
 
-  /* Pad body so sticky bar doesn't cover footer content */
+  /* Standard body padding without sticky bottom bar */
   body {
-    padding-bottom: calc(5.8rem + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 0;
   }
 
   /* ── Mobile Navigation Drawer (full-width slide-down) ── */
@@ -265,14 +282,14 @@ body.modal-open {
     top: 100%;
     left: 0;
     right: 0;
-    background: #ffffff;
-    border-top: 1px solid var(--border);
-    border-bottom: 2px solid var(--accent);
+    background: #0F172A !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 2px solid #D97706 !important;
     padding: 1.25rem 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
-    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
     animation: menuSlideDown 0.25s ease;
   }
 
@@ -293,15 +310,20 @@ body.modal-open {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 0.875rem 0.25rem;
+    padding: 0.875rem 0.5rem;
     font-size: 1rem;
     font-weight: 600;
-    border-bottom: 1px solid var(--border);
+    color: #F8FAFC !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     min-height: 48px;
   }
 
+  .nav-link:hover, .nav-link.active {
+    color: #F59E0B !important;
+  }
+
   .nav-link:last-child {
-    border-bottom: none;
+    border-bottom: none !important;
   }
 
   .nav-link.active::after {
@@ -317,15 +339,20 @@ body.modal-open {
     border-radius: 0;
     padding: 0 0 0.5rem 1rem;
     min-width: auto;
-    background: var(--surface);
-    border-left: 2px solid var(--accent);
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left: 2px solid #D97706 !important;
     margin: 0 0 0.25rem 0.25rem;
   }
 
   .dropdown-item {
     padding: 0.625rem 0.75rem;
     font-size: 0.9375rem;
+    color: #E2E8F0 !important;
     min-height: 44px;
+  }
+
+  .dropdown-item:hover {
+    color: #F59E0B !important;
   }
 
   /* Mobile-only CTA buttons inside menu */
@@ -336,7 +363,7 @@ body.modal-open {
     gap: 0.75rem;
     padding-top: 1.25rem;
     margin-top: 0.5rem;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
 
   /* ── Splash Screen ── */
@@ -381,15 +408,33 @@ body.modal-open {
     min-height: 48px;
   }
 
-  /* ── Stats Bar ── */
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.875rem;
-    margin-top: 2.5rem;
-    padding-top: 2rem;
+  /* ── Stats Bar (Translucent Glass & Horizontal 2x2 on Tablet) ── */
+  .stats-strip-section {
+    margin-top: -2.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .stats-glass-card {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 16px !important;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem 1rem !important;
+  }
+  .stat-card:not(:last-child)::after {
+    display: none !important;
+  }
+  .stat-card:nth-child(1), .stat-card:nth-child(2) {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    padding-bottom: 0.75rem;
   }
   .stat-number {
-    font-size: 2rem;
+    font-size: 2.1rem !important;
+    color: #0F172A !important;
+  }
+  .stat-label {
+    font-size: 0.75rem !important;
+    color: #334155 !important;
   }
 
   /* ── Business Divisions ── */
@@ -830,35 +875,40 @@ body.modal-open {
     justify-content: center;
   }
 
-  .hero-overlay-bottom {
-    position: relative;
-    bottom: auto;
-    padding: 1.75rem 0 3rem;
-    background: #0f172a;
-    pointer-events: auto;
+  /* ── Stats Strip (768px Mobile) ── */
+  .stats-strip-section {
+    margin-top: -2rem !important;
+    margin-bottom: 1.75rem !important;
+    padding: 0 0.75rem !important;
   }
 
-  .hero-bottom-flex {
-    gap: 1rem;
+  .stats-glass-card {
+    padding: 1.35rem 1rem !important;
+    border-radius: 16px !important;
   }
 
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem 0.75rem !important;
   }
 
-  .stat-card-inner {
-    padding: 0.85rem;
+  .stat-card {
+    padding: 0.35rem !important;
+  }
+
+  .stat-card:nth-child(1), .stat-card:nth-child(2) {
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    padding-bottom: 0.65rem;
   }
 
   .stat-number {
-    font-size: 1.75rem;
+    font-size: 1.85rem !important;
+    color: #0F172A !important;
   }
 
   .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem !important;
+    color: #334155 !important;
   }
 
   /* ── Homepage Stores Section Mobile Overrides ── */
@@ -965,20 +1015,32 @@ body.modal-open {
 
 @media (max-width: 480px) {
   .hero-slides {
-    height: 460px;
+    height: 480px;
   }
   .hero-title {
     font-size: clamp(1.35rem, 8vw, 1.85rem);
   }
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem;
+  .stats-strip-section {
+    margin-top: -1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    padding: 0 0.5rem !important;
+  }
+  .stats-glass-card {
+    padding: 1.15rem 0.65rem !important;
+    border-radius: 14px !important;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.85rem 0.4rem !important;
   }
   .stat-number {
-    font-size: 1.5rem;
+    font-size: 1.6rem !important;
+    color: #0F172A !important;
   }
   .stat-label {
-    font-size: 0.65rem;
+    font-size: 0.65rem !important;
+    color: #334155 !important;
+    line-height: 1.25;
   }
 }
 
