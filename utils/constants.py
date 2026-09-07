@@ -56,10 +56,6 @@ BRANDS_LIST = [
     {'name': 'Best Arc', 'slug': 'best-arc', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Supron', 'slug': 'supron', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Alpha', 'slug': 'alpha', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
-    {'name': 'Bosch', 'slug': 'bosch', 'businesses': ['plumbing'], 'featured': True, 'country': 'Germany'},
-    {'name': 'DeWalt', 'slug': 'dewalt', 'businesses': ['plumbing'], 'featured': True, 'country': 'USA'},
-    {'name': 'Polymach', 'slug': 'polymach', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
-    {'name': 'Valley Wolf', 'slug': 'valley-wolf', 'businesses': ['plumbing'], 'featured': True, 'country': 'China'},
     {'name': 'Taparia', 'slug': 'taparia', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Legrand', 'slug': 'legrand', 'businesses': ['plumbing'], 'featured': True, 'country': 'France'},
     {'name': 'GB Company', 'slug': 'gb-company', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
@@ -199,12 +195,11 @@ MOCK_SUBCATEGORIES = [
     {'name': 'Bolts & Nuts', 'slug': 'bolts-nuts', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🔩', 'order': 4},
     {'name': 'Pipeline Clamps', 'slug': 'pipeline-clamps', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🧲', 'order': 5},
     {'name': 'Submersible Pumps', 'slug': 'submersible-pumps', 'category_slug': 'pumps', 'business_slug': 'plumbing', 'icon': '⛲', 'order': 6},
-    {'name': 'Power Tools', 'slug': 'power-tools', 'category_slug': 'pumps', 'business_slug': 'plumbing', 'icon': '⚙️', 'order': 7},
-    {'name': 'Engineering Tools', 'slug': 'engineering-tools', 'category_slug': 'pumps', 'business_slug': 'plumbing', 'icon': '🛠️', 'order': 8},
-    {'name': 'Tap Spindles', 'slug': 'tap-spindles', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🚰', 'order': 9},
-    {'name': 'Electrical Switches', 'slug': 'electrical-switches', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🔌', 'order': 10},
-    {'name': 'MCB & Protection', 'slug': 'electrical-mcb', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '📟', 'order': 11},
-    {'name': 'Electrical Wires', 'slug': 'electrical-wires', 'category_slug': 'pipes', 'business_slug': 'plumbing', 'icon': '〰️', 'order': 12},
+    {'name': 'Engineering Tools', 'slug': 'engineering-tools', 'category_slug': 'pumps', 'business_slug': 'plumbing', 'icon': '🛠️', 'order': 7},
+    {'name': 'Tap Spindles', 'slug': 'tap-spindles', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🚰', 'order': 8},
+    {'name': 'Electrical Switches', 'slug': 'electrical-switches', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '🔌', 'order': 9},
+    {'name': 'MCB & Protection', 'slug': 'electrical-mcb', 'category_slug': 'pipe-fittings', 'business_slug': 'plumbing', 'icon': '📟', 'order': 10},
+    {'name': 'Electrical Wires', 'slug': 'electrical-wires', 'category_slug': 'pipes', 'business_slug': 'plumbing', 'icon': '〰️', 'order': 11},
 
     # Hardware Elements
     {'name': 'Paints', 'slug': 'paints', 'category_slug': 'paints-chemicals', 'business_slug': 'hardware', 'icon': '🎨', 'order': 1},
@@ -496,52 +491,6 @@ MOCK_PRODUCTS = [
         'brand_slug': 'cri',
         'brand_name': 'CRI',
         'hide_brand_badge': True,
-        'is_active': True,
-        'is_featured': True,
-        'is_new': True
-    },
-    {
-        '_id': 'p_power_tools',
-        'name': 'Power Tools',
-        'slug': 'power-tools',
-        'sku': 'IND-PWT-ALL',
-        'description': 'Industrial grade corded and cordless power tools from leading global manufacturers. Select your preferred brand variant below.',
-        'short_description': 'Heavy duty industrial power tools from global brands.',
-        'features': ['Brushless motor technology', 'High impact drilling power', 'Long jobsite durability'],
-        'specifications': [{'key': 'Product Type', 'value': 'Power Tools'}],
-        'images': [{'url': '/static/images/products/plumbing/power_tools.avif', 'is_primary': True}],
-        'business_slug': 'plumbing',
-        'category_slug': 'pumps',
-        'subcategory_slug': 'power-tools',
-        'brand_slug': 'multiple',
-        'brand_name': 'Bosch / DeWalt / Polymach / Valley Wolf',
-        'available_brands': [
-            {
-                'brand_name': 'Bosch',
-                'name': 'Bosch Professional Cordless Power Tools',
-                'sku': 'IND-PWT-BOSCH',
-                'image': '/static/images/products/plumbing/bosch-power-tools.jpg'
-            },
-            {
-                'brand_name': 'DeWalt',
-                'name': 'DeWalt Heavy Duty Power Tools',
-                'sku': 'IND-PWT-DEWALT',
-                'image': '/static/images/products/plumbing/dewalt_power_tools.jpeg'
-            },
-            {
-                'brand_name': 'Polymach',
-                'name': 'Polymak powertools',
-                'sku': 'IND-PWT-POLY',
-                'image': '/static/images/products/plumbing/polymak_powertools.jpg'
-            },
-            {
-                'brand_name': 'Valley Wolf',
-                'name': 'Ralli wolf power tools',
-                'sku': 'IND-PWT-VWOLF',
-                'image': '/static/images/products/plumbing/ralli_wolf_power_tools.jpg'
-            }
-        ],
-        'available_brand_slugs': ['bosch', 'dewalt', 'polymach', 'valley-wolf'],
         'is_active': True,
         'is_featured': True,
         'is_new': True
