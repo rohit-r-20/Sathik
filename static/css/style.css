@@ -15,14 +15,14 @@ html {
   --primary-300: #CBD5E1;
   --primary-100: #F1F5F9;
   --surface: #FFFFFF;
-  --bg-page: #F6F8FA;          /* Subtle warm architectural off-white / light slate */
+  --bg-page: #F4F6F4;          /* Harmonious soft sage off-white suited to #BDC4BE */
   --bg-card: #FFFFFF;
-  --bg-subtle: #EDF2F7;
+  --bg-subtle: #E7ECE7;
   --accent: #C2410C;           /* Warm Rich Terracotta / Bronze */
   --accent-gold: #D97706;      /* Warm Champagne Gold */
   --accent-light: #FFEDD5;
   --accent-hover: #9A3412;
-  --border: #E2E8F0;
+  --border: #DDE2DD;           /* Subtle soft sage border */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Plus Jakarta Sans', var(--font-sans);
   --font-brand: 'Cinzel', serif;
@@ -211,8 +211,8 @@ a {
   width: 100%;
   max-width: 1200px;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(217, 119, 6, 0.2) 20%, rgba(217, 119, 6, 0.5) 50%, rgba(217, 119, 6, 0.2) 80%, transparent 100%);
-  margin: 1rem auto;
+  background: linear-gradient(90deg, transparent 0%, rgba(189, 196, 190, 0.4) 20%, rgba(189, 196, 190, 0.8) 50%, rgba(189, 196, 190, 0.4) 80%, transparent 100%);
+  margin: 0.75rem auto;
 }
 
 .luxury-section-divider::after {
@@ -222,8 +222,8 @@ a {
   top: 50%;
   transform: translate(-50%, -50%);
   font-size: 0.65rem;
-  color: #D97706;
-  background: var(--bg-page, #F6F8FA);
+  color: #78857B;
+  background: var(--bg-page, #F4F6F4);
   padding: 0 0.5rem;
 }
 
@@ -253,11 +253,15 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 750;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
+  letter-spacing: 0.14em;
+  color: #2F4136;
+  background: rgba(189, 196, 190, 0.35);
+  border: 1px solid rgba(189, 196, 190, 0.6);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
   margin-bottom: 0.75rem;
 }
 
@@ -352,17 +356,17 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-/* Navbar — Refined Frosted Glass Palette matching Background */
+/* Navbar — Sage Gray Palette (#BDC4BE) */
 .navbar {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: var(--bg-page, #F6F8FA);
-  background: rgba(246, 248, 250, 0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  background-color: #BDC4BE;
+  background: rgba(189, 196, 190, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
   height: 4.5rem;
   display: flex;
   align-items: center;

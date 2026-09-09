@@ -3,7 +3,7 @@
 {% block title %}Sathik Groups | Premier Building Materials &amp; Sanitaryware Retail Store{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}?v=15">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 {% endblock %}
 
@@ -12,26 +12,27 @@
 <section class="hero" id="hero">
   <!-- Slideshow slides -->
   <div class="hero-slides">
-    <!-- Slide 1: Luxury Bath & Sanitaryware (Default Active Slide) -->
-    <div class="hero-slide active hero-slide-bath"
-      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=9');">
+    <!-- Slide 1: Door Locks & Asian Paints Store (Default Active Slide) -->
+    <div class="hero-slide active"
+      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}?v=14');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
             <h1 class="hero-title">
-              SATHIK GROUPS Crafted for<br>Modern Luxury Living
+              SATHIK Crafted for<br>Modern Indian<br>Homes
             </h1>
             <p class="hero-desc">
-              Premium quality sanitaryware designed for elegance and built to last.
+              Premium quality architectural hardware designed for elegance and built to last.
             </p>
             <div class="hero-actions">
               <a href="#showrooms" class="btn btn-hero-gold">
                 SHOP COLLECTIONS
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-translucent">
+              <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-hero-translucent">
                 VIEW ALL PRODUCTS
               </a>
             </div>
+            <div class="hero-divider"></div>
             <div class="hero-trust-badges">
               <div class="trust-badge-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -54,24 +55,25 @@
 
     <!-- Slide 2: Plumbing Products Store -->
     <div class="hero-slide"
-      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}?v=14');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
             <h1 class="hero-title">
-              SATHIK TRADERS Engineered for<br>Flawless Water Flow
+              SATHIK Engineered for<br>Flawless Water<br>Flow
             </h1>
             <p class="hero-desc">
-              Precision-engineered CPVC/UPVC pipes, SWR fittings, and industrial pumps for lasting performance.
+              Precision plumbing systems designed for reliability and built to last.
             </p>
             <div class="hero-actions">
               <a href="#showrooms" class="btn btn-hero-gold">
                 SHOP COLLECTIONS
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-translucent">
+              <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-hero-translucent">
                 VIEW ALL PRODUCTS
               </a>
             </div>
+            <div class="hero-divider"></div>
             <div class="hero-trust-badges">
               <div class="trust-badge-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -84,7 +86,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-                <span>Factory Warranty</span>
+                <span>Factory Warranty*</span>
               </div>
             </div>
           </div>
@@ -92,39 +94,40 @@
       </div>
     </div>
 
-    <!-- Slide 3: Door Locks & Asian Paints Store -->
-    <div class="hero-slide"
-      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}');">
+    <!-- Slide 3: Luxury Bath & Sanitaryware -->
+    <div class="hero-slide hero-slide-bath"
+      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=14');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
             <h1 class="hero-title">
-              SATHIK HARDWARES Curated for<br>Architectural Elegance
+              SATHIK Crafted for<br>Modern Indian<br>Bathrooms
             </h1>
             <p class="hero-desc">
-              Premium door locks, architectural hardware systems, and authorized Asian Paints finishes.
+              Premium quality sanitaryware designed for elegance and built to last.
             </p>
             <div class="hero-actions">
               <a href="#showrooms" class="btn btn-hero-gold">
                 SHOP COLLECTIONS
               </a>
-              <a href="{{ url_for('product.product_list') }}" class="btn btn-hero-translucent">
+              <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-hero-translucent">
                 VIEW ALL PRODUCTS
               </a>
             </div>
+            <div class="hero-divider"></div>
             <div class="hero-trust-badges">
               <div class="trust-badge-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="12" cy="8" r="6"/>
                   <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
                 </svg>
-                <span>Heavy Duty Quality</span>
+                <span>Premium Quality</span>
               </div>
               <div class="trust-badge-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
-                <span>Authorised Dealer</span>
+                <span>10+ Year Warranty*</span>
               </div>
             </div>
           </div>
@@ -181,9 +184,9 @@
       <!-- Store Category Filter Tabs -->
       <div class="k-filter-tabs">
         <button class="k-tab-btn active" onclick="filterHomeCategory('all', this)">All Stores</button>
-        <button class="k-tab-btn" onclick="filterHomeCategory('bath-kitchen', this)">🛁 Bath &amp; Sanitaryware</button>
-        <button class="k-tab-btn" onclick="filterHomeCategory('plumbing', this)">🔧 Plumbing Solutions</button>
         <button class="k-tab-btn" onclick="filterHomeCategory('hardware', this)">🔨 Hardware &amp; Paints</button>
+        <button class="k-tab-btn" onclick="filterHomeCategory('plumbing', this)">🔧 Plumbing Solutions</button>
+        <button class="k-tab-btn" onclick="filterHomeCategory('bath-kitchen', this)">🛁 Bath &amp; Sanitaryware</button>
       </div>
     </div>
 
@@ -488,40 +491,41 @@
     </div>
 
     <div class="showrooms-stack">
-      <!-- Store 1: Sathik Enterprises — Bathware & Sanitaryware -->
+      <!-- Store 1: Sathik Hardwares — Exclusive Door Locks & Asian Paints Studio -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" class="showroom-bg-blur"
-            alt="" aria-hidden="true">
-          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" class="showroom-main-img"
-            alt="Sathik Enterprises Bathware & Sanitaryware Showroom" loading="lazy">
-          <div class="showroom-badge-tag">Store 01 • Bath &amp; Sanitaryware</div>
+          <img src="{{ url_for('static', filename='images/hero/sathik_hardware_storefront.jpg') }}?v=3"
+            class="showroom-bg-blur" alt="" aria-hidden="true">
+          <img src="{{ url_for('static', filename='images/hero/sathik_hardware_storefront.jpg') }}?v=3"
+            class="showroom-main-img"
+            alt="Sathik Hardwares — Exclusive Door Locks, Architectural Hardware & Asian Paints Showroom"
+            loading="lazy">
+          <div class="showroom-badge-tag">Store 01 • Door Locks &amp; Asian Paints</div>
         </div>
         <div class="showroom-details">
-          <div class="showroom-number-badge">Showroom 01 &bull; Direct Retail Hub</div>
-          <h3 class="showroom-name">Sathik Enterprises — Bathware &amp; Sanitaryware Showroom</h3>
+          <div class="showroom-number-badge">Showroom 01 &bull; Exclusive Door Locks &amp; Asian Paints Studio</div>
+          <h3 class="showroom-name">Sathik Hardwares — Door Locks, Architectural Hardware &amp; Paints</h3>
 
           <div class="showroom-address-row">
             <span style="font-size: 1.25rem;">📍</span>
             <div>
-              <strong>Showroom Address:</strong><br>
-              # 164/4, Old No. 502, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+              <strong>Store Address:</strong><br>
+              # 128, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
             </div>
           </div>
 
           <div class="showroom-phone-block">
             <div class="showroom-phone-line">
               <span>📱 <strong>Primary Mobile:</strong></span>
-              <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
+              <a href="tel:+919444312624" class="phone-val">+91 94443 12624</a>
             </div>
             <div class="showroom-phone-line">
-              <span>📱 <strong>Secondary Mobile:</strong></span>
-              <a href="tel:+919444302654" class="phone-val">+91 94443 02654</a>
+              <span>☎️ <strong>Telephone:</strong></span>
+              <a href="tel:04426322624" class="phone-val">044 2632 2624</a>
             </div>
             <div class="showroom-phone-line">
               <span>✉️ <strong>Email Address:</strong></span>
-              <a href="mailto:sathikenterprisesredhills@gmail.com"
-                class="phone-val">sathikenterprisesredhills@gmail.com</a>
+              <a href="mailto:sathikhardwares@gmail.com" class="phone-val">sathikhardwares@gmail.com</a>
             </div>
           </div>
 
@@ -536,21 +540,21 @@
               style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
               Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
-              <span class="showroom-brand-pill">CERA</span>
-              <span class="showroom-brand-pill">Jaquar</span>
-              <span class="showroom-brand-pill">Hindware</span>
-              <span class="showroom-brand-pill">Parryware</span>
-              <span class="showroom-brand-pill">Grohe</span>
-              <span class="showroom-brand-pill">Geberit</span>
-              <span class="showroom-brand-pill">Éssco</span>
+              <span class="showroom-brand-pill">Asian Paints Colour World</span>
+              <span class="showroom-brand-pill">Godrej Door Locks</span>
+              <span class="showroom-brand-pill">Europa Locks</span>
+              <span class="showroom-brand-pill">Dorset Architectural</span>
+              <span class="showroom-brand-pill">Dr. Fixit Waterproofing</span>
+              <span class="showroom-brand-pill">Berger Paints</span>
+              <span class="showroom-brand-pill">Pidilite Fevicol</span>
             </div>
           </div>
 
           <div class="showroom-actions">
-            <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
+            <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Enterprises+Redhills+Chennai" target="_blank"
+            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
               rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>
@@ -627,41 +631,40 @@
         </div>
       </div>
 
-      <!-- Store 3: Sathik Hardwares — Exclusive Door Locks & Asian Paints Studio -->
+      <!-- Store 3: Sathik Enterprises — Bathware & Sanitaryware -->
       <div class="showroom-card-grid">
         <div class="showroom-img-frame">
-          <img src="{{ url_for('static', filename='images/hero/sathik_hardware_storefront.jpg') }}?v=3"
-            class="showroom-bg-blur" alt="" aria-hidden="true">
-          <img src="{{ url_for('static', filename='images/hero/sathik_hardware_storefront.jpg') }}?v=3"
-            class="showroom-main-img"
-            alt="Sathik Hardwares — Exclusive Door Locks, Architectural Hardware & Asian Paints Showroom"
-            loading="lazy">
-          <div class="showroom-badge-tag">Store 03 • Door Locks &amp; Asian Paints</div>
+          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" class="showroom-bg-blur"
+            alt="" aria-hidden="true">
+          <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" class="showroom-main-img"
+            alt="Sathik Enterprises Bathware & Sanitaryware Showroom" loading="lazy">
+          <div class="showroom-badge-tag">Store 03 • Bath &amp; Sanitaryware</div>
         </div>
         <div class="showroom-details">
-          <div class="showroom-number-badge">Showroom 03 &bull; Exclusive Door Locks &amp; Asian Paints Studio</div>
-          <h3 class="showroom-name">Sathik Hardwares — Door Locks, Architectural Hardware &amp; Paints</h3>
+          <div class="showroom-number-badge">Showroom 03 &bull; Direct Retail Hub</div>
+          <h3 class="showroom-name">Sathik Enterprises — Bathware &amp; Sanitaryware Showroom</h3>
 
           <div class="showroom-address-row">
             <span style="font-size: 1.25rem;">📍</span>
             <div>
-              <strong>Store Address:</strong><br>
-              # 128, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
+              <strong>Showroom Address:</strong><br>
+              # 164/4, Old No. 502, G.N.T. Road, Redhills, Chennai, Tamil Nadu – 600 052
             </div>
           </div>
 
           <div class="showroom-phone-block">
             <div class="showroom-phone-line">
               <span>📱 <strong>Primary Mobile:</strong></span>
-              <a href="tel:+919444312624" class="phone-val">+91 94443 12624</a>
+              <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
             </div>
             <div class="showroom-phone-line">
-              <span>☎️ <strong>Telephone:</strong></span>
-              <a href="tel:04426322624" class="phone-val">044 2632 2624</a>
+              <span>📱 <strong>Secondary Mobile:</strong></span>
+              <a href="tel:+919444302654" class="phone-val">+91 94443 02654</a>
             </div>
             <div class="showroom-phone-line">
               <span>✉️ <strong>Email Address:</strong></span>
-              <a href="mailto:sathikhardwares@gmail.com" class="phone-val">sathikhardwares@gmail.com</a>
+              <a href="mailto:sathikenterprisesredhills@gmail.com"
+                class="phone-val">sathikenterprisesredhills@gmail.com</a>
             </div>
           </div>
 
@@ -676,21 +679,21 @@
               style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
               Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
-              <span class="showroom-brand-pill">Asian Paints Colour World</span>
-              <span class="showroom-brand-pill">Godrej Door Locks</span>
-              <span class="showroom-brand-pill">Europa Locks</span>
-              <span class="showroom-brand-pill">Dorset Architectural</span>
-              <span class="showroom-brand-pill">Dr. Fixit Waterproofing</span>
-              <span class="showroom-brand-pill">Berger Paints</span>
-              <span class="showroom-brand-pill">Pidilite Fevicol</span>
+              <span class="showroom-brand-pill">CERA</span>
+              <span class="showroom-brand-pill">Jaquar</span>
+              <span class="showroom-brand-pill">Hindware</span>
+              <span class="showroom-brand-pill">Parryware</span>
+              <span class="showroom-brand-pill">Grohe</span>
+              <span class="showroom-brand-pill">Geberit</span>
+              <span class="showroom-brand-pill">Éssco</span>
             </div>
           </div>
 
           <div class="showroom-actions">
-            <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
+            <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
               📦 Explore Store Products &rarr;
             </a>
-            <a href="https://maps.google.com/?q=Sathik+Traders+Redhills+Chennai" target="_blank"
+            <a href="https://maps.google.com/?q=Sathik+Enterprises+Redhills+Chennai" target="_blank"
               rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
               🗺️ Open Map
             </a>

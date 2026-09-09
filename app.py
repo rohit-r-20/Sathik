@@ -68,7 +68,7 @@ if __name__ == '__main__':
         app.run(host='0.0.0.0', port=port, debug=True)
     except OSError as err:
         if "Address already in use" in str(err) or getattr(err, 'errno', None) in (48, 98):
-            fallback_port = 5002
+            fallback_port = 5002 if port == 5001 else 5001
             print(f"⚠️ Port {port} is occupied. Starting on fallback port http://localhost:{fallback_port}")
             app.run(host='0.0.0.0', port=fallback_port, debug=True)
         else:

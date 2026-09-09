@@ -228,24 +228,24 @@
         {% if grouped_mode %}
           <!-- Grouped Mode: Display three stores and their featured products -->
           
-          <!-- Store 1: Bath and sanitaryware -->
-          <div class="store-group-section bath-kitchen">
+          <!-- Store 1: Paints, Hardwares and doorfittings -->
+          <div class="store-group-section hardware">
             <div class="store-group-header">
               <div class="store-group-title-area">
-                <span class="store-group-icon">🛁</span>
+                <span class="store-group-icon">🔨</span>
                 <div>
-                  <h3 class="store-group-name">Bath &amp; Sanitaryware</h3>
-                  <p class="store-group-desc">Elevate your home with premium bathware, faucets, showers, and vanity accessories.</p>
+                  <h3 class="store-group-name">Paints, Hardware &amp; Door Fittings</h3>
+                  <p class="store-group-desc">Premium wall paints, secure door locks, fasteners, tools, and construction chemicals.</p>
                 </div>
               </div>
-              <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm store-explore-btn">
+              <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm store-explore-btn">
                 Explore Store &rarr;
               </a>
             </div>
             
-            {% if bath_kitchen_products %}
+            {% if hardware_products %}
               <div class="products-grid">
-                {% for p in bath_kitchen_products %}
+                {% for p in hardware_products %}
                   {{ render_product_card(p) }}
                 {% endfor %}
               </div>
@@ -255,7 +255,7 @@
               </div>
             {% endif %}
           </div>
-          
+
           <!-- Store 2: Plumbing and Industrial materials -->
           <div class="store-group-section plumbing">
             <div class="store-group-header">
@@ -284,24 +284,24 @@
             {% endif %}
           </div>
 
-          <!-- Store 3: Paints, Hardwares and doorfittings -->
-          <div class="store-group-section hardware">
+          <!-- Store 3: Bath and sanitaryware -->
+          <div class="store-group-section bath-kitchen">
             <div class="store-group-header">
               <div class="store-group-title-area">
-                <span class="store-group-icon">🔨</span>
+                <span class="store-group-icon">🛁</span>
                 <div>
-                  <h3 class="store-group-name">Paints, Hardware &amp; Door Fittings</h3>
-                  <p class="store-group-desc">Premium wall paints, secure door locks, fasteners, tools, and construction chemicals.</p>
+                  <h3 class="store-group-name">Bath &amp; Sanitaryware</h3>
+                  <p class="store-group-desc">Elevate your home with premium bathware, faucets, showers, and vanity accessories.</p>
                 </div>
               </div>
-              <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm store-explore-btn">
+              <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm store-explore-btn">
                 Explore Store &rarr;
               </a>
             </div>
             
-            {% if hardware_products %}
+            {% if bath_kitchen_products %}
               <div class="products-grid">
-                {% for p in hardware_products %}
+                {% for p in bath_kitchen_products %}
                   {{ render_product_card(p) }}
                 {% endfor %}
               </div>

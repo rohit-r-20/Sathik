@@ -1,19 +1,19 @@
 # Business Verticals
 BUSINESSES = [
     {
-        'id': 'plumbing',
-        'name': 'Plumbing and Industrial materials',
-        'slug': 'plumbing',
-        'short_description': 'Pipes, fittings, valves, pumps, and water management solutions from top brands.',
-        'icon': '🔧',
-        'order': 1
-    },
-    {
         'id': 'hardware',
         'name': 'Paints,Hardwares and doorfittings',
         'slug': 'hardware',
         'short_description': 'Door fittings, fasteners, tools, safety equipment, and industrial hardware.',
         'icon': '🔨',
+        'order': 1
+    },
+    {
+        'id': 'plumbing',
+        'name': 'Plumbing and Industrial materials',
+        'slug': 'plumbing',
+        'short_description': 'Pipes, fittings, valves, pumps, and water management solutions from top brands.',
+        'icon': '🔧',
         'order': 2
     },
     {
