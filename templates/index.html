@@ -13,8 +13,8 @@
   <!-- Slideshow slides -->
   <div class="hero-slides">
     <!-- Slide 1: Luxury Bath & Sanitaryware (Default Active Slide) -->
-    <div class="hero-slide active"
-      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}');">
+    <div class="hero-slide active hero-slide-bath"
+      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=8');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -734,7 +734,13 @@
             side-by-side with local families as they laid the foundation stones of their dream homes.
           </p>
           <p>
-            Our legacy originated in <strong>1964 by Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong> with <strong>Sathik Hardwares</strong>, establishing our roots in Door Locks, Architectural Hardware &amp; Paints, and laying a solid foundation of trust, values, and client satisfaction. Carrying this legacy forward, <strong>Sathik Traders</strong> was originated in <strong>2003 with Pumps and Plumbing materials</strong>, followed in <strong>2024 by Sathik Enterprises with Bath and Sanitaryware</strong>, expanding our services to offer complete hardware, plumbing, sanitaryware, and industrial solutions under one roof.
+            Our legacy originated in <strong>1964 by Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong> with
+            <strong>Sathik Hardwares</strong>, establishing our roots in Door Locks, Architectural Hardware &amp;
+            Paints, and laying a solid foundation of trust, values, and client satisfaction. Carrying this legacy
+            forward, <strong>Sathik Traders</strong> was originated in <strong>2003 with Pumps and Plumbing
+              materials</strong>, followed in <strong>2024 by Sathik Enterprises with Bath and Sanitaryware</strong>,
+            expanding our services to offer complete hardware, plumbing, sanitaryware, and industrial solutions under
+            one roof.
           </p>
           <p>
             In our traditions, a house is not merely concrete and steel—it is the sanctuary of your family's
@@ -817,34 +823,6 @@
           </div>
         </a>
 
-        <div class="contact-info-card"
-          style="display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
-          <div class="contact-icon" style="font-size: 1.5rem;">✉️</div>
-          <div>
-            <div
-              style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">
-              Official Emails</div>
-            <div style="font-weight: 600; color: var(--primary-900); word-break: break-all; font-size: 0.95rem;">{{
-              company.email }}</div>
-            <div
-              style="font-weight: 600; color: var(--primary-700); word-break: break-all; font-size: 0.85rem; margin-top: 0.2rem;">
-              {{ company.email_alt }}</div>
-          </div>
-        </div>
-
-        <div class="contact-info-card"
-          style="display:flex; gap: 1rem; background: var(--surface); padding: 1.25rem; border-radius: var(--radius-lg); border: 1px solid var(--border);">
-          <div class="contact-icon" style="font-size: 1.5rem;">📍</div>
-          <div>
-            <div
-              style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.05em; margin-bottom: 0.25rem;">
-              Showroom Address</div>
-            <div style="font-weight: 600; line-height: 1.5; color: var(--primary-900); font-size: 0.95rem;">{{
-              company.address }}</div>
-            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Website: {{ company.website
-              }}</div>
-          </div>
-        </div>
 
         <div class="business-hours-card"
           style="background: rgba(249,115,22,0.05); border: 1px solid rgba(249,115,22,0.2); border-radius: var(--radius-lg); padding: 1.25rem;">

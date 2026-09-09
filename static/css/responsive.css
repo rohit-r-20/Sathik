@@ -902,6 +902,12 @@ body.modal-open {
     position: absolute;
   }
 
+  .hero-slide.hero-slide-bath,
+  .hero-slides .hero-slide:first-child {
+    background-image: url('/static/images/hero/bath_kitchen_slide_mobile.png?v=8') !important;
+    background-position: center top !important;
+  }
+
   .hero-slide .hero-inner {
     padding: 3.5rem 0;
   }
