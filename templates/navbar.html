@@ -16,14 +16,14 @@
     </button>
 
     <a href="{{ url_for('home.index') }}" class="nav-brand" aria-label="Sathik Groups Home">
-      <div class="brand-icon" aria-hidden="true">SG</div>
+      <img src="{{ url_for('static', filename='images/logo/sathik_logo_icon.svg') }}" alt="Sathik Groups Logo" class="brand-logo-icon" width="40" height="40">
       <div style="position: relative; display: flex; align-items: center; min-width: 0;">
         <div class="brand-text" id="navbar-brand-text">
           <span class="brand-name">SATHIK GROUPS</span>
-          <span class="brand-sub">HARDWARE SOLUTIONS</span>
+          <span class="brand-sub">PREMIER BUILDING MATERIALS</span>
         </div>
         {% if business %}
-        <div id="navbar-store-title" class="navbar-store-title" style="position: absolute; left: 0; opacity: 0; pointer-events: none; font-size: 0.85rem; font-weight: 700; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100vw - 120px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(8px);">
+        <div id="navbar-store-title" class="navbar-store-title" style="position: absolute; left: 0; opacity: 0; pointer-events: none; font-size: 0.82rem; font-weight: 700; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: calc(100vw - 140px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: translateY(8px);">
           {{ business.name }}
         </div>
         {% endif %}

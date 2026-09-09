@@ -228,10 +228,16 @@ body.modal-open {
     display: flex;
     align-items: center;
     gap: 0.45rem;
-    max-width: calc(100% - 120px);
+    max-width: calc(100% - 110px);
     justify-content: center;
     white-space: nowrap;
     z-index: 101;
+  }
+  .brand-logo-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
   }
   .brand-icon {
     width: 1.95rem !important;
@@ -248,15 +254,17 @@ body.modal-open {
     text-align: left;
   }
   .brand-name {
-    font-size: 0.82rem !important;
+    font-size: 0.84rem !important;
     line-height: 1.15 !important;
     letter-spacing: 0.03em !important;
+    color: #0F172A !important;
   }
   .brand-sub {
-    font-size: 0.48rem !important;
+    font-size: 0.46rem !important;
     letter-spacing: 0.12em !important;
     line-height: 1 !important;
     margin-top: 2px !important;
+    color: #B45309 !important;
   }
   .mobile-sticky-bar {
     display: none !important;
@@ -903,8 +911,13 @@ body.modal-open {
   }
 
   .hero-slide.hero-slide-bath,
-  .hero-slides .hero-slide:first-child {
+  .hero-slides .hero-slide:nth-child(1) {
     background-image: url('/static/images/hero/bath_kitchen_slide_mobile.png?v=8') !important;
+    background-position: center top !important;
+  }
+
+  .hero-slides .hero-slide:nth-child(3) {
+    background-image: url('/static/images/hero/hardware_slide_mobile.png?v=2') !important;
     background-position: center top !important;
   }
 
@@ -1078,8 +1091,12 @@ body.modal-open {
     height: 3.25rem !important;
   }
   .nav-brand {
-    max-width: calc(100% - 95px);
+    max-width: calc(100% - 90px);
     gap: 0.35rem;
+  }
+  .brand-logo-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
   }
   .brand-icon {
     width: 1.75rem !important;
@@ -1087,10 +1104,10 @@ body.modal-open {
     font-size: 0.72rem !important;
   }
   .brand-name {
-    font-size: 0.74rem !important;
+    font-size: 0.76rem !important;
   }
   .brand-sub {
-    font-size: 0.44rem !important;
+    font-size: 0.42rem !important;
   }
   .hero-slides {
     height: 480px;

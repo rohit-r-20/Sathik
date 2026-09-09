@@ -315,9 +315,9 @@
 
 /* ── 2. BRANDS MARQUEE TICKER ── */
 .brand-bar-section {
-  background: #ffffff;
-  border-bottom: 1px solid var(--border);
-  padding: 3.5rem 0 2.5rem;
+  background: var(--bg-page, #F6F8FA);
+  border-bottom: none;
+  padding: 2.75rem 0 1.5rem;
   overflow: hidden;
 }
 
@@ -1091,8 +1091,8 @@
    3. KALANJIAM-STYLE CLEAN PRODUCTS CATALOGUE GRID (Image 2)
    ────────────────────────────────────────────────────────── */
 .k-products-section {
-  padding: 4.5rem 0;
-  background: #f8fafc;
+  padding: 3.5rem 0;
+  background: var(--bg-page, #F6F8FA);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1297,8 +1297,8 @@
    4. SHOWROOMS 3-STORE SHOWCASE (Stacked Layout)
    ────────────────────────────────────────────────────────── */
 .showrooms-section {
-  padding: 5rem 0;
-  background: #ffffff;
+  padding: 3.75rem 0;
+  background: var(--bg-page, #F6F8FA);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
@@ -1306,20 +1306,24 @@
 .showrooms-stack {
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
+  gap: 2.25rem;
 }
 
 .showroom-card-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: 2.75rem;
-  background: #ffffff;
+  gap: 2.5rem;
+  background: var(--bg-card, #ffffff);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2.25rem;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
   align-items: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .showroom-card-grid:hover {
@@ -1337,16 +1341,19 @@
   align-items: center;
   justify-content: center;
   background: #0f172a;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .showroom-img-frame .showroom-bg-blur {
   position: absolute;
-  inset: -25px;
-  width: calc(100% + 50px);
-  height: calc(100% + 50px);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  filter: blur(28px) brightness(0.6) saturate(1.35);
-  transform: scale(1.15);
+  filter: blur(24px) brightness(0.65) saturate(1.3);
+  transform: scale(1.1);
   z-index: 1;
   pointer-events: none;
 }
@@ -1356,6 +1363,7 @@
   z-index: 2;
   width: 100%;
   height: 100%;
+  max-width: 100%;
   object-fit: contain;
   transition: transform 0.5s ease;
 }
@@ -1384,7 +1392,10 @@
 .showroom-details {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.15rem;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .showroom-number-badge {
@@ -1407,9 +1418,11 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--primary-700);
   line-height: 1.55;
+  min-width: 0;
+  width: 100%;
 }
 
 .showroom-address-row strong {
@@ -1420,23 +1433,32 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .showroom-phone-line {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
-  font-size: 0.9rem;
+  gap: 0.25rem 0.5rem;
+  font-size: 0.88rem;
+  width: 100%;
 }
 
 .showroom-phone-line .phone-val {
   font-weight: 800;
   color: var(--primary-900);
   text-decoration: none;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .showroom-phone-line .phone-val.whatsapp-val {
@@ -1447,14 +1469,16 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--primary-700);
+  flex-wrap: wrap;
 }
 
 .showroom-brands-pill-wrap {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  width: 100%;
 }
 
 .showroom-brand-pill {
@@ -1472,6 +1496,7 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-top: 0.5rem;
+  width: 100%;
 }
 
 /* Responsive adjustments */
@@ -1482,9 +1507,10 @@
   .showroom-card-grid {
     grid-template-columns: 1fr;
     gap: 1.75rem;
+    padding: 1.5rem;
   }
   .showroom-img-frame {
-    height: 340px;
+    height: 320px;
   }
 }
 
@@ -1513,13 +1539,23 @@
     padding: 0.6rem 1rem;
   }
   .showroom-card-grid {
-    padding: 1.25rem;
+    padding: 1rem;
+    gap: 1.25rem;
+    border-radius: 12px;
   }
   .showroom-img-frame {
-    height: 280px;
+    height: 240px;
   }
   .showroom-name {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+  }
+  .showroom-actions {
+    flex-direction: column;
+  }
+  .showroom-actions .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -1539,6 +1575,15 @@
   }
   .k-prod-brand {
     font-size: 0.72rem;
+  }
+  .showroom-card-grid {
+    padding: 0.85rem;
+  }
+  .showroom-img-frame {
+    height: 210px;
+  }
+  .showroom-phone-block {
+    padding: 0.75rem 0.85rem;
   }
 }
 
