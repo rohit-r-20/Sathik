@@ -185,10 +185,12 @@ body.modal-open {
   /* ── Viewport & Global ── */
   .container {
     padding: 0 1rem;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .section {
-    padding: 3.5rem 0;
+    padding: 1.75rem 0;
   }
 
   .section-title {
@@ -206,6 +208,8 @@ body.modal-open {
     position: relative !important;
     padding: 0 0.75rem !important;
     width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
   }
   .mobile-toggle {
     display: flex;
@@ -220,18 +224,19 @@ body.modal-open {
     flex-shrink: 0;
     z-index: 105;
   }
-  .nav-brand {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    max-width: calc(100% - 110px);
-    justify-content: center;
-    white-space: nowrap;
-    z-index: 101;
+  .navbar .nav-brand {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    max-width: calc(100% - 90px) !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    z-index: 101 !important;
+    margin: 0 auto !important;
   }
   .brand-logo-icon {
     width: 2rem !important;
@@ -986,7 +991,7 @@ body.modal-open {
 
   /* ── Homepage Stores Section Mobile Overrides ── */
   .homepage-stores-section {
-    padding: 3.5rem 0;
+    padding: 2rem 0;
   }
   
   .homepage-stores-grid {
@@ -1090,9 +1095,13 @@ body.modal-open {
   .navbar {
     height: 3.25rem !important;
   }
-  .nav-brand {
-    max-width: calc(100% - 90px);
-    gap: 0.35rem;
+  .navbar .nav-brand {
+    max-width: calc(100% - 90px) !important;
+    gap: 0.35rem !important;
+    position: relative !important;
+    transform: none !important;
+    left: auto !important;
+    top: auto !important;
   }
   .brand-logo-icon {
     width: 1.75rem !important;
@@ -1108,6 +1117,34 @@ body.modal-open {
   }
   .brand-sub {
     font-size: 0.42rem !important;
+  }
+  .showrooms-section {
+    padding: 1.75rem 0 !important;
+  }
+  .showrooms-stack {
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 1.25rem !important;
+  }
+  .showroom-card-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0.75rem !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  .showroom-img-frame {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 200px !important;
+    overflow: hidden !important;
+  }
+  .showroom-details {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
   .hero-slides {
     height: 480px;

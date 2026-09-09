@@ -317,7 +317,7 @@
 .brand-bar-section {
   background: var(--bg-page, #F6F8FA);
   border-bottom: none;
-  padding: 2.75rem 0 1.5rem;
+  padding: 1.75rem 0 1rem;
   overflow: hidden;
 }
 
@@ -743,7 +743,7 @@
 
 /* ── 2. LEGACY ABOUT SECTION (Traditional & Emotional) ── */
 .legacy-about-section {
-  padding: 5rem 0;
+  padding: 2.5rem 0;
   background-color: #fdfcfa; /* Warm cream traditional background */
   border-top: 1px solid #f2eade;
   border-bottom: 1px solid #f2eade;
@@ -1297,7 +1297,7 @@
    4. SHOWROOMS 3-STORE SHOWCASE (Stacked Layout)
    ────────────────────────────────────────────────────────── */
 .showrooms-section {
-  padding: 3.75rem 0;
+  padding: 2.25rem 0;
   background: var(--bg-page, #F6F8FA);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);

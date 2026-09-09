@@ -199,11 +199,11 @@ a {
 }
 
 .section {
-  padding: 3.5rem 0;
+  padding: 2.25rem 0;
 }
 
 .section-sm {
-  padding: 2.25rem 0;
+  padding: 1.5rem 0;
 }
 
 .luxury-section-divider {
@@ -377,7 +377,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-.nav-brand {
+.nav-brand,
+.footer-brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
