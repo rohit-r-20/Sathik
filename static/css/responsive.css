@@ -908,7 +908,7 @@ body.modal-open {
 
   .hero-slides {
     position: relative;
-    height: 480px; /* Fixed height for slideshow on mobile */
+    height: 560px; /* Expansive, longer height for slideshow on mobile */
   }
 
   .hero-slide {
@@ -931,24 +931,29 @@ body.modal-open {
   }
 
   .hero-title {
-    font-size: clamp(1.5rem, 7vw, 2.2rem);
+    font-size: clamp(1.6rem, 7vw, 2.3rem);
     margin-bottom: 0.75rem;
+    line-height: 1.18;
   }
 
   .hero-desc {
-    font-size: 0.875rem;
+    font-size: 0.88rem;
     margin-bottom: 1.25rem;
     line-height: 1.6;
   }
 
   .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.6rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1.5rem;
   }
-  .hero-actions .btn,
-  .hero-actions .hero-phone-link {
-    width: 100%;
+  .hero-actions .btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.85rem 1rem;
+    font-size: 0.78rem;
     text-align: center;
     justify-content: center;
   }
@@ -1147,7 +1152,7 @@ body.modal-open {
     overflow: hidden !important;
   }
   .hero-slides {
-    height: 480px;
+    height: 560px;
   }
   .hero-title {
     font-size: clamp(1.35rem, 8vw, 1.85rem);
