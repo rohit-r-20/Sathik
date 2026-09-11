@@ -18,7 +18,7 @@
     <div class="section-tag">Get In Touch</div>
     <h1 style="font-size: clamp(1.5rem, 5vw, 2.25rem);">Contact Us &amp; Product Enquiries</h1>
     <p style="color: var(--primary-500); margin-top: 0.5rem; font-size: 0.9375rem;">
-      Mon – Sat, 9am – 7pm &nbsp;•&nbsp; Replies within 24 hours
+      Mon – Sat, 9am – 7pm
     </p>
   </div>
 </section>
@@ -61,7 +61,7 @@
         <div class="contact-info-card">
           <div class="contact-icon">📍</div>
           <div>
-            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Showroom &amp; Office Address</div>
+            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Store &amp; Office Address</div>
             <div style="font-weight: 600; line-height: 1.5;">{{ company.address if company else 'No.6, Dharga Street, G.N.T. Road, Redhills, Chennai - 600 052' }}</div>
             <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Website: {{ company.website if company else 'www.sathiktraders.com' }}</div>
           </div>
@@ -71,8 +71,8 @@
         <div style="background: var(--accent-light); border: 1px solid rgba(194,65,12,0.2); border-radius: var(--radius-lg); padding: 1.25rem; margin-top: 0.5rem;">
           <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 0.75rem;">Business Hours</div>
           <div style="font-size: 0.875rem; color: var(--primary-700); display: flex; flex-direction: column; gap: 0.35rem;">
-            <div>Mon – Sat &nbsp;•&nbsp; <strong>9:00 AM – 7:00 PM</strong></div>
-            <div style="color: var(--primary-500);">Sunday: Closed</div>
+            <div>Mon – Sat &nbsp;•&nbsp; <strong>9:00 AM – 8:30 PM</strong></div>
+            <div style="color: var(--primary-500);">Sunday: 9:30 AM to 1:30 PM</div>
           </div>
         </div>
       </div>
@@ -100,8 +100,8 @@
           <!-- Row 2: Email + City -->
           <div class="form-row-2">
             <div class="form-group">
-              <label class="form-label" for="c-email">Email Address *</label>
-              <input type="email" id="c-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+              <label class="form-label" for="c-email">Email Address (Optional)</label>
+              <input type="email" id="c-email" name="email" class="form-input" placeholder="your@email.com (optional)" autocomplete="email">
             </div>
             <div class="form-group">
               <label class="form-label" for="c-city">City *</label>
@@ -120,8 +120,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="c-message">Message / Details *</label>
-            <textarea id="c-message" name="message" class="form-textarea" placeholder="Please specify your product requirements or project needs..." required style="min-height: 120px;"></textarea>
+            <label class="form-label" for="c-message">Message / Details (Optional)</label>
+            <textarea id="c-message" name="message" class="form-textarea" placeholder="Please specify your product requirements or project needs (optional)..." style="min-height: 120px;"></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-block" style="min-height: 52px; font-size: 1rem;">

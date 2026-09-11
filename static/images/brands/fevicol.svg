@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90" width="100%" height="100%">
+  <defs>
+    <linearGradient id="fevGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#003399" />
+      <stop offset="100%" stop-color="#0055CC" />
+    </linearGradient>
+  </defs>
+  <!-- Pidilite tagline -->
+  <text x="150" y="20" font-family="'Arial', sans-serif" font-size="11" font-weight="700" fill="#E11D48" text-anchor="middle" letter-spacing="3.5">A Pidilite PRODUCT</text>
+  
+  <!-- Two Elephants Iconic Silhouette & Ball -->
+  <g transform="translate(150, 42) scale(0.65)">
+    <!-- Center Ball -->
+    <circle cx="0" cy="0" r="9" fill="#F59E0B" stroke="#003399" stroke-width="1.5" />
+    <!-- Left Elephant trunk holding ball -->
+    <path d="M-9 0 Q-20 -5 -28 -2 C-38 3, -48 10, -55 5 C-60 0, -58 -15, -45 -18 C-35 -20, -25 -15, -20 -8" fill="none" stroke="#003399" stroke-width="4" stroke-linecap="round" />
+    <!-- Right Elephant trunk holding ball -->
+    <path d="M9 0 Q20 -5 28 -2 C38 3, 48 10, 55 5 C60 0, 58 -15, 45 -18 C35 -20, 25 -15, 20 -8" fill="none" stroke="#003399" stroke-width="4" stroke-linecap="round" />
+  </g>
+
+  <!-- FEVICOL bold typography -->
+  <text x="150" y="68" font-family="'Impact', 'Arial Black', sans-serif" font-size="40" font-weight="900" fill="url(#fevGrad)" text-anchor="middle" letter-spacing="2">FEVICOL</text>
+  
+  <!-- Underline arc -->
+  <path d="M38 76 Q150 86 262 76" fill="none" stroke="#F59E0B" stroke-width="3.5" stroke-linecap="round" />
+</svg>

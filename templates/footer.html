@@ -1,6 +1,6 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-grid" style="grid-template-columns: 2fr 1fr 1fr;">
 
       <!-- ── Company Info Column ── -->
       <div>
@@ -8,13 +8,17 @@
           <img src="{{ url_for('static', filename='images/logo/sathik_logo_icon.svg') }}" alt="Sathik Groups" class="brand-logo-icon" width="40" height="40">
           <div class="brand-text">
             <span class="brand-name" style="color: #ffffff;">SATHIK GROUPS</span>
-            <span class="brand-sub" style="color: #F59E0B;">PLUMBING • HARDWARE • BATH &amp; KITCHEN</span>
+            <span class="brand-sub" style="color: #F59E0B;">House of Hardware solutions</span>
           </div>
         </div>
 
-        <p style="color: #94A3B8; font-size: 0.9rem; max-width: 22rem; line-height: 1.7; margin-bottom: 1.5rem;">
-          Authorized retail dealer for 20+ premier building material brands. Supplying high-grade plumbing systems, hardware, and luxury sanitaryware in Redhills, Chennai since 1964.
-        </p>
+        <ul class="footer-star-points" style="list-style: none; padding: 0; margin: 0 1.5rem 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.875rem;">
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Hardwares</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Paints</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Pumps</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Plumbing</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Bath and Sanitaryware</li>
+        </ul>
 
         <!-- Clickable contact links — tap targets on mobile -->
         <div style="font-size: 0.875rem; color: #CBD5E1; display: flex; flex-direction: column; gap: 0.625rem;">
@@ -24,15 +28,6 @@
           <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
             💬 <strong>WhatsApp: +91 98406 37307</strong>
           </a>
-          <a href="mailto:{{ company.email }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
-            ✉️ {{ company.email }}
-          </a>
-          <a href="mailto:{{ company.email_alt }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none; word-break: break-all;" class="footer-contact-link">
-            ✉️ {{ company.email_alt }}
-          </a>
-          <div style="display: flex; align-items: flex-start; gap: 0.5rem; color: #94A3B8; font-size: 0.8125rem; line-height: 1.5;">
-            📍 {{ company.address }}
-          </div>
         </div>
       </div>
 
@@ -47,27 +42,13 @@
         </ul>
       </div>
 
-      <!-- ── Authorized Brands Column ── -->
+      <!-- ── Warranty Registration Column ── -->
       <div class="footer-col">
-        <h4>Authorized Brands</h4>
+        <h4>Warranty Registration</h4>
         <ul class="footer-links">
-          <li><a href="{{ url_for('brand.brand_detail', slug='jaquar') }}">Jaquar</a></li>
-          <li><a href="{{ url_for('brand.brand_detail', slug='hindware') }}">Hindware</a></li>
-          <li><a href="{{ url_for('brand.brand_detail', slug='cera') }}">CERA</a></li>
-          <li><a href="{{ url_for('brand.brand_detail', slug='astral') }}">Astral Pipes</a></li>
-          <li><a href="{{ url_for('brand.brand_detail', slug='ashirvad') }}">Ashirvad Pipes</a></li>
-          <li><a href="{{ url_for('brand.brand_list') }}" style="color: var(--accent); font-weight: 600;">View All Brands →</a></li>
-        </ul>
-      </div>
-
-      <!-- ── Quick Links Column ── -->
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul class="footer-links">
-          <li><a href="{{ url_for('home.about') }}">About Sathik Groups</a></li>
-          <li><a href="{{ url_for('home.projects') }}">Supplied Projects</a></li>
-          <li><a href="{{ url_for('enquiry.contact') }}">Contact &amp; Enquiry</a></li>
-          <li><a href="{{ url_for('enquiry.contact') }}" style="color: var(--accent); font-weight: 600;">Request Quote →</a></li>
+          <li><a href="#" class="warranty-link">CRI Pumps</a></li>
+          <li><a href="#" class="warranty-link">ESSCO by Jaquar</a></li>
+          <li><a href="#" class="warranty-link">Parryware</a></li>
         </ul>
       </div>
 

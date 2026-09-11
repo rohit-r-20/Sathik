@@ -36,6 +36,17 @@ BUSINESSES = [
 
 # Authorized Brands (All official dealers & suppliers for Sathik Traders)
 BRANDS_LIST = [
+    {'name': 'Asian Paints', 'slug': 'asian-paints', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Godrej Locks', 'slug': 'godrej', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'MRF Paints', 'slug': 'mrf-paints', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Yale Locks', 'slug': 'yale', 'businesses': ['hardware'], 'featured': True, 'country': 'USA'},
+    {'name': 'Link Locks', 'slug': 'link', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Quba Hardware', 'slug': 'quba', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Birla White Putty', 'slug': 'birla-putty', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Pidilite Fevicol', 'slug': 'fevicol', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Dr. Fixit', 'slug': 'dr-fixit', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Fosroc', 'slug': 'fosroc', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Sheenlac', 'slug': 'sheenlac', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
     {'name': 'Jaquar', 'slug': 'jaquar', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
     {'name': 'Hindware', 'slug': 'hindware', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
     {'name': 'C.R.I. Pumps', 'slug': 'cri', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
