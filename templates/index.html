@@ -3,7 +3,8 @@
 {% block title %}Sathik Groups | Premier Building Materials &amp; Sanitaryware Retail Store{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}?v=15">
+<link rel="preload" as="image" href="{{ url_for('static', filename='images/hero/hardware_slide.webp') }}?v=200" fetchpriority="high">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}?v=20">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
 {% endblock %}
 
@@ -14,7 +15,7 @@
   <div class="hero-slides">
     <!-- Slide 1: Door Locks & Asian Paints Store (Default Active Slide) -->
     <div class="hero-slide active"
-      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}?v=105');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.webp') }}?v=200');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -55,7 +56,7 @@
 
     <!-- Slide 2: Plumbing Products Store -->
     <div class="hero-slide"
-      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}?v=105');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.webp') }}?v=200');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -96,7 +97,7 @@
 
     <!-- Slide 3: Luxury Bath & Sanitaryware -->
     <div class="hero-slide hero-slide-bath"
-      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=105');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.webp') }}?v=200');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -178,22 +179,51 @@
     <div class="k-header-row">
       <div class="k-title-box">
         <div class="k-accent-bar"></div>
-        <h2 class="k-title">PRODUCTS CATALOGUE</h2>
+        <div>
+          <h2 class="k-title">PRODUCTS CATALOGUE</h2>
+          <p class="k-subtitle" style="margin: 0.2rem 0 0; font-size: 0.85rem; color: #64748B; font-weight: 500;">
+            Direct access to genuine products from our 3 physical stores
+          </p>
+        </div>
       </div>
 
       <!-- Store Category Filter Tabs -->
       <div class="k-filter-tabs">
-        <button class="k-tab-btn active" onclick="filterHomeCategory('all', this)">All Stores</button>
+        <button class="k-tab-btn active" onclick="filterHomeCategory('all', this)">🏢 All Stores</button>
         <button class="k-tab-btn" onclick="filterHomeCategory('hardware', this)">🔨 Hardware &amp; Paints</button>
         <button class="k-tab-btn" onclick="filterHomeCategory('plumbing', this)">🔧 Plumbing Solutions</button>
         <button class="k-tab-btn" onclick="filterHomeCategory('bath-kitchen', this)">🛁 Bath &amp; Sanitaryware</button>
       </div>
     </div>
 
+    <!-- Quick Department Access Bar -->
+    <div class="k-quick-dept-bar">
+      <span class="k-quick-label">Quick Access:</span>
+      <a href="{{ url_for('product.product_list', business='hardware') }}" class="k-quick-chip">🚪 Door Locks</a>
+      <a href="{{ url_for('product.product_list', business='hardware') }}" class="k-quick-chip">🎨 Asian Paints</a>
+      <a href="{{ url_for('product.product_list', business='plumbing') }}" class="k-quick-chip">🚰 Pipes &amp; Fittings</a>
+      <a href="{{ url_for('product.product_list', business='plumbing') }}" class="k-quick-chip">⚡ Water Pumps</a>
+      <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="k-quick-chip">🚿 Showers &amp; Faucets</a>
+      <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="k-quick-chip">🛁 Bathware</a>
+      <a href="{{ url_for('category.store_list') }}" class="k-quick-chip k-quick-chip-store">🏬 View All Stores &rarr;</a>
+    </div>
+
     <!-- Products Grid (4 columns desktop, 2 columns mobile) -->
     <div class="k-products-grid" id="home-products-grid">
       {% for p in featured_products %}
       <div class="k-prod-card" data-category="{{ p.business_slug }}">
+        <div class="k-prod-card-top">
+          <span class="k-prod-badge-dept {{ p.business_slug }}">
+            {% if p.business_slug == 'plumbing' %}🔧 Plumbing
+            {% elif p.business_slug == 'hardware' %}🔨 Hardware
+            {% elif p.business_slug == 'bath-kitchen' %}🛁 Bathware
+            {% else %}📦 Products
+            {% endif %}
+          </span>
+          {% if p.brand_name %}
+          <span class="k-prod-badge-brand">{{ p.brand_name }}</span>
+          {% endif %}
+        </div>
         <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
           class="k-prod-img-box">
           <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}"
@@ -201,17 +231,18 @@
         </a>
         <div class="k-prod-content">
           <h4 class="k-prod-title">
-            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" title="{{ p.name }}">
               {{ p.name }}
             </a>
           </h4>
-          <div class="k-prod-brand">{{ p.brand_name or (p.business_slug | replace('-', ' ') | title) }}</div>
-          <div class="k-prod-meta">{{ p.sku }}</div>
+          <div class="k-prod-meta-row">
+            <span class="k-prod-sku">{{ p.sku }}</span>
+          </div>
         </div>
         <div class="k-prod-footer">
           <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
             class="k-prod-more-link">
-            More &rarr;
+            Details &rarr;
           </a>
           <button class="k-prod-quote-btn"
             onclick="addToQuoteCart('{{ p.name | escape }}', '{{ p.sku }}', '{{ p.brand_name or '' }}')"
@@ -223,9 +254,9 @@
       {% endfor %}
     </div>
 
-    <div class="text-center" style="margin-top: 2.5rem;">
+    <div class="text-center" style="margin-top: 2rem;">
       <a href="{{ url_for('product.product_list') }}" class="btn btn-primary"
-        style="padding: 0.75rem 2rem; font-weight: 700;">
+        style="padding: 0.85rem 2.25rem; font-weight: 700; border-radius: 8px;">
         Explore Complete Catalogue &rarr;
       </a>
     </div>
@@ -515,6 +546,7 @@
             alt="Sathik Hardwares — Exclusive Door Locks, Architectural Hardware & Asian Paints Store" loading="lazy">
           <div class="showroom-badge-tag">Store 01 • Door Locks &amp; Asian Paints</div>
         </div>
+
         <div class="showroom-details">
           <div class="showroom-number-badge">Store 01 &bull; Door Locks, Architectural Hardware &amp; Paints</div>
           <h3 class="showroom-name">Sathik Hardwares — Door Locks, Hardware &amp; Paints</h3>
@@ -529,15 +561,15 @@
 
           <div class="showroom-phone-block">
             <div class="showroom-phone-line">
-              <span>📱 <strong>Primary Mobile:</strong></span>
+              <span class="phone-label">📱 <strong>Primary Mobile:</strong></span>
               <a href="tel:+919444312624" class="phone-val">+91 94443 12624</a>
             </div>
             <div class="showroom-phone-line">
-              <span>☎️ <strong>Telephone:</strong></span>
+              <span class="phone-label">☎️ <strong>Telephone:</strong></span>
               <a href="tel:04426322624" class="phone-val">044 2632 2624</a>
             </div>
             <div class="showroom-phone-line">
-              <span>✉️ <strong>Email Address:</strong></span>
+              <span class="phone-label">✉️ <strong>Email Address:</strong></span>
               <a href="mailto:sathikhardwares@gmail.com" class="phone-val">sathikhardwares@gmail.com</a>
             </div>
           </div>
@@ -548,22 +580,16 @@
                 style="color:#ef4444; font-weight:600;">Sunday : 9:30 AM to 1:30 PM</span></div>
           </div>
 
-          <!-- Action buttons moved UP above brands -->
-          <div class="showroom-actions" style="margin-top: 1rem; margin-bottom: 1.25rem;">
-            <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-outline btn-sm">
+          <!-- Action buttons with Website Orange Explore Button -->
+          <div class="showroom-actions" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+            <a href="{{ url_for('product.product_list', business='hardware') }}" class="btn btn-showroom-orange">
               📦 Explore Store Products &rarr;
-            </a>
-            <a href="https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca08259f5dd:0xb4f5892651178ee3!8m2!3d13.1901444!4d80.187424!16s%2Fg%2F11clyx6t75?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
-              🗺️ Open Map
             </a>
           </div>
 
-          <!-- Brands moved DOWN below buttons -->
+          <!-- Available Brands in Store -->
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div class="showroom-brands-title">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Asian Paints Colour World</span>
               <span class="showroom-brand-pill">MRF Paints</span>
@@ -582,6 +608,34 @@
             </div>
           </div>
         </div>
+
+        <!-- Store 01 Interactive Google Maps View Card -->
+        <div class="showroom-map-container">
+          <a href="https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca08259f5dd:0xb4f5892651178ee3!8m2!3d13.1901444!4d80.187424!16s%2Fg%2F11clyx6t75?entry=ttu"
+            target="_blank" rel="noopener noreferrer" class="showroom-map-card" title="Click to view Sathik Hardwares on Google Maps">
+            <div class="showroom-map-frame">
+              <iframe
+                src="https://maps.google.com/maps?q=13.1901444,80.187424&hl=en&z=15&output=embed"
+                loading="lazy"
+                title="Sathik Hardwares Google Map Location"
+                aria-hidden="true"
+                tabindex="-1"></iframe>
+              <div class="showroom-map-overlay">
+                <div class="map-badge-pill">
+                  <span class="map-pin-pulse"></span>
+                  <span>🗺️ Open in Google Maps &nearr;</span>
+                </div>
+              </div>
+            </div>
+            <div class="showroom-map-footer">
+              <div class="map-footer-label">
+                <strong>Sathik Hardwares</strong>
+                <span>Redhills, G.N.T. Road</span>
+              </div>
+              <span class="map-footer-btn">Get Directions &rarr;</span>
+            </div>
+          </a>
+        </div>
       </div>
 
       <!-- Store 2: Sathik Traders — Plumbing & Water Tech Solutions -->
@@ -593,6 +647,7 @@
             class="showroom-main-img" alt="Sathik Traders — Plumbing & Industrial Water Solutions Store" loading="lazy">
           <div class="showroom-badge-tag">Store 02 • Plumbing &amp; Water Tech</div>
         </div>
+
         <div class="showroom-details">
           <div class="showroom-number-badge">Store 02 &bull; Industrial Piping &amp; Pumps</div>
           <h3 class="showroom-name">Sathik Traders — Plumbing &amp; Industrial Water Solutions</h3>
@@ -607,15 +662,15 @@
 
           <div class="showroom-phone-block">
             <div class="showroom-phone-line">
-              <span>📱 <strong>Primary Mobile:</strong></span>
+              <span class="phone-label">📱 <strong>Primary Mobile:</strong></span>
               <a href="tel:+919444323644" class="phone-val">+91 94443 23644</a>
             </div>
             <div class="showroom-phone-line">
-              <span>☎️ <strong>Telephone:</strong></span>
+              <span class="phone-label">☎️ <strong>Telephone:</strong></span>
               <a href="tel:04426322644" class="phone-val">044 2632 2644</a>
             </div>
             <div class="showroom-phone-line">
-              <span>✉️ <strong>Email Address:</strong></span>
+              <span class="phone-label">✉️ <strong>Email Address:</strong></span>
               <a href="mailto:sathiktradersredhills@gmail.com" class="phone-val">sathiktradersredhills@gmail.com</a>
             </div>
           </div>
@@ -626,22 +681,16 @@
                 style="color:#ef4444; font-weight:600;">Sunday: 9:30 AM to 1:30 PM</span></div>
           </div>
 
-          <!-- Action buttons moved UP above brands -->
-          <div class="showroom-actions" style="margin-top: 1rem; margin-bottom: 1.25rem;">
-            <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-outline btn-sm">
+          <!-- Action buttons with Website Orange Explore Button -->
+          <div class="showroom-actions" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+            <a href="{{ url_for('product.product_list', business='plumbing') }}" class="btn btn-showroom-orange">
               📦 Explore Store Products &rarr;
-            </a>
-            <a href="https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1846955,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca07fe216ad:0x247d6104ae5d7990!8m2!3d13.1899241!4d80.1872704!16s%2Fg%2F11b_22ysmq?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
-              🗺️ Open Map
             </a>
           </div>
 
-          <!-- Brands moved DOWN below buttons -->
+          <!-- Available Brands in Store -->
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div class="showroom-brands-title">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Astral Pipes</span>
               <span class="showroom-brand-pill">Ashirvad Pipes</span>
@@ -655,6 +704,34 @@
             </div>
           </div>
         </div>
+
+        <!-- Store 02 Interactive Google Maps View Card -->
+        <div class="showroom-map-container">
+          <a href="https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1846955,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca07fe216ad:0x247d6104ae5d7990!8m2!3d13.1899241!4d80.1872704!16s%2Fg%2F11b_22ysmq?entry=ttu"
+            target="_blank" rel="noopener noreferrer" class="showroom-map-card" title="Click to view Sathik Traders on Google Maps">
+            <div class="showroom-map-frame">
+              <iframe
+                src="https://maps.google.com/maps?q=13.1899241,80.1872704&hl=en&z=15&output=embed"
+                loading="lazy"
+                title="Sathik Traders Google Map Location"
+                aria-hidden="true"
+                tabindex="-1"></iframe>
+              <div class="showroom-map-overlay">
+                <div class="map-badge-pill">
+                  <span class="map-pin-pulse"></span>
+                  <span>🗺️ Open in Google Maps &nearr;</span>
+                </div>
+              </div>
+            </div>
+            <div class="showroom-map-footer">
+              <div class="map-footer-label">
+                <strong>Sathik Traders</strong>
+                <span>Redhills, Dharga Street</span>
+              </div>
+              <span class="map-footer-btn">Get Directions &rarr;</span>
+            </div>
+          </a>
+        </div>
       </div>
 
       <!-- Store 3: Sathik Enterprises — Bathware & Sanitaryware -->
@@ -666,6 +743,7 @@
             alt="Sathik Enterprises Bathware & Sanitaryware Store" loading="lazy">
           <div class="showroom-badge-tag">Store 03 • Bath &amp; Sanitaryware</div>
         </div>
+
         <div class="showroom-details">
           <div class="showroom-number-badge">Store 03 &bull; Bathware, Faucets &amp; Sanitaryware</div>
           <h3 class="showroom-name">Sathik Enterprises — Bathware &amp; Sanitaryware Store</h3>
@@ -680,17 +758,16 @@
 
           <div class="showroom-phone-block">
             <div class="showroom-phone-line">
-              <span>📱 <strong>Primary Mobile:</strong></span>
+              <span class="phone-label">📱 <strong>Primary Mobile:</strong></span>
               <a href="tel:+919840637307" class="phone-val">+91 98406 37307</a>
             </div>
             <div class="showroom-phone-line">
-              <span>📱 <strong>Secondary Mobile:</strong></span>
+              <span class="phone-label">📱 <strong>Secondary Mobile:</strong></span>
               <a href="tel:+919444302654" class="phone-val">+91 94443 02654</a>
             </div>
             <div class="showroom-phone-line">
-              <span>✉️ <strong>Email Address:</strong></span>
-              <a href="mailto:sathikenterprisesredhills@gmail.com"
-                class="phone-val">sathikenterprisesredhills@gmail.com</a>
+              <span class="phone-label">✉️ <strong>Email Address:</strong></span>
+              <a href="mailto:sathikenterprisesredhills@gmail.com" class="phone-val">sathikenterprisesredhills@gmail.com</a>
             </div>
           </div>
 
@@ -700,22 +777,16 @@
                 style="color:#ef4444; font-weight:600;">Sunday: 9:30 AM to 1:30 PM</span></div>
           </div>
 
-          <!-- Action buttons moved UP above brands -->
-          <div class="showroom-actions" style="margin-top: 1rem; margin-bottom: 1.25rem;">
-            <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-outline btn-sm">
+          <!-- Action buttons with Website Orange Explore Button -->
+          <div class="showroom-actions" style="margin-top: 0.75rem; margin-bottom: 0.75rem;">
+            <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="btn btn-showroom-orange">
               📦 Explore Store Products &rarr;
-            </a>
-            <a href="https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527de3e1b1d479:0xbfe2d641b949c429!8m2!3d13.1908874!4d80.1864791!16s%2Fg%2F11wq7psbk4?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
-              target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="border-color: #cbd5e1;">
-              🗺️ Open Map
             </a>
           </div>
 
-          <!-- Brands moved DOWN below buttons -->
+          <!-- Available Brands in Store -->
           <div>
-            <div
-              style="font-size: 0.8rem; font-weight: 700; color: var(--primary-500); text-transform: uppercase; margin-bottom: 0.4rem; letter-spacing: 0.05em;">
-              Available Brands in Store:</div>
+            <div class="showroom-brands-title">Available Brands in Store:</div>
             <div class="showroom-brands-pill-wrap">
               <span class="showroom-brand-pill">Jaquar</span>
               <span class="showroom-brand-pill">Hindware</span>
@@ -730,6 +801,34 @@
               <span class="showroom-brand-pill">Kreesta Sinks</span>
             </div>
           </div>
+        </div>
+
+        <!-- Store 03 Interactive Google Maps View Card -->
+        <div class="showroom-map-container">
+          <a href="https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527de3e1b1d479:0xbfe2d641b949c429!8m2!3d13.1908874!4d80.1864791!16s%2Fg%2F11wq7psbk4?entry=ttu"
+            target="_blank" rel="noopener noreferrer" class="showroom-map-card" title="Click to view Sathik Enterprises on Google Maps">
+            <div class="showroom-map-frame">
+              <iframe
+                src="https://maps.google.com/maps?q=13.1908874,80.1864791&hl=en&z=15&output=embed"
+                loading="lazy"
+                title="Sathik Enterprises Google Map Location"
+                aria-hidden="true"
+                tabindex="-1"></iframe>
+              <div class="showroom-map-overlay">
+                <div class="map-badge-pill">
+                  <span class="map-pin-pulse"></span>
+                  <span>🗺️ Open in Google Maps &nearr;</span>
+                </div>
+              </div>
+            </div>
+            <div class="showroom-map-footer">
+              <div class="map-footer-label">
+                <strong>Sathik Enterprises</strong>
+                <span>Redhills, G.N.T. Road</span>
+              </div>
+              <span class="map-footer-btn">Get Directions &rarr;</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -757,9 +856,9 @@
         <h2 class="legacy-title">Building Trust, Supplying Quality</h2>
         <div class="legacy-story-body">
           <p>
-            For over 60 years, <strong>Sathik Groups</strong> has been helping families and builders with genuine
-            Hardware, Plumbing, and Building materials. Sourced directly from authorized manufacturers, we stand
-            side-by-side with you as you build your dream home.
+            For over 60 years, <strong>Sathik Groups</strong> has been providing traditional services and authentic products to the families and builders 
+            with genuine Hardware, Plumbing, and Building materials. Sourced directly from authorized manufacturers, 
+            we stand by your side to build your dream home.
           </p>
           <p>
             Our story started in <strong>1964 with Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong> who founded

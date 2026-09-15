@@ -293,58 +293,81 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.625rem;
   padding: 0.875rem 1.75rem;
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: var(--font-sans);
   /* minimum 44px touch target for mobile */
   min-height: 44px;
   touch-action: manipulation;
   user-select: none;
   -webkit-user-select: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn-primary {
-  background-color: var(--accent);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(194, 65, 12, 0.25);
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.32);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 88, 12, 0.45);
+  color: #ffffff !important;
 }
 
 .btn-secondary {
-  background-color: var(--primary-900);
-  color: #ffffff;
+  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary-800);
+  background: linear-gradient(135deg, #334155 0%, #1E293B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3);
+  color: #ffffff !important;
 }
 
 .btn-outline {
-  border-color: var(--border);
-  color: var(--primary-800);
-  background: #ffffff;
+  border: 1px solid #CBD5E1;
+  color: #0F172A !important;
+  background: #F1F5F9;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .btn-outline:hover {
-  border-color: var(--primary-900);
-  color: var(--primary-900);
-  background: var(--surface);
+  border-color: #0F172A;
+  color: #ffffff !important;
+  background: #0F172A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
 }
 
 .btn-whatsapp {
-  background-color: #16A34A;
-  color: #ffffff;
+  background: linear-gradient(135deg, #16A34A 0%, #15803D 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
 }
 
 .btn-whatsapp:hover {
-  background-color: #15803D;
+  background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.45);
+  color: #ffffff !important;
 }
 
 .btn-sm {
@@ -440,6 +463,35 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.14em;
   color: #B45309;
   margin-top: 0.12rem;
+}
+
+/* Footer Brand Typography Stretch (Single-line alignment with subtitle below) */
+.footer-brand .brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.footer-brand .brand-name {
+  font-weight: 850;
+  font-size: 1.25rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  line-height: 1.15;
+  white-space: nowrap;
+  display: block;
+}
+
+.footer-brand .brand-sub {
+  font-size: 0.65rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #F59E0B !important;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+  display: block;
 }
 
 .nav-menu {

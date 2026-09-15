@@ -616,3 +616,52 @@
     justify-content: center;
   }
 }
+
+/* ============================================================
+   Buttons Styling on Products Page
+   (Font set to Times New Roman strictly on the products page as requested)
+   ============================================================ */
+.products-layout button,
+.products-layout .btn,
+.product-card-footer .btn,
+.product-card-footer button,
+.filter-toggle-btn,
+.filter-panel button,
+.filter-panel .btn,
+.pagination .btn,
+.store-explore-btn,
+section.section .btn,
+section.section-sm .btn {
+  font-family: 'Times New Roman', Times, serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Lively button enhancements on Products Page */
+.product-card-footer .btn-primary {
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 3px 10px rgba(234, 88, 12, 0.28);
+  transition: all 0.2s ease;
+}
+
+.product-card-footer .btn-primary:hover {
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 16px rgba(234, 88, 12, 0.42);
+}
+
+.product-card-footer .btn-outline {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  color: #0F172A !important;
+  transition: all 0.2s ease;
+}
+
+.product-card-footer .btn-outline:hover {
+  background: #0F172A;
+  color: #ffffff !important;
+  border-color: #0F172A;
+  transform: translateY(-1px);
+}

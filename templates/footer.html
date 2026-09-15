@@ -5,27 +5,41 @@
       <!-- ── Company Info Column ── -->
       <div>
         <div class="footer-brand" style="margin-bottom: 1.25rem;">
-          <img src="{{ url_for('static', filename='images/logo/sathik_logo_icon.svg') }}" alt="Sathik Groups" class="brand-logo-icon" width="40" height="40">
+          <img src="{{ url_for('static', filename='images/logo/sathik_logo_icon.svg') }}" alt="Sathik Groups"
+            class="brand-logo-icon" width="40" height="40">
           <div class="brand-text">
             <span class="brand-name" style="color: #ffffff;">SATHIK GROUPS</span>
             <span class="brand-sub" style="color: #F59E0B;">House of Hardware solutions</span>
           </div>
         </div>
 
-        <ul class="footer-star-points" style="list-style: none; padding: 0; margin: 0 1.5rem 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.875rem;">
-          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Hardwares</li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Paints</li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Pumps</li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Plumbing</li>
-          <li style="display: flex; align-items: center; gap: 0.5rem;"><span style="color: #F59E0B; font-size: 0.85rem;">★</span> Bath and Sanitaryware</li>
+        <ul class="footer-star-points"
+          style="list-style: none; padding: 0; margin: 0 1.5rem 1.5rem 0; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.875rem;">
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Hardwares</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Paints</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Pumps</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Plumbing</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Bath and Sanitaryware</li>
+          <li style="display: flex; align-items: center; gap: 0.5rem;"><span
+              style="color: #F59E0B; font-size: 0.85rem;">★</span> Electricals</li>
         </ul>
 
         <!-- Clickable contact links — tap targets on mobile -->
         <div style="font-size: 0.875rem; color: #CBD5E1; display: flex; flex-direction: column; gap: 0.625rem;">
-          <a href="tel:{{ company.mobile if company else '+919840637307' }}" style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+          <a href="tel:{{ company.mobile if company else '+919840637307' }}"
+            style="color: #CBD5E1; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;"
+            class="footer-contact-link">
             📱 <strong>Cell: +91 98406 37307</strong>
           </a>
-          <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;" class="footer-contact-link">
+          <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
+            rel="noopener noreferrer"
+            style="color: #4ADE80; display: flex; align-items: center; gap: 0.5rem; min-height: 36px; text-decoration: none;"
+            class="footer-contact-link">
             💬 <strong>WhatsApp: +91 98406 37307</strong>
           </a>
         </div>
