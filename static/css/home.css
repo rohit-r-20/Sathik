@@ -1586,29 +1586,32 @@
   z-index: 2;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 
-.showroom-img-frame:hover img {
+.showroom-img-frame:hover .showroom-main-img {
   transform: scale(1.03);
 }
 
 .showroom-badge-tag {
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: rgba(15, 23, 42, 0.9);
+  bottom: 0.65rem;
+  left: 0.65rem;
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(8px);
   color: #ffffff;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   padding: 0.25rem 0.65rem;
   border-radius: 50px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  z-index: 2;
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .showroom-details {
