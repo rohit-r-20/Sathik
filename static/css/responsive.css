@@ -938,18 +938,18 @@ body.modal-open {
   }
 
   .hero-slides .hero-slide:nth-child(1) {
-    background-image: url('/static/images/hero/hardware_slide_mobile.png?v=14') !important;
+    background-image: url('/static/images/hero/hardware_slide.png?v=105') !important;
     background-position: center top !important;
   }
 
   .hero-slides .hero-slide:nth-child(2) {
-    background-image: url('/static/images/hero/plumbing_slide.png?v=14') !important;
+    background-image: url('/static/images/hero/plumbing_slide.png?v=105') !important;
     background-position: center top !important;
   }
 
   .hero-slide.hero-slide-bath,
   .hero-slides .hero-slide:nth-child(3) {
-    background-image: url('/static/images/hero/bath_kitchen_slide_mobile.png?v=14') !important;
+    background-image: url('/static/images/hero/bath_kitchen_slide.png?v=105') !important;
     background-position: center top !important;
   }
 

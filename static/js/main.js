@@ -415,8 +415,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (qeNameInput) delete qeNameInput.dataset.touched;
         if (qePhoneInput) delete qePhoneInput.dataset.touched;
 
+        const waBtn = document.getElementById('qe-whatsapp-action-btn');
+        if (waBtn && data.whatsapp_url) {
+          waBtn.href = data.whatsapp_url;
+          waBtn.style.display = 'flex';
+        }
+
         closeModal('quick-enquiry-modal');
         openModal('quick-enquiry-success-modal');
+
+        // Automatically open WhatsApp in a new tab for instant handoff
+        if (data.whatsapp_url) {
+          setTimeout(() => {
+            try {
+              window.open(data.whatsapp_url, '_blank');
+            } catch (e) {
+              console.log('Popup blocked; user can tap WhatsApp button.');
+            }
+          }, 600);
+        }
       } else {
         if (submitBtn) submitBtn.disabled = false;
         alert(data.message || 'Submission failed. Please check your entries.');
@@ -631,16 +648,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.success) {
         if (alertEl) {
           alertEl.className = 'alert alert-success';
-          alertEl.textContent = data.message;
+          alertEl.innerHTML = `<div>${data.message}</div>${data.whatsapp_url ? `<a href="${data.whatsapp_url}" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background:#25D366; color:#fff; font-weight:700; display:inline-flex; align-items:center; gap:0.4rem; margin-top:0.6rem; text-decoration:none; padding:0.5rem 1rem; border-radius:6px;">💬 Open WhatsApp to Send Quote List</a>` : ''}`;
           alertEl.style.display = 'block';
         } else {
           alert(data.message);
         }
         formEl.reset();
         window.clearQuoteCart();
+        
+        if (data.whatsapp_url) {
+          setTimeout(() => {
+            try {
+              window.open(data.whatsapp_url, '_blank');
+            } catch(e) {}
+          }, 600);
+        }
+        
         setTimeout(() => {
           window.closeModal('cart-modal');
-        }, 2500);
+        }, 3500);
       } else {
         const errText = data.errors ? Object.values(data.errors).join(', ') : (data.message || 'Submission failed');
         if (alertEl) {

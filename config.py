@@ -15,6 +15,12 @@ class Config:
     RESEND_FROM = os.getenv('RESEND_FROM', 'onboarding@resend.dev')
     RESEND_TO = os.getenv('RESEND_TO', 'info@sathikgroups.com')
     
+    # WhatsApp Automation Configuration
+    WHATSAPP_TARGET_PHONE = os.getenv('WHATSAPP_TARGET_PHONE', '919840637307')
+    CALLMEBOT_API_KEY = os.getenv('CALLMEBOT_API_KEY', '')
+    CALLMEBOT_PHONE = os.getenv('CALLMEBOT_PHONE', '')
+    WHATSAPP_WEBHOOK_URL = os.getenv('WHATSAPP_WEBHOOK_URL', '')
+    
     PORT = int(os.getenv('PORT', 5001))
     
     # Upload Settings

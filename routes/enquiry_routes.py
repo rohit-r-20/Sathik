@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 from services.enquiry_service import EnquiryService
 from services.email_service import send_enquiry_email
+from services.whatsapp_service import process_whatsapp_enquiry
 from utils.constants import COMPANY_INFO
 
 enquiry_bp = Blueprint('enquiry', __name__)
@@ -53,9 +54,18 @@ def submit_enquiry():
             except Exception as mail_err:
                 print(f"⚠️ Email notification trigger notice: {mail_err}")
 
+            # WhatsApp Automation Trigger & URL generation
+            whatsapp_info = {}
+            try:
+                whatsapp_info = process_whatsapp_enquiry(enquiry_data)
+            except Exception as wa_err:
+                print(f"⚠️ WhatsApp processing notice: {wa_err}")
+
             return jsonify({
                 "success": True,
-                "message": "Thank you! Our team will contact you shortly."
+                "message": "Thank you! Your quote request has been received.",
+                "whatsapp_url": whatsapp_info.get("whatsapp_url"),
+                "target_phone": whatsapp_info.get("target_phone")
             }), 200
         else:
             return jsonify({

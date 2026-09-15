@@ -32,6 +32,7 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+*.bak
 
 # IDE
 .vscode/settings.json

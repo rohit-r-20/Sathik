@@ -46,20 +46,39 @@
           {% if enquiries %}
             {% for e in enquiries %}
             <tr>
-              <td style="font-size: 0.75rem; color: var(--primary-500);">{{ e.created_at.strftime('%Y-%m-%d %H:%M') if e.created_at else '' }}</td>
+              <td style="font-size: 0.75rem; color: var(--primary-500);">
+                {% if e.created_at %}
+                  {{ e.created_at[:16] if e.created_at is string else (e.created_at.strftime('%Y-%m-%d %H:%M') if hasattr(e.created_at, 'strftime') else e.created_at) }}
+                {% else %}
+                  -
+                {% endif %}
+              </td>
               <td>
-                <strong>{{ e.name }}</strong><br>
-                <span style="font-size: 0.75rem; color: var(--primary-500);">{{ e.company or 'Individual' }}</span>
+                <strong>{{ e.name or e.customer_name or 'Customer' }}</strong><br>
+                <span style="font-size: 0.75rem; color: var(--primary-500);">{{ e.company or e.address or 'Individual' }}</span>
               </td>
               <td style="font-size: 0.8125rem;">
-                📞 {{ e.phone }}<br>
-                ✉️ {{ e.email }}
+                <div>📞 {{ e.phone or e.mobile or 'N/A' }}</div>
+                {% if e.phone or e.mobile %}
+                  {% set raw_num = (e.phone or e.mobile)|replace(' ', '')|replace('+', '')|replace('-', '') %}
+                  {% set wa_num = ('91' ~ raw_num) if raw_num|length == 10 else raw_num %}
+                  <a href="https://wa.me/{{ wa_num }}?text={{ ('Hello ' ~ (e.name or e.customer_name or 'there') ~ ', thank you for contacting Sathik Traders regarding ' ~ (e.product_name or 'your quote request') ~ '. We are here to assist you.')|urlencode }}" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     style="background: #25D366; color: #ffffff; font-size: 0.72rem; padding: 0.25rem 0.6rem; display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.35rem; text-decoration: none; border-radius: 4px; font-weight: 700;">
+                    💬 WhatsApp Reply
+                  </a>
+                {% endif %}
+                {% if e.email %}
+                  <div style="margin-top: 0.25rem; font-size: 0.75rem; color: var(--primary-500);">✉️ {{ e.email }}</div>
+                {% endif %}
               </td>
               <td>
                 {% if e.product_name %}
-                  <strong style="color: var(--accent);">{{ e.product_name }}</strong> (SKU: {{ e.product_sku }})<br>
+                  <strong style="color: var(--accent);">{{ e.product_name }}</strong>
+                  {% if e.product_sku %}<span style="font-size:0.75rem; color:var(--primary-500);">(SKU: {{ e.product_sku }})</span>{% endif %}<br>
                 {% endif %}
-                <span style="font-size: 0.8125rem; color: var(--primary-600);">{{ e.message }}</span>
+                <span style="font-size: 0.8125rem; color: var(--primary-600); white-space: pre-line;">{{ e.message or 'No specific notes' }}</span>
               </td>
               <td>
                 <span class="badge {% if e.status == 'new' %}badge-new{% elif e.status == 'responded' %}badge-featured{% else %}badge{% endif %}">

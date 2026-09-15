@@ -2,10 +2,20 @@ from datetime import datetime, timezone
 from database.supabase import get_supabase
 
 def format_record(record):
-    """Ensure record has _id field for template backward compatibility."""
+    """Ensure record has _id field and name/phone aliases for template compatibility."""
     if isinstance(record, dict):
         if 'id' in record and '_id' not in record:
             record['_id'] = str(record['id'])
+        if 'customer_name' in record and 'name' not in record:
+            record['name'] = record['customer_name']
+        elif 'name' in record and 'customer_name' not in record:
+            record['customer_name'] = record['name']
+        if 'mobile' in record and 'phone' not in record:
+            record['phone'] = record['mobile']
+        elif 'phone' in record and 'mobile' not in record:
+            record['mobile'] = record['phone']
+        if 'address' in record and 'city' not in record:
+            record['city'] = record['address']
     return record
 
 class EnquiryService:

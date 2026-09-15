@@ -14,7 +14,7 @@
   <div class="hero-slides">
     <!-- Slide 1: Door Locks & Asian Paints Store (Default Active Slide) -->
     <div class="hero-slide active"
-      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}?v=16');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/hardware_slide.png') }}?v=105');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -55,7 +55,7 @@
 
     <!-- Slide 2: Plumbing Products Store -->
     <div class="hero-slide"
-      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}?v=16');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.png') }}?v=105');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -96,7 +96,7 @@
 
     <!-- Slide 3: Luxury Bath & Sanitaryware -->
     <div class="hero-slide hero-slide-bath"
-      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=16');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/bath_kitchen_slide.png') }}?v=105');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
@@ -315,7 +315,7 @@
       ] %}
       <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=6" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=7" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -337,7 +337,7 @@
       ] %}
       <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip" aria-hidden="true" tabindex="-1">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=5" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=7" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -351,7 +351,7 @@
     <div class="brand-ticker brand-ticker--right">
       {% for slug, ext, name, cat in [
       ('birla-putty', 'svg', 'BIRLA WHITE', 'WallCare Putty'),
-      ('fevicol', 'svg', 'FEVICOL', 'Pidilite Adhesives'),
+      ('fevicol', 'png', 'FEVICOL', 'Pidilite Adhesives'),
       ('dr-fixit', 'svg', 'DR. FIXIT', 'Waterproofing Solutions'),
       ('fosroc', 'jpg', 'FOSROC', 'Construction Chemicals'),
       ('sheenlac', 'svg', 'SHEENLAC', 'Paints & Wood Finishes'),
@@ -364,7 +364,7 @@
       ] %}
       <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=5" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=7" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -374,7 +374,7 @@
       <!-- Duplicate set for seamless loop -->
       {% for slug, ext, name, cat in [
       ('birla-putty', 'svg', 'BIRLA WHITE', 'WallCare Putty'),
-      ('fevicol', 'svg', 'FEVICOL', 'Pidilite Adhesives'),
+      ('fevicol', 'png', 'FEVICOL', 'Pidilite Adhesives'),
       ('dr-fixit', 'svg', 'DR. FIXIT', 'Waterproofing Solutions'),
       ('fosroc', 'jpg', 'FOSROC', 'Construction Chemicals'),
       ('sheenlac', 'svg', 'SHEENLAC', 'Paints & Wood Finishes'),
@@ -387,7 +387,7 @@
       ] %}
       <a href="{{ url_for('brand.brand_detail', slug=slug) }}" class="brand-chip" aria-hidden="true" tabindex="-1">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=5" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=7" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -466,7 +466,7 @@
       <!-- Project 2: Apartments & Residential Communities -->
       <div class="project-card">
         <div class="project-header">
-          <img src="{{ url_for('static', filename='images/projects/apartments_residential.jpg') }}"
+          <img src="{{ url_for('static', filename='images/projects/apartments_residential.jpg') }}?v=2"
             alt="Apartments &amp; Residential Projects" class="project-image">
         </div>
         <div class="project-body">
@@ -479,7 +479,7 @@
       <!-- Project 3: Industries & Commercial Sites -->
       <div class="project-card">
         <div class="project-header">
-          <img src="{{ url_for('static', filename='images/projects/industrial_commercial.jpg') }}"
+          <img src="{{ url_for('static', filename='images/projects/industrial_commercial.jpg') }}?v=2"
             alt="Industries &amp; Commercial Sites" class="project-image">
         </div>
         <div class="project-body">
@@ -544,7 +544,7 @@
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 8:30 PM &nbsp;|&nbsp; <span
+            <div><strong>Working Hours:</strong> <span style="color:#059669; font-weight:600;">Mon To Sat: 9:00 AM to 8:30 PM</span> &nbsp;|&nbsp; <span
                 style="color:#ef4444; font-weight:600;">Sunday : 9:30 AM to 1:30 PM</span></div>
           </div>
 
@@ -622,7 +622,7 @@
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:00 AM to 8:00 PM &nbsp;|&nbsp; <span
+            <div><strong>Working Hours:</strong> <span style="color:#059669; font-weight:600;">Mon To Sat: 9:00 AM to 8:00 PM</span> &nbsp;|&nbsp; <span
                 style="color:#ef4444; font-weight:600;">Sunday: 9:30 AM to 1:30 PM</span></div>
           </div>
 
@@ -696,7 +696,7 @@
 
           <div class="showroom-hours-line">
             <span style="font-size: 1.1rem;">⏰</span>
-            <div><strong>Working Hours:</strong> Mon To Sat 9:30 AM to 9:00 PM &nbsp;|&nbsp; <span
+            <div><strong>Working Hours:</strong> <span style="color:#059669; font-weight:600;">Mon To Sat: 9:30 AM to 9:00 PM</span> &nbsp;|&nbsp; <span
                 style="color:#ef4444; font-weight:600;">Sunday: 9:30 AM to 1:30 PM</span></div>
           </div>
 
