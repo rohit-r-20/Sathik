@@ -533,6 +533,11 @@ body.modal-open {
     max-width: 140px;
     max-height: 58px;
   }
+  .brand-logo-raw[alt*="GROHE"],
+  .brand-logo-raw[alt*="Grohe"] {
+    max-width: 105px;
+    max-height: 40px;
+  }
 
   /* ── Section Header Flex Alignment ── */
   .section-header-flex {
@@ -836,6 +841,11 @@ body.modal-open {
   .brand-logo-raw {
     max-width: 120px;
     max-height: 48px;
+  }
+  .brand-logo-raw[alt*="GROHE"],
+  .brand-logo-raw[alt*="Grohe"] {
+    max-width: 88px;
+    max-height: 34px;
   }
 
   .products-grid {

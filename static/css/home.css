@@ -453,6 +453,12 @@
   transition: transform 0.25s ease;
 }
 
+.brand-logo-raw[alt*="GROHE"],
+.brand-logo-raw[alt*="Grohe"] {
+  max-width: 140px;
+  max-height: 52px;
+}
+
 .brand-chip:hover .brand-logo-raw {
   transform: scale(1.05);
 }
