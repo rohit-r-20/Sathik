@@ -41,6 +41,6 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 
-# Uploads & Large Media
-uploads/
+# Uploads (Allow static/uploads in repo)
+!static/uploads/
 

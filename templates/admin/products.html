@@ -68,7 +68,7 @@
             <tr>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <img src="{{ p.images[0].url if p.images and p.images[0].url else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" style="width: 44px; height: 44px; object-fit: contain; border-radius: 6px; border: 1px solid var(--border); background: #fff; padding: 2px;">
+                  <img src="{{ p.images[0].url if p.images and p.images[0].url else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" onerror="this.onerror=null; this.src='/static/images/placeholder.jpg';" style="width: 44px; height: 44px; object-fit: contain; border-radius: 6px; border: 1px solid var(--border); background: #fff; padding: 2px;">
                   <div>
                     <strong>{{ p.name }}</strong>
                     {% if p.is_featured %}<span class="badge" style="background:#FEF3C7; color:#92400E; font-size:0.65rem; margin-left: 0.25rem;">Featured</span>{% endif %}
@@ -113,7 +113,8 @@
                             description: '{{ (p.description or "")|escape }}',
                             is_featured: {% if p.is_featured %}true{% else %}false{% endif %},
                             is_new: {% if p.is_new %}true{% else %}false{% endif %},
-                            is_active: {% if p.is_active %}true{% else %}false{% endif %}
+                            is_active: {% if p.is_active %}true{% else %}false{% endif %},
+                            image_url: '{{ p.images[0].url if p.images and p.images[0].url else "" }}'
                           })"
                           style="padding: 0.35rem 0.65rem; font-size: 0.8rem;">
                     ✏️ Edit
@@ -226,8 +227,13 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">Product Image</label>
+              <label class="form-label">Product Image File</label>
               <input type="file" name="image" class="form-input" accept="image/*">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Or Image Web URL (Optional)</label>
+              <input type="url" name="image_url" class="form-input" placeholder="https://example.com/product.jpg">
             </div>
 
             <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem;">
@@ -311,8 +317,13 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label">Product Image (Leave blank to keep existing)</label>
+              <label class="form-label">Product Image File (Leave blank to keep existing)</label>
               <input type="file" name="image" class="form-input" accept="image/*">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Or Image Web URL (Optional)</label>
+              <input type="url" id="edit-image-url" name="image_url" class="form-input" placeholder="https://example.com/product.jpg">
             </div>
 
             <div style="display: flex; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
@@ -438,6 +449,10 @@
     document.getElementById('edit-is-featured').checked = !!product.is_featured;
     document.getElementById('edit-is-new').checked = !!product.is_new;
     document.getElementById('edit-is-active').checked = !!product.is_active;
+    
+    // Set image url
+    const editImgUrlEl = document.getElementById('edit-image-url');
+    if (editImgUrlEl) editImgUrlEl.value = product.image_url || '';
     
     openModal('edit-product-modal');
   }

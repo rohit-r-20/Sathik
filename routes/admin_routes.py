@@ -87,8 +87,8 @@ def create_product():
             flash('Product Name and SKU are required.', 'danger')
             return redirect(url_for('admin.products'))
 
-        # Handle image upload
-        image_url = ''
+        # Handle image upload or direct image URL
+        image_url = data.get('image_url', '').strip()
         if 'image' in request.files and request.files['image'].filename:
             file = request.files['image']
             ok, res = save_uploaded_image(file, current_app.config['UPLOAD_FOLDER'], current_app.config['ALLOWED_EXTENSIONS'])
@@ -149,17 +149,18 @@ def edit_product(product_id):
             flash('Product Name and SKU are required.', 'danger')
             return redirect(url_for('admin.products'))
 
-        # Retain old image url if none uploaded
-        existing = ProductModel.find_by_id(product_id)
-        image_url = ''
-        if existing and existing.get('images') and len(existing['images']) > 0:
-            image_url = existing['images'][0].get('url', '')
-
+        # Handle image upload or direct image URL
+        image_url = data.get('image_url', '').strip()
         if 'image' in request.files and request.files['image'].filename:
             file = request.files['image']
             ok, res = save_uploaded_image(file, current_app.config['UPLOAD_FOLDER'], current_app.config['ALLOWED_EXTENSIONS'])
             if ok:
                 image_url = res
+
+        if not image_url:
+            existing = ProductModel.find_by_id(product_id)
+            if existing and existing.get('images') and len(existing['images']) > 0:
+                image_url = existing['images'][0].get('url', '')
 
         business_slug = data.get('business_slug', 'plumbing').strip()
         category_slug = data.get('category_slug', 'pipes').strip()

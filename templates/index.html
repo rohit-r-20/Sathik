@@ -227,7 +227,7 @@
         <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}"
           class="k-prod-img-box">
           <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}"
-            alt="{{ p.name }}" loading="lazy">
+            alt="{{ p.name }}" onerror="this.onerror=null; this.src='/static/images/placeholder.jpg';" loading="lazy">
         </a>
         <div class="k-prod-content">
           <h4 class="k-prod-title">
