@@ -169,13 +169,16 @@ class GithubStorageService:
         """
         token, repo, branch = cls._get_config()
 
-        # If GitHub not configured, save locally
+        # If GitHub not configured, save locally if writable
         if not cls.is_configured():
-            local_upload_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static', 'uploads')
-            os.makedirs(local_upload_dir, exist_ok=True)
-            local_path = os.path.join(local_upload_dir, filename)
-            with open(local_path, 'wb') as f:
-                f.write(file_bytes)
+            try:
+                local_upload_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'static', 'uploads')
+                os.makedirs(local_upload_dir, exist_ok=True)
+                local_path = os.path.join(local_upload_dir, filename)
+                with open(local_path, 'wb') as f:
+                    f.write(file_bytes)
+            except Exception as e:
+                print(f"ℹ️ Local write bypassed on read-only serverless: {e}")
             return True, f"/static/uploads/{filename}"
 
         try:

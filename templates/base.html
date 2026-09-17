@@ -40,7 +40,11 @@
 
   <!-- Main Content Body -->
   <main>
-    {% block content %}{% endblock %}
+    {% block content %}
+      {% if content %}
+        {{ content|safe }}
+      {% endif %}
+    {% endblock %}
   </main>
 
 
