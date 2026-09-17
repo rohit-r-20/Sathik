@@ -1,5 +1,31 @@
 [
   {
+    "name": "Anderson",
+    "slug": "anderson",
+    "sku": "GVH",
+    "description": "wrtyfn",
+    "short_description": "dd",
+    "features": [],
+    "images": [
+      {
+        "url": "/static/uploads/Logo_white.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "bath-kitchen",
+    "category_slug": "bathware",
+    "subcategory_slug": "bathroom-lighting",
+    "brand_slug": "yale",
+    "brand_name": "Yale Locks",
+    "is_active": true,
+    "is_featured": false,
+    "is_new": false,
+    "id": "p_anderson_1789606177",
+    "_id": "p_anderson_1789606177",
+    "created_at": "2026-09-17T06:19:37.154328",
+    "updated_at": "2026-09-17T06:19:37.154328"
+  },
+  {
     "_id": "p_bath_water_heater",
     "name": "Hindware Elena Storage Water Heater 25L",
     "slug": "hindware-elena-storage-water-heater-25l",
