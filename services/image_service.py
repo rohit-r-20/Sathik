@@ -17,7 +17,14 @@ def save_uploaded_image(file_obj, upload_folder, allowed_extensions):
 
     os.makedirs(upload_folder, exist_ok=True)
     file_path = os.path.join(upload_folder, filename)
-    file_obj.save(file_path)
+    try:
+        file_obj.save(file_path)
+        with open(file_path, 'rb') as f:
+            file_bytes = f.read()
+    except Exception:
+        file_bytes = file_obj.read()
 
-    relative_url = f"/static/uploads/{filename}"
-    return True, relative_url
+    # Upload to GitHub storage if configured, guaranteeing persistent URLs on Vercel
+    from services.github_storage import GithubStorageService
+    ok, url_or_err = GithubStorageService.upload_image(file_bytes, filename)
+    return ok, url_or_err

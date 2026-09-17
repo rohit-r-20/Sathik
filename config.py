@@ -33,6 +33,11 @@ class Config:
     CLOUDINARY_API_KEY = os.getenv('CLOUDINARY_API_KEY', '')
     CLOUDINARY_API_SECRET = os.getenv('CLOUDINARY_API_SECRET', '')
     
+    # GitHub Storage Configuration (Persistent zero-database storage on Vercel)
+    GITHUB_TOKEN = os.getenv('GITHUB_TOKEN', '')
+    GITHUB_REPO = os.getenv('GITHUB_REPO', 'rohit-r-20/Sathik')
+    GITHUB_BRANCH = os.getenv('GITHUB_BRANCH', 'main')
+    
     # Pagination Defaults
     PRODUCTS_PER_PAGE = 12
     ADMIN_ITEMS_PER_PAGE = 20

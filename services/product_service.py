@@ -24,8 +24,18 @@ def format_record(record):
     return record
 
 def _load_local_products():
-    """Load products from persistent JSON file, or initialize with MOCK_PRODUCTS."""
+    """Load products from GitHub storage (cached or live), local JSON file, or MOCK_PRODUCTS."""
     global _LOCAL_PRODUCTS
+
+    try:
+        from services.github_storage import GithubStorageService
+        gh_prods = GithubStorageService.get_products()
+        if gh_prods and isinstance(gh_prods, list) and len(gh_prods) > 0:
+            _LOCAL_PRODUCTS = [format_record(p) for p in gh_prods]
+            return _LOCAL_PRODUCTS
+    except Exception as e:
+        print(f"⚠️ Notice reading GitHub storage: {e}")
+
     if _LOCAL_PRODUCTS is not None:
         return _LOCAL_PRODUCTS
 
@@ -45,16 +55,16 @@ def _load_local_products():
     return _LOCAL_PRODUCTS
 
 def _save_local_products():
-    """Atomically save current products to persistent JSON file."""
+    """Save current products to GitHub repository and local JSON file."""
     global _LOCAL_PRODUCTS
     if _LOCAL_PRODUCTS is None:
         return
+
     try:
-        os.makedirs(os.path.dirname(DATA_FILE_PATH), exist_ok=True)
-        with open(DATA_FILE_PATH, 'w', encoding='utf-8') as f:
-            json.dump(_LOCAL_PRODUCTS, f, indent=2, ensure_ascii=False)
+        from services.github_storage import GithubStorageService
+        GithubStorageService.save_products(_LOCAL_PRODUCTS)
     except Exception as e:
-        print(f"⚠️ Notice writing {DATA_FILE_PATH}: {e}")
+        print(f"⚠️ Notice saving to GitHub storage: {e}")
 
 class ProductService:
     @staticmethod

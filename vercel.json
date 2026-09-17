@@ -2,7 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.py",
+      "src": "api/backend.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "templates/**",
+          "static/**",
+          "utils/**",
+          "services/**",
+          "routes/**",
+          "models/**",
+          "database/**"
+        ]
+      }
+    },
+    {
+      "src": "api/frontend.py",
       "use": "@vercel/python",
       "config": {
         "includeFiles": [
@@ -19,11 +34,20 @@
   ],
   "routes": [
     {
+      "src": "/admin(/.*)?",
+      "dest": "/api/backend.py"
+    },
+    {
+      "src": "/auth(/.*)?",
+      "dest": "/api/backend.py"
+    },
+    {
+      "src": "/ashiksathik(/.*)?",
+      "dest": "/api/backend.py"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/api/index.py"
+      "dest": "/api/frontend.py"
     }
   ]
 }
-
-
-
