@@ -27,10 +27,12 @@ def init_supabase(app=None):
 
     try:
         supabase = create_client(url, key)
-        print("✅ Supabase client initialized successfully.")
+        # Quick connectivity test
+        supabase.table('brands').select('id').limit(1).execute()
+        print("✅ Supabase client initialized and connected successfully.")
         return supabase
     except Exception as e:
-        print(f"⚠️ Supabase Connection Warning: {e}")
+        print(f"⚠️ Supabase is unreachable or not configured ({e}). Running on GitHub storage fallback.")
         supabase = None
         return None
 

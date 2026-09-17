@@ -212,7 +212,10 @@ class ProductService:
 
         str_id = str(product_id)
         for p in products:
-            if str(p.get('id', p.get('_id'))) == str_id:
+            p_id = str(p.get('id') or '')
+            p__id = str(p.get('_id') or '')
+            p_slug = str(p.get('slug') or '')
+            if p_id == str_id or p__id == str_id or p_slug == str_id:
                 return format_record(p)
         return None
 
@@ -282,7 +285,10 @@ class ProductService:
                 print(f"ProductService remote update note: {e}")
 
         for i, p in enumerate(products):
-            if str(p.get('id', p.get('_id'))) == str_id or str(p.get('slug')) == str_id:
+            p_id = str(p.get('id') or '')
+            p__id = str(p.get('_id') or '')
+            p_slug = str(p.get('slug') or '')
+            if p_id == str_id or p__id == str_id or p_slug == str_id:
                 # Merge updates
                 products[i].update(data)
                 format_record(products[i])
@@ -304,7 +310,10 @@ class ProductService:
                 print(f"ProductService remote delete note: {e}")
 
         for i, p in enumerate(products):
-            if str(p.get('id', p.get('_id'))) == str_id or str(p.get('slug')) == str_id:
+            p_id = str(p.get('id') or '')
+            p__id = str(p.get('_id') or '')
+            p_slug = str(p.get('slug') or '')
+            if p_id == str_id or p__id == str_id or p_slug == str_id:
                 products.pop(i)
                 _save_local_products()
                 return True

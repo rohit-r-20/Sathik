@@ -60,6 +60,9 @@ def products():
     valid_businesses = [b for b in BUSINESSES if b['slug'] != 'catalogue']
     total_pages = (total + 19) // 20 if total > 0 else 1
     
+    from services.github_storage import GithubStorageService
+    storage_connected = GithubStorageService.is_configured()
+
     return render_template(
         'admin/products.html',
         products=products_list,
@@ -69,7 +72,8 @@ def products():
         businesses=valid_businesses,
         current_business=business_filter,
         page=page,
-        total_pages=total_pages
+        total_pages=total_pages,
+        storage_connected=storage_connected
     )
 
 @admin_bp.route('/products/create', methods=['GET', 'POST'])
