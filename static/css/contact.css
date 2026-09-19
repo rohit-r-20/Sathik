@@ -84,3 +84,126 @@
     padding: 2.5rem;
   }
 }
+
+/* ──────────────────────────────────────────────────────────
+   COLOR-CODED STORE DIRECT CALL CARDS
+   ────────────────────────────────────────────────────────── */
+.store-contact-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface, #ffffff);
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border, #e2e8f0);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.store-contact-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* Store 1: Sathik Hardwares */
+.store-contact-card.card-hardware {
+  border-left: 4px solid #f59e0b;
+}
+.store-contact-card.card-hardware:hover {
+  border-color: #f59e0b;
+}
+.store-contact-card .icon-hardware {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid #fde68a;
+}
+.store-contact-card .badge-hardware {
+  color: #b45309;
+}
+
+/* Store 2: Sathik Traders */
+.store-contact-card.card-plumbing {
+  border-left: 4px solid #0284c7;
+}
+.store-contact-card.card-plumbing:hover {
+  border-color: #0284c7;
+}
+.store-contact-card .icon-plumbing {
+  background: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+.store-contact-card .badge-plumbing {
+  color: #0369a1;
+}
+
+/* Store 3: Sathik Enterprises */
+.store-contact-card.card-bath {
+  border-left: 4px solid #0d9488;
+}
+.store-contact-card.card-bath:hover {
+  border-color: #0d9488;
+}
+.store-contact-card .icon-bath {
+  background: #f0fdfa;
+  color: #0d9488;
+  border: 1px solid #99f6e4;
+}
+.store-contact-card .badge-bath {
+  color: #0f766e;
+}
+
+/* WhatsApp Support */
+.store-contact-card.card-whatsapp {
+  border-left: 4px solid #16a34a;
+}
+.store-contact-card.card-whatsapp:hover {
+  border-color: #16a34a;
+}
+.store-contact-card .icon-whatsapp {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+}
+.store-contact-card .badge-whatsapp {
+  color: #15803d;
+}
+
+/* Inner elements */
+.store-contact-card .contact-icon {
+  width: 2.85rem;
+  height: 2.85rem;
+  min-width: 2.85rem;
+  border-radius: 10px;
+  font-size: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.store-contact-badge {
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.store-contact-phone {
+  font-weight: 800;
+  font-size: 1.12rem;
+  color: var(--primary-900, #0f172a);
+  line-height: 1.25;
+}
+
+.store-contact-sub {
+  font-size: 0.75rem;
+  color: var(--primary-500, #64748b);
+  margin-top: 0.2rem;
+}

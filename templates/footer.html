@@ -68,13 +68,47 @@
 
     </div>
 
-    <!-- ── Footer Bottom Bar ── -->
+    <!-- ── Footer Bottom Bar (Bottom Navbar with Social Media Links) ── -->
     <div class="footer-bottom">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-        <p style="font-size: 0.8125rem;">
+      <div class="footer-bottom-flex" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <p style="font-size: 0.8125rem; color: #94A3B8; margin: 0;">
           &copy; 2024 Sathik Groups. All rights reserved.
         </p>
-        <p style="font-size: 0.75rem; color: #64748B; text-align: right;">
+
+        <!-- Social Media Emojis & Links Bottom Bar -->
+        <div class="footer-social-nav" style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+          <span style="font-size: 0.78rem; font-weight: 600; color: #94A3B8; letter-spacing: 0.03em;">Follow Us:</span>
+          
+          <!-- WhatsApp Redirect -->
+          <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer"
+            class="social-btn social-wa" title="Connect on WhatsApp" aria-label="WhatsApp">
+            <span class="social-emoji">💬</span>
+            <span class="social-name">WhatsApp</span>
+          </a>
+
+          <!-- Facebook Redirect -->
+          <a href="https://www.facebook.com/sathikgroup.1964/" target="_blank" rel="noopener noreferrer"
+            class="social-btn social-fb" title="Follow us on Facebook" aria-label="Facebook">
+            <span class="social-emoji">🌐</span>
+            <span class="social-name">Facebook</span>
+          </a>
+
+          <!-- Instagram Redirect -->
+          <a href="https://www.instagram.com/sathikenterprisesredhills/" target="_blank" rel="noopener noreferrer"
+            class="social-btn social-insta" title="Follow us on Instagram" aria-label="Instagram">
+            <span class="social-emoji">📸</span>
+            <span class="social-name">Instagram</span>
+          </a>
+
+          <!-- YouTube Redirect -->
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"
+            class="social-btn social-yt" title="Follow us on YouTube" aria-label="YouTube">
+            <span class="social-emoji">▶️</span>
+            <span class="social-name">YouTube</span>
+          </a>
+        </div>
+
+        <p style="font-size: 0.75rem; color: #64748B; text-align: right; margin: 0;">
           Non-E-Commerce Catalogue &nbsp;•&nbsp; Enquiries via WhatsApp &amp; Quote Form
         </p>
       </div>

@@ -105,11 +105,48 @@ def product_detail(subcategory_slug, product_slug):
     if not product:
         abort(404)
 
-    # Related products from same subcategory
-    related_products, _ = ProductModel.find_all(
+    # Related products: prioritize same subcategory, then category, then business
+    related_products = []
+    seen_ids = {str(product.get('slug') or product.get('_id') or product.get('id'))}
+
+    # 1. Try same subcategory
+    sub_prods, _ = ProductModel.find_all(
         filter_query={'subcategory_slug': subcategory_slug, 'slug': {'$ne': product_slug}},
         limit=4
     )
+    for p in sub_prods:
+        p_id = str(p.get('slug') or p.get('_id') or p.get('id'))
+        if p_id not in seen_ids:
+            related_products.append(p)
+            seen_ids.add(p_id)
+
+    # 2. Fill from same category
+    if len(related_products) < 4 and product.get('category_slug'):
+        cat_prods, _ = ProductModel.find_all(
+            filter_query={'category_slug': product.get('category_slug'), 'slug': {'$ne': product_slug}},
+            limit=8
+        )
+        for p in cat_prods:
+            p_id = str(p.get('slug') or p.get('_id') or p.get('id'))
+            if p_id not in seen_ids:
+                related_products.append(p)
+                seen_ids.add(p_id)
+            if len(related_products) >= 4:
+                break
+
+    # 3. Fill from same business/store vertical
+    if len(related_products) < 4 and product.get('business_slug'):
+        biz_prods, _ = ProductModel.find_all(
+            filter_query={'business_slug': product.get('business_slug'), 'slug': {'$ne': product_slug}},
+            limit=8
+        )
+        for p in biz_prods:
+            p_id = str(p.get('slug') or p.get('_id') or p.get('id'))
+            if p_id not in seen_ids:
+                related_products.append(p)
+                seen_ids.add(p_id)
+            if len(related_products) >= 4:
+                break
 
     # WhatsApp pre-filled enquiry text
     wa_message = build_product_whatsapp_message(product.get('name', ''), product.get('sku', ''))

@@ -75,6 +75,14 @@ BRANDS_LIST = [
     {'name': 'Finolex', 'slug': 'finolex', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Orbit', 'slug': 'orbit', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Orca', 'slug': 'orca', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
+    {'name': 'M-Seal', 'slug': 'm-seal', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Bondite', 'slug': 'bondite', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Indigo Paints', 'slug': 'indigo', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Romsan', 'slug': 'romsan', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'K2 Chemicals', 'slug': 'k2', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Sika', 'slug': 'sika', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'Switzerland'},
+    {'name': 'CICO Technologies', 'slug': 'cico', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
+    {'name': 'Loctite', 'slug': 'loctite', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'Germany'},
 ]
 
 # Official Sathik Traders Contact & Location Info

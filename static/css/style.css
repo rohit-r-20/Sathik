@@ -719,6 +719,59 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--primary-500);
 }
 
+/* Footer Social Media Buttons in Bottom Navbar */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: all 0.25s ease;
+}
+
+.social-btn .social-emoji {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+}
+
+.social-btn.social-wa:hover {
+  background: #25D366;
+  border-color: #25D366;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.social-btn.social-fb:hover {
+  background: #1877F2;
+  border-color: #1877F2;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
+}
+
+.social-btn.social-insta:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-color: #e6683c;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);
+}
+
+.social-btn.social-yt:hover {
+  background: #FF0000;
+  border-color: #FF0000;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.35);
+}
+
 /* Modal */
 .modal-backdrop {
   position: fixed;

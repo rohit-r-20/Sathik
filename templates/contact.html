@@ -31,21 +31,51 @@
       <div>
         <h3 style="font-size: 1.125rem; margin-bottom: 1.25rem; font-weight: 700;">Contact Information</h3>
 
-        <a href="tel:{{ company.mobile if company else '+919840637307' }}" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
-          <div class="contact-icon">📱</div>
+        <!-- Store 1: Sathik Hardwares -->
+        <a href="tel:+919444312624" class="store-contact-card card-hardware" style="margin-bottom: 0.85rem;" title="Direct Call Sathik Hardwares">
+          <div class="contact-icon icon-hardware">🚪</div>
           <div>
-            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">Mobile Number</div>
-            <div style="font-weight: 700; font-size: 1.1rem; color: var(--primary-900);">+91 98406 37307</div>
-            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Tap to call directly</div>
+            <div class="store-contact-badge badge-hardware">
+              Sathik Hardwares &bull; Door Locks &amp; Paints
+            </div>
+            <div class="store-contact-phone">+91 94443 12624</div>
+            <div class="store-contact-sub">Tap to call directly &bull; G.N.T. Road, Redhills</div>
           </div>
         </a>
 
-        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="contact-info-card" style="text-decoration:none; color:inherit; display:flex;">
-          <div class="contact-icon">💬</div>
+        <!-- Store 2: Sathik Traders -->
+        <a href="tel:+919444323644" class="store-contact-card card-plumbing" style="margin-bottom: 0.85rem;" title="Direct Call Sathik Traders">
+          <div class="contact-icon icon-plumbing">🔧</div>
           <div>
-            <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--primary-500); letter-spacing: 0.1em;">WhatsApp Support</div>
-            <div style="font-weight: 700; font-size: 1.1rem; color: #16A34A;">+91 98406 37307</div>
-            <div style="font-size: 0.75rem; color: var(--primary-500); margin-top: 0.25rem;">Instant price quotes &amp; assistance</div>
+            <div class="store-contact-badge badge-plumbing">
+              Sathik Traders &bull; Plumbing &amp; Pumps
+            </div>
+            <div class="store-contact-phone">+91 94443 23644</div>
+            <div class="store-contact-sub">Tap to call directly &bull; Dharga Street, Redhills</div>
+          </div>
+        </a>
+
+        <!-- Store 3: Sathik Enterprises -->
+        <a href="tel:+919840637307" class="store-contact-card card-bath" style="margin-bottom: 0.85rem;" title="Direct Call Sathik Enterprises">
+          <div class="contact-icon icon-bath">🛁</div>
+          <div>
+            <div class="store-contact-badge badge-bath">
+              Sathik Enterprises &bull; Bath &amp; Sanitaryware
+            </div>
+            <div class="store-contact-phone">+91 98406 37307</div>
+            <div class="store-contact-sub">Tap to call directly &bull; Main Showroom, Redhills</div>
+          </div>
+        </a>
+
+        <!-- WhatsApp Support -->
+        <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank" rel="noopener noreferrer" class="store-contact-card card-whatsapp" style="margin-bottom: 0.85rem;" title="Chat on WhatsApp">
+          <div class="contact-icon icon-whatsapp">💬</div>
+          <div>
+            <div class="store-contact-badge badge-whatsapp">
+              WhatsApp Support
+            </div>
+            <div class="store-contact-phone" style="color: #16a34a;">+91 98406 37307</div>
+            <div class="store-contact-sub">Instant price quotes &amp; assistance</div>
           </div>
         </a>
 
