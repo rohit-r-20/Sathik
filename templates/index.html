@@ -20,26 +20,11 @@
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
-            <!-- Decorative Badge -->
-            <div class="hero-decor-badge">
-              <span class="decor-sparkle">✦</span>
-              <span class="decor-badge-text">SATHIK ARCHITECTURAL COLLECTION</span>
-              <span class="decor-sparkle">✦</span>
-            </div>
-
-            <h1 class="hero-title hero-title-decorative">
-              <span class="decor-line-lead">Artistry in Every Detail</span>
-              <span class="decor-line-gold">Decorative Elegance</span>
-              <span class="decor-line-sub">Crafted for Luxury Living</span>
+            <h1 class="hero-title">
+              SATHIK Designed for<br>Timeless Architectural<br>Spaces
             </h1>
 
-            <div class="hero-decor-divider">
-              <span class="flourish-line"></span>
-              <span class="flourish-symbol">✦</span>
-              <span class="flourish-line"></span>
-            </div>
-
-            <p class="hero-desc hero-desc-decorative">
+            <p class="hero-desc">
               Curated designer door locks, handcrafted brass fittings, and premier decorative paints designed to bring
               timeless luxury to every space.
             </p>
@@ -74,30 +59,15 @@
 
     <!-- Slide 2: Plumbing Products Store -->
     <div class="hero-slide"
-      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.webp') }}?v=200');">
+      style="background-image: url('{{ url_for('static', filename='images/hero/plumbing_slide.webp') }}?v=210');">
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
-            <div class="hero-decor-badge">
-              <span class="decor-sparkle">✦</span>
-              <span>SATHIK INDUSTRIAL &amp; PLUMBING</span>
-              <span class="decor-sparkle">✦</span>
-            </div>
-
-            <h1 class="hero-title hero-title-decorative">
-              <span class="decor-line-lead">Engineered For Reliability</span>
-              <span class="decor-line-gold">Flawless Water Flow</span>
-              <span class="decor-line-sub">Precision Pumps &amp; Piping Systems</span>
+            <h1 class="hero-title">
+              SATHIK Engineered for<br>Flawless Water<br>Flow
             </h1>
-
-            <div class="hero-decor-divider">
-              <span class="flourish-line"></span>
-              <span class="flourish-symbol">✦</span>
-              <span class="flourish-line"></span>
-            </div>
-
-            <p class="hero-desc hero-desc-decorative">
-              Certified heavy-duty pipes, branded submersible pumps, and industrial valves engineered for enduring performance and leak-free durability.
+            <p class="hero-desc">
+              Reliable pipes, fittings, and water pumps for smooth, leak-free water supply in your home.
             </p>
             <div class="hero-actions">
               <a href="#stores" class="btn btn-hero-gold">
@@ -134,26 +104,11 @@
       <div class="hero-inner">
         <div class="container">
           <div class="hero-content">
-            <div class="hero-decor-badge">
-              <span class="decor-sparkle">✦</span>
-              <span>SATHIK LUXURY BATH &amp; SANITARYWARE</span>
-              <span class="decor-sparkle">✦</span>
-            </div>
-
-            <h1 class="hero-title hero-title-decorative">
-              <span class="decor-line-lead">Sanctuary of Comfort</span>
-              <span class="decor-line-gold">Modern Indian Bathrooms</span>
-              <span class="decor-line-sub">Exquisite Faucets, Sinks &amp; Showers</span>
+            <h1 class="hero-title">
+              SATHIK Crafted for<br>Modern Indian<br>Bathrooms
             </h1>
-
-            <div class="hero-decor-divider">
-              <span class="flourish-line"></span>
-              <span class="flourish-symbol">✦</span>
-              <span class="flourish-line"></span>
-            </div>
-
-            <p class="hero-desc hero-desc-decorative">
-              Architectural sanitaryware, designer rain showers, quartz kitchen sinks, and smart LED mirrors crafted to elevate everyday comfort.
+            <p class="hero-desc">
+              Modern faucets, showers, and sanitaryware designed for everyday comfort and lasting beauty.
             </p>
             <div class="hero-actions">
               <a href="#stores" class="btn btn-hero-gold">
@@ -337,205 +292,145 @@
   </div>
 </section>
 
-<!-- STORE PRODUCT GALLERY SECTION (Visual Gallery by Store, No Description) -->
+<!-- STORE PRODUCT GALLERY SECTION (Polished Visual Image Showcase) -->
 <section class="p-gallery-section" id="product-range">
   <div class="container">
-    <div class="text-center" style="margin-bottom: 2.75rem;">
-      <div class="section-tag">Product Gallery</div>
-      <h2 class="section-title">Store Product Gallery</h2>
-      <p class="section-desc">Browse authentic products and building essentials across our specialized retail stores</p>
+    <div class="text-center" style="margin-bottom: 2.25rem;">
+      <div class="section-tag">Explore Products</div>
+      <h2 class="section-title">Product Gallery</h2>
     </div>
 
-    <!-- ── STORE 01: SATHIK HARDWARES ROW ── -->
-    <div class="p-gallery-store-block">
-      <div class="p-gallery-store-header">
-        <div class="p-gallery-store-title-wrap">
-          <span class="p-gallery-store-badge hardware">🔨 Store 01</span>
-          <h3 class="p-gallery-store-name">Sathik Hardwares — Door Locks, Hardware &amp; Paints</h3>
+    <div class="p-gallery-grid">
+      <!-- 1. Door locks and hinges -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/stores/hardware.jpg') }}" alt="Door locks and hinges"
+            class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Door locks and hinges</h4>
+          </div>
         </div>
-        <a href="{{ url_for('product.product_list', business='hardware') }}" class="p-gallery-store-link">
-          Explore Hardware Store &rarr;
-        </a>
       </div>
 
-      <div class="p-gallery-grid">
-        <!-- 1. Door locks and hinges -->
-        <a href="{{ url_for('product.product_list', category='door-hardware') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/stores/hardware.jpg') }}" alt="Door locks and hinges"
-              class="p-gallery-img" loading="lazy">
+      <!-- 2. Paints and Allied products -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/hardware/paints_allied_products.jpg') }}"
+            alt="Paints and Allied products" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Paints and Allied products</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Door locks and hinges</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 2. Paints and Allied products -->
-        <a href="{{ url_for('product.product_list', category='paints-chemicals') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/hardware/paints_allied_products.jpg') }}"
-              alt="Paints and Allied products" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Paints and Allied products</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 3. Fans and LED lights -->
-        <a href="{{ url_for('product.product_list', category='electrical-fans') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/hardware/fans_and_led_lights.jpg') }}"
-              alt="Fans and LED lights" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Fans and LED lights</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 4. Tile paser and Adhesives -->
-        <a href="{{ url_for('product.product_detail', subcategory_slug='tile-beeding-paser', product_slug='tile-beeding-and-paser') }}"
-          class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/hardware/tile_pasers_and_adhesives.jpg') }}"
-              alt="Tile paser and Adhesives" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Tile paser and Adhesives</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── STORE 02: SATHIK TRADERS ROW ── -->
-    <div class="p-gallery-store-block">
-      <div class="p-gallery-store-header">
-        <div class="p-gallery-store-title-wrap">
-          <span class="p-gallery-store-badge plumbing">🔧 Store 02</span>
-          <h3 class="p-gallery-store-name">Sathik Traders — Plumbing &amp; Industrial Solutions</h3>
         </div>
-        <a href="{{ url_for('product.product_list', business='plumbing') }}" class="p-gallery-store-link">
-          Explore Plumbing Store &rarr;
-        </a>
       </div>
 
-      <div class="p-gallery-grid">
-        <!-- 1. Pipes & Suction Hoses -->
-        <a href="{{ url_for('product.product_list', category='pipes') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/plumbing/suction_hose.webp') }}"
-              alt="Pipes &amp; Suction Hoses" class="p-gallery-img" loading="lazy">
+      <!-- 3. Fans and LED lights -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/hardware/fans_and_led_lights.jpg') }}"
+            alt="Fans and LED lights" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Fans and LED lights</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Pipes &amp; Suction Hoses</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 2. Submersible Pumps & Motors -->
-        <a href="{{ url_for('product.product_list', category='pumps') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/plumbing/cri_submersible_pumps_showcase.jpg') }}"
-              alt="CRI Submersible Pumps &amp; Motors" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">CRI Submersible Pumps &amp; Motors</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 3. Welding Machines & Rods -->
-        <a href="{{ url_for('product.product_detail', subcategory_slug='welding-equipment', product_slug='welding-rods') }}"
-          class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/plumbing/welding_equipment_showcase.jpg') }}"
-              alt="Welding Machines &amp; Rods" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Welding Machines &amp; Rods</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-
-        <!-- 4. Industrial Power Tools & Pneumatics -->
-        <a href="{{ url_for('product.product_list', category='pipe-fittings') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/plumbing/pneumatic-fitting-products.jpg') }}"
-              alt="Industrial Power Tools &amp; Pneumatics" class="p-gallery-img" loading="lazy">
-          </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Power Tools &amp; Pneumatics</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── STORE 03: SATHIK ENTERPRISES ROW ── -->
-    <div class="p-gallery-store-block">
-      <div class="p-gallery-store-header">
-        <div class="p-gallery-store-title-wrap">
-          <span class="p-gallery-store-badge bath">🛁 Store 03</span>
-          <h3 class="p-gallery-store-name">Sathik Enterprises — Bathware &amp; Sanitaryware</h3>
         </div>
-        <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="p-gallery-store-link">
-          Explore Bathware Store &rarr;
-        </a>
       </div>
 
-      <div class="p-gallery-grid">
-        <!-- 1. Sanitaryware & Closets -->
-        <a href="{{ url_for('product.product_list', category='bathware') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/stores/sanitaryware.jpg') }}"
-              alt="Sanitaryware &amp; Closets" class="p-gallery-img" loading="lazy">
+      <!-- 4. Tile paser and Adhesives -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/hardware/tile_pasers_and_adhesives.jpg') }}"
+            alt="Tile paser and Adhesives" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Tile paser and Adhesives</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Sanitaryware &amp; Closets</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
+        </div>
+      </div>
 
-        <!-- 2. Showers, Faucets & Diverters -->
-        <a href="{{ url_for('product.product_detail', subcategory_slug='taps-faucets', product_slug='jaquar-kubix-prime-shower-diverter') }}"
-          class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/bath-kitchen/diverter.jpg') }}"
-              alt="Showers, Faucets &amp; Diverters" class="p-gallery-img" loading="lazy">
+      <!-- 5. Pipes & Suction Hoses -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/plumbing/suction_hose.webp') }}"
+            alt="Pipes &amp; Suction Hoses" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Pipes &amp; Suction Hoses</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Showers, Faucets &amp; Diverters</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
+        </div>
+      </div>
 
-        <!-- 3. Stainless & Quartz Kitchen Sinks -->
-        <a href="{{ url_for('product.product_list', category='kitchenware') }}" class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/bath-kitchen/quartz_sink.jpg') }}"
-              alt="Stainless &amp; Quartz Kitchen Sinks" class="p-gallery-img" loading="lazy">
+      <!-- 6. Submersible Pumps & Motors -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/plumbing/cri_submersible_pumps_showcase.jpg') }}"
+            alt="CRI Submersible Pumps &amp; Motors" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">CRI Submersible Pumps &amp; Motors</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Kitchen Sinks &amp; Taps</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
-          </div>
-        </a>
+        </div>
+      </div>
 
-        <!-- 4. Water Heaters & Mirrors -->
-        <a href="{{ url_for('product.product_detail', subcategory_slug='water-heaters-geysers', product_slug='hindware-elena-storage-water-heater-25l') }}"
-          class="p-gallery-card">
-          <div class="p-gallery-img-box">
-            <img src="{{ url_for('static', filename='images/products/bath-kitchen/water_heaters_and_mirrors.jpg') }}"
-              alt="Water Heaters &amp; Mirrors" class="p-gallery-img" loading="lazy">
+      <!-- 7. Welding Machines & Rods -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/plumbing/welding_equipment_showcase.jpg') }}"
+            alt="Welding Machines &amp; Rods" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Welding Machines &amp; Rods</h4>
           </div>
-          <div class="p-gallery-card-body">
-            <h4 class="p-gallery-card-title">Water Heaters &amp; Mirrors</h4>
-            <span class="p-gallery-card-action">View Products &rarr;</span>
+        </div>
+      </div>
+
+      <!-- 8. Industrial Power Tools & Pneumatics -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/plumbing/pneumatic-fitting-products.jpg') }}"
+            alt="Industrial Power Tools &amp; Pneumatics" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Power Tools &amp; Pneumatics</h4>
           </div>
-        </a>
+        </div>
+      </div>
+
+      <!-- 9. Sanitaryware & Closets -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/stores/sanitaryware.jpg') }}?v=201"
+            alt="Sanitaryware &amp; Closets" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Sanitaryware &amp; Closets</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Showers, Faucets & Diverters -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/bath-kitchen/diverter.jpg') }}"
+            alt="Showers, Faucets &amp; Diverters" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Showers, Faucets &amp; Diverters</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Stainless & Quartz Kitchen Sinks -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/bath-kitchen/quartz_sink.jpg') }}"
+            alt="Stainless &amp; Quartz Kitchen Sinks" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Kitchen Sinks &amp; Taps</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Water Heaters & Mirrors -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/bath-kitchen/water_heaters_and_mirrors.jpg') }}"
+            alt="Water Heaters &amp; Mirrors" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Water Heaters &amp; Mirrors</h4>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -545,6 +440,7 @@
         Explore Complete Catalogue &rarr;
       </a>
     </div>
+  </div>
 </section>
 
 <!-- STATS COUNTERS SECTION (A-One Hardware Style) -->
@@ -627,6 +523,9 @@
       ('hindware', 'png', 'HINDWARE', 'Sanitaryware'),
       ('cri', 'png', 'C.R.I. PUMPS', 'Pumps & Motors'),
       ('ekki', 'png', 'EKKI WATER TECH', 'Water Tech'),
+      ('best-pumps', 'png', 'VA BEST PUMPS', 'Pumps & Motors'),
+      ('lubi', 'png', 'LUBI PUMPS', 'Pumps & Motors'),
+      ('v-guard', 'png', 'V-GUARD', 'Pumps & Appliances'),
       ('m-seal', 'png', 'M-SEAL', 'Epoxy Putty & Sealants'),
       ('bondite', 'png', 'BONDITE', 'Adhesives & Resins'),
       ('indigo', 'png', 'INDIGO PAINTS', 'Paints & Finishes'),
@@ -653,6 +552,9 @@
       ('hindware', 'png', 'HINDWARE', 'Sanitaryware'),
       ('cri', 'png', 'C.R.I. PUMPS', 'Pumps & Motors'),
       ('ekki', 'png', 'EKKI WATER TECH', 'Water Tech'),
+      ('best-pumps', 'png', 'VA BEST PUMPS', 'Pumps & Motors'),
+      ('lubi', 'png', 'LUBI PUMPS', 'Pumps & Motors'),
+      ('v-guard', 'png', 'V-GUARD', 'Pumps & Appliances'),
       ('m-seal', 'png', 'M-SEAL', 'Epoxy Putty & Sealants'),
       ('bondite', 'png', 'BONDITE', 'Adhesives & Resins'),
       ('indigo', 'png', 'INDIGO PAINTS', 'Paints & Finishes'),
@@ -684,6 +586,8 @@
       ('eesco', 'jpg', 'ÉSSCO', 'Bath Fittings'),
       ('aquatech', 'jpeg', 'AQUATECH', 'Water Tanks'),
       ('waterman', 'jpeg', 'WATERMAN', 'Luxury Faucets'),
+      ('ramesh', 'png', 'RAMESH PUMPS', 'Agricultural & Domestic Pumps'),
+      ('greenfos', 'png', 'GREENFOS', 'Water Lifting Pumps'),
       ('k2', 'svg', 'K2 CHEMICALS', 'Construction Chemicals'),
       ('sika', 'svg', 'SIKA', 'Waterproofing & Construction Chemicals'),
       ('cico', 'png', 'CICO', 'Construction Chemicals'),
@@ -711,6 +615,8 @@
       ('eesco', 'jpg', 'ÉSSCO', 'Bath Fittings'),
       ('aquatech', 'jpeg', 'AQUATECH', 'Water Tanks'),
       ('waterman', 'jpeg', 'WATERMAN', 'Luxury Faucets'),
+      ('ramesh', 'png', 'RAMESH PUMPS', 'Agricultural & Domestic Pumps'),
+      ('greenfos', 'png', 'GREENFOS', 'Water Lifting Pumps'),
       ('k2', 'svg', 'K2 CHEMICALS', 'Construction Chemicals'),
       ('sika', 'svg', 'SIKA', 'Waterproofing & Construction Chemicals'),
       ('cico', 'png', 'CICO', 'Construction Chemicals'),
@@ -848,21 +754,6 @@
             class="showroom-main-img"
             alt="Sathik Hardwares — Exclusive Door Locks, Architectural Hardware & Asian Paints Store" loading="lazy">
           <div class="showroom-badge-tag">Store 01 • Door Locks &amp; Asian Paints</div>
-
-          <!-- Interactive Google Review QR Badge with Kind & Friendly Message -->
-          <a href="https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z/data=!4m8!3m7!1s0x3a527ca08259f5dd:0xb4f5892651178ee3!8m2!3d13.1901444!4d80.187424!9m1!1b1"
-            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
-            title="Scan or click to review Sathik Hardwares on Google Maps">
-            <div class="qr-preview-box">
-              <img src="{{ url_for('static', filename='images/qr/review_qr_hardwares.png') }}"
-                alt="Google Review QR Code - Sathik Hardwares" class="qr-preview-img" width="84" height="84">
-              <span class="qr-scan-pill">⭐ Click / Scan</span>
-            </div>
-            <div class="qr-review-caption">
-              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
-              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
-            </div>
-          </a>
         </div>
 
         <div class="showroom-details">
@@ -907,6 +798,23 @@
           </div>
         </div>
 
+        <!-- Google Review QR Code Column (placed like in third image) -->
+        <div class="showroom-qr-container">
+          <a href="https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z/data=!4m8!3m7!1s0x3a527ca08259f5dd:0xb4f5892651178ee3!8m2!3d13.1901444!4d80.187424!9m1!1b1"
+            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
+            title="Scan or click to review Sathik Hardwares on Google Maps">
+            <div class="qr-preview-box">
+              <img src="{{ url_for('static', filename='images/qr/review_qr_hardwares.png') }}?v=11"
+                alt="Google Review QR Code - Sathik Hardwares" class="qr-preview-img">
+              <span class="qr-scan-pill">⭐ Click / Scan</span>
+            </div>
+            <div class="qr-review-caption">
+              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
+              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
+            </div>
+          </a>
+        </div>
+
         <!-- Store 01 Interactive Google Maps View Card -->
         <div class="showroom-map-container">
           <a href="https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca08259f5dd:0xb4f5892651178ee3!8m2!3d13.1901444!4d80.187424!16s%2Fg%2F11clyx6t75?entry=ttu"
@@ -941,21 +849,6 @@
           <img src="{{ url_for('static', filename='images/hero/sathik_traders_storefront.jpg') }}"
             class="showroom-main-img" alt="Sathik Traders — Plumbing & Industrial Water Solutions Store" loading="lazy">
           <div class="showroom-badge-tag">Store 02 • Plumbing &amp; Water Tech</div>
-
-          <!-- Interactive Google Review QR Badge with Kind & Friendly Message -->
-          <a href="https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1846955,17z/data=!4m8!3m7!1s0x3a527ca07fe216ad:0x247d6104ae5d7990!8m2!3d13.1899241!4d80.1872704!9m1!1b1"
-            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
-            title="Scan or click to review Sathik Traders on Google Maps">
-            <div class="qr-preview-box">
-              <img src="{{ url_for('static', filename='images/qr/review_qr_traders.png') }}"
-                alt="Google Review QR Code - Sathik Traders" class="qr-preview-img" width="84" height="84">
-              <span class="qr-scan-pill">⭐ Click / Scan</span>
-            </div>
-            <div class="qr-review-caption">
-              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
-              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
-            </div>
-          </a>
         </div>
 
         <div class="showroom-details">
@@ -1000,6 +893,23 @@
           </div>
         </div>
 
+        <!-- Google Review QR Code Column (placed like in third image) -->
+        <div class="showroom-qr-container">
+          <a href="https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1846955,17z/data=!4m8!3m7!1s0x3a527ca07fe216ad:0x247d6104ae5d7990!8m2!3d13.1899241!4d80.1872704!9m1!1b1"
+            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
+            title="Scan or click to review Sathik Traders on Google Maps">
+            <div class="qr-preview-box">
+              <img src="{{ url_for('static', filename='images/qr/review_qr_traders.png') }}?v=11"
+                alt="Google Review QR Code - Sathik Traders" class="qr-preview-img">
+              <span class="qr-scan-pill">⭐ Click / Scan</span>
+            </div>
+            <div class="qr-review-caption">
+              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
+              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
+            </div>
+          </a>
+        </div>
+
         <!-- Store 02 Interactive Google Maps View Card -->
         <div class="showroom-map-container">
           <a href="https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1846955,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527ca07fe216ad:0x247d6104ae5d7990!8m2!3d13.1899241!4d80.1872704!16s%2Fg%2F11b_22ysmq?entry=ttu"
@@ -1034,21 +944,6 @@
           <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}" class="showroom-main-img"
             alt="Sathik Enterprises Bathware & Sanitaryware Store" loading="lazy">
           <div class="showroom-badge-tag">Store 03 • Bath &amp; Sanitaryware</div>
-
-          <!-- Interactive Google Review QR Badge with Kind & Friendly Message -->
-          <a href="https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z/data=!4m8!3m7!1s0x3a527de3e1b1d479:0xbfe2d641b949c429!8m2!3d13.1908874!4d80.1864791!9m1!1b1"
-            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
-            title="Scan or click to review Sathik Enterprises on Google Maps">
-            <div class="qr-preview-box">
-              <img src="{{ url_for('static', filename='images/qr/review_qr_enterprises.png') }}"
-                alt="Google Review QR Code - Sathik Enterprises" class="qr-preview-img" width="84" height="84">
-              <span class="qr-scan-pill">⭐ Click / Scan</span>
-            </div>
-            <div class="qr-review-caption">
-              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
-              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
-            </div>
-          </a>
         </div>
 
         <div class="showroom-details">
@@ -1094,6 +989,23 @@
           </div>
         </div>
 
+        <!-- Google Review QR Code Column (placed like in third image) -->
+        <div class="showroom-qr-container">
+          <a href="https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z/data=!4m8!3m7!1s0x3a527de3e1b1d479:0xbfe2d641b949c429!8m2!3d13.1908874!4d80.1864791!9m1!1b1"
+            target="_blank" rel="noopener noreferrer" class="showroom-qr-review-card"
+            title="Scan or click to review Sathik Enterprises on Google Maps">
+            <div class="qr-preview-box">
+              <img src="{{ url_for('static', filename='images/qr/review_qr_enterprises.png') }}?v=11"
+                alt="Google Review QR Code - Sathik Enterprises" class="qr-preview-img">
+              <span class="qr-scan-pill">⭐ Click / Scan</span>
+            </div>
+            <div class="qr-review-caption">
+              <div class="qr-stars">⭐⭐⭐⭐⭐</div>
+              <div class="qr-friendly-text">Loved your visit?<br><span>Please share a review on Google!</span></div>
+            </div>
+          </a>
+        </div>
+
         <!-- Store 03 Interactive Google Maps View Card -->
         <div class="showroom-map-container">
           <a href="https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z/data=!3m1!4b1!4m6!3m5!1s0x3a527de3e1b1d479:0xbfe2d641b949c429!8m2!3d13.1908874!4d80.1864791!16s%2Fg%2F11wq7psbk4?entry=ttu"
@@ -1128,10 +1040,10 @@
 <section class="legacy-about-section" id="aboutUs">
   <div class="container">
     <div class="legacy-about-grid">
-      <!-- Left side: Authentic Storefront Photo -->
+      <!-- Left side: Authentic Storefront Photo (3 Stores in Triangle Order) -->
       <div class="legacy-image-frame">
-        <img src="{{ url_for('static', filename='images/hero/sathik_storefront.jpg') }}"
-          alt="Sathik Enterprises Storefront" class="legacy-img" loading="lazy">
+        <img src="{{ url_for('static', filename='images/hero/sathik_three_stores_triangle.webp') }}?v=1"
+          alt="Sathik Groups 3 Physical Stores - Hardwares, Traders &amp; Enterprises" class="legacy-img" loading="lazy">
         <div class="legacy-badge-floating">
           <div class="legacy-badge-year">1964</div>
           <div class="legacy-badge-text">Trust In Every Brick</div>

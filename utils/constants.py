@@ -83,6 +83,11 @@ BRANDS_LIST = [
     {'name': 'Sika', 'slug': 'sika', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'Switzerland'},
     {'name': 'CICO Technologies', 'slug': 'cico', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
     {'name': 'Loctite', 'slug': 'loctite', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'Germany'},
+    {'name': 'VA Best Pumps', 'slug': 'best-pumps', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Lubi Pumps', 'slug': 'lubi', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Ramesh Pumps', 'slug': 'ramesh', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Greenfos Pumps', 'slug': 'greenfos', 'businesses': ['plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'V-Guard', 'slug': 'v-guard', 'businesses': ['plumbing', 'hardware'], 'featured': True, 'country': 'India'},
 ]
 
 # Official Sathik Traders Contact & Location Info

@@ -459,7 +459,7 @@ body.modal-open {
     line-height: 1.2;
     letter-spacing: 0.01em;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #EDE6DC !important;
+    color: #F5C76D !important;
   }
   .hero-desc {
     font-size: 0.95rem;
@@ -829,7 +829,7 @@ body.modal-open {
   .hero-title {
     font-size: 1.45rem;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #EDE6DC !important;
+    color: #F5C76D !important;
   }
 
   .brand-chip {
@@ -892,7 +892,7 @@ body.modal-open {
   .hero-title {
     font-size: 1.3rem;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #EDE6DC !important;
+    color: #F5C76D !important;
   }
 }
 
@@ -953,7 +953,7 @@ body.modal-open {
   }
 
   .hero-slides .hero-slide:nth-child(2) {
-    background-image: url('/static/images/hero/plumbing_slide_mobile.webp?v=200') !important;
+    background-image: url('/static/images/hero/plumbing_slide_mobile.webp?v=210') !important;
     background-position: center top !important;
   }
 
@@ -973,7 +973,7 @@ body.modal-open {
     line-height: 1.2;
     letter-spacing: 0.01em;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #EDE6DC !important;
+    color: #F5C76D !important;
   }
 
   .hero-desc {
@@ -1241,7 +1241,7 @@ body.modal-open {
   .hero-title {
     font-size: clamp(1.35rem, 6.5vw, 1.75rem);
     font-family: 'Times New Roman', Times, serif !important;
-    color: #EDE6DC !important;
+    color: #F5C76D !important;
   }
   .stats-strip-section {
     margin-top: -1.5rem !important;
