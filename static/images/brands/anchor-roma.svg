@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 10)">
+    <rect x="0" y="4" width="62" height="20" rx="3" fill="#E60012"/>
+    <text x="6" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#ffffff" letter-spacing="1">ANCHOR</text>
+    <text x="72" y="28" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="900" fill="#1E293B" letter-spacing="1.5">ROMA</text>
+    <text x="74" y="42" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#E60012" letter-spacing="2">MODULAR SWITCHES</text>
+  </g>
+</svg>

@@ -172,7 +172,12 @@ body.modal-open {
     gap: 0.35rem;
   }
   .brand-name {
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+    letter-spacing: 0.045em;
+  }
+  .brand-sub {
+    font-size: 0.54rem;
+    letter-spacing: 0.045em;
   }
 }
 
@@ -259,14 +264,14 @@ body.modal-open {
     text-align: left;
   }
   .brand-name {
-    font-size: 0.84rem !important;
+    font-size: 0.95rem !important;
     line-height: 1.15 !important;
-    letter-spacing: 0.03em !important;
+    letter-spacing: 0.04em !important;
     color: #0F172A !important;
   }
   .brand-sub {
-    font-size: 0.46rem !important;
-    letter-spacing: 0.12em !important;
+    font-size: 0.45rem !important;
+    letter-spacing: 0.035em !important;
     line-height: 1 !important;
     margin-top: 2px !important;
     color: #B45309 !important;
@@ -459,14 +464,14 @@ body.modal-open {
     line-height: 1.2;
     letter-spacing: 0.01em;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #F5C76D !important;
+    color: #ffffff !important;
   }
   .hero-desc {
     font-size: 0.95rem;
     margin-bottom: 1.65rem;
     line-height: 1.55;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #DDD6CB !important;
+    color: #ffffff !important;
   }
   .hero-actions {
     display: flex;
@@ -829,7 +834,7 @@ body.modal-open {
   .hero-title {
     font-size: 1.45rem;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #F5C76D !important;
+    color: #ffffff !important;
   }
 
   .brand-chip {
@@ -892,7 +897,7 @@ body.modal-open {
   .hero-title {
     font-size: 1.3rem;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #F5C76D !important;
+    color: #ffffff !important;
   }
 }
 
@@ -973,14 +978,14 @@ body.modal-open {
     line-height: 1.2;
     letter-spacing: 0.01em;
     font-family: 'Times New Roman', Times, serif !important;
-    color: #F5C76D !important;
+    color: #ffffff !important;
   }
 
   .hero-desc {
     font-size: 0.825rem;
     margin-bottom: 1.25rem;
     line-height: 1.45;
-    color: #DDD6CB !important;
+    color: #ffffff !important;
     max-width: 100%;
     word-break: normal;
     font-family: 'Times New Roman', Times, serif !important;
@@ -1241,7 +1246,7 @@ body.modal-open {
   .hero-title {
     font-size: clamp(1.35rem, 6.5vw, 1.75rem);
     font-family: 'Times New Roman', Times, serif !important;
-    color: #F5C76D !important;
+    color: #ffffff !important;
   }
   .stats-strip-section {
     margin-top: -1.5rem !important;

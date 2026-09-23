@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(10, 12)">
+    <polygon points="5,30 22,8 39,30 30,30 22,18 14,30" fill="#0284C7"/>
+    <circle cx="22" cy="35" r="3.5" fill="#EF4444"/>
+    <text x="46" y="27" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="900" fill="#0369A1" letter-spacing="1">JANATICS</text>
+    <text x="48" y="41" font-family="Arial, sans-serif" font-size="8.5" font-weight="800" fill="#64748B" letter-spacing="3">PNEUMATIC</text>
+  </g>
+</svg>

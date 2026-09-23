@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" width="240" height="70">
+  <g transform="translate(12, 14)">
+    <rect x="0" y="2" width="38" height="38" rx="4" fill="#E2001A"/>
+    <path d="M10 10 v22 h18" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="48" y="30" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="800" fill="#111827" letter-spacing="-0.5">legrand</text>
+    <text x="50" y="42" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#DC2626" letter-spacing="1.5">ELECTRICAL SOLUTIONS</text>
+  </g>
+</svg>
