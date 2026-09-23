@@ -220,6 +220,20 @@ def delete_product(product_id):
         flash('Failed to delete product.', 'danger')
     return redirect(url_for('admin.products', business=business_slug))
 
+@admin_bp.route('/products/reorder', methods=['POST'])
+@admin_required
+def reorder_products():
+    try:
+        data = request.get_json(force=True)
+        order_list = data.get('order', [])
+        if not order_list:
+            return jsonify({'ok': False, 'error': 'No order data'}), 400
+        ProductModel.reorder(order_list)
+        return jsonify({'ok': True})
+    except Exception as e:
+        current_app.logger.error(f"Error reordering products: {e}", exc_info=True)
+        return jsonify({'ok': False, 'error': str(e)}), 500
+
 @admin_bp.route('/brands')
 @admin_required
 def brands():

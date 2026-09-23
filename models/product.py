@@ -29,3 +29,7 @@ class ProductModel:
     @classmethod
     def delete(cls, product_id):
         return ProductService.delete(product_id)
+
+    @classmethod
+    def reorder(cls, order_list):
+        return ProductService.reorder(order_list)

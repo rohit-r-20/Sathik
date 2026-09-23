@@ -162,11 +162,16 @@ class ProductService:
 
         total = len(results)
 
-        # Apply sorting
+        # Apply sorting — sort_order field takes priority (ascending = position 1 first)
         reverse_sort = (sort_order in ('desc', -1, 'DESC'))
-        if sort_field == 'created_at':
-            results.sort(key=lambda x: str(x.get('created_at') or '2000-01-01'), reverse=reverse_sort)
-        elif sort_field == 'name':
+        results.sort(
+            key=lambda x: (
+                x.get('sort_order') if x.get('sort_order') is not None else 9999,
+                str(x.get('created_at') or '2000-01-01')
+            ),
+            reverse=False
+        )
+        if sort_field == 'name':
             results.sort(key=lambda x: str(x.get('name', '')).lower(), reverse=reverse_sort)
 
         # Apply pagination
@@ -252,6 +257,8 @@ class ProductService:
         data['is_active'] = data.get('is_active', True)
         data['is_featured'] = data.get('is_featured', False)
         data['is_new'] = data.get('is_new', True)
+        # New products get sort_order = 0 (top of list); existing products shift down
+        data['sort_order'] = 0
 
         formatted = format_record(data)
 
@@ -318,3 +325,25 @@ class ProductService:
                 _save_local_products()
                 return True
         return False
+
+    @staticmethod
+    def reorder(order_list):
+        """Bulk-update sort_order. order_list = [{'id': ..., 'sort_order': int}, ...]"""
+        products = _load_local_products()
+        now = datetime.utcnow().isoformat()
+        order_map = {str(item['id']): int(item['sort_order']) for item in order_list}
+
+        client = get_supabase()
+        for p in products:
+            p_id = str(p.get('id') or p.get('_id') or '')
+            if p_id in order_map:
+                p['sort_order'] = order_map[p_id]
+                p['updated_at'] = now
+                if client is not None:
+                    try:
+                        client.table('products').update({'sort_order': order_map[p_id]}).eq('id', p_id).execute()
+                    except Exception:
+                        pass
+
+        _save_local_products()
+        return True

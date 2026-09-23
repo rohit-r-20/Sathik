@@ -11,6 +11,34 @@
   .form-select, .form-input, .form-textarea {
     width: 100%;
   }
+  /* Drag-and-drop reorder styles */
+  .drag-handle {
+    cursor: grab;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    padding: 0 0.25rem;
+    user-select: none;
+  }
+  .drag-handle:active { cursor: grabbing; }
+  tr.dragging {
+    opacity: 0.45;
+    background: #f0f9ff;
+  }
+  tr.drag-over {
+    border-top: 2.5px solid #0284c7;
+  }
+  .pos-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  #save-order-btn { display: none; }
 </style>
 {% endblock %}
 
@@ -31,9 +59,14 @@
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
       <div>
         <h1 style="font-size: 1.75rem; margin-bottom: 0.25rem;">Manage Products</h1>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Add, edit, or remove products across all commercial store catalogues.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Add, edit, or remove products. <strong>Drag ☰ rows</strong> to reorder, then click Save Order.</p>
       </div>
-      <button type="button" class="btn btn-primary" onclick="openCreateModal()">+ Add New Product</button>
+      <div style="display:flex; gap:0.6rem; align-items:center;">
+        <button id="save-order-btn" class="btn btn-primary" onclick="saveOrder()" style="background:#16a34a; border-color:#16a34a;">
+          💾 Save Order
+        </button>
+        <button type="button" class="btn btn-primary" onclick="openCreateModal()">+ Add New Product</button>
+      </div>
     </div>
 
     <!-- Cloud Storage Status Banner -->
@@ -67,9 +100,11 @@
 
     <!-- Products Table -->
     <div class="table-card">
-      <table class="admin-table">
+      <table class="admin-table" id="products-table">
         <thead>
           <tr>
+            <th style="width:36px;"></th>
+            <th style="width:46px;">#</th>
             <th>Product</th>
             <th>SKU</th>
             <th>Store / Business</th>
@@ -79,10 +114,12 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="sortable-tbody">
           {% if products %}
             {% for p in products %}
-            <tr>
+            <tr data-id="{{ p._id }}" draggable="true">
+              <td><span class="drag-handle" title="Drag to reorder">☰</span></td>
+              <td><span class="pos-badge row-pos">{{ loop.index }}</span></td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <img src="{{ p.images[0].url if p.images and p.images[0].url else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" onerror="this.onerror=null; this.src='/static/images/placeholder.jpg';" style="width: 44px; height: 44px; object-fit: contain; border-radius: 6px; border: 1px solid var(--border); background: #fff; padding: 2px;">
@@ -477,6 +514,96 @@
   // Initialize create modal on load
   document.addEventListener('DOMContentLoaded', function() {
     populateCategories('create');
+    initDragAndDrop();
   });
+
+  /* ── Drag-and-Drop Reorder ── */
+  function initDragAndDrop() {
+    const tbody = document.getElementById('sortable-tbody');
+    if (!tbody) return;
+    let dragSrc = null;
+
+    tbody.addEventListener('dragstart', function(e) {
+      const row = e.target.closest('tr[data-id]');
+      if (!row) return;
+      dragSrc = row;
+      row.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    tbody.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const row = e.target.closest('tr[data-id]');
+      if (!row || row === dragSrc) return;
+      document.querySelectorAll('tr.drag-over').forEach(r => r.classList.remove('drag-over'));
+      row.classList.add('drag-over');
+    });
+
+    tbody.addEventListener('dragleave', function(e) {
+      const row = e.target.closest('tr[data-id]');
+      if (row) row.classList.remove('drag-over');
+    });
+
+    tbody.addEventListener('drop', function(e) {
+      e.preventDefault();
+      const row = e.target.closest('tr[data-id]');
+      if (!row || row === dragSrc) return;
+      row.classList.remove('drag-over');
+      // Insert before the target row
+      tbody.insertBefore(dragSrc, row);
+      updatePositionBadges();
+      document.getElementById('save-order-btn').style.display = 'inline-flex';
+    });
+
+    tbody.addEventListener('dragend', function(e) {
+      const row = e.target.closest('tr[data-id]');
+      if (row) row.classList.remove('dragging');
+      document.querySelectorAll('tr.drag-over').forEach(r => r.classList.remove('drag-over'));
+    });
+  }
+
+  function updatePositionBadges() {
+    document.querySelectorAll('#sortable-tbody tr[data-id] .row-pos').forEach((badge, i) => {
+      badge.textContent = i + 1;
+    });
+  }
+
+  function saveOrder() {
+    const rows = document.querySelectorAll('#sortable-tbody tr[data-id]');
+    const order = Array.from(rows).map((row, i) => ({
+      id: row.dataset.id,
+      sort_order: i
+    }));
+
+    const btn = document.getElementById('save-order-btn');
+    btn.textContent = '⏳ Saving…';
+    btn.disabled = true;
+
+    fetch('/admin/products/reorder', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({order})
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        btn.textContent = '✅ Saved!';
+        btn.style.background = '#16a34a';
+        setTimeout(() => {
+          btn.style.display = 'none';
+          btn.textContent = '💾 Save Order';
+          btn.disabled = false;
+        }, 2000);
+      } else {
+        btn.textContent = '❌ Error — try again';
+        btn.disabled = false;
+      }
+    })
+    .catch(() => {
+      btn.textContent = '❌ Error — try again';
+      btn.disabled = false;
+    });
+  }
 </script>
 {% endblock %}
