@@ -23,8 +23,8 @@
     "id": "p_essco-water-heater_1790164063",
     "_id": "p_essco-water-heater_1790164063",
     "created_at": "2026-09-23T11:47:43.650173",
-    "updated_at": "2026-09-23T11:55:18.978539",
-    "sort_order": 0
+    "updated_at": "2026-09-23T12:38:27.268592",
+    "sort_order": 1
   },
   {
     "_id": "p_bath_ss_sink",
@@ -58,7 +58,9 @@
     "is_active": true,
     "is_featured": true,
     "is_new": true,
-    "id": "p_bath_ss_sink"
+    "id": "p_bath_ss_sink",
+    "sort_order": 0,
+    "updated_at": "2026-09-23T12:38:27.268592"
   },
   {
     "_id": "p_bath_quartz_sink",
@@ -92,7 +94,9 @@
     "is_active": true,
     "is_featured": true,
     "is_new": true,
-    "id": "p_bath_quartz_sink"
+    "id": "p_bath_quartz_sink",
+    "sort_order": 2,
+    "updated_at": "2026-09-23T12:38:27.268592"
   },
   {
     "_id": "p_bath_bathtub_orca",
@@ -130,7 +134,9 @@
     "is_active": true,
     "is_featured": true,
     "is_new": true,
-    "id": "p_bath_bathtub_orca"
+    "id": "p_bath_bathtub_orca",
+    "sort_order": 3,
+    "updated_at": "2026-09-23T12:38:27.268592"
   },
   {
     "_id": "p_bath_diverter",
@@ -168,7 +174,9 @@
     "is_active": true,
     "is_featured": true,
     "is_new": true,
-    "id": "p_bath_diverter"
+    "id": "p_bath_diverter",
+    "sort_order": 4,
+    "updated_at": "2026-09-23T12:38:27.268592"
   },
   {
     "_id": "p_pneumatic_1",
