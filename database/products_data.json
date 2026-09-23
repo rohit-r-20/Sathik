@@ -27,44 +27,6 @@
     "sort_order": 0
   },
   {
-    "_id": "p_bath_water_heater",
-    "name": "Hindware Elena Storage Water Heater 25L",
-    "slug": "hindware-elena-storage-water-heater-25l",
-    "sku": "HIND-GYS-25L",
-    "description": "Energy-efficient 5-star rated storage geyser with glass-lined tank, titanium heating element, and multi-tier safety valve for instant hot water.",
-    "short_description": "25-Liter 5-star energy-efficient electric water heater.",
-    "features": [
-      "Titanium glass-lined tank",
-      "5-Star BEE energy rating",
-      "High pressure withstand up to 8 Bar"
-    ],
-    "specifications": [
-      {
-        "key": "Capacity",
-        "value": "25 Liters"
-      },
-      {
-        "key": "Rating",
-        "value": "5 Star BEE"
-      }
-    ],
-    "images": [
-      {
-        "url": "/static/images/products/bath-kitchen/water_heater.jpg",
-        "is_primary": true
-      }
-    ],
-    "business_slug": "bath-kitchen",
-    "category_slug": "bathware",
-    "subcategory_slug": "water-heaters-geysers",
-    "brand_slug": "hindware",
-    "brand_name": "Hindware",
-    "is_active": true,
-    "is_featured": true,
-    "is_new": true,
-    "id": "p_bath_water_heater"
-  },
-  {
     "_id": "p_bath_ss_sink",
     "name": "Stainless Steel Kitchen Sink",
     "slug": "stainless-steel-kitchen-sink",
