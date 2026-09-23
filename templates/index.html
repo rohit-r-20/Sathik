@@ -322,11 +322,11 @@
       ('m-seal', 'png', 'M-SEAL', 'Epoxy Putty & Sealants'),
       ('bondite', 'png', 'BONDITE', 'Adhesives & Resins'),
       ('indigo', 'png', 'INDIGO PAINTS', 'Paints & Finishes'),
-      ('romsan', 'svg', 'ROMSAN', 'Hardware & Building Solutions')
+      ('vemo', 'png', 'VEMO', 'Tiles & Bathware')
       ] %}
       <div class="brand-chip">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=10" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=11" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -351,11 +351,11 @@
       ('m-seal', 'png', 'M-SEAL', 'Epoxy Putty & Sealants'),
       ('bondite', 'png', 'BONDITE', 'Adhesives & Resins'),
       ('indigo', 'png', 'INDIGO PAINTS', 'Paints & Finishes'),
-      ('romsan', 'svg', 'ROMSAN', 'Hardware & Building Solutions')
+      ('vemo', 'png', 'VEMO', 'Tiles & Bathware')
       ] %}
       <div class="brand-chip" aria-hidden="true">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=10" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=11" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -388,7 +388,7 @@
       ] %}
       <div class="brand-chip">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=10" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=11" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -417,7 +417,7 @@
       ] %}
       <div class="brand-chip" aria-hidden="true">
         <div class="brand-logo-img">
-          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=10" alt="{{ name }}"
+          <img src="{{ url_for('static', filename='images/brands/' + slug + '.' + ext) }}?v=11" alt="{{ name }}"
             class="brand-logo-raw" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
           <span class="brand-logo-fallback" style="display:none;">{{ name }}</span>
         </div>
@@ -1120,14 +1120,28 @@
 <section class="legacy-about-section" id="aboutUs">
   <div class="container">
     <div class="legacy-about-grid">
-      <!-- Left side: Authentic Storefront Photo (3 Stores in Triangle Order) -->
-      <div class="legacy-image-frame">
-        <img src="{{ url_for('static', filename='images/hero/sathik_three_stores_triangle.webp') }}?v=1"
-          alt="Sathik Groups 3 Physical Stores - Hardwares, Traders &amp; Enterprises" class="legacy-img"
-          loading="lazy">
-        <div class="legacy-badge-floating">
-          <div class="legacy-badge-year">1964</div>
-          <div class="legacy-badge-text">Trust In Every Brick</div>
+      <!-- Left side: Authentic Storefront Photo & Legacy Trust Box -->
+      <div class="legacy-visual-col">
+        <div class="legacy-image-frame">
+          <img src="{{ url_for('static', filename='images/hero/sathik_three_stores_triangle.webp') }}?v=1"
+            alt="Sathik Groups 3 Physical Stores - Hardwares, Traders &amp; Enterprises" class="legacy-img"
+            loading="lazy">
+        </div>
+        <div class="legacy-trust-box">
+          <div class="legacy-trust-main">
+            <div class="legacy-trust-icon-badge">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="legacy-trust-heading">Since 1964</div>
+              <div class="legacy-trust-sub">Trust in every brick</div>
+            </div>
+          </div>
+          <div class="legacy-trust-highlight">
+            <span class="star">★</span> 60+ Years of Trust
+          </div>
         </div>
       </div>
 

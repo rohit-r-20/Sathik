@@ -89,7 +89,7 @@ BRANDS_LIST = [
     {'name': 'M-Seal', 'slug': 'm-seal', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Bondite', 'slug': 'bondite', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
     {'name': 'Indigo Paints', 'slug': 'indigo', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},
-    {'name': 'Romsan', 'slug': 'romsan', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
+    {'name': 'Vemo Tiles & Bathware', 'slug': 'vemo', 'businesses': ['bath-kitchen'], 'featured': True, 'country': 'India'},
     {'name': 'K2 Chemicals', 'slug': 'k2', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'India'},
     {'name': 'Sika', 'slug': 'sika', 'businesses': ['hardware', 'plumbing'], 'featured': True, 'country': 'Switzerland'},
     {'name': 'CICO Technologies', 'slug': 'cico', 'businesses': ['hardware'], 'featured': True, 'country': 'India'},

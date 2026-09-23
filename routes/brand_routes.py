@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
 from models.brand import BrandModel
 from models.product import ProductModel
 from utils.constants import COMPANY_INFO
@@ -23,12 +23,18 @@ def brand_detail(slug):
     brand = BrandModel.find_by_slug(slug)
     if not brand:
         abort(404)
-    products, total = ProductModel.find_all(filter_query={'brand_slug': slug}, limit=24)
+    page = int(request.args.get('page', 1))
+    limit = 24
+    products, total = ProductModel.find_all(filter_query={'brand_slug': slug}, page=page, limit=limit)
+    total_pages = (total + limit - 1) // limit if total > 0 else 1
     return render_template(
         'products.html',
         products=products,
         current_brand=slug,
         selected_brand=brand,
         total_products=total,
+        total_pages=total_pages,
+        page=page,
         company=COMPANY_INFO
     )
+

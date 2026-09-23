@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, redirect, url_for
+import os
+from flask import Blueprint, render_template, redirect, url_for, send_from_directory, current_app, Response
 from models.product import ProductModel
 from models.brand import BrandModel
 from models.project import ProjectModel
@@ -32,3 +33,48 @@ def about():
 def projects():
     project_list = ProjectModel.find_all()
     return render_template('projects.html', projects=project_list, company=COMPANY_INFO)
+
+@home_bp.route('/robots.txt')
+def robots():
+    static_folder = current_app.static_folder
+    robots_path = os.path.join(static_folder, 'robots.txt')
+    if os.path.exists(robots_path):
+        return send_from_directory(static_folder, 'robots.txt', mimetype='text/plain')
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root_robots = os.path.join(root_dir, 'robots.txt')
+    if os.path.exists(root_robots):
+        return send_from_directory(root_dir, 'robots.txt', mimetype='text/plain')
+    fallback_content = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /admin/\n"
+        "Disallow: /ashiksathik\n"
+        "Disallow: /register\n"
+        "Disallow: /logout\n"
+        "Disallow: /cart/\n"
+        "Disallow: /orders/\n"
+        "Disallow: /payment/\n"
+        "Disallow: /enquiry/submit\n"
+        "Disallow: /categories\n"
+        "Allow: /static/\n"
+        "Sitemap: https://sathikgroups.com/sitemap.xml\n"
+    )
+    return Response(fallback_content, mimetype='text/plain')
+
+@home_bp.route('/sitemap.xml')
+def sitemap():
+    static_folder = current_app.static_folder
+    sitemap_path = os.path.join(static_folder, 'sitemap.xml')
+    if os.path.exists(sitemap_path):
+        return send_from_directory(static_folder, 'sitemap.xml', mimetype='application/xml')
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root_sitemap = os.path.join(root_dir, 'sitemap.xml')
+    if os.path.exists(root_sitemap):
+        return send_from_directory(root_dir, 'sitemap.xml', mimetype='application/xml')
+    try:
+        from services.sitemap_service import generate_sitemap_xml
+        return Response(generate_sitemap_xml(), mimetype='application/xml')
+    except Exception as err:
+        print(f"⚠️ Error generating dynamic sitemap: {err}")
+        return Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>', mimetype='application/xml')
+

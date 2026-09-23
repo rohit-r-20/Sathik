@@ -1,0 +1,20 @@
+# robots.txt for https://sathikgroups.com
+User-agent: *
+Allow: /
+
+# Disallow private admin, auth, and backend API endpoints
+Disallow: /admin/
+Disallow: /ashiksathik
+Disallow: /register
+Disallow: /logout
+Disallow: /cart/
+Disallow: /orders/
+Disallow: /payment/
+Disallow: /enquiry/submit
+Disallow: /categories
+
+# Allow crawlers to fetch all static CSS, JS, images, fonts, uploads, and media
+Allow: /static/
+
+# Canonical XML Sitemap
+Sitemap: https://sathikgroups.com/sitemap.xml
