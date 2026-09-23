@@ -8,6 +8,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>{% block title %}Sathik Groups | Commercial Building Materials &amp; Sanitaryware Distributor{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}Sathik Groups is an authorized commercial distributor of 20+ premier brands in plumbing, hardware, and sanitaryware.{% endblock %}">
+  {% block canonical %}
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {% endif %}
+  {% endblock %}
+
   
   <!-- Fonts: Playfair Display & Cinzel for luxury headings, Inter for clean body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

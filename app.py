@@ -28,11 +28,16 @@ def create_app(config_class=Config):
     # Initialize Supabase Client
     init_supabase(app)
 
-    # Global Template Context Processor (inject company info in all templates)
+    # Global Template Context Processor (inject company info and canonical_url in all templates)
     from utils.constants import COMPANY_INFO
+    from utils.seo import get_canonical_url
     @app.context_processor
     def inject_global_context():
-        return {'company': COMPANY_INFO}
+        return {
+            'company': COMPANY_INFO,
+            'canonical_url': get_canonical_url()
+        }
+
 
     # Register Blueprints
     app.register_blueprint(home_bp)
