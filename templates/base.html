@@ -25,14 +25,9 @@
   {% block extra_css %}{% endblock %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}?v=37">
 
-  <!-- Favicon & Brand Icons (Standard Browsers, Apple iOS & Google Search SERP) -->
-  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo/sathik_logo_icon.svg') }}?v=12">
-  <link rel="icon" type="image/png" sizes="48x48" href="{{ url_for('static', filename='images/logo/favicon-48x48.png') }}?v=12">
-  <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='images/logo/favicon-96x96.png') }}?v=12">
-  <link rel="icon" type="image/png" sizes="192x192" href="{{ url_for('static', filename='images/logo/favicon-192x192.png') }}?v=12">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/logo/apple-touch-icon.png') }}?v=12">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='images/logo/favicon.ico') }}?v=12">
-  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/png" href="/static/images/favicon.png">
+  <link rel="apple-touch-icon" href="/static/images/favicon.png">
 
   <!-- Open Graph & Social Cards (Logo display in search previews, WhatsApp, social shares) -->
   <meta property="og:site_name" content="Sathik Groups">
