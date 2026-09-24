@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 from flask import Blueprint, render_template, request, redirect, url_for, session, flash, jsonify, current_app, abort
 from models.product import ProductModel
@@ -11,6 +12,49 @@ from utils.helpers import generate_slug
 from services.image_service import save_uploaded_image
 
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
+
+def _extract_available_brands(data, form, default_sku):
+    """Extract sub-products / brand variants from JSON string or form lists."""
+    available_brands = []
+    json_str = data.get('available_brands_json', '').strip()
+    if json_str:
+        try:
+            parsed = json.loads(json_str)
+            if isinstance(parsed, list):
+                for idx, v in enumerate(parsed):
+                    if isinstance(v, dict):
+                        b_name = str(v.get('brand_name', '')).strip()
+                        v_name = str(v.get('name', '')).strip()
+                        v_sku = str(v.get('sku', '')).strip().upper()
+                        v_img = str(v.get('image', '')).strip() or '/static/images/placeholder.jpg'
+                        if b_name or v_name:
+                            available_brands.append({
+                                'brand_name': b_name or v_name,
+                                'name': v_name or b_name,
+                                'sku': v_sku or f"{default_sku}-{idx+1}",
+                                'image': v_img
+                            })
+        except Exception as e:
+            current_app.logger.warning(f"Error parsing available_brands_json: {e}")
+
+    if not available_brands:
+        b_names = form.getlist('variant_brand_name[]')
+        v_names = form.getlist('variant_name[]')
+        v_skus = form.getlist('variant_sku[]')
+        v_images = form.getlist('variant_image[]')
+        for i in range(len(b_names)):
+            b_name = b_names[i].strip() if i < len(b_names) else ''
+            v_name = v_names[i].strip() if i < len(v_names) else ''
+            v_sku = v_skus[i].strip().upper() if i < len(v_skus) else ''
+            v_img = v_images[i].strip() if i < len(v_images) else '/static/images/placeholder.jpg'
+            if b_name or v_name:
+                available_brands.append({
+                    'brand_name': b_name or v_name,
+                    'name': v_name or b_name,
+                    'sku': v_sku or f"{default_sku}-{i+1}",
+                    'image': v_img or '/static/images/placeholder.jpg'
+                })
+    return available_brands
 
 def admin_required(f):
     @wraps(f)
@@ -42,23 +86,38 @@ def dashboard():
 def products():
     page = int(request.args.get('page', 1))
     business_filter = request.args.get('business', '').strip()
+    view = request.args.get('view', 'active').strip()
     
     filter_query = {}
     if business_filter:
         filter_query['business_slug'] = business_filter
 
-    products_list, total = ProductModel.find_all(
-        filter_query=filter_query, 
-        limit=20, 
-        page=page, 
-        active_only=False
-    )
+    limit = 50 if view == 'recycle_bin' else 20
+
+    if view == 'recycle_bin':
+        products_list, total = ProductModel.find_all(
+            filter_query=filter_query if business_filter else None,
+            only_deleted=True,
+            limit=limit,
+            page=page,
+            active_only=False
+        )
+    else:
+        products_list, total = ProductModel.find_all(
+            filter_query=filter_query, 
+            limit=limit, 
+            page=page, 
+            active_only=False,
+            only_deleted=False
+        )
+
+    recycle_bin_count = ProductModel.get_recycle_bin_count()
     categories = CategoryModel.find_all()
     from services.category_service import SubcategoryService
     subcategories = SubcategoryService.get_all()
     brands = BrandModel.find_all()
     valid_businesses = [b for b in BUSINESSES if b['slug'] != 'catalogue']
-    total_pages = (total + 19) // 20 if total > 0 else 1
+    total_pages = (total + limit - 1) // limit if total > 0 else 1
     
     from services.github_storage import GithubStorageService
     storage_connected = GithubStorageService.is_configured()
@@ -71,6 +130,8 @@ def products():
         brands=brands,
         businesses=valid_businesses,
         current_business=business_filter,
+        current_view=view,
+        recycle_bin_count=recycle_bin_count,
         page=page,
         total_pages=total_pages,
         storage_connected=storage_connected
@@ -112,6 +173,12 @@ def create_product():
                 brand_name = b.get('name', brand_name)
                 break
 
+        # Extract sub-products / brand variants
+        available_brands = _extract_available_brands(data, request.form, sku.upper())
+        available_brand_slugs = [generate_slug(b['brand_name']) for b in available_brands if b.get('brand_name')]
+        if brand_slug == 'multiple' and available_brands:
+            brand_name = " / ".join(dict.fromkeys([b['brand_name'] for b in available_brands if b.get('brand_name')]))
+
         product_data = {
             'name': name,
             'slug': generate_slug(name),
@@ -125,6 +192,8 @@ def create_product():
             'subcategory_slug': subcategory_slug,
             'brand_slug': brand_slug,
             'brand_name': brand_name,
+            'available_brands': available_brands,
+            'available_brand_slugs': available_brand_slugs,
             'is_active': True,
             'is_featured': 'is_featured' in request.form,
             'is_new': 'is_new' in request.form,
@@ -162,7 +231,7 @@ def edit_product(product_id):
                 image_url = res
 
         if not image_url:
-            existing = ProductModel.find_by_id(product_id)
+            existing = ProductModel.find_by_id(product_id, include_deleted=True)
             if existing and existing.get('images') and len(existing['images']) > 0:
                 image_url = existing['images'][0].get('url', '')
 
@@ -171,12 +240,19 @@ def edit_product(product_id):
         subcategory_slug = data.get('subcategory_slug', 'hoses-tubes').strip()
         brand_slug = data.get('brand_slug', 'standard').strip()
 
+        # Extract sub-products / brand variants
+        available_brands = _extract_available_brands(data, request.form, sku.upper())
+        available_brand_slugs = [generate_slug(b['brand_name']) for b in available_brands if b.get('brand_name')]
+
         # Look up proper brand name
         brand_name = brand_slug.replace('-', ' ').title()
         for b in BrandModel.find_all():
             if b.get('slug') == brand_slug:
                 brand_name = b.get('name', brand_name)
                 break
+
+        if brand_slug == 'multiple' and available_brands:
+            brand_name = " / ".join(dict.fromkeys([b['brand_name'] for b in available_brands if b.get('brand_name')]))
 
         product_data = {
             'name': name,
@@ -191,6 +267,8 @@ def edit_product(product_id):
             'subcategory_slug': subcategory_slug,
             'brand_slug': brand_slug,
             'brand_name': brand_name,
+            'available_brands': available_brands,
+            'available_brand_slugs': available_brand_slugs,
             'is_active': 'is_active' in request.form,
             'is_featured': 'is_featured' in request.form,
             'is_new': 'is_new' in request.form,
@@ -210,15 +288,49 @@ def edit_product(product_id):
 @admin_bp.route('/products/<product_id>/delete', methods=['POST'])
 @admin_required
 def delete_product(product_id):
-    existing = ProductModel.find_by_id(product_id)
+    existing = ProductModel.find_by_id(product_id, include_deleted=True)
+    prod_name = existing.get('name', 'Product') if existing else 'Product'
     business_slug = existing.get('business_slug', '') if existing else ''
     
     success = ProductModel.delete(product_id)
     if success:
-        flash('Product deleted successfully!', 'success')
+        flash(f'Product "{prod_name}" moved to Recycle Bin.', 'success')
     else:
         flash('Failed to delete product.', 'danger')
     return redirect(url_for('admin.products', business=business_slug))
+
+@admin_bp.route('/products/<product_id>/restore', methods=['POST'])
+@admin_required
+def restore_product(product_id):
+    existing = ProductModel.find_by_id(product_id, include_deleted=True)
+    prod_name = existing.get('name', 'Product') if existing else 'Product'
+    
+    success = ProductModel.restore(product_id)
+    if success:
+        flash(f'Product "{prod_name}" restored successfully to active catalogue!', 'success')
+    else:
+        flash('Failed to restore product.', 'danger')
+    return redirect(url_for('admin.products', view='recycle_bin'))
+
+@admin_bp.route('/products/<product_id>/permanent-delete', methods=['POST'])
+@admin_required
+def permanent_delete_product(product_id):
+    existing = ProductModel.find_by_id(product_id, include_deleted=True)
+    prod_name = existing.get('name', 'Product') if existing else 'Product'
+    
+    success = ProductModel.permanent_delete(product_id)
+    if success:
+        flash(f'Product "{prod_name}" permanently deleted.', 'success')
+    else:
+        flash('Failed to permanently delete product.', 'danger')
+    return redirect(url_for('admin.products', view='recycle_bin'))
+
+@admin_bp.route('/products/empty-recycle-bin', methods=['POST'])
+@admin_required
+def empty_recycle_bin():
+    count = ProductModel.empty_recycle_bin()
+    flash(f'{count} product(s) permanently removed from Recycle Bin.', 'success')
+    return redirect(url_for('admin.products', view='recycle_bin'))
 
 @admin_bp.route('/products/reorder', methods=['POST'])
 @admin_required

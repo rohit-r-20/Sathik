@@ -14,6 +14,17 @@ def index():
     plumbing_products, _ = ProductModel.find_all(filter_query={'business_slug': 'plumbing'}, limit=6)
     hardware_products, _ = ProductModel.find_all(filter_query={'business_slug': 'hardware'}, limit=6)
     featured_brands = BrandModel.find_all(featured_only=True)
+
+    # Dynamically detect awards from static/images/Awards
+    awards_dir = os.path.join(current_app.static_folder, 'images', 'Awards')
+    awards_list = []
+    if os.path.exists(awards_dir):
+        valid_exts = {'.jpg', '.jpeg', '.png', '.webp', '.svg'}
+        awards_list = [
+            f for f in sorted(os.listdir(awards_dir))
+            if not f.startswith('.') and os.path.splitext(f)[1].lower() in valid_exts
+        ]
+
     return render_template(
         'index.html',
         businesses=BUSINESSES,
@@ -22,6 +33,7 @@ def index():
         plumbing_products=plumbing_products,
         hardware_products=hardware_products,
         featured_brands=featured_brands,
+        awards=awards_list,
         company=COMPANY_INFO
     )
 

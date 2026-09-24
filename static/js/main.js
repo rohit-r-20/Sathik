@@ -209,10 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('modal-open');
   };
 
-  // Close modal on backdrop click
+  // Close modal on backdrop click (unless data-static-backdrop is enabled)
   document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
     backdrop.addEventListener('click', (e) => {
       if (e.target === backdrop) {
+        if (backdrop.getAttribute('data-static-backdrop') === 'true' || backdrop.classList.contains('static-backdrop')) {
+          // Do not exit on outside click - must click 'x' in the top
+          return;
+        }
         backdrop.classList.remove('show');
         document.body.classList.remove('modal-open');
       }

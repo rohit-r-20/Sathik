@@ -941,14 +941,17 @@ body.modal-open {
     inset: 0;
     width: 100%;
     height: 100%;
+    display: flex !important;
+    align-items: flex-end !important; /* Moves wordings down to reveal the photo */
   }
 
   .hero-slide::before {
     background: linear-gradient(
       to bottom,
-      rgba(15, 23, 42, 0.38) 0%,
-      rgba(15, 23, 42, 0.12) 48%,
-      rgba(15, 23, 42, 0.0) 75%
+      rgba(15, 23, 42, 0.05) 0%,
+      rgba(15, 23, 42, 0.15) 35%,
+      rgba(15, 23, 42, 0.62) 65%,
+      rgba(15, 23, 42, 0.90) 100%
     ) !important;
   }
 
@@ -969,7 +972,8 @@ body.modal-open {
   }
 
   .hero-slide .hero-inner {
-    padding: 3.25rem 0 3.75rem;
+    width: 100%;
+    padding: 0 0 4.25rem 0 !important;
   }
 
   .hero-title {

@@ -68,15 +68,19 @@ def _save_local_products():
 
 class ProductService:
     @staticmethod
-    def get_all(filter_query=None, sort_field='created_at', sort_order='desc', page=1, limit=12, active_only=True):
+    def get_all(filter_query=None, sort_field='created_at', sort_order='desc', page=1, limit=12, active_only=True, only_deleted=False):
         products = _load_local_products()
         client = get_supabase()
 
         if client is not None:
             try:
                 query = client.table('products').select('*', count='exact')
-                if active_only:
-                    query = query.eq('is_active', True)
+                if only_deleted:
+                    query = query.eq('is_deleted', True)
+                else:
+                    query = query.or_('is_deleted.is.null,is_deleted.eq.false')
+                    if active_only:
+                        query = query.eq('is_active', True)
 
                 if filter_query:
                     if filter_query.get('business_slug'):
@@ -120,8 +124,12 @@ class ProductService:
         # Local filtering logic
         results = products.copy()
 
-        if active_only:
-            results = [p for p in results if p.get('is_active', True) is True]
+        if only_deleted:
+            results = [p for p in results if p.get('is_deleted') is True]
+        else:
+            results = [p for p in results if not p.get('is_deleted', False)]
+            if active_only:
+                results = [p for p in results if p.get('is_active', True) is True]
 
         if filter_query:
             if 'business_slug' in filter_query and filter_query['business_slug']:
@@ -191,6 +199,7 @@ class ProductService:
                 res = client.table('products').select('*')\
                     .eq('slug', product_slug)\
                     .eq('is_active', True)\
+                    .or_('is_deleted.is.null,is_deleted.eq.false')\
                     .limit(1).execute()
                 if res.data:
                     return format_record(res.data[0])
@@ -198,18 +207,21 @@ class ProductService:
                 pass
 
         for p in products:
-            if p.get('slug') == product_slug and p.get('is_active', True):
+            if p.get('slug') == product_slug and p.get('is_active', True) and not p.get('is_deleted', False):
                 return format_record(p)
         return None
 
     @staticmethod
-    def get_by_id(product_id):
+    def get_by_id(product_id, include_deleted=False):
         products = _load_local_products()
         client = get_supabase()
 
         if client is not None:
             try:
-                res = client.table('products').select('*').eq('id', product_id).limit(1).execute()
+                query = client.table('products').select('*').eq('id', product_id)
+                if not include_deleted:
+                    query = query.or_('is_deleted.is.null,is_deleted.eq.false')
+                res = query.limit(1).execute()
                 if res.data:
                     return format_record(res.data[0])
             except Exception:
@@ -221,7 +233,8 @@ class ProductService:
             p__id = str(p.get('_id') or '')
             p_slug = str(p.get('slug') or '')
             if p_id == str_id or p__id == str_id or p_slug == str_id:
-                return format_record(p)
+                if include_deleted or not p.get('is_deleted', False):
+                    return format_record(p)
         return None
 
     @staticmethod
@@ -234,6 +247,7 @@ class ProductService:
                 res = client.table('products').select('*')\
                     .eq('is_featured', True)\
                     .eq('is_active', True)\
+                    .or_('is_deleted.is.null,is_deleted.eq.false')\
                     .order('created_at', desc=True)\
                     .limit(limit).execute()
                 if res.data:
@@ -241,7 +255,7 @@ class ProductService:
             except Exception:
                 pass
 
-        featured = [p for p in products if p.get('is_active', True) and p.get('is_featured', False)]
+        featured = [p for p in products if p.get('is_active', True) and p.get('is_featured', False) and not p.get('is_deleted', False)]
         return [format_record(p) for p in featured[:limit]]
 
     @staticmethod
@@ -305,16 +319,80 @@ class ProductService:
 
     @staticmethod
     def delete(product_id):
+        """Soft delete: move to recycle bin."""
+        products = _load_local_products()
+        str_id = str(product_id)
+        now = datetime.utcnow().isoformat()
+
+        client = get_supabase()
+        if client is not None:
+            try:
+                client.table('products').update({
+                    'is_deleted': True,
+                    'deleted_at': now,
+                    'is_active': False,
+                    'updated_at': now
+                }).eq('id', product_id).execute()
+            except Exception as e:
+                print(f"ProductService remote delete note: {e}")
+
+        for i, p in enumerate(products):
+            p_id = str(p.get('id') or '')
+            p__id = str(p.get('_id') or '')
+            p_slug = str(p.get('slug') or '')
+            if p_id == str_id or p__id == str_id or p_slug == str_id:
+                products[i]['is_deleted'] = True
+                products[i]['deleted_at'] = now
+                products[i]['is_active'] = False
+                products[i]['updated_at'] = now
+                _save_local_products()
+                return True
+        return False
+
+    @staticmethod
+    def restore(product_id):
+        """Restore soft-deleted product from recycle bin."""
+        products = _load_local_products()
+        str_id = str(product_id)
+        now = datetime.utcnow().isoformat()
+
+        client = get_supabase()
+        if client is not None:
+            try:
+                client.table('products').update({
+                    'is_deleted': False,
+                    'deleted_at': None,
+                    'is_active': True,
+                    'updated_at': now
+                }).eq('id', product_id).execute()
+            except Exception as e:
+                print(f"ProductService remote restore note: {e}")
+
+        for i, p in enumerate(products):
+            p_id = str(p.get('id') or '')
+            p__id = str(p.get('_id') or '')
+            p_slug = str(p.get('slug') or '')
+            if p_id == str_id or p__id == str_id or p_slug == str_id:
+                products[i]['is_deleted'] = False
+                products[i]['deleted_at'] = None
+                products[i]['is_active'] = True
+                products[i]['updated_at'] = now
+                _save_local_products()
+                return True
+        return False
+
+    @staticmethod
+    def permanent_delete(product_id):
+        """Permanently remove product from storage."""
         products = _load_local_products()
         str_id = str(product_id)
 
-        # Attempt remote Supabase delete if online
         client = get_supabase()
         if client is not None:
             try:
                 client.table('products').delete().eq('id', product_id).execute()
             except Exception as e:
-                print(f"ProductService remote delete note: {e}")
+                print(f"ProductService remote permanent delete note: {e}")
 
         for i, p in enumerate(products):
             p_id = str(p.get('id') or '')
@@ -325,6 +403,30 @@ class ProductService:
                 _save_local_products()
                 return True
         return False
+
+    @staticmethod
+    def empty_recycle_bin():
+        """Permanently delete all products currently in recycle bin."""
+        global _LOCAL_PRODUCTS
+        products = _load_local_products()
+
+        client = get_supabase()
+        if client is not None:
+            try:
+                client.table('products').delete().eq('is_deleted', True).execute()
+            except Exception as e:
+                print(f"ProductService remote empty_recycle_bin note: {e}")
+
+        count_deleted = len([p for p in products if p.get('is_deleted') is True])
+        _LOCAL_PRODUCTS = [p for p in products if not p.get('is_deleted', False)]
+        _save_local_products()
+        return count_deleted
+
+    @staticmethod
+    def get_recycle_bin_count():
+        """Return total count of products in recycle bin."""
+        products = _load_local_products()
+        return len([p for p in products if p.get('is_deleted') is True])
 
     @staticmethod
     def reorder(order_list):

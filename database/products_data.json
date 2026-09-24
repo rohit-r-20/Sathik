@@ -426,11 +426,11 @@
   },
   {
     "_id": "p_pipeline_clamps",
-    "name": "Pipeline Clamps",
+    "name": "Waterline Clamps",
     "slug": "pipeline-clamps",
     "sku": "IND-CLP-ALL",
-    "description": "Wide range of industrial pipeline installation clamps, including GI U-Bolt clamps, Cushioned special clamps, Motor L-angle supports, Bore dummies, and Bore clamps.",
-    "short_description": "Complete range of pipeline support clamps and covers.",
+    "description": "Wide range of industrial waterline and pipeline installation clamps, including GI U-Bolt clamps, Cushioned special clamps, Motor L-angle supports, Bore dummies, and Bore clamps.",
+    "short_description": "Complete range of waterline & pipeline support clamps and covers.",
     "features": [
       "Vibration-dampening cushioning",
       "High-strength steel fabrication",
@@ -829,15 +829,11 @@
   {
     "_id": "h_waterproofing",
     "name": "Water Proofing Chemicals",
-    "slug": "waterproofing-chemicals",
+    "slug": "water-proofing-chemicals",
     "sku": "HDW-WPF-ALL",
     "description": "Advanced waterproofing chemicals, acrylic coatings, and elastomeric water-barrier additives for terraces, basements, and wet areas.",
     "short_description": "Waterproofing chemical additives from Dr.Fixit, Fosroc, and Sika.",
-    "features": [
-      "Excellent water resistance",
-      "High elasticity & crack bridging",
-      "Durable protective layer"
-    ],
+    "features": [],
     "specifications": [
       {
         "key": "Product Type",
@@ -876,14 +872,15 @@
       }
     ],
     "available_brand_slugs": [
-      "dr-fixit",
+      "drfixit",
       "fosroc",
       "sika"
     ],
     "is_active": true,
-    "is_featured": true,
-    "is_new": true,
-    "id": "h_waterproofing"
+    "is_featured": false,
+    "is_new": false,
+    "id": "h_waterproofing",
+    "updated_at": "2026-09-24T12:19:04.824445"
   },
   {
     "_id": "h_adhesives",

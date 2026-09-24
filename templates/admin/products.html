@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Admin - Manage Products | Sathik Groups{% endblock %}
+{% block title %}{% if current_view == 'recycle_bin' %}Recycle Bin - Products{% else %}Admin - Manage Products{% endif %} | Sathik Groups{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
@@ -39,6 +39,20 @@
     font-weight: 700;
   }
   #save-order-btn { display: none; }
+
+  /* Sub-products / Variants styling */
+  .variant-card {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .variant-card:hover {
+    border-color: #94a3b8;
+  }
 </style>
 {% endblock %}
 
@@ -56,17 +70,60 @@
   </aside>
 
   <main class="admin-main">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
       <div>
-        <h1 style="font-size: 1.75rem; margin-bottom: 0.25rem;">Manage Products</h1>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Add, edit, or remove products. <strong>Drag ☰ rows</strong> to reorder, then click Save Order.</p>
+        <h1 style="font-size: 1.75rem; margin-bottom: 0.25rem;">
+          {% if current_view == 'recycle_bin' %}
+            🗑️ Products Recycle Bin
+          {% else %}
+            Manage Products
+          {% endif %}
+        </h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+          {% if current_view == 'recycle_bin' %}
+            Products deleted from the catalogue are kept here. Restore them back anytime, or permanently erase them.
+          {% else %}
+            Add, edit, or remove products. <strong>Drag ☰ rows</strong> to reorder, then click Save Order.
+          {% endif %}
+        </p>
       </div>
-      <div style="display:flex; gap:0.6rem; align-items:center;">
-        <button id="save-order-btn" class="btn btn-primary" onclick="saveOrder()" style="background:#16a34a; border-color:#16a34a;">
-          💾 Save Order
-        </button>
-        <button type="button" class="btn btn-primary" onclick="openCreateModal()">+ Add New Product</button>
+
+      <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap: wrap;">
+        {% if current_view == 'recycle_bin' %}
+          <a href="{{ url_for('admin.products', business=current_business) }}" class="btn btn-outline" style="text-decoration:none;">
+            ← Back to Active Products
+          </a>
+          {% if products and products|length > 0 %}
+          <form action="{{ url_for('admin.empty_recycle_bin') }}" method="POST" onsubmit="return confirm('⚠️ Are you sure you want to PERMANENTLY delete ALL items in the Recycle Bin?\nThis action CANNOT be undone.');" style="display:inline;">
+            <button type="submit" class="btn btn-outline" style="color: #dc2626; border-color: #fca5a5; font-weight: 600;">
+              💥 Empty Recycle Bin
+            </button>
+          </form>
+          {% endif %}
+        {% else %}
+          <button id="save-order-btn" class="btn btn-primary" onclick="saveOrder()" style="background:#16a34a; border-color:#16a34a;">
+            💾 Save Order
+          </button>
+          <button type="button" class="btn btn-primary" onclick="openCreateModal()">+ Add New Product</button>
+        {% endif %}
       </div>
+    </div>
+
+    <!-- Active vs Recycle Bin Switcher Tabs -->
+    <div style="display: flex; gap: 0.6rem; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap;">
+      <a href="{{ url_for('admin.products', business=current_business) }}" 
+         class="btn btn-sm {% if current_view != 'recycle_bin' %}btn-primary{% else %}btn-outline{% endif %}" 
+         style="display: inline-flex; align-items: center; gap: 0.45rem; border-radius: 9999px; padding: 0.45rem 1.1rem; text-decoration: none; font-weight: 600;">
+        <span>📦 Active Products</span>
+      </a>
+      <a href="{{ url_for('admin.products', view='recycle_bin', business=current_business) }}" 
+         class="btn btn-sm {% if current_view == 'recycle_bin' %}btn-primary{% else %}btn-outline{% endif %}" 
+         style="display: inline-flex; align-items: center; gap: 0.45rem; border-radius: 9999px; padding: 0.45rem 1.1rem; text-decoration: none; font-weight: 600; {% if current_view == 'recycle_bin' %}background: #dc2626; border-color: #dc2626; color: #fff;{% else %}color: #dc2626; border-color: #fca5a5;{% endif %}">
+        <span>🗑️ Recycle Bin</span>
+        <span style="background: {% if current_view == 'recycle_bin' %}rgba(255,255,255,0.28){% else %}#fee2e2{% endif %}; color: {% if current_view == 'recycle_bin' %}#fff{% else %}#991b1b{% endif %}; padding: 0.1rem 0.5rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700;">
+          {{ recycle_bin_count }}
+        </span>
+      </a>
     </div>
 
     <!-- Cloud Storage Status Banner -->
@@ -82,23 +139,121 @@
     {% else %}
     <div style="display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; font-size: 0.8rem; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 0.35rem 0.75rem; border-radius: 6px;">
       <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></span>
-      <span><strong>Cloud Storage Active:</strong> All additions, edits, and deletions are saved permanently to GitHub.</span>
+      <span><strong>Cloud Storage Active:</strong> All additions, edits, deletions, and restorations are synced permanently.</span>
     </div>
     {% endif %}
 
     <!-- Store Filter Tabs -->
     <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; flex-wrap: wrap;">
-      <a href="{{ url_for('admin.products') }}" style="padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; color: {% if not current_business %}var(--primary-700, #0369a1){% else %}var(--text-muted, #64748b){% endif %}; border-bottom: 2px solid {% if not current_business %}var(--primary-600, #0284c7){% else %}transparent{% endif %}; margin-bottom: -0.6rem;">
+      <a href="{{ url_for('admin.products', view=current_view) }}" style="padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; color: {% if not current_business %}var(--primary-700, #0369a1){% else %}var(--text-muted, #64748b){% endif %}; border-bottom: 2px solid {% if not current_business %}var(--primary-600, #0284c7){% else %}transparent{% endif %}; margin-bottom: -0.6rem;">
         All Stores
       </a>
       {% for b in businesses %}
-      <a href="{{ url_for('admin.products', business=b.slug) }}" style="padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; color: {% if current_business == b.slug %}var(--primary-700, #0369a1){% else %}var(--text-muted, #64748b){% endif %}; border-bottom: 2px solid {% if current_business == b.slug %}var(--primary-600, #0284c7){% else %}transparent{% endif %}; margin-bottom: -0.6rem;">
+      <a href="{{ url_for('admin.products', business=b.slug, view=current_view) }}" style="padding: 0.5rem 1rem; text-decoration: none; font-weight: 600; color: {% if current_business == b.slug %}var(--primary-700, #0369a1){% else %}var(--text-muted, #64748b){% endif %}; border-bottom: 2px solid {% if current_business == b.slug %}var(--primary-600, #0284c7){% else %}transparent{% endif %}; margin-bottom: -0.6rem;">
         {{ b.icon }} {{ b.name }}
       </a>
       {% endfor %}
     </div>
 
-    <!-- Products Table -->
+    {% if current_view == 'recycle_bin' %}
+    <!-- RECYCLE BIN TABLE VIEW -->
+    <div class="table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th style="width:46px;">#</th>
+            <th>Product</th>
+            <th>SKU</th>
+            <th>Store / Business</th>
+            <th>Category &amp; Element</th>
+            <th>Brand Options</th>
+            <th>Deleted At</th>
+            <th style="text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if products %}
+            {% for p in products %}
+            <tr>
+              <td><span class="pos-badge">{{ loop.index }}</span></td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <img src="{{ p.images[0].url if p.images and p.images[0].url else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" onerror="this.onerror=null; this.src='/static/images/placeholder.jpg';" style="width: 44px; height: 44px; object-fit: contain; border-radius: 6px; border: 1px solid var(--border); background: #fff; padding: 2px; opacity: 0.75;">
+                  <div>
+                    <strong style="color: #475569; text-decoration: line-through;">{{ p.name }}</strong>
+                    {% if p.is_featured %}<span class="badge" style="background:#FEF3C7; color:#92400E; font-size:0.65rem; margin-left: 0.25rem;">Featured</span>{% endif %}
+                  </div>
+                </div>
+              </td>
+              <td style="font-family: monospace; font-size: 0.85rem; font-weight: 600; color: #64748b;">{{ p.sku }}</td>
+              <td>
+                <span class="badge badge-featured">
+                  {% if p.business_slug == 'plumbing' %}🔧 Plumbing
+                  {% elif p.business_slug == 'hardware' %}🔨 Hardware
+                  {% elif p.business_slug == 'bath-kitchen' %}🛁 Bathware
+                  {% else %}{{ p.business_slug|title }}
+                  {% endif %}
+                </span>
+              </td>
+              <td style="font-size: 0.85rem;">
+                <div><strong>{{ p.category_slug|replace('-', ' ')|title }}</strong></div>
+                <div style="color: var(--text-muted); font-size: 0.75rem;">{{ p.subcategory_slug|replace('-', ' ')|title }}</div>
+              </td>
+              <td>
+                <div>{{ p.brand_name or p.brand_slug|title }}</div>
+                {% if p.available_brands and p.available_brands|length > 0 %}
+                <div style="margin-top: 0.25rem;">
+                  <span class="badge" style="background: #e0e7ff; color: #3730a3; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px;">
+                    🏷️ {{ p.available_brands|length }} Brands
+                  </span>
+                </div>
+                {% endif %}
+              </td>
+              <td style="font-size: 0.82rem; color: #64748b; white-space: nowrap;">
+                {% if p.deleted_at %}
+                  {{ p.deleted_at[:10] }} <span style="font-size: 0.75rem; color: #94a3b8;">{{ p.deleted_at[11:16] }}</span>
+                {% else %}
+                  Recently
+                {% endif %}
+              </td>
+              <td style="text-align: right;">
+                <div style="display: inline-flex; gap: 0.5rem; align-items: center;">
+                  <!-- Restore Form -->
+                  <form action="{{ url_for('admin.restore_product', product_id=p._id) }}?view=recycle_bin" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-sm" style="background: #16a34a; color: #fff; border: none; padding: 0.35rem 0.75rem; font-size: 0.8rem; border-radius: 5px; display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; cursor: pointer;">
+                      🔄 Restore
+                    </button>
+                  </form>
+                  <!-- Permanent Delete Form -->
+                  <form action="{{ url_for('admin.permanent_delete_product', product_id=p._id) }}?view=recycle_bin" method="POST" onsubmit="return confirm('PERMANENTLY delete \'{{ p.name|escape }}\'?\nThis action cannot be undone.');" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-outline" style="color: #dc2626; border-color: #fca5a5; padding: 0.35rem 0.75rem; font-size: 0.8rem; border-radius: 5px; display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600;">
+                      💥 Delete Forever
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 4rem 1.5rem;">
+                <div style="font-size: 2.75rem; margin-bottom: 0.65rem;">🗑️</div>
+                <div style="font-weight: 700; font-size: 1.15rem; color: #1e293b; margin-bottom: 0.35rem;">Recycle Bin is Empty</div>
+                <div style="font-size: 0.875rem; color: #64748b; max-width: 420px; margin: 0 auto 1.25rem auto;">
+                  No deleted items found. When you delete products from the active catalogue, they will safely appear here for restoration or permanent removal.
+                </div>
+                <a href="{{ url_for('admin.products', business=current_business) }}" class="btn btn-sm btn-primary">
+                  ← Return to Active Products
+                </a>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+
+    {% else %}
+    <!-- ACTIVE PRODUCTS TABLE VIEW -->
     <div class="table-card">
       <table class="admin-table" id="products-table">
         <thead>
@@ -109,7 +264,7 @@
             <th>SKU</th>
             <th>Store / Business</th>
             <th>Category &amp; Element</th>
-            <th>Brand</th>
+            <th>Brand Options</th>
             <th>Status</th>
             <th>Actions</th>
           </tr>
@@ -144,7 +299,16 @@
                 <div><strong>{{ p.category_slug|replace('-', ' ')|title }}</strong></div>
                 <div style="color: var(--text-muted); font-size: 0.75rem;">{{ p.subcategory_slug|replace('-', ' ')|title }}</div>
               </td>
-              <td>{{ p.brand_name or p.brand_slug|title }}</td>
+              <td>
+                <div>{{ p.brand_name or p.brand_slug|title }}</div>
+                {% if p.available_brands and p.available_brands|length > 0 %}
+                <div style="margin-top: 0.25rem;">
+                  <span class="badge" style="background: #e0e7ff; color: #3730a3; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 4px;">
+                    🏷️ {{ p.available_brands|length }} Brands
+                  </span>
+                </div>
+                {% endif %}
+              </td>
               <td>
                 {% if p.is_active %}
                   <span class="badge badge-new" style="background:#DCFCE7; color:#166534;">Active</span>
@@ -155,26 +319,12 @@
               <td>
                 <div style="display: flex; gap: 0.5rem; align-items: center;">
                   <button type="button" class="btn btn-sm btn-outline" 
-                          onclick="openEditModal({
-                            id: '{{ p._id }}',
-                            name: '{{ p.name|escape }}',
-                            sku: '{{ p.sku }}',
-                            business_slug: '{{ p.business_slug }}',
-                            category_slug: '{{ p.category_slug }}',
-                            subcategory_slug: '{{ p.subcategory_slug }}',
-                            brand_slug: '{{ p.brand_slug }}',
-                            short_description: '{{ (p.short_description or "")|escape }}',
-                            description: '{{ (p.description or "")|escape }}',
-                            is_featured: {% if p.is_featured %}true{% else %}false{% endif %},
-                            is_new: {% if p.is_new %}true{% else %}false{% endif %},
-                            is_active: {% if p.is_active %}true{% else %}false{% endif %},
-                            image_url: '{{ p.images[0].url if p.images and p.images[0].url else "" }}'
-                          })"
+                          onclick="openEditModal('{{ p._id }}')"
                           style="padding: 0.35rem 0.65rem; font-size: 0.8rem;">
                     ✏️ Edit
                   </button>
-                  <form action="{{ url_for('admin.delete_product', product_id=p._id) }}?business={{ current_business or '' }}" method="POST" onsubmit="return confirm('Are you sure you want to delete \'{{ p.name|escape }}\'?');" style="display: inline;">
-                    <button type="submit" class="btn btn-sm btn-outline" style="padding: 0.35rem 0.65rem; font-size: 0.8rem; color: #ef4444; border-color: rgba(239,68,68,0.25);">
+                  <form action="{{ url_for('admin.delete_product', product_id=p._id) }}?business={{ current_business or '' }}" method="POST" onsubmit="return confirm('Move \'{{ p.name|escape }}\' to Recycle Bin?\nYou can restore it anytime from the Recycle Bin tab.');" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-outline" style="padding: 0.35rem 0.65rem; font-size: 0.8rem; color: #ef4444; border-color: rgba(239,68,68,0.25);" title="Move to Recycle Bin">
                       🗑️ Delete
                     </button>
                   </form>
@@ -184,24 +334,25 @@
             {% endfor %}
           {% else %}
             <tr>
-              <td colspan="7" style="text-align: center; color: var(--primary-500); padding: 3rem;">
-                No products found in this store view. Click <strong>+ Add New Product</strong> above to create one.
+              <td colspan="9" style="text-align: center; color: var(--primary-500); padding: 3rem;">
+                No active products found in this view. Click <strong>+ Add New Product</strong> above to create one.
               </td>
             </tr>
           {% endif %}
         </tbody>
       </table>
     </div>
+    {% endif %}
 
     <!-- Pagination -->
     {% if total_pages > 1 %}
     <div class="pagination" role="navigation" aria-label="Product pages" style="margin-top: 2rem; display: flex; gap: 0.5rem; justify-content: center;">
       {% if page > 1 %}
-        <a href="{{ url_for('admin.products', page=page-1, business=current_business) }}" class="page-link" aria-label="Previous page">‹</a>
+        <a href="{{ url_for('admin.products', page=page-1, business=current_business, view=current_view) }}" class="page-link" aria-label="Previous page">‹</a>
       {% endif %}
 
       {% for page_num in range(1, total_pages + 1) %}
-        <a href="{{ url_for('admin.products', page=page_num, business=current_business) }}"
+        <a href="{{ url_for('admin.products', page=page_num, business=current_business, view=current_view) }}"
            class="page-link {% if page_num == page %}active{% endif %}"
            aria-label="Page {{ page_num }}"
            {% if page_num == page %}aria-current="page"{% endif %}>
@@ -210,23 +361,23 @@
       {% endfor %}
 
       {% if page < total_pages %}
-        <a href="{{ url_for('admin.products', page=page+1, business=current_business) }}" class="page-link" aria-label="Next page">›</a>
+        <a href="{{ url_for('admin.products', page=page+1, business=current_business, view=current_view) }}" class="page-link" aria-label="Next page">›</a>
       {% endif %}
     </div>
     {% endif %}
 
-    <!-- Create Product Modal -->
-    <div id="create-product-modal" class="modal-backdrop">
-      <div class="modal-card" style="max-width: 44rem; max-height: 90vh; overflow-y: auto;">
+    <!-- Create Product Modal (Only exits on 'x' click, never on outside backdrop click) -->
+    <div id="create-product-modal" class="modal-backdrop static-backdrop" data-static-backdrop="true">
+      <div class="modal-card" style="max-width: 48rem; max-height: 90vh; overflow-y: auto;">
         <div class="modal-header">
           <h3 style="font-size: 1.25rem;">Add New Product</h3>
           <button type="button" onclick="closeModal('create-product-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
         </div>
         <div class="modal-body">
-          <form action="{{ url_for('admin.create_product') }}" method="POST" enctype="multipart/form-data">
+          <form id="create-product-form" action="{{ url_for('admin.create_product') }}" method="POST" enctype="multipart/form-data" onsubmit="syncVariantsJson('create')">
             <div class="form-group">
               <label class="form-label">Product Name *</label>
-              <input type="text" name="name" class="form-input" placeholder="e.g. CPVC Brass Male Female Adapter" required>
+              <input type="text" name="name" class="form-input" placeholder="e.g. Water Proofing Chemicals or CPVC Adapter" required>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -264,10 +415,34 @@
             <div class="form-group">
               <label class="form-label">Brand *</label>
               <select name="brand_slug" class="form-select">
+                <option value="multiple">Multiple Brands / Various (e.g. Waterproofing, Adhesives)</option>
                 {% for b in brands %}
                 <option value="{{ b.slug }}">{{ b.name }}</option>
                 {% endfor %}
               </select>
+            </div>
+
+            <!-- Sub-Products / Brand Variants Section -->
+            <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <label class="form-label" style="margin: 0; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>🏷️ Sub-Products / Brand Variants</span>
+                    <span id="create-variants-count-badge" class="badge" style="background: #f1f5f9; color: #64748b; font-size: 0.72rem;">0 brands</span>
+                  </label>
+                  <p style="font-size: 0.75rem; color: #64748b; margin: 0.2rem 0 0 0;">
+                    For products available in multiple brands (e.g. Dr.Fixit, Fosroc, Sika). Each variant can have its own brand name, title, SKU, and image.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline" onclick="addVariantRow('create')" style="font-size: 0.78rem; padding: 0.3rem 0.75rem; border-color: #0284c7; color: #0284c7; background: #fff; font-weight: 600;">
+                  + Add Brand Variant
+                </button>
+              </div>
+
+              <div id="create-variants-container" style="display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem;">
+                <!-- Dynamic variant rows populated via JS -->
+              </div>
+              <input type="hidden" id="create-available-brands-json" name="available_brands_json" value="">
             </div>
 
             <div class="form-group">
@@ -305,15 +480,15 @@
       </div>
     </div>
 
-    <!-- Edit Product Modal -->
-    <div id="edit-product-modal" class="modal-backdrop">
-      <div class="modal-card" style="max-width: 44rem; max-height: 90vh; overflow-y: auto;">
+    <!-- Edit Product Modal (Only exits on 'x' click, never on outside backdrop click) -->
+    <div id="edit-product-modal" class="modal-backdrop static-backdrop" data-static-backdrop="true">
+      <div class="modal-card" style="max-width: 48rem; max-height: 90vh; overflow-y: auto;">
         <div class="modal-header">
           <h3 style="font-size: 1.25rem;">Edit Product</h3>
           <button type="button" onclick="closeModal('edit-product-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
         </div>
         <div class="modal-body">
-          <form id="edit-product-form" action="" method="POST" enctype="multipart/form-data">
+          <form id="edit-product-form" action="" method="POST" enctype="multipart/form-data" onsubmit="syncVariantsJson('edit')">
             <div class="form-group">
               <label class="form-label">Product Name *</label>
               <input type="text" id="edit-name" name="name" class="form-input" required>
@@ -354,10 +529,34 @@
             <div class="form-group">
               <label class="form-label">Brand *</label>
               <select id="edit-brand-slug" name="brand_slug" class="form-select">
+                <option value="multiple">Multiple Brands / Various (e.g. Waterproofing, Adhesives)</option>
                 {% for b in brands %}
                 <option value="{{ b.slug }}">{{ b.name }}</option>
                 {% endfor %}
               </select>
+            </div>
+
+            <!-- Sub-Products / Brand Variants Section -->
+            <div style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <label class="form-label" style="margin: 0; font-weight: 700; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>🏷️ Sub-Products / Brand Variants</span>
+                    <span id="edit-variants-count-badge" class="badge" style="background: #f1f5f9; color: #64748b; font-size: 0.72rem;">0 brands</span>
+                  </label>
+                  <p style="font-size: 0.75rem; color: #64748b; margin: 0.2rem 0 0 0;">
+                    Manage brand choices for this product (e.g. Dr.Fixit, Fosroc, Sika). Edit, add, or remove sub-products.
+                  </p>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline" onclick="addVariantRow('edit')" style="font-size: 0.78rem; padding: 0.3rem 0.75rem; border-color: #0284c7; color: #0284c7; background: #fff; font-weight: 600;">
+                  + Add Brand Variant
+                </button>
+              </div>
+
+              <div id="edit-variants-container" style="display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem;">
+                <!-- Dynamic variant rows populated via JS -->
+              </div>
+              <input type="hidden" id="edit-available-brands-json" name="available_brands_json" value="">
             </div>
 
             <div class="form-group">
@@ -399,6 +598,19 @@
     </div>
   </main>
 </div>
+
+<!-- Preset Brands Datalist -->
+<datalist id="preset-brands">
+  <option value="Dr.Fixit">
+  <option value="Fosroc">
+  <option value="Sika">
+  <option value="Asian Paints SmartCare">
+  <option value="Berger">
+  <option value="Roff">
+  {% for b in brands %}
+  <option value="{{ b.name }}">
+  {% endfor %}
+</datalist>
 {% endblock %}
 
 {% block extra_js %}
@@ -415,6 +627,14 @@
     { name: {{ s.name|tojson }}, slug: {{ s.slug|tojson }}, category_slug: {{ s.category_slug|tojson }}, business_slug: {{ s.business_slug|tojson }} },
     {% endfor %}
   ];
+
+  // Store active products for editing
+  const PRODUCTS_DATA = {};
+  {% if products %}
+    {% for p in products %}
+    PRODUCTS_DATA[{{ p._id|tojson }}] = {{ p|tojson|safe }};
+    {% endfor %}
+  {% endif %}
 
   function populateCategories(mode, targetCategorySlug, targetSubcategorySlug) {
     const bizSelect = document.getElementById(mode + '-business-slug');
@@ -435,7 +655,6 @@
       catSelect.appendChild(opt);
     });
 
-    // If target was not found in filtered list, fallback to first
     if (!catSelect.value && filteredCats.length > 0) {
       catSelect.value = filteredCats[0].slug;
     }
@@ -475,17 +694,155 @@
     populateSubcategories(mode);
   }
 
+  /* ── Brand Variants / Sub-Products Manager ── */
+  function renderEmptyVariantHint(mode) {
+    const container = document.getElementById(mode + '-variants-container');
+    if (!container) return;
+    if (container.querySelectorAll('.variant-card').length === 0) {
+      container.innerHTML = `
+        <div class="empty-variants-msg" style="padding: 0.85rem; background: #fff; border: 1px dashed #cbd5e1; border-radius: 6px; text-align: center; color: #94a3b8; font-size: 0.8rem;">
+          No sub-products / brand variants added. Click <strong>+ Add Brand Variant</strong> above if this product has multiple brand choices (e.g. Dr.Fixit, Fosroc, Sika).
+        </div>
+      `;
+    }
+  }
+
+  function updateVariantsBadge(mode) {
+    const container = document.getElementById(mode + '-variants-container');
+    const badge = document.getElementById(mode + '-variants-count-badge');
+    if (!container || !badge) return;
+    const count = container.querySelectorAll('.variant-card').length;
+    badge.textContent = count === 1 ? '1 brand' : count + ' brands';
+    if (count > 0) {
+      badge.style.background = '#dcfce7';
+      badge.style.color = '#166534';
+    } else {
+      badge.style.background = '#f1f5f9';
+      badge.style.color = '#64748b';
+    }
+  }
+
+  function addVariantRow(mode, v) {
+    const container = document.getElementById(mode + '-variants-container');
+    if (!container) return;
+
+    // Remove empty placeholder message
+    const emptyMsg = container.querySelector('.empty-variants-msg');
+    if (emptyMsg) emptyMsg.remove();
+
+    const brandName = (v && v.brand_name) ? v.brand_name : '';
+    const variantName = (v && v.name) ? v.name : '';
+    const variantSku = (v && v.sku) ? v.sku : '';
+    const variantImage = (v && v.image) ? v.image : '/static/images/placeholder.jpg';
+
+    const card = document.createElement('div');
+    card.className = 'variant-card';
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.35rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; color: #0284c7; text-transform: uppercase; letter-spacing: 0.04em;">
+          Brand Option
+        </span>
+        <button type="button" onclick="removeVariantRow('${mode}', this)" title="Remove this brand variant" style="background: #fee2e2; border: 1px solid #fca5a5; color: #dc2626; border-radius: 4px; padding: 0.2rem 0.55rem; font-size: 0.75rem; cursor: pointer; font-weight: 600;">
+          ✕ Remove
+        </button>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <div>
+          <label style="font-size: 0.7rem; font-weight: 600; color: #475569; display: block; margin-bottom: 2px;">Brand Name *</label>
+          <input type="text" list="preset-brands" class="form-input variant-brand-name" placeholder="e.g. Dr.Fixit" value="${escapeHtml(brandName)}" oninput="syncVariantsJson('${mode}')" style="font-size: 0.8rem; padding: 0.35rem 0.5rem;" required>
+        </div>
+        <div>
+          <label style="font-size: 0.7rem; font-weight: 600; color: #475569; display: block; margin-bottom: 2px;">Sub-Product / Variant Title</label>
+          <input type="text" class="form-input variant-name" placeholder="e.g. Dr.Fixit Waterproofing Chemical" value="${escapeHtml(variantName)}" oninput="syncVariantsJson('${mode}')" style="font-size: 0.8rem; padding: 0.35rem 0.5rem;">
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.5rem;">
+        <div>
+          <label style="font-size: 0.7rem; font-weight: 600; color: #475569; display: block; margin-bottom: 2px;">Variant SKU</label>
+          <input type="text" class="form-input variant-sku" placeholder="e.g. HDW-WPF-DRFIXIT" value="${escapeHtml(variantSku)}" oninput="syncVariantsJson('${mode}')" style="font-size: 0.8rem; padding: 0.35rem 0.5rem; font-family: monospace;">
+        </div>
+        <div>
+          <label style="font-size: 0.7rem; font-weight: 600; color: #475569; display: block; margin-bottom: 2px;">Image Path / URL</label>
+          <input type="text" class="form-input variant-image" placeholder="/static/images/..." value="${escapeHtml(variantImage)}" oninput="syncVariantsJson('${mode}')" style="font-size: 0.8rem; padding: 0.35rem 0.5rem;">
+        </div>
+      </div>
+    `;
+
+    container.appendChild(card);
+    updateVariantsBadge(mode);
+    syncVariantsJson(mode);
+  }
+
+  function removeVariantRow(mode, btn) {
+    const card = btn.closest('.variant-card');
+    if (card) {
+      card.remove();
+      renderEmptyVariantHint(mode);
+      updateVariantsBadge(mode);
+      syncVariantsJson(mode);
+    }
+  }
+
+  function syncVariantsJson(mode) {
+    const container = document.getElementById(mode + '-variants-container');
+    const hiddenInput = document.getElementById(mode + '-available-brands-json');
+    if (!container || !hiddenInput) return;
+
+    const cards = container.querySelectorAll('.variant-card');
+    const variants = [];
+    cards.forEach(card => {
+      const bName = card.querySelector('.variant-brand-name')?.value?.trim() || '';
+      const vName = card.querySelector('.variant-name')?.value?.trim() || '';
+      const vSku = card.querySelector('.variant-sku')?.value?.trim() || '';
+      const vImg = card.querySelector('.variant-image')?.value?.trim() || '/static/images/placeholder.jpg';
+      if (bName || vName) {
+        variants.push({
+          brand_name: bName || vName,
+          name: vName || bName,
+          sku: vSku,
+          image: vImg
+        });
+      }
+    });
+
+    hiddenInput.value = JSON.stringify(variants);
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
   function openCreateModal() {
     populateCategories('create');
+    const container = document.getElementById('create-variants-container');
+    if (container) {
+      container.innerHTML = '';
+      renderEmptyVariantHint('create');
+      updateVariantsBadge('create');
+      syncVariantsJson('create');
+    }
     openModal('create-product-modal');
   }
 
-  function openEditModal(product) {
+  function openEditModal(productId) {
+    const product = PRODUCTS_DATA[productId];
+    if (!product) {
+      console.error('Product not found in PRODUCTS_DATA:', productId);
+      return;
+    }
+
     const form = document.getElementById('edit-product-form');
     if (!form) return;
     
     // Set form action url
-    form.action = '/admin/products/' + product.id + '/edit?business={{ current_business or "" }}';
+    form.action = '/admin/products/' + (product._id || product.id) + '/edit?business={{ current_business or "" }}';
     
     // Populate form fields
     document.getElementById('edit-name').value = product.name || '';
@@ -506,7 +863,24 @@
     
     // Set image url
     const editImgUrlEl = document.getElementById('edit-image-url');
-    if (editImgUrlEl) editImgUrlEl.value = product.image_url || '';
+    if (editImgUrlEl) {
+      const imgUrl = (product.images && product.images[0] && product.images[0].url) ? product.images[0].url : '';
+      editImgUrlEl.value = imgUrl;
+    }
+
+    // Populate brand variants / sub-products
+    const container = document.getElementById('edit-variants-container');
+    if (container) {
+      container.innerHTML = '';
+      const variants = product.available_brands || [];
+      if (Array.isArray(variants) && variants.length > 0) {
+        variants.forEach(v => addVariantRow('edit', v));
+      } else {
+        renderEmptyVariantHint('edit');
+      }
+      updateVariantsBadge('edit');
+      syncVariantsJson('edit');
+    }
     
     openModal('edit-product-modal');
   }
@@ -514,7 +888,19 @@
   // Initialize create modal on load
   document.addEventListener('DOMContentLoaded', function() {
     populateCategories('create');
+    {% if current_view != 'recycle_bin' %}
     initDragAndDrop();
+    {% endif %}
+
+    // Intercept outside backdrop clicks on product addition/edit modals so they only exit when clicking 'x'
+    document.querySelectorAll('#create-product-modal, #edit-product-modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+        }
+      }, true);
+    });
   });
 
   /* ── Drag-and-Drop Reorder ── */
@@ -553,7 +939,8 @@
       // Insert before the target row
       tbody.insertBefore(dragSrc, row);
       updatePositionBadges();
-      document.getElementById('save-order-btn').style.display = 'inline-flex';
+      const saveBtn = document.getElementById('save-order-btn');
+      if (saveBtn) saveBtn.style.display = 'inline-flex';
     });
 
     tbody.addEventListener('dragend', function(e) {
@@ -577,6 +964,7 @@
     }));
 
     const btn = document.getElementById('save-order-btn');
+    if (!btn) return;
     btn.textContent = '⏳ Saving…';
     btn.disabled = true;
 
