@@ -47,6 +47,17 @@ def about():
 def projects():
     project_list = ProjectModel.find_all()
     return render_template('projects.html', projects=project_list, company=COMPANY_INFO)
+@home_bp.route('/favicon.ico')
+def favicon():
+    static_folder = current_app.static_folder
+    logo_dir = os.path.join(static_folder, 'images', 'logo')
+    if os.path.exists(os.path.join(logo_dir, 'favicon.ico')):
+        return send_from_directory(logo_dir, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory(static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@home_bp.route('/site.webmanifest')
+def site_manifest():
+    return send_from_directory(current_app.static_folder, 'site.webmanifest', mimetype='application/manifest+json')
 
 @home_bp.route('/robots.txt')
 def robots():

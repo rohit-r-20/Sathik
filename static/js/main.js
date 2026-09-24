@@ -722,5 +722,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /* ──────────────────────────────────────────────────────────
+     13. BRAND LOGO LOCKUP ALIGNMENT (Top & Bottom Navbars)
+     Aligns the right edge of SATHIK GROUPS with HARDWARES|PLUMBING|SANITARYWARE
+     ────────────────────────────────────────────────────────── */
+  function alignBrandLockups() {
+    document.querySelectorAll('.brand-text').forEach(brand => {
+      const name = brand.querySelector('.brand-name');
+      const sub = brand.querySelector('.brand-sub');
+      if (!name || !sub) return;
+
+      name.style.letterSpacing = '';
+      const subWidth = sub.getBoundingClientRect().width;
+      const nameWidth = name.getBoundingClientRect().width;
+
+      if (subWidth > 0 && nameWidth > 0 && Math.abs(subWidth - nameWidth) > 0.5) {
+        const computed = window.getComputedStyle(name);
+        const currentSpacing = parseFloat(computed.letterSpacing) || 0;
+        const charCount = (name.textContent.trim().length - 1) || 12;
+        const diff = subWidth - nameWidth;
+        const adjustment = diff / charCount;
+        name.style.letterSpacing = `${currentSpacing + adjustment}px`;
+      }
+    });
+  }
+
+  alignBrandLockups();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(alignBrandLockups);
+  }
+  window.addEventListener('resize', alignBrandLockups);
+
 });
 
