@@ -720,6 +720,116 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
   </div>
 </section>
 
+<!-- 🏆 AWARDS & RECOGNITION HONORS (Single-line slow moving strip with bi-directional swipe) -->
+<section class="awards-showcase-section" id="awards">
+  <div class="container-fluid" style="padding-left: max(1.5rem, calc((100vw - 1400px) / 2)); padding-right: max(1.5rem, calc((100vw - 1400px) / 2));">
+    <div class="awards-header">
+      <div class="awards-badge">
+        <span>🏆</span>
+        <span>HALL OF HONORS &bull; 60+ YEARS OF EXCELLENCE</span>
+      </div>
+      <h2 class="awards-title">
+        <span class="awards-title-gradient">Accolades of Trust &amp; Distinction</span>
+      </h2>
+      <p class="awards-subtitle">
+        Honored by India's premier manufacturing brands — including CRI Pumps, Parryware, Jaquar, Asian Paints, and
+        Finolex — for outstanding dealership, quality distribution, and exceptional customer trust.
+      </p>
+
+      <div class="awards-marquee-meta-bar">
+        <div class="awards-count-pill">
+          <span class="count-dot"></span>
+          <span><strong>{{ awards|length }}</strong> Verified Dealer Recognitions</span>
+        </div>
+        <div class="awards-scroll-hint">
+          <span class="hint-icon">⇄</span>
+          <span>Swipe or drag in both directions &bull; Click card to enlarge</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SINGLE CONTINUOUS MOVING LINE -->
+  <div class="awards-marquee-wrapper" id="awards-marquee-wrapper">
+    <!-- Gradient Fade Masks at Left & Right -->
+    <div class="awards-fade-edge awards-fade-left" aria-hidden="true"></div>
+    <div class="awards-fade-edge awards-fade-right" aria-hidden="true"></div>
+
+    <!-- Floating Navigation Arrows -->
+    <button type="button" class="award-nav-arrow award-nav-prev" onclick="manualAwardScroll(-1)" aria-label="Previous Award">
+      &lsaquo;
+    </button>
+    <button type="button" class="award-nav-arrow award-nav-next" onclick="manualAwardScroll(1)" aria-label="Next Award">
+      &rsaquo;
+    </button>
+
+    <!-- Scroll & Drag Container -->
+    <div class="awards-marquee-container" id="awards-marquee-container">
+      <div class="awards-marquee-track" id="awards-marquee-track">
+        <!-- Sequence 1 -->
+        {% for award in awards %}
+        <div class="award-trophy-card" data-award-index="{{ loop.index0 }}" onclick="handleAwardCardClick({{ loop.index0 }})" title="Click to view high-definition award">
+          <div class="award-card-inner">
+            <div class="award-image-wrap">
+              <img src="{{ url_for('static', filename='images/awards/' + award) }}" alt="Sathik Groups Award {{ loop.index }}" class="award-img" loading="lazy" draggable="false">
+              <div class="award-hover-overlay">
+                <span class="award-inspect-pill">🔍 Enlarge</span>
+              </div>
+            </div>
+            <div class="award-card-footer">
+              <div class="award-badge-pill">★ Excellence</div>
+              <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <!-- Sequence 2 (Duplicated for seamless infinite wrap-around in both directions) -->
+        {% for award in awards %}
+        <div class="award-trophy-card" data-award-index="{{ loop.index0 }}" onclick="handleAwardCardClick({{ loop.index0 }})" title="Click to view high-definition award">
+          <div class="award-card-inner">
+            <div class="award-image-wrap">
+              <img src="{{ url_for('static', filename='images/awards/' + award) }}" alt="Sathik Groups Award {{ loop.index }}" class="award-img" loading="lazy" draggable="false">
+              <div class="award-hover-overlay">
+                <span class="award-inspect-pill">🔍 Enlarge</span>
+              </div>
+            </div>
+            <div class="award-card-footer">
+              <div class="award-badge-pill">★ Excellence</div>
+              <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div id="award-lightbox-modal" class="award-lightbox-modal" aria-hidden="true" role="dialog" aria-label="Award Lightbox Viewer">
+  <div class="award-lightbox-backdrop" onclick="closeAwardLightbox()"></div>
+  <div class="award-lightbox-content">
+    <button type="button" class="award-lightbox-close" onclick="closeAwardLightbox()" aria-label="Close Lightbox">&times;</button>
+    <button type="button" class="award-lightbox-nav award-lightbox-prev" onclick="stepLightbox(-1)" aria-label="Previous Award">&lsaquo;</button>
+
+    <div class="award-lightbox-main">
+      <div class="award-lightbox-frame">
+        <img id="award-lightbox-img" src="" alt="Sathik Groups Award in Full Resolution">
+      </div>
+      <div class="award-lightbox-info">
+        <div class="award-lightbox-counter" id="award-lightbox-counter">Award 1 of {{ awards|length }}</div>
+        <div class="award-lightbox-title">Sathik Groups &bull; Manufacturer Dealer Excellence &amp; Recognition Award</div>
+        <div class="award-lightbox-desc">Honored for exceptional quality, dealership volume, and customer trust across 60+ years.</div>
+      </div>
+    </div>
+
+    <button type="button" class="award-lightbox-nav award-lightbox-next" onclick="stepLightbox(1)" aria-label="Next Award">&rsaquo;</button>
+  </div>
+</div>
+
+<div class="luxury-section-divider"></div>
+
 <!-- WHY CHOOSE US -->
 <section class="section">
   <div class="container">
@@ -1209,132 +1319,6 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
 
 <div class="luxury-section-divider"></div>
 
-<!-- 🏆 AWARDS & EXCELLENCE HONORS SECTION (Hall of Honors) -->
-<section class="awards-showcase-section" id="awards">
-  <div class="container">
-    <div class="awards-header">
-      <div class="awards-badge">
-        <span>🏆</span>
-        <span>HALL OF HONORS &bull; 60+ YEARS OF EXCELLENCE</span>
-      </div>
-      <h2 class="awards-title">
-        <span class="awards-title-gradient">Accolades of Trust &amp; Distinction</span>
-      </h2>
-      <p class="awards-subtitle">
-        Honored by India's premier manufacturing brands — including CRI Pumps, Parryware, Jaquar, Asian Paints, and
-        Finolex — for outstanding dealership, quality distribution, and exceptional customer trust.
-      </p>
-
-      <!-- View Controls & Counter -->
-      <div class="awards-controls-bar">
-        <div class="awards-count-pill">
-          <span class="count-dot"></span>
-          <span><strong>{{ awards|length }}</strong> Verified Dealer Awards &amp; Recognitions</span>
-        </div>
-        <div class="awards-view-toggles">
-          <button type="button" class="award-toggle-btn active" id="btn-award-carousel"
-            onclick="switchAwardView('carousel')">
-            <span>🎠 Slider View</span>
-          </button>
-          <button type="button" class="award-toggle-btn" id="btn-award-grid" onclick="switchAwardView('grid')">
-            <span>⊞ Full Gallery Grid</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- CAROUSEL VIEW -->
-    <div class="awards-carousel-wrapper" id="awards-carousel-view">
-      <button type="button" class="award-nav-arrow award-nav-prev" onclick="slideAwards(-1)"
-        aria-label="Previous Award">
-        &lsaquo;
-      </button>
-
-      <div class="awards-carousel-track-container" id="awards-track-container">
-        <div class="awards-carousel-track" id="awards-track">
-          {% for award in awards %}
-          <div class="award-trophy-card" onclick="openAwardLightbox({{ loop.index0 }})"
-            title="Click to inspect this award in high definition">
-            <div class="award-card-inner">
-              <div class="award-image-wrap">
-                <img src="{{ url_for('static', filename='images/awards/' + award) }}"
-                  alt="Sathik Groups Industry Award &amp; Recognition {{ loop.index }}" class="award-img"
-                  loading="lazy">
-                <div class="award-hover-overlay">
-                  <span class="award-inspect-pill">🔍 View Full Award</span>
-                </div>
-              </div>
-              <div class="award-card-footer">
-                <div class="award-badge-pill">★ Excellence Award</div>
-                <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      <button type="button" class="award-nav-arrow award-nav-next" onclick="slideAwards(1)" aria-label="Next Award">
-        &rsaquo;
-      </button>
-    </div>
-
-    <!-- MASONRY / GRID VIEW (Toggled by user) -->
-    <div class="awards-grid-wrapper" id="awards-grid-view" style="display: none;">
-      <div class="awards-masonry-grid">
-        {% for award in awards %}
-        <div class="award-trophy-card" onclick="openAwardLightbox({{ loop.index0 }})"
-          title="Click to inspect this award in high definition">
-          <div class="award-card-inner">
-            <div class="award-image-wrap">
-              <img src="{{ url_for('static', filename='images/awards/' + award) }}"
-                alt="Sathik Groups Industry Award &amp; Recognition {{ loop.index }}" class="award-img" loading="lazy">
-              <div class="award-hover-overlay">
-                <span class="award-inspect-pill">🔍 View Full Award</span>
-              </div>
-            </div>
-            <div class="award-card-footer">
-              <div class="award-badge-pill">★ Excellence Award</div>
-              <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LIGHTBOX MODAL -->
-<div id="award-lightbox-modal" class="award-lightbox-modal" aria-hidden="true" role="dialog"
-  aria-label="Award Lightbox Viewer">
-  <div class="award-lightbox-backdrop" onclick="closeAwardLightbox()"></div>
-  <div class="award-lightbox-content">
-    <button type="button" class="award-lightbox-close" onclick="closeAwardLightbox()"
-      aria-label="Close Lightbox">&times;</button>
-    <button type="button" class="award-lightbox-nav award-lightbox-prev" onclick="stepLightbox(-1)"
-      aria-label="Previous Award">&lsaquo;</button>
-
-    <div class="award-lightbox-main">
-      <div class="award-lightbox-frame">
-        <img id="award-lightbox-img" src="" alt="Sathik Groups Award in Full Resolution">
-      </div>
-      <div class="award-lightbox-info">
-        <div class="award-lightbox-counter" id="award-lightbox-counter">Award 1 of {{ awards|length }}</div>
-        <div class="award-lightbox-title">Sathik Groups &bull; Manufacturer Dealer Excellence &amp; Recognition Award
-        </div>
-        <div class="award-lightbox-desc">Honored for exceptional quality, dealership volume, and customer trust across
-          60+ years.</div>
-      </div>
-    </div>
-
-    <button type="button" class="award-lightbox-nav award-lightbox-next" onclick="stepLightbox(1)"
-      aria-label="Next Award">&rsaquo;</button>
-  </div>
-</div>
-
-<div class="luxury-section-divider"></div>
-
 <!-- CONTACT & ENQUIRY SECTION (A-One Hardware Grid layout) -->
 <section class="contact-sec py-5" id="contactUs"
   style="background: var(--bg-page, #F6F8FA); border-top: 1px solid var(--border); padding: 2.25rem 0 2.5rem;">
@@ -1510,47 +1494,143 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
   // Award Images Array passed dynamically from backend
   const awardImages = [
     {% for award in awards %}
-  "{{ url_for('static', filename='images/awards/' + award) }}",
+    "{{ url_for('static', filename='images/awards/' + award) }}",
     {% endfor %}
   ];
 
   let currentLightboxIndex = 0;
+  let awardDragDist = 0;
 
-  function slideAwards(direction) {
-    const container = document.getElementById('awards-track-container');
-    if (!container) return;
-    const scrollAmount = 330 * 2;
-    container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-  }
+  // Single-Line Marquee & Bi-Directional Swipe Controller
+  (function initAwardsMarquee() {
+    const container = document.getElementById('awards-marquee-container');
+    const track = document.getElementById('awards-marquee-track');
+    const wrapper = document.getElementById('awards-marquee-wrapper');
+    if (!container || !track) return;
 
-  function switchAwardView(mode) {
-    const carouselView = document.getElementById('awards-carousel-view');
-    const gridView = document.getElementById('awards-grid-view');
-    const btnCarousel = document.getElementById('btn-award-carousel');
-    const btnGrid = document.getElementById('btn-award-grid');
+    let isPaused = false;
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let resumeTimeout = null;
+    const speed = 0.65; // slow, smooth pixel increment per frame (~38px/s at 60fps)
 
-    if (mode === 'grid') {
-      if (carouselView) carouselView.style.display = 'none';
-      if (gridView) gridView.style.display = 'block';
-      if (btnCarousel) btnCarousel.classList.remove('active');
-      if (btnGrid) btnGrid.classList.add('active');
-    } else {
-      if (carouselView) carouselView.style.display = 'flex';
-      if (gridView) gridView.style.display = 'none';
-      if (btnCarousel) btnCarousel.classList.add('active');
-      if (btnGrid) btnGrid.classList.remove('active');
+    // Offset initially to ensure reverse swiping can wrap seamlessly right away
+    container.scrollLeft = 10;
+
+    function checkWrap() {
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+      if (container.scrollLeft >= halfWidth) {
+        container.scrollLeft -= halfWidth;
+      } else if (container.scrollLeft <= 0) {
+        container.scrollLeft += halfWidth;
+      }
     }
-  }
+
+    // Auto-scroll loop
+    function step() {
+      if (!isPaused && !isDragging) {
+        container.scrollLeft += speed;
+        checkWrap();
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+
+    // Scroll event listener for inertial & wheel scroll wrap
+    container.addEventListener('scroll', checkWrap, { passive: true });
+
+    // Hover pause
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', () => { isPaused = true; });
+      wrapper.addEventListener('mouseleave', () => {
+        if (!isDragging) isPaused = false;
+      });
+    }
+
+    // Mouse Drag (Desktop)
+    container.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      isPaused = true;
+      awardDragDist = 0;
+      startX = e.pageX;
+      scrollStart = container.scrollLeft;
+      container.classList.add('is-dragging');
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const walk = e.pageX - startX;
+      awardDragDist = Math.abs(walk);
+      container.scrollLeft = scrollStart - walk;
+      checkWrap();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      container.classList.remove('is-dragging');
+      resumeTimeout = setTimeout(() => { isPaused = false; }, 1200);
+    });
+
+    // Touch Swipe (Mobile & Tablets)
+    let touchStartX = 0;
+    let touchScrollStart = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 1) return;
+      isDragging = true;
+      isPaused = true;
+      awardDragDist = 0;
+      touchStartX = e.touches[0].pageX;
+      touchScrollStart = container.scrollLeft;
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length > 1) return;
+      const touchX = e.touches[0].pageX;
+      const walk = touchX - touchStartX;
+      awardDragDist = Math.abs(walk);
+      container.scrollLeft = touchScrollStart - walk;
+      checkWrap();
+    }, { passive: true });
+
+    container.addEventListener('touchend', () => {
+      isDragging = false;
+      resumeTimeout = setTimeout(() => { isPaused = false; }, 1500);
+    }, { passive: true });
+
+    // Floating Arrow manual button scrolling
+    window.manualAwardScroll = function(direction) {
+      isPaused = true;
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+      const stepAmount = direction * 280;
+      container.scrollBy({ left: stepAmount, behavior: 'smooth' });
+      setTimeout(() => {
+        checkWrap();
+        resumeTimeout = setTimeout(() => { isPaused = false; }, 800);
+      }, 400);
+    };
+
+    // Card click handler (distinguish swipe drag from click)
+    window.handleAwardCardClick = function(index) {
+      if (awardDragDist > 8) return;
+      openAwardLightbox(index);
+    };
+  })();
 
   function openAwardLightbox(index) {
     if (!awardImages.length) return;
-    currentLightboxIndex = index;
+    currentLightboxIndex = index % awardImages.length;
     const modal = document.getElementById('award-lightbox-modal');
     const img = document.getElementById('award-lightbox-img');
     const counter = document.getElementById('award-lightbox-counter');
 
-    if (img) img.src = awardImages[index];
-    if (counter) counter.textContent = `Award ${index + 1} of ${awardImages.length}`;
+    if (img) img.src = awardImages[currentLightboxIndex];
+    if (counter) counter.textContent = `Award ${currentLightboxIndex + 1} of ${awardImages.length}`;
     if (modal) modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
