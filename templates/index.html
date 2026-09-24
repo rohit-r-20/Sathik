@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Sathik Groups | Premium Hardware materials and Sanitarywares | Wholesale &amp; Retail Store{% endblock
-%}
-{% block meta_description %}Sathik Groups offers premium hardware materials, architectural door fittings, plumbing
-fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our stores and catalogue.{% endblock %}
+{% block title %}Sathik Groups | Premium Hardware Materials & Sanitarywares | Plumbing Solutions{% endblock %}
+{% block meta_description %}Explore premium hardware materials, sanitarywares, plumbing products, and building solutions from trusted brands. Sathik Groups serves residential, commercial, and construction requirements.{% endblock %}
 
 {% block extra_css %}
 <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero/hardware_slide.webp') }}?v=200"
@@ -225,13 +223,13 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         </div>
       </div>
 
-      <!-- 3. CRI Pumps -->
+      <!-- 3. CRI Pumps & Plumbing -->
       <div class="asian-store-card">
         <a href="{{ url_for('product.product_list', category='pumps') }}" class="asian-store-img-box">
-          <img src="{{ url_for('static', filename='images/stores/cri_pumps_store.jpg') }}" alt="CRI Pumps &amp; Motors"
+          <img src="{{ url_for('static', filename='images/stores/cri_pumps_store.jpg') }}" alt="Pumps &amp; Plumbing"
             class="asian-store-img" loading="lazy">
           <div class="asian-store-overlay">
-            <h3 class="asian-store-title">Pumps &amp; Motors</h3>
+            <h3 class="asian-store-title">Pumps &amp; Plumbing</h3>
             <span class="asian-store-cta">View Products &gt;&gt;</span>
           </div>
         </a>
@@ -568,13 +566,13 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         </div>
       </div>
 
-      <!-- 7. Plumbing -->
+      <!-- 7. Aluminium Ladders -->
       <div class="p-gallery-card">
         <div class="p-gallery-img-box">
-          <img src="{{ url_for('static', filename='images/stores/plumbing.webp') }}?v=220" alt="Plumbing"
+          <img src="{{ url_for('static', filename='images/products/hardware/aluminium_ladders.jpg') }}" alt="Aluminium Ladders"
             class="p-gallery-img" loading="lazy">
           <div class="p-gallery-overlay">
-            <h4 class="p-gallery-title">Plumbing</h4>
+            <h4 class="p-gallery-title">Aluminium Ladders</h4>
           </div>
         </div>
       </div>
@@ -634,8 +632,8 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         </div>
       </div>
 
-      <!-- 13. Stainless & Quartz Kitchen Sinks (Aligned under Waterline Clamps in Column 2) -->
-      <div class="p-gallery-card p-gallery-col2">
+      <!-- 13. Stainless & Quartz Kitchen Sinks -->
+      <div class="p-gallery-card">
         <div class="p-gallery-img-box">
           <img src="{{ url_for('static', filename='images/products/bath-kitchen/quartz_sink.jpg') }}"
             alt="Stainless &amp; Quartz Kitchen Sinks" class="p-gallery-img" loading="lazy">
@@ -645,13 +643,35 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         </div>
       </div>
 
-      <!-- 14. ESSCO Water Heaters & Mirrors (Aligned under Sanitaryware & Closets in Column 3) -->
-      <div class="p-gallery-card p-gallery-col3">
+      <!-- 14. ESSCO Water Heaters & Mirrors -->
+      <div class="p-gallery-card">
         <div class="p-gallery-img-box">
           <img src="{{ url_for('static', filename='images/products/bath-kitchen/essco_water_heater.webp') }}?v=220"
             alt="ESSCO Water Heaters &amp; Mirrors" class="p-gallery-img" loading="lazy">
           <div class="p-gallery-overlay">
             <h4 class="p-gallery-title">Water Heaters &amp; Mirrors</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15. Water Tanks -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/plumbing/water_storage_tanks.jpg') }}?v=2"
+            alt="Aquatech &amp; Sintex Water Tanks" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Water Tanks</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16. Towel Racks, Towel Rods & Towel Rings -->
+      <div class="p-gallery-card">
+        <div class="p-gallery-img-box">
+          <img src="{{ url_for('static', filename='images/products/bath-kitchen/towel_racks_rods_rings.jpg') }}"
+            alt="Towel Racks, Towel Rods &amp; Towel Rings" class="p-gallery-img" loading="lazy">
+          <div class="p-gallery-overlay">
+            <h4 class="p-gallery-title">Towel Racks, Rods &amp; Rings</h4>
           </div>
         </div>
       </div>
@@ -720,7 +740,7 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
   </div>
 </section>
 
-<!-- 🏆 AWARDS & RECOGNITION HONORS (Single-line slow moving strip with bi-directional swipe) -->
+<!-- 🏆 AWARDS & RECOGNITION HONORS (Compact Single-line Ribbon) -->
 <section class="awards-showcase-section" id="awards">
   <div class="container-fluid" style="padding-left: max(1.5rem, calc((100vw - 1400px) / 2)); padding-right: max(1.5rem, calc((100vw - 1400px) / 2));">
     <div class="awards-header">
@@ -732,20 +752,8 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         <span class="awards-title-gradient">Accolades of Trust &amp; Distinction</span>
       </h2>
       <p class="awards-subtitle">
-        Honored by India's premier manufacturing brands — including CRI Pumps, Parryware, Jaquar, Asian Paints, and
-        Finolex — for outstanding dealership, quality distribution, and exceptional customer trust.
+        Honored by India's premier manufacturing brands &bull; <strong style="color: #F8FAFC;">{{ awards|length }} Verified Awards</strong> &bull; <span style="color: #FBBF24;">Swipe or drag ⇄</span>
       </p>
-
-      <div class="awards-marquee-meta-bar">
-        <div class="awards-count-pill">
-          <span class="count-dot"></span>
-          <span><strong>{{ awards|length }}</strong> Verified Dealer Recognitions</span>
-        </div>
-        <div class="awards-scroll-hint">
-          <span class="hint-icon">⇄</span>
-          <span>Swipe or drag in both directions &bull; Click card to enlarge</span>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -777,7 +785,6 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
               </div>
             </div>
             <div class="award-card-footer">
-              <div class="award-badge-pill">★ Excellence</div>
               <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
             </div>
           </div>
@@ -795,7 +802,6 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
               </div>
             </div>
             <div class="award-card-footer">
-              <div class="award-badge-pill">★ Excellence</div>
               <div class="award-meta-text">Award #{{ '%02d' % loop.index }}</div>
             </div>
           </div>
@@ -1267,7 +1273,7 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
         <h2 class="legacy-title">Building Trust, Supplying Quality</h2>
         <div class="legacy-story-body">
           <p>
-            In The Name of ALLAH by the grace and blessings of Almighty,Our story started in <strong>1964 with Mohamed Ibrahim Sahib and Haji Shiek Abdul Kader</strong> who founded
+            In The Name of ALLAH by the grace and blessings of Almighty,Our story started in <strong>1964 with late Mohamed Ibrahim Sahib and late Haji Shiek Abdul Kader</strong> who founded
             <strong>Sathik Hardwares</strong> in Redhills for Agricultural Products, Hardware &amp; Paints. Growing
             with our customers, we opened <strong>Sathik Traders in 2003 for Pumps and Plumbing materials</strong>,
             followed in <strong>2024 by Sathik Enterprises for Bath and Sanitaryware</strong>. Today, you get complete
@@ -1607,7 +1613,7 @@ fixtures, luxury sanitaryware, and building chemicals in Tamil Nadu. Explore our
     window.manualAwardScroll = function(direction) {
       isPaused = true;
       if (resumeTimeout) clearTimeout(resumeTimeout);
-      const stepAmount = direction * 280;
+      const stepAmount = direction * 180;
       container.scrollBy({ left: stepAmount, behavior: 'smooth' });
       setTimeout(() => {
         checkWrap();
