@@ -15,8 +15,10 @@ def index():
     hardware_products, _ = ProductModel.find_all(filter_query={'business_slug': 'hardware'}, limit=6)
     featured_brands = BrandModel.find_all(featured_only=True)
 
-    # Dynamically detect awards from static/images/Awards
-    awards_dir = os.path.join(current_app.static_folder, 'images', 'Awards')
+    # Dynamically detect awards from static/images/awards
+    awards_dir = os.path.join(current_app.static_folder, 'images', 'awards')
+    if not os.path.exists(awards_dir):
+        awards_dir = os.path.join(current_app.static_folder, 'images', 'Awards')
     awards_list = []
     if os.path.exists(awards_dir):
         valid_exts = {'.jpg', '.jpeg', '.png', '.webp', '.svg'}
