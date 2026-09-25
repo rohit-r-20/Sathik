@@ -188,13 +188,13 @@
       <div>
         <!-- Store Switcher Tabs -->
         <div class="store-switcher-tabs">
-          <a href="{{ url_for('product.product_list', category=current_category, brand=current_brand, q=search_query) }}" class="store-tab {% if not current_business %}active{% endif %}">
+          <a href="{{ url_for('product.product_list', q=search_query) }}" class="store-tab {% if not current_business %}active{% endif %}">
             <span class="store-tab-icon">📦</span>
             <span class="store-tab-label">All Stores</span>
           </a>
           {% for b in businesses %}
             {% if b.slug != 'catalogue' %}
-            <a href="{{ url_for('product.product_list', business=b.slug, category=current_category, brand=current_brand, q=search_query) }}" class="store-tab {{ b.slug }} {% if current_business == b.slug %}active{% endif %}">
+            <a href="{{ url_for('product.product_list', business=b.slug, q=search_query) }}" class="store-tab {{ b.slug }} {% if current_business == b.slug %}active{% endif %}">
               <span class="store-tab-icon">{{ b.icon }}</span>
               <span class="store-tab-label">
                 {% if b.slug == 'plumbing' %}Plumbing

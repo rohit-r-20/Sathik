@@ -115,7 +115,7 @@
     "_id": "power-tools",
     "name": "Power Tools",
     "slug": "power-tools",
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "description": "Professional-grade angle grinders, drilling machines, demolition hammers, air blowers, and 14-inch cut-off machines from Bosch, DeWalt, and Polymak.",
     "icon": "🔨",
     "order": 4,

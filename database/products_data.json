@@ -1364,7 +1364,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "angle-grinders",
     "brand_slug": "bosch",
@@ -1421,7 +1421,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "angle-grinders",
     "brand_slug": "dewalt",
@@ -1478,7 +1478,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "angle-grinders",
     "brand_slug": "polymac",
@@ -1535,7 +1535,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "drilling-machines",
     "brand_slug": "bosch",
@@ -1592,7 +1592,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "drilling-machines",
     "brand_slug": "dewalt",
@@ -1649,7 +1649,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "drilling-machines",
     "brand_slug": "polymac",
@@ -1706,7 +1706,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "demolition-hammers",
     "brand_slug": "bosch",
@@ -1763,7 +1763,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "demolition-hammers",
     "brand_slug": "dewalt",
@@ -1816,7 +1816,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "demolition-hammers",
     "brand_slug": "polymac",
@@ -1873,7 +1873,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "air-blowers",
     "brand_slug": "bosch",
@@ -1926,7 +1926,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "air-blowers",
     "brand_slug": "dewalt",
@@ -1979,7 +1979,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "air-blowers",
     "brand_slug": "polymac",
@@ -2036,7 +2036,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "cut-off-machines",
     "brand_slug": "bosch",
@@ -2093,7 +2093,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "cut-off-machines",
     "brand_slug": "dewalt",
@@ -2151,7 +2151,7 @@
         "is_primary": true
       }
     ],
-    "business_slug": "hardware",
+    "business_slug": "plumbing",
     "category_slug": "power-tools",
     "subcategory_slug": "cut-off-machines",
     "brand_slug": "polymac",
