@@ -1,5 +1,29 @@
 [
   {
+    "name": "Sika Bond & Seal Polyurethane",
+    "sku": "SIKA-SEAL-PU",
+    "business_slug": "hardware",
+    "category_slug": "roof-waterproofing-adhesives",
+    "subcategory_slug": "silicone-polyurethane-sealants",
+    "brand_slug": "sika",
+    "brand_name": "Sika",
+    "short_description": "High-performance elastomeric sealant",
+    "is_active": true,
+    "id": "p_prod_1790296038",
+    "_id": "p_prod_1790296038",
+    "created_at": "2026-09-25T05:57:18.251689",
+    "updated_at": "2026-09-25T05:57:18.251689",
+    "is_featured": false,
+    "is_new": true,
+    "sort_order": 0,
+    "images": [
+      {
+        "url": "/static/images/placeholder.jpg",
+        "is_primary": true
+      }
+    ]
+  },
+  {
     "name": "ESSCO WATER HEATER",
     "slug": "essco-water-heater",
     "sku": "ULT-ESS-V006L| 10L| 15L| 25L | 35L",
@@ -16,7 +40,7 @@
     "category_slug": "bathware",
     "subcategory_slug": "water-heaters-geysers",
     "brand_slug": "eesco",
-    "brand_name": "ÉSSCO Bath Fittings",
+    "brand_name": "\u00c9SSCO Bath Fittings",
     "is_active": true,
     "is_featured": false,
     "is_new": true,
@@ -330,7 +354,7 @@
       },
       {
         "key": "Working Temp",
-        "value": "-10°C to +60°C"
+        "value": "-10\u00b0C to +60\u00b0C"
       }
     ],
     "images": [

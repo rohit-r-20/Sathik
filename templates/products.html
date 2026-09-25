@@ -318,9 +318,9 @@
           <div class="products-results-bar">
             <div class="results-count">
               Showing <strong>{{ products|length }}</strong> of <strong>{{ total_products }}</strong> products
-              {% if current_business %}<span class="active-filter-badge business">{{ current_business|title }}</span>{% endif %}
-              {% if current_category %}<span class="active-filter-badge category">{{ current_category|title }}</span>{% endif %}
-              {% if current_subcategory %}<span class="active-filter-badge subcategory">{{ current_subcategory|title }}</span>{% endif %}
+              {% if current_business %}<span class="active-filter-badge business">{{ current_business|replace('-', ' ')|title }}</span>{% endif %}
+              {% if current_category %}<span class="active-filter-badge category">{{ current_category|replace('-', ' ')|title }}</span>{% endif %}
+              {% if current_subcategory %}<span class="active-filter-badge subcategory">{{ current_subcategory|replace('-', ' ')|title }}</span>{% endif %}
             </div>
             {% if current_business or current_category or current_subcategory or current_brand or search_query %}
             <a href="{{ url_for('product.product_list') }}" style="font-size: 0.8125rem; color: var(--accent); font-weight: 600;">

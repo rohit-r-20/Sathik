@@ -166,6 +166,35 @@ def create_product():
         subcategory_slug = data.get('subcategory_slug', 'hoses-tubes').strip()
         brand_slug = data.get('brand_slug', 'standard').strip()
 
+        # Support on-the-fly new category creation
+        new_cat_name = data.get('new_category_name', '').strip()
+        if category_slug == '__new__' or new_cat_name:
+            if new_cat_name:
+                from services.category_service import CategoryService, SubcategoryService
+                created_cat = CategoryService.create({
+                    'name': new_cat_name,
+                    'business_slug': business_slug,
+                    'subcategory_name': data.get('new_subcategory_name', '').strip()
+                })
+                if created_cat and isinstance(created_cat, dict):
+                    category_slug = created_cat.get('slug', category_slug)
+                    subs = SubcategoryService.get_by_category(category_slug)
+                    if subs:
+                        subcategory_slug = subs[0].get('slug', subcategory_slug)
+
+        # Support on-the-fly new subcategory creation
+        new_sub_name = data.get('new_subcategory_name', '').strip()
+        if subcategory_slug == '__new__' or (new_sub_name and category_slug != '__new__'):
+            if new_sub_name:
+                from services.category_service import SubcategoryService
+                created_sub = SubcategoryService.create({
+                    'name': new_sub_name,
+                    'category_slug': category_slug,
+                    'business_slug': business_slug
+                })
+                if created_sub and isinstance(created_sub, dict):
+                    subcategory_slug = created_sub.get('slug', subcategory_slug)
+
         # Look up proper brand name
         brand_name = brand_slug.replace('-', ' ').title()
         for b in BrandModel.find_all():
@@ -239,6 +268,35 @@ def edit_product(product_id):
         category_slug = data.get('category_slug', 'pipes').strip()
         subcategory_slug = data.get('subcategory_slug', 'hoses-tubes').strip()
         brand_slug = data.get('brand_slug', 'standard').strip()
+
+        # Support on-the-fly new category creation in edit modal
+        new_cat_name = data.get('new_category_name', '').strip()
+        if category_slug == '__new__' or new_cat_name:
+            if new_cat_name:
+                from services.category_service import CategoryService, SubcategoryService
+                created_cat = CategoryService.create({
+                    'name': new_cat_name,
+                    'business_slug': business_slug,
+                    'subcategory_name': data.get('new_subcategory_name', '').strip()
+                })
+                if created_cat and isinstance(created_cat, dict):
+                    category_slug = created_cat.get('slug', category_slug)
+                    subs = SubcategoryService.get_by_category(category_slug)
+                    if subs:
+                        subcategory_slug = subs[0].get('slug', subcategory_slug)
+
+        # Support on-the-fly new subcategory creation in edit modal
+        new_sub_name = data.get('new_subcategory_name', '').strip()
+        if subcategory_slug == '__new__' or (new_sub_name and category_slug != '__new__'):
+            if new_sub_name:
+                from services.category_service import SubcategoryService
+                created_sub = SubcategoryService.create({
+                    'name': new_sub_name,
+                    'category_slug': category_slug,
+                    'business_slug': business_slug
+                })
+                if created_sub and isinstance(created_sub, dict):
+                    subcategory_slug = created_sub.get('slug', subcategory_slug)
 
         # Extract sub-products / brand variants
         available_brands = _extract_available_brands(data, request.form, sku.upper())
@@ -381,3 +439,96 @@ def settings():
 
     all_settings = SettingModel.get_all()
     return render_template('admin/settings.html', settings=all_settings)
+
+@admin_bp.route('/categories/create', methods=['POST'])
+@admin_required
+def create_category():
+    try:
+        data = request.get_json(silent=True) if request.is_json else request.form.to_dict()
+        if not data:
+            data = {}
+        name = (data.get('name') or '').strip()
+        business_slug = (data.get('business_slug') or 'hardware').strip()
+        subcategory_name = (data.get('subcategory_name') or data.get('first_subcategory_name') or '').strip()
+
+        if not name:
+            if request.is_json:
+                return jsonify({'success': False, 'message': 'Category name is required'}), 400
+            flash('Category name is required.', 'danger')
+            return redirect(url_for('admin.products', business=business_slug))
+
+        from services.category_service import CategoryService, SubcategoryService
+        cat_record = CategoryService.create({
+            'name': name,
+            'business_slug': business_slug,
+            'subcategory_name': subcategory_name
+        })
+
+        if not cat_record:
+            if request.is_json:
+                return jsonify({'success': False, 'message': 'Failed to create category'}), 500
+            flash('Failed to create category.', 'danger')
+            return redirect(url_for('admin.products', business=business_slug))
+
+        subcats = SubcategoryService.get_by_category(cat_record.get('slug'))
+
+        if request.is_json:
+            return jsonify({
+                'ok': True,
+                'success': True,
+                'category': cat_record,
+                'subcategories': subcats,
+                'subcategory': subcats[0] if subcats else None,
+                'message': f'Category "{name}" created successfully!'
+            })
+
+        flash(f'Category "{name}" added successfully!', 'success')
+        return redirect(url_for('admin.products', business=business_slug))
+    except Exception as e:
+        current_app.logger.error(f"Error creating category: {e}", exc_info=True)
+        if request.is_json:
+            return jsonify({'success': False, 'message': str(e)}), 500
+        flash(f'Error creating category: {e}', 'danger')
+        return redirect(url_for('admin.products'))
+
+@admin_bp.route('/subcategories/create', methods=['POST'])
+@admin_required
+def create_subcategory():
+    try:
+        data = request.get_json(silent=True) if request.is_json else request.form.to_dict()
+        if not data:
+            data = {}
+        name = (data.get('name') or '').strip()
+        category_slug = (data.get('category_slug') or '').strip()
+        business_slug = (data.get('business_slug') or '').strip()
+
+        if not name or not category_slug:
+            if request.is_json:
+                return jsonify({'success': False, 'message': 'Element name and Category are required'}), 400
+            flash('Element name and Category are required.', 'danger')
+            return redirect(url_for('admin.products'))
+
+        from services.category_service import SubcategoryService
+        sub_record = SubcategoryService.create({
+            'name': name,
+            'category_slug': category_slug,
+            'business_slug': business_slug
+        })
+
+        if request.is_json:
+            return jsonify({
+                'ok': True,
+                'success': True,
+                'subcategory': sub_record,
+                'message': f'Element "{name}" created successfully!'
+            })
+
+        flash(f'Element "{name}" added successfully!', 'success')
+        return redirect(url_for('admin.products'))
+    except Exception as e:
+        current_app.logger.error(f"Error creating subcategory: {e}", exc_info=True)
+        if request.is_json:
+            return jsonify({'success': False, 'message': str(e)}), 500
+        flash(f'Error creating element: {e}', 'danger')
+        return redirect(url_for('admin.products'))
+

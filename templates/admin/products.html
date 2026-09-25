@@ -104,6 +104,9 @@
           <button id="save-order-btn" class="btn btn-primary" onclick="saveOrder()" style="background:#16a34a; border-color:#16a34a;">
             💾 Save Order
           </button>
+          <button type="button" class="btn btn-outline" onclick="openDirectCategoryModal()" style="border-color: #0284c7; color: #0284c7; background: #fff; font-weight: 600;">
+            📁 + Add Category
+          </button>
           <button type="button" class="btn btn-primary" onclick="openCreateModal()">+ Add New Product</button>
         {% endif %}
       </div>
@@ -398,17 +401,57 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div class="form-group">
-                <label class="form-label">Category *</label>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <label class="form-label" style="margin-bottom: 0;">Category *</label>
+                  <button type="button" class="btn-text-link" onclick="toggleNewCategoryBox('create')" style="font-size: 0.75rem; color: #0284c7; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 0.15rem 0.5rem; cursor: pointer; font-weight: 600;">
+                    + New Category
+                  </button>
+                </div>
                 <select id="create-category-slug" name="category_slug" class="form-select" onchange="onCategoryChange('create')" required>
                   <!-- Populated dynamically by JS -->
                 </select>
+
+                <!-- Inline Quick Category Creator Box -->
+                <div id="create-new-cat-box" style="display: none; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span>✨ Add Category to <strong id="create-new-cat-biz-label">Selected Store</strong></span>
+                    <button type="button" onclick="toggleNewCategoryBox('create', false)" style="background: none; border: none; color: #64748b; font-size: 0.85rem; cursor: pointer;">✕</button>
+                  </div>
+                  <div style="display: flex; gap: 0.4rem; align-items: center;">
+                    <input type="text" id="create-new-category-name" name="new_category_name" class="form-input" placeholder="e.g. Waterproofing & Adhesives" style="background: #fff; font-size: 0.85rem; padding: 0.4rem 0.65rem;">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="quickSaveCategory('create')" style="white-space: nowrap; padding: 0.42rem 0.85rem; font-weight: 600; background: #16a34a; border-color: #16a34a;">
+                      + Add
+                    </button>
+                  </div>
+                  <div id="create-new-cat-status" style="font-size: 0.75rem; margin-top: 0.35rem; display: none;"></div>
+                </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Element / Subcategory *</label>
-                <select id="create-subcategory-slug" name="subcategory_slug" class="form-select" required>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <label class="form-label" style="margin-bottom: 0;">Element / Subcategory *</label>
+                  <button type="button" class="btn-text-link" onclick="toggleNewSubcategoryBox('create')" style="font-size: 0.75rem; color: #0284c7; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 0.15rem 0.5rem; cursor: pointer; font-weight: 600;">
+                    + New Element
+                  </button>
+                </div>
+                <select id="create-subcategory-slug" name="subcategory_slug" class="form-select" onchange="onSubcategoryChange('create')" required>
                   <!-- Populated dynamically by JS -->
                 </select>
+
+                <!-- Inline Quick Subcategory Creator Box -->
+                <div id="create-new-subcat-box" style="display: none; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span>✨ Add Element to <strong id="create-new-subcat-cat-label">Selected Category</strong></span>
+                    <button type="button" onclick="toggleNewSubcategoryBox('create', false)" style="background: none; border: none; color: #64748b; font-size: 0.85rem; cursor: pointer;">✕</button>
+                  </div>
+                  <div style="display: flex; gap: 0.4rem; align-items: center;">
+                    <input type="text" id="create-new-subcategory-name" name="new_subcategory_name" class="form-input" placeholder="e.g. Chemical Coatings" style="background: #fff; font-size: 0.85rem; padding: 0.4rem 0.65rem;">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="quickSaveSubcategory('create')" style="white-space: nowrap; padding: 0.42rem 0.85rem; font-weight: 600; background: #16a34a; border-color: #16a34a;">
+                      + Add
+                    </button>
+                  </div>
+                  <div id="create-new-subcat-status" style="font-size: 0.75rem; margin-top: 0.35rem; display: none;"></div>
+                </div>
               </div>
             </div>
 
@@ -512,17 +555,57 @@
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div class="form-group">
-                <label class="form-label">Category *</label>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <label class="form-label" style="margin-bottom: 0;">Category *</label>
+                  <button type="button" class="btn-text-link" onclick="toggleNewCategoryBox('edit')" style="font-size: 0.75rem; color: #0284c7; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 0.15rem 0.5rem; cursor: pointer; font-weight: 600;">
+                    + New Category
+                  </button>
+                </div>
                 <select id="edit-category-slug" name="category_slug" class="form-select" onchange="onCategoryChange('edit')" required>
                   <!-- Populated dynamically by JS -->
                 </select>
+
+                <!-- Inline Quick Category Creator Box -->
+                <div id="edit-new-cat-box" style="display: none; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span>✨ Add Category to <strong id="edit-new-cat-biz-label">Selected Store</strong></span>
+                    <button type="button" onclick="toggleNewCategoryBox('edit', false)" style="background: none; border: none; color: #64748b; font-size: 0.85rem; cursor: pointer;">✕</button>
+                  </div>
+                  <div style="display: flex; gap: 0.4rem; align-items: center;">
+                    <input type="text" id="edit-new-category-name" name="new_category_name" class="form-input" placeholder="e.g. Waterproofing & Adhesives" style="background: #fff; font-size: 0.85rem; padding: 0.4rem 0.65rem;">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="quickSaveCategory('edit')" style="white-space: nowrap; padding: 0.42rem 0.85rem; font-weight: 600; background: #16a34a; border-color: #16a34a;">
+                      + Add
+                    </button>
+                  </div>
+                  <div id="edit-new-cat-status" style="font-size: 0.75rem; margin-top: 0.35rem; display: none;"></div>
+                </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Element / Subcategory *</label>
-                <select id="edit-subcategory-slug" name="subcategory_slug" class="form-select" required>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+                  <label class="form-label" style="margin-bottom: 0;">Element / Subcategory *</label>
+                  <button type="button" class="btn-text-link" onclick="toggleNewSubcategoryBox('edit')" style="font-size: 0.75rem; color: #0284c7; background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 4px; padding: 0.15rem 0.5rem; cursor: pointer; font-weight: 600;">
+                    + New Element
+                  </button>
+                </div>
+                <select id="edit-subcategory-slug" name="subcategory_slug" class="form-select" onchange="onSubcategoryChange('edit')" required>
                   <!-- Populated dynamically by JS -->
                 </select>
+
+                <!-- Inline Quick Subcategory Creator Box -->
+                <div id="edit-new-subcat-box" style="display: none; background: #f0fdf4; border: 1.5px solid #22c55e; border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem;">
+                  <div style="font-size: 0.78rem; font-weight: 700; color: #166534; margin-bottom: 0.35rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span>✨ Add Element to <strong id="edit-new-subcat-cat-label">Selected Category</strong></span>
+                    <button type="button" onclick="toggleNewSubcategoryBox('edit', false)" style="background: none; border: none; color: #64748b; font-size: 0.85rem; cursor: pointer;">✕</button>
+                  </div>
+                  <div style="display: flex; gap: 0.4rem; align-items: center;">
+                    <input type="text" id="edit-new-subcategory-name" name="new_subcategory_name" class="form-input" placeholder="e.g. Chemical Coatings" style="background: #fff; font-size: 0.85rem; padding: 0.4rem 0.65rem;">
+                    <button type="button" class="btn btn-sm btn-primary" onclick="quickSaveSubcategory('edit')" style="white-space: nowrap; padding: 0.42rem 0.85rem; font-weight: 600; background: #16a34a; border-color: #16a34a;">
+                      + Add
+                    </button>
+                  </div>
+                  <div id="edit-new-subcat-status" style="font-size: 0.75rem; margin-top: 0.35rem; display: none;"></div>
+                </div>
               </div>
             </div>
 
@@ -596,6 +679,50 @@
         </div>
       </div>
     </div>
+
+    <!-- Direct Category Addition Modal -->
+    <div id="direct-category-modal" class="modal-backdrop">
+      <div class="modal-card" style="max-width: 32rem;">
+        <div class="modal-header">
+          <h3 style="font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem; margin: 0;">📁 Add New Category</h3>
+          <button type="button" onclick="closeModal('direct-category-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="direct-category-form" onsubmit="handleDirectCategorySubmit(event)">
+            <p style="font-size: 0.85rem; color: #64748b; margin-top: 0; margin-bottom: 1.15rem; line-height: 1.4;">
+              Create a new category for any business vertical. It will immediately be available when creating products and will reflect in the public catalogue filter.
+            </p>
+
+            <div class="form-group">
+              <label class="form-label">Store / Business Vertical *</label>
+              <select id="direct-cat-business-slug" name="business_slug" class="form-select" required>
+                {% for b in businesses %}
+                <option value="{{ b.slug }}" {% if current_business == b.slug %}selected{% endif %}>{{ b.icon }} {{ b.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Category Name *</label>
+              <input type="text" id="direct-cat-name" name="name" class="form-input" placeholder="e.g. Waterproofing & Chemical Solutions" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Initial Element / Subcategory (Optional)</label>
+              <input type="text" id="direct-subcat-name" name="first_subcategory_name" class="form-input" placeholder="e.g. Liquid Membranes (defaults to General if empty)">
+              <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem;">Products within this category can be assigned to this element or you can add more elements anytime.</div>
+            </div>
+
+            <div id="direct-cat-status" style="font-size: 0.85rem; margin-bottom: 0.75rem; display: none;"></div>
+
+            <div style="display: flex; gap: 0.75rem; justify-content: flex-end; margin-top: 1.25rem;">
+              <button type="button" class="btn btn-outline" onclick="closeModal('direct-category-modal')">Cancel</button>
+              <button type="submit" id="direct-cat-submit-btn" class="btn btn-primary" style="background: #16a34a; border-color: #16a34a;">Save Category</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -655,8 +782,25 @@
       catSelect.appendChild(opt);
     });
 
-    if (!catSelect.value && filteredCats.length > 0) {
+    // Add + New Category option at the bottom
+    const addNewOpt = document.createElement('option');
+    addNewOpt.value = '__new__';
+    addNewOpt.textContent = '✨ + Add Another Category...';
+    addNewOpt.style.fontWeight = '600';
+    addNewOpt.style.color = '#0284c7';
+    catSelect.appendChild(addNewOpt);
+
+    if (targetCategorySlug && targetCategorySlug !== '__new__') {
+      catSelect.value = targetCategorySlug;
+    } else if (!catSelect.value && filteredCats.length > 0) {
       catSelect.value = filteredCats[0].slug;
+    }
+
+    // Hide or show inline creator based on selection
+    if (catSelect.value === '__new__') {
+      toggleNewCategoryBox(mode, true);
+    } else {
+      toggleNewCategoryBox(mode, false);
     }
 
     populateSubcategories(mode, targetSubcategorySlug);
@@ -668,21 +812,39 @@
     if (!catSelect || !subSelect) return;
 
     const selectedCat = catSelect.value;
-    const filteredSubs = STORE_SUBCATEGORIES.filter(s => s.category_slug === selectedCat);
-
     subSelect.innerHTML = '';
-    filteredSubs.forEach(s => {
-      const opt = document.createElement('option');
-      opt.value = s.slug;
-      opt.textContent = s.name;
-      if (targetSubcategorySlug && s.slug === targetSubcategorySlug) {
-        opt.selected = true;
-      }
-      subSelect.appendChild(opt);
-    });
 
-    if (!subSelect.value && filteredSubs.length > 0) {
-      subSelect.value = filteredSubs[0].slug;
+    if (selectedCat && selectedCat !== '__new__') {
+      const filteredSubs = STORE_SUBCATEGORIES.filter(s => s.category_slug === selectedCat);
+      filteredSubs.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s.slug;
+        opt.textContent = s.name;
+        if (targetSubcategorySlug && s.slug === targetSubcategorySlug) {
+          opt.selected = true;
+        }
+        subSelect.appendChild(opt);
+      });
+
+      if (targetSubcategorySlug && targetSubcategorySlug !== '__new__') {
+        subSelect.value = targetSubcategorySlug;
+      } else if (!subSelect.value && filteredSubs.length > 0) {
+        subSelect.value = filteredSubs[0].slug;
+      }
+    }
+
+    // Add + New Element option
+    const addNewSubOpt = document.createElement('option');
+    addNewSubOpt.value = '__new__';
+    addNewSubOpt.textContent = '✨ + Add Another Element...';
+    addNewSubOpt.style.fontWeight = '600';
+    addNewSubOpt.style.color = '#0284c7';
+    subSelect.appendChild(addNewSubOpt);
+
+    if (subSelect.value === '__new__') {
+      toggleNewSubcategoryBox(mode, true);
+    } else {
+      toggleNewSubcategoryBox(mode, false);
     }
   }
 
@@ -691,7 +853,316 @@
   }
 
   function onCategoryChange(mode) {
+    const catSelect = document.getElementById(mode + '-category-slug');
+    if (catSelect && catSelect.value === '__new__') {
+      toggleNewCategoryBox(mode, true);
+    } else {
+      toggleNewCategoryBox(mode, false);
+    }
     populateSubcategories(mode);
+  }
+
+  function onSubcategoryChange(mode) {
+    const subSelect = document.getElementById(mode + '-subcategory-slug');
+    if (subSelect && subSelect.value === '__new__') {
+      toggleNewSubcategoryBox(mode, true);
+    } else {
+      toggleNewSubcategoryBox(mode, false);
+    }
+  }
+
+  /* ── Inline Category & Subcategory Quick Creators ── */
+  function toggleNewCategoryBox(mode, show) {
+    const box = document.getElementById(mode + '-new-cat-box');
+    const input = document.getElementById(mode + '-new-category-name');
+    const bizSelect = document.getElementById(mode + '-business-slug');
+    const bizLabel = document.getElementById(mode + '-new-cat-biz-label');
+    const catSelect = document.getElementById(mode + '-category-slug');
+    if (!box) return;
+
+    const willShow = show !== undefined ? show : (box.style.display === 'none' || !box.style.display);
+    box.style.display = willShow ? 'block' : 'none';
+
+    if (willShow) {
+      if (bizSelect && bizLabel) {
+        const opt = bizSelect.options[bizSelect.selectedIndex];
+        bizLabel.textContent = opt ? opt.text : 'Selected Store';
+      }
+      if (input) input.focus();
+    } else {
+      if (catSelect && catSelect.value === '__new__') {
+        const firstValid = Array.from(catSelect.options).find(o => o.value && o.value !== '__new__');
+        if (firstValid) {
+          catSelect.value = firstValid.value;
+          populateSubcategories(mode);
+        }
+      }
+    }
+  }
+
+  function quickSaveCategory(mode) {
+    const bizSelect = document.getElementById(mode + '-business-slug');
+    const input = document.getElementById(mode + '-new-category-name');
+    const statusEl = document.getElementById(mode + '-new-cat-status');
+    if (!bizSelect || !input) return;
+
+    const businessSlug = bizSelect.value;
+    const catName = input.value.trim();
+    if (!catName) {
+      alert('Please enter a category name');
+      input.focus();
+      return;
+    }
+
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#0284c7';
+      statusEl.textContent = '⏳ Adding category...';
+    }
+
+    fetch('/admin/categories/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        business_slug: businessSlug,
+        name: catName
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok && data.category) {
+        if (!STORE_CATEGORIES.some(c => c.slug === data.category.slug && c.business_slug === data.category.business_slug)) {
+          STORE_CATEGORIES.push(data.category);
+        }
+        if (data.subcategory && !STORE_SUBCATEGORIES.some(s => s.slug === data.subcategory.slug && s.category_slug === data.subcategory.category_slug)) {
+          STORE_SUBCATEGORIES.push(data.subcategory);
+        }
+
+        populateCategories(mode, data.category.slug, data.subcategory ? data.subcategory.slug : null);
+        input.value = '';
+
+        if (statusEl) {
+          statusEl.style.color = '#16a34a';
+          statusEl.textContent = '✅ Category "' + data.category.name + '" added!';
+          setTimeout(() => {
+            toggleNewCategoryBox(mode, false);
+            statusEl.style.display = 'none';
+          }, 1000);
+        } else {
+          toggleNewCategoryBox(mode, false);
+        }
+      } else {
+        if (statusEl) {
+          statusEl.style.color = '#dc2626';
+          statusEl.textContent = '❌ ' + (data.error || 'Failed to add category');
+        } else {
+          alert('Error: ' + (data.error || 'Failed to add category'));
+        }
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      if (statusEl) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = '❌ Network error';
+      }
+    });
+  }
+
+  function toggleNewSubcategoryBox(mode, show) {
+    const box = document.getElementById(mode + '-new-subcat-box');
+    const input = document.getElementById(mode + '-new-subcategory-name');
+    const catSelect = document.getElementById(mode + '-category-slug');
+    const catLabel = document.getElementById(mode + '-new-subcat-cat-label');
+    const subSelect = document.getElementById(mode + '-subcategory-slug');
+    if (!box) return;
+
+    const willShow = show !== undefined ? show : (box.style.display === 'none' || !box.style.display);
+    box.style.display = willShow ? 'block' : 'none';
+
+    if (willShow) {
+      if (catSelect && catLabel) {
+        const opt = catSelect.options[catSelect.selectedIndex];
+        catLabel.textContent = opt ? opt.text : 'Selected Category';
+      }
+      if (input) input.focus();
+    } else {
+      if (subSelect && subSelect.value === '__new__') {
+        const firstValid = Array.from(subSelect.options).find(o => o.value && o.value !== '__new__');
+        if (firstValid) {
+          subSelect.value = firstValid.value;
+        }
+      }
+    }
+  }
+
+  function quickSaveSubcategory(mode) {
+    const bizSelect = document.getElementById(mode + '-business-slug');
+    const catSelect = document.getElementById(mode + '-category-slug');
+    const input = document.getElementById(mode + '-new-subcategory-name');
+    const statusEl = document.getElementById(mode + '-new-subcat-status');
+    if (!catSelect || !input) return;
+
+    const catSlug = catSelect.value;
+    const bizSlug = bizSelect ? bizSelect.value : '';
+    const subName = input.value.trim();
+
+    if (!catSlug || catSlug === '__new__') {
+      alert('Please select or create a category first');
+      return;
+    }
+    if (!subName) {
+      alert('Please enter an element / subcategory name');
+      input.focus();
+      return;
+    }
+
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#0284c7';
+      statusEl.textContent = '⏳ Adding element...';
+    }
+
+    fetch('/admin/subcategories/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        business_slug: bizSlug,
+        category_slug: catSlug,
+        name: subName
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok && data.subcategory) {
+        if (!STORE_SUBCATEGORIES.some(s => s.slug === data.subcategory.slug && s.category_slug === data.subcategory.category_slug)) {
+          STORE_SUBCATEGORIES.push(data.subcategory);
+        }
+
+        populateSubcategories(mode, data.subcategory.slug);
+        input.value = '';
+
+        if (statusEl) {
+          statusEl.style.color = '#16a34a';
+          statusEl.textContent = '✅ Element "' + data.subcategory.name + '" added!';
+          setTimeout(() => {
+            toggleNewSubcategoryBox(mode, false);
+            statusEl.style.display = 'none';
+          }, 1000);
+        } else {
+          toggleNewSubcategoryBox(mode, false);
+        }
+      } else {
+        if (statusEl) {
+          statusEl.style.color = '#dc2626';
+          statusEl.textContent = '❌ ' + (data.error || 'Failed to add element');
+        } else {
+          alert('Error: ' + (data.error || 'Failed to add element'));
+        }
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      if (statusEl) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = '❌ Network error';
+      }
+    });
+  }
+
+  /* ── Direct Category Modal Handlers ── */
+  function openDirectCategoryModal() {
+    const form = document.getElementById('direct-category-form');
+    if (form) form.reset();
+    const statusEl = document.getElementById('direct-cat-status');
+    if (statusEl) {
+      statusEl.style.display = 'none';
+      statusEl.textContent = '';
+    }
+    openModal('direct-category-modal');
+  }
+
+  function handleDirectCategorySubmit(e) {
+    e.preventDefault();
+    const bizSelect = document.getElementById('direct-cat-business-slug');
+    const nameInput = document.getElementById('direct-cat-name');
+    const subcatInput = document.getElementById('direct-subcat-name');
+    const statusEl = document.getElementById('direct-cat-status');
+    const submitBtn = document.getElementById('direct-cat-submit-btn');
+
+    const businessSlug = bizSelect.value;
+    const catName = nameInput.value.trim();
+    const firstSubcat = subcatInput.value.trim();
+
+    if (!catName) {
+      alert('Please enter a category name');
+      return;
+    }
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (statusEl) {
+      statusEl.style.display = 'block';
+      statusEl.style.color = '#0284c7';
+      statusEl.textContent = '⏳ Saving category...';
+    }
+
+    fetch('/admin/categories/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        business_slug: businessSlug,
+        name: catName,
+        first_subcategory_name: firstSubcat
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (submitBtn) submitBtn.disabled = false;
+      if (data.ok && data.category) {
+        if (!STORE_CATEGORIES.some(c => c.slug === data.category.slug && c.business_slug === data.category.business_slug)) {
+          STORE_CATEGORIES.push(data.category);
+        }
+        if (data.subcategory && !STORE_SUBCATEGORIES.some(s => s.slug === data.subcategory.slug && s.category_slug === data.subcategory.category_slug)) {
+          STORE_SUBCATEGORIES.push(data.subcategory);
+        }
+
+        // Repopulate create and edit modals
+        populateCategories('create', data.category.slug, data.subcategory ? data.subcategory.slug : null);
+
+        if (statusEl) {
+          statusEl.style.color = '#16a34a';
+          statusEl.textContent = '✅ Category "' + data.category.name + '" added successfully!';
+        }
+
+        setTimeout(() => {
+          closeModal('direct-category-modal');
+        }, 1000);
+      } else {
+        if (statusEl) {
+          statusEl.style.color = '#dc2626';
+          statusEl.textContent = '❌ ' + (data.error || 'Failed to save category');
+        } else {
+          alert('Error: ' + (data.error || 'Unknown error'));
+        }
+      }
+    })
+    .catch(err => {
+      if (submitBtn) submitBtn.disabled = false;
+      console.error(err);
+      if (statusEl) {
+        statusEl.style.color = '#dc2626';
+        statusEl.textContent = '❌ Network error saving category';
+      }
+    });
   }
 
   /* ── Brand Variants / Sub-Products Manager ── */
@@ -820,6 +1291,13 @@
   }
 
   function openCreateModal() {
+    toggleNewCategoryBox('create', false);
+    toggleNewSubcategoryBox('create', false);
+    const catInput = document.getElementById('create-new-category-name');
+    if (catInput) catInput.value = '';
+    const subcatInput = document.getElementById('create-new-subcategory-name');
+    if (subcatInput) subcatInput.value = '';
+
     populateCategories('create');
     const container = document.getElementById('create-variants-container');
     if (container) {
@@ -832,6 +1310,13 @@
   }
 
   function openEditModal(productId) {
+    toggleNewCategoryBox('edit', false);
+    toggleNewSubcategoryBox('edit', false);
+    const catInput = document.getElementById('edit-new-category-name');
+    if (catInput) catInput.value = '';
+    const subcatInput = document.getElementById('edit-new-subcategory-name');
+    if (subcatInput) subcatInput.value = '';
+
     const product = PRODUCTS_DATA[productId];
     if (!product) {
       console.error('Product not found in PRODUCTS_DATA:', productId);

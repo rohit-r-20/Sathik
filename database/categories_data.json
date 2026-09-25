@@ -1,0 +1,113 @@
+[
+  {
+    "name": "Bathware",
+    "slug": "bathware",
+    "business_slug": "bath-kitchen",
+    "description": "Taps, shower systems, sanitary fixtures, lighting, geysers, bathtubs, and bathroom accessories.",
+    "icon": "🛁",
+    "order": 1,
+    "id": "bathware",
+    "_id": "bathware",
+    "is_active": true
+  },
+  {
+    "name": "Kitchenware",
+    "slug": "kitchenware",
+    "business_slug": "bath-kitchen",
+    "description": "Stainless steel sinks, kitchen taps, chimneys, hobs, modular baskets, and drain racks.",
+    "icon": "🍳",
+    "order": 2,
+    "id": "kitchenware",
+    "_id": "kitchenware",
+    "is_active": true
+  },
+  {
+    "name": "Bathroom Hardware & Mirrors",
+    "slug": "bath-hardware-mirrors",
+    "business_slug": "bath-kitchen",
+    "description": "LED touch mirrors, glass partition fittings, soap dispensers, and premium brass accessories.",
+    "icon": "🪞",
+    "order": 3,
+    "id": "bath-hardware-mirrors",
+    "_id": "bath-hardware-mirrors",
+    "is_active": true
+  },
+  {
+    "name": "Pipes & Tubing",
+    "slug": "pipes",
+    "business_slug": "plumbing",
+    "description": "CPVC, UPVC, SWR, and underground agricultural water pipes.",
+    "icon": "🚰",
+    "order": 1,
+    "id": "pipes",
+    "_id": "pipes",
+    "is_active": true
+  },
+  {
+    "name": "Pipe Fittings & Valves",
+    "slug": "pipe-fittings",
+    "business_slug": "plumbing",
+    "description": "Elbows, tees, couplings, ball valves, gate valves, and brass joints.",
+    "icon": "🔧",
+    "order": 2,
+    "id": "pipe-fittings",
+    "_id": "pipe-fittings",
+    "is_active": true
+  },
+  {
+    "name": "Pumps & Motors",
+    "slug": "pumps",
+    "business_slug": "plumbing",
+    "description": "Submersible pumps, monoblock pumps, and automated pressure booster systems.",
+    "icon": "⚡",
+    "order": 3,
+    "id": "pumps",
+    "_id": "pumps",
+    "is_active": true
+  },
+  {
+    "name": "Paints & Building Chemistry",
+    "slug": "paints-chemicals",
+    "business_slug": "hardware",
+    "description": "Premium wall paints, white cement, waterproofing chemicals, and structural adhesives.",
+    "icon": "🎨",
+    "order": 1,
+    "id": "paints-chemicals",
+    "_id": "paints-chemicals",
+    "is_active": true
+  },
+  {
+    "name": "Hardwares & Door Fittings",
+    "slug": "door-hardware",
+    "business_slug": "hardware",
+    "description": "Premium door locks, hinges, tower bolts, altraps, and tile fitting spacer accessories.",
+    "icon": "🔑",
+    "order": 2,
+    "id": "door-hardware",
+    "_id": "door-hardware",
+    "is_active": true
+  },
+  {
+    "name": "Electrical & Fans",
+    "slug": "electrical-fans",
+    "business_slug": "hardware",
+    "description": "Energy-efficient ceiling and exhaust fans, and premium indoor/outdoor LED lights.",
+    "icon": "⚡",
+    "order": 3,
+    "id": "electrical-fans",
+    "_id": "electrical-fans",
+    "is_active": true
+  },
+  {
+    "id": "cat_1790315832036",
+    "_id": "cat_1790315832036",
+    "name": "Roof Waterproofing & Adhesives",
+    "slug": "roof-waterproofing-adhesives",
+    "business_slug": "hardware",
+    "description": "",
+    "icon": "📦",
+    "order": 10,
+    "is_active": true,
+    "created_at": "2026-09-25T05:57:12.036664"
+  }
+]
