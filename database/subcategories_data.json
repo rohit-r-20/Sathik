@@ -406,5 +406,65 @@
     "order": 37,
     "is_active": true,
     "created_at": "2026-09-25T05:57:12.037098"
+  },
+  {
+    "id": "angle-grinders",
+    "_id": "angle-grinders",
+    "name": "Angle Grinders",
+    "slug": "angle-grinders",
+    "category_slug": "power-tools",
+    "business_slug": "hardware",
+    "icon": "⚙️",
+    "order": 1,
+    "is_active": true,
+    "created_at": "2026-09-25T08:30:00.000000"
+  },
+  {
+    "id": "drilling-machines",
+    "_id": "drilling-machines",
+    "name": "Drilling Machines",
+    "slug": "drilling-machines",
+    "category_slug": "power-tools",
+    "business_slug": "hardware",
+    "icon": "🔩",
+    "order": 2,
+    "is_active": true,
+    "created_at": "2026-09-25T08:30:00.000000"
+  },
+  {
+    "id": "demolition-hammers",
+    "_id": "demolition-hammers",
+    "name": "Demolition Hammers",
+    "slug": "demolition-hammers",
+    "category_slug": "power-tools",
+    "business_slug": "hardware",
+    "icon": "🔨",
+    "order": 3,
+    "is_active": true,
+    "created_at": "2026-09-25T08:30:00.000000"
+  },
+  {
+    "id": "air-blowers",
+    "_id": "air-blowers",
+    "name": "Air Blowers",
+    "slug": "air-blowers",
+    "category_slug": "power-tools",
+    "business_slug": "hardware",
+    "icon": "💨",
+    "order": 4,
+    "is_active": true,
+    "created_at": "2026-09-25T08:30:00.000000"
+  },
+  {
+    "id": "cut-off-machines",
+    "_id": "cut-off-machines",
+    "name": "14-Inch Cut-Off Machines",
+    "slug": "cut-off-machines",
+    "category_slug": "power-tools",
+    "business_slug": "hardware",
+    "icon": "🪚",
+    "order": 5,
+    "is_active": true,
+    "created_at": "2026-09-25T08:30:00.000000"
   }
 ]

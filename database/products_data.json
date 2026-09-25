@@ -40,7 +40,7 @@
     "category_slug": "bathware",
     "subcategory_slug": "water-heaters-geysers",
     "brand_slug": "eesco",
-    "brand_name": "\u00c9SSCO Bath Fittings",
+    "brand_name": "ÉSSCO Bath Fittings",
     "is_active": true,
     "is_featured": false,
     "is_new": true,
@@ -354,7 +354,7 @@
       },
       {
         "key": "Working Temp",
-        "value": "-10\u00b0C to +60\u00b0C"
+        "value": "-10°C to +60°C"
       }
     ],
     "images": [
@@ -1316,5 +1316,849 @@
     "is_featured": true,
     "is_new": true,
     "id": "h_led_lights"
+  },
+  {
+    "_id": "pt_angle_grinder_bosch",
+    "id": "pt_angle_grinder_bosch",
+    "name": "Bosch GWS 600 Angle Grinder (4 Inch)",
+    "slug": "bosch-gws-600-angle-grinder",
+    "sku": "BSH-AG4-GWS600",
+    "description": "The Bosch GWS 600 is a compact and lightweight 4-inch angle grinder engineered for precision cutting, grinding, and surface finishing on metals and construction materials.",
+    "short_description": "Bosch 670W 4-inch compact angle grinder for metal cutting & surface grinding.",
+    "features": [
+      "670W powerful motor",
+      "11,000 RPM no-load speed",
+      "Compact lightweight design",
+      "Spindle lock for quick disc changes",
+      "Restart protection"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Bosch"
+      },
+      {
+        "key": "Model",
+        "value": "GWS 600"
+      },
+      {
+        "key": "Power",
+        "value": "670W"
+      },
+      {
+        "key": "Disc Size",
+        "value": "100mm (4 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "11,000 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "1.7 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/bosch_angle_grinder.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "angle-grinders",
+    "brand_slug": "bosch",
+    "brand_name": "Bosch",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 101
+  },
+  {
+    "_id": "pt_angle_grinder_dewalt",
+    "id": "pt_angle_grinder_dewalt",
+    "name": "DeWalt DW801 Angle Grinder (4 Inch)",
+    "slug": "dewalt-dw801-angle-grinder",
+    "sku": "DWT-AG4-DW801",
+    "description": "The DeWalt DW801 is a professional-grade 4-inch angle grinder with a high-performance 820W motor built for demanding industrial metal cutting and grinding applications.",
+    "short_description": "DeWalt 820W professional 4-inch angle grinder for heavy-duty grinding.",
+    "features": [
+      "820W high-performance motor",
+      "Two position handle for comfort",
+      "Spindle lock for quick accessories change",
+      "Overload protection",
+      "11,000 RPM no-load speed"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "DeWalt"
+      },
+      {
+        "key": "Model",
+        "value": "DW801"
+      },
+      {
+        "key": "Power",
+        "value": "820W"
+      },
+      {
+        "key": "Disc Size",
+        "value": "100mm (4 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "11,000 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "1.9 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/dewalt_angle_grinder.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "angle-grinders",
+    "brand_slug": "dewalt",
+    "brand_name": "DeWalt",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 102
+  },
+  {
+    "_id": "pt_angle_grinder_polymak",
+    "id": "pt_angle_grinder_polymak",
+    "name": "Polymak PMAG4-850B Angle Grinder (4 Inch)",
+    "slug": "polymak-pmag4-850b-angle-grinder",
+    "sku": "PLM-AG4-PMAG850B",
+    "description": "The Polymak PMAG4-850B is a robust 4-inch corded angle grinder with a powerful 850W motor, designed for professional grinding, cutting, and polishing of metal and stone. Made in India and widely trusted in industrial sites across Tamil Nadu.",
+    "short_description": "Polymak PMAG4-850B 850W 4-inch angle grinder - industrial grade, India-made.",
+    "features": [
+      "850W powerful motor",
+      "11,000 RPM no-load speed",
+      "Robust body for industrial use",
+      "Easy disc change with spindle lock",
+      "Trusted in Indian construction sites"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Polymak"
+      },
+      {
+        "key": "Model",
+        "value": "PMAG4-850B"
+      },
+      {
+        "key": "Power",
+        "value": "850W"
+      },
+      {
+        "key": "Disc Size",
+        "value": "100mm (4 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "11,000 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "1.8 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/polymak_angle_grinder.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "angle-grinders",
+    "brand_slug": "polymac",
+    "brand_name": "Polymak",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 103
+  },
+  {
+    "_id": "pt_drill_bosch",
+    "id": "pt_drill_bosch",
+    "name": "Bosch GSB 600 Impact Drill Machine",
+    "slug": "bosch-gsb-600-impact-drill",
+    "sku": "BSH-DRL-GSB600",
+    "description": "The Bosch GSB 600 is a professional-grade 13mm impact drill machine with a 600W motor and 2-speed gearbox. Designed for concrete, masonry, wood, and metal drilling.",
+    "short_description": "Bosch 600W 13mm impact drill with keyless chuck and 2-speed gearbox.",
+    "features": [
+      "600W motor",
+      "2-speed selector",
+      "13mm keyless chuck",
+      "Hammer & drill mode",
+      "Ergonomic soft grip"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Bosch"
+      },
+      {
+        "key": "Model",
+        "value": "GSB 600"
+      },
+      {
+        "key": "Power",
+        "value": "600W"
+      },
+      {
+        "key": "Chuck",
+        "value": "13mm"
+      },
+      {
+        "key": "Max Speed",
+        "value": "2800 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "1.8 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/bosch_drill_machine.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "drilling-machines",
+    "brand_slug": "bosch",
+    "brand_name": "Bosch",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 104
+  },
+  {
+    "_id": "pt_drill_dewalt",
+    "id": "pt_drill_dewalt",
+    "name": "DeWalt DWD024 Impact Drill Machine",
+    "slug": "dewalt-dwd024-impact-drill",
+    "sku": "DWT-DRL-DWD024",
+    "description": "The DeWalt DWD024 is a versatile 550W hammer drill for drilling in wood, metal, masonry, and concrete. Features a robust 13mm chuck, variable speed trigger, and forward/reverse function.",
+    "short_description": "DeWalt 550W 13mm hammer drill with variable speed for all materials.",
+    "features": [
+      "550W motor",
+      "13mm keyed chuck",
+      "Variable speed trigger",
+      "Hammer & rotation mode",
+      "Heavy duty clutch protection"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "DeWalt"
+      },
+      {
+        "key": "Model",
+        "value": "DWD024"
+      },
+      {
+        "key": "Power",
+        "value": "550W"
+      },
+      {
+        "key": "Chuck",
+        "value": "13mm"
+      },
+      {
+        "key": "Max Speed",
+        "value": "3000 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "1.7 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/dewalt_drill_machine.webp",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "drilling-machines",
+    "brand_slug": "dewalt",
+    "brand_name": "DeWalt",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 105
+  },
+  {
+    "_id": "pt_drill_polymak",
+    "id": "pt_drill_polymak",
+    "name": "Polymak PM13DM-HD Heavy Duty Drill",
+    "slug": "polymak-pm13dm-hd-drill",
+    "sku": "PLM-DRL-PM13DMHD",
+    "description": "The Polymak PM13DM-HD is a heavy-duty corded drill machine with a 700W motor engineered for professional drilling in all materials including concrete, masonry, metal, and wood.",
+    "short_description": "Polymak PM13DM-HD 700W heavy duty 13mm drilling machine.",
+    "features": [
+      "700W heavy duty motor",
+      "13mm chuck capacity",
+      "Hammer & normal drill modes",
+      "Robust metal housing",
+      "Dual speed settings"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Polymak"
+      },
+      {
+        "key": "Model",
+        "value": "PM13DM-HD"
+      },
+      {
+        "key": "Power",
+        "value": "700W"
+      },
+      {
+        "key": "Chuck",
+        "value": "13mm"
+      },
+      {
+        "key": "Speed",
+        "value": "0-2800 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "2.0 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/polymak_drill_machine.jpg",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "drilling-machines",
+    "brand_slug": "polymac",
+    "brand_name": "Polymak",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 106
+  },
+  {
+    "_id": "pt_demolisher_bosch",
+    "id": "pt_demolisher_bosch",
+    "name": "Bosch GSH 500 Demolition Hammer",
+    "slug": "bosch-gsh-500-demolition-hammer",
+    "sku": "BSH-DMH-GSH500",
+    "description": "The Bosch GSH 500 demolition hammer is a 1100W professional-grade breaker designed for heavy-duty chiselling and demolition work in concrete, masonry, and natural stone. Features SDS-Max bit system and constant speed control.",
+    "short_description": "Bosch 1100W SDS-Max professional demolition hammer for concrete breaking.",
+    "features": [
+      "1100W motor",
+      "SDS-Max bit system",
+      "8.5 J impact energy",
+      "Constant speed control",
+      "Vibration control body"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Bosch"
+      },
+      {
+        "key": "Model",
+        "value": "GSH 500"
+      },
+      {
+        "key": "Power",
+        "value": "1100W"
+      },
+      {
+        "key": "Bit System",
+        "value": "SDS-Max"
+      },
+      {
+        "key": "Impact Energy",
+        "value": "8.5 Joules"
+      },
+      {
+        "key": "Weight",
+        "value": "6.0 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/bosch_demolisher.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "demolition-hammers",
+    "brand_slug": "bosch",
+    "brand_name": "Bosch",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 107
+  },
+  {
+    "_id": "pt_demolisher_dewalt",
+    "id": "pt_demolisher_dewalt",
+    "name": "DeWalt D25810K Demolition Hammer",
+    "slug": "dewalt-d25810k-demolition-hammer",
+    "sku": "DWT-DMH-D25810K",
+    "description": "The DeWalt D25810K is a heavy-duty 1500W demolition hammer (breaker) delivering 45J of impact energy, ideal for demanding breaking and chipping operations in concrete and masonry.",
+    "short_description": "DeWalt 1500W 45J SDS-Max heavy-duty demolition hammer (breaker).",
+    "features": [
+      "1500W powerful motor",
+      "SDS-Max bit system",
+      "45J high impact energy",
+      "Shear bolt clutch protection",
+      "Vibration absorption handles"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "DeWalt"
+      },
+      {
+        "key": "Model",
+        "value": "D25810K"
+      },
+      {
+        "key": "Power",
+        "value": "1500W"
+      },
+      {
+        "key": "Bit System",
+        "value": "SDS-Max"
+      },
+      {
+        "key": "Impact Energy",
+        "value": "45 Joules"
+      },
+      {
+        "key": "Weight",
+        "value": "12 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/dewalt_demolisher.webp",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "demolition-hammers",
+    "brand_slug": "dewalt",
+    "brand_name": "DeWalt",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 108
+  },
+  {
+    "_id": "pt_demolisher_polymak",
+    "id": "pt_demolisher_polymak",
+    "name": "Polymak PMDH05-2P Demolition Hammer",
+    "slug": "polymak-pmdh05-2p-demolition-hammer",
+    "sku": "PLM-DMH-PMDH05",
+    "description": "The Polymak PMDH05-2P is a reliable and powerful demolition hammer (breaker) purpose-built for concrete breaking, tile removal, and heavy chiselling tasks in Indian construction sites.",
+    "short_description": "Polymak PMDH05-2P SDS-Max demolition breaker for professional demolition.",
+    "features": [
+      "High-power SDS-Max demolition hammer",
+      "Heavy-duty chiselling capability",
+      "Low vibration design",
+      "Durable for Indian site conditions",
+      "Wide range of accessories"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Polymak"
+      },
+      {
+        "key": "Model",
+        "value": "PMDH05-2P"
+      },
+      {
+        "key": "Bit System",
+        "value": "SDS-Max"
+      },
+      {
+        "key": "Application",
+        "value": "Concrete & Masonry"
+      },
+      {
+        "key": "Weight",
+        "value": "~10 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/polymak_demolisher.jpg",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "demolition-hammers",
+    "brand_slug": "polymac",
+    "brand_name": "Polymak",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 109
+  },
+  {
+    "_id": "pt_blower_bosch",
+    "id": "pt_blower_bosch",
+    "name": "Bosch GBL 650 Air Blower",
+    "slug": "bosch-gbl-650-air-blower",
+    "sku": "BSH-BLW-GBL650",
+    "description": "The Bosch GBL 650 is a compact 650W electric air blower for fast clearing of dust, debris, and wood shavings from work sites, workshops, and electrical panels.",
+    "short_description": "Bosch GBL 650 compact 650W electric air blower for workshop cleanup.",
+    "features": [
+      "650W motor",
+      "High-velocity airflow",
+      "Compact ergonomic design",
+      "Nozzle adapter included",
+      "Lightweight and easy to use"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Bosch"
+      },
+      {
+        "key": "Model",
+        "value": "GBL 650"
+      },
+      {
+        "key": "Power",
+        "value": "650W"
+      },
+      {
+        "key": "Air Volume",
+        "value": "3.0 m³/min"
+      },
+      {
+        "key": "Air Speed",
+        "value": "270 km/h"
+      },
+      {
+        "key": "Weight",
+        "value": "0.9 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/bosch_blower.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "air-blowers",
+    "brand_slug": "bosch",
+    "brand_name": "Bosch",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 110
+  },
+  {
+    "_id": "pt_blower_dewalt",
+    "id": "pt_blower_dewalt",
+    "name": "DeWalt DWB800 Electric Air Blower",
+    "slug": "dewalt-dwb800-air-blower",
+    "sku": "DWT-BLW-DWB800",
+    "description": "The DeWalt DWB800 is a heavy-duty 800W corded electric air blower ideal for workshop, site, and electrical panel cleaning. Delivers powerful airflow to quickly clear fine dust and debris.",
+    "short_description": "DeWalt DWB800 800W corded electric blower for heavy-duty site cleaning.",
+    "features": [
+      "800W powerful motor",
+      "High-velocity air output",
+      "Industrial grade build quality",
+      "Straight nozzle for precision",
+      "Rugged body for site use"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "DeWalt"
+      },
+      {
+        "key": "Model",
+        "value": "DWB800"
+      },
+      {
+        "key": "Power",
+        "value": "800W"
+      },
+      {
+        "key": "Application",
+        "value": "Workshop & Site Cleaning"
+      },
+      {
+        "key": "Weight",
+        "value": "1.2 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/dewalt_blower.jpg",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "air-blowers",
+    "brand_slug": "dewalt",
+    "brand_name": "DeWalt",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 111
+  },
+  {
+    "_id": "pt_blower_polymak",
+    "id": "pt_blower_polymak",
+    "name": "Polymak PM600BR Air Blower",
+    "slug": "polymak-pm600br-air-blower",
+    "sku": "PLM-BLW-PM600BR",
+    "description": "The Polymak PM600BR is a 600W corded electric blower designed for industrial and construction site cleanup. Efficiently clears dust, debris, and sawdust from surfaces.",
+    "short_description": "Polymak PM600BR 600W compact electric air blower for site maintenance.",
+    "features": [
+      "600W motor",
+      "Compact lightweight body",
+      "High-speed airflow nozzle",
+      "Easy to manoeuvre on site",
+      "Budget-friendly industrial option"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Polymak"
+      },
+      {
+        "key": "Model",
+        "value": "PM600BR"
+      },
+      {
+        "key": "Power",
+        "value": "600W"
+      },
+      {
+        "key": "Application",
+        "value": "Site & Workshop Cleaning"
+      },
+      {
+        "key": "Weight",
+        "value": "0.95 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/polymak_blower.jpg",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "air-blowers",
+    "brand_slug": "polymac",
+    "brand_name": "Polymak",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 112
+  },
+  {
+    "_id": "pt_cutoff_bosch",
+    "id": "pt_cutoff_bosch",
+    "name": "Bosch GCO 14-24 J 14-Inch Cut-Off Machine",
+    "slug": "bosch-gco-14-24j-cut-off-machine",
+    "sku": "BSH-COS-GCO1424J",
+    "description": "The Bosch GCO 14-24 J is a professional 2400W 14-inch (355mm) abrasive cut-off machine built for precision cutting of steel sections, pipes, angle bars, and channels.",
+    "short_description": "Bosch GCO 14-24J 2400W professional 14-inch abrasive cut-off saw.",
+    "features": [
+      "2400W motor",
+      "355mm (14-inch) cut-off wheel",
+      "Adjustable material vise clamp",
+      "Safety guard",
+      "D-grip handle for comfort"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Bosch"
+      },
+      {
+        "key": "Model",
+        "value": "GCO 14-24 J"
+      },
+      {
+        "key": "Power",
+        "value": "2400W"
+      },
+      {
+        "key": "Wheel Diameter",
+        "value": "355mm (14 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "3800 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "14.5 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/bosch_cutoff_14inch.png",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "cut-off-machines",
+    "brand_slug": "bosch",
+    "brand_name": "Bosch",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 113
+  },
+  {
+    "_id": "pt_cutoff_dewalt",
+    "id": "pt_cutoff_dewalt",
+    "name": "DeWalt D28730 14-Inch Cut-Off Machine",
+    "slug": "dewalt-d28730-cut-off-machine",
+    "sku": "DWT-COS-D28730",
+    "description": "The DeWalt D28730 is a heavy-duty 2000W 14-inch abrasive cut-off saw for professional metal cutting. Designed for cutting steel bars, pipes, channels, and angle profiles on site.",
+    "short_description": "DeWalt D28730 2000W 14-inch heavy-duty metal abrasive cut-off saw.",
+    "features": [
+      "2000W high-torque motor",
+      "355mm (14-inch) abrasive wheel",
+      "Heavy-duty quick-release vise",
+      "Anti-restart mechanism",
+      "Stable steel base with non-slip feet"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "DeWalt"
+      },
+      {
+        "key": "Model",
+        "value": "D28730"
+      },
+      {
+        "key": "Power",
+        "value": "2000W"
+      },
+      {
+        "key": "Wheel Diameter",
+        "value": "355mm (14 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "3800 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "13.5 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/dewalt_cutoff_14inch.webp",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "cut-off-machines",
+    "brand_slug": "dewalt",
+    "brand_name": "DeWalt",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 114
+  },
+  {
+    "_id": "pt_cutoff_polymak",
+    "id": "pt_cutoff_polymak",
+    "name": "Polymak PMCS14-22DY 14-Inch Cut-Off Machine",
+    "slug": "polymak-pmcs14-22dy-cut-off-machine",
+    "sku": "PLM-COS-PMCS1422DY",
+    "description": "The Polymak PMCS14-22DY is a robust 2400W 14-inch abrasive cut-off chop saw engineered for professional metal cutting in Indian construction and fabrication workshops.",
+    "short_description": "Polymak PMCS14-22DY 2400W 14-inch abrasive cut-off machine (chop saw).",
+    "features": [
+      "2400W powerful motor",
+      "355mm (14-inch) cut-off wheel",
+      "Heavy-duty steel base",
+      "Quick-adjust material vise",
+      "Ergonomic D-handle grip",
+      "ISI certified product"
+    ],
+    "specifications": [
+      {
+        "key": "Brand",
+        "value": "Polymak"
+      },
+      {
+        "key": "Model",
+        "value": "PMCS14-22DY"
+      },
+      {
+        "key": "Power",
+        "value": "2400W"
+      },
+      {
+        "key": "Wheel Diameter",
+        "value": "355mm (14 inch)"
+      },
+      {
+        "key": "Speed",
+        "value": "3800 RPM"
+      },
+      {
+        "key": "Weight",
+        "value": "15.8 kg"
+      }
+    ],
+    "images": [
+      {
+        "url": "/static/images/products/powertools/polymak_cutoff_14inch.jpg",
+        "is_primary": true
+      }
+    ],
+    "business_slug": "hardware",
+    "category_slug": "power-tools",
+    "subcategory_slug": "cut-off-machines",
+    "brand_slug": "polymac",
+    "brand_name": "Polymak",
+    "is_active": true,
+    "is_featured": true,
+    "is_new": true,
+    "sort_order": 115
   }
 ]

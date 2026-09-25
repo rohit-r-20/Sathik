@@ -259,7 +259,7 @@
     <div class="products-grid">
       {% for p in products %}
       <div class="product-card">
-        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; text-decoration:none;">
+        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
           <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}">
         </a>
         <div class="product-info">

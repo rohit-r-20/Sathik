@@ -1,6 +1,6 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="footer-grid" style="grid-template-columns: 2fr 1fr 1fr;">
+    <div class="footer-grid">
 
       <!-- ── Company Info Column ── -->
       <div>
@@ -59,18 +59,33 @@
       </div>
 
       <!-- ── Warranty Registration Column ── -->
-      <div class="footer-col">
+      <div class="footer-col footer-warranty-col">
         <h4>Warranty Registration</h4>
-        <ul class="footer-links">
-          <li><a
-              href="https://creatorapp.zohopublic.in/cripumps/dms/page-perma/Product_Registration/KrzKS1kzgwg01d4XQXJ5YT0Of221qWu64kKyR4D397n3M6uJZ6ke8haPNWQpU1ZjUg9ytR7gJexgeNn9xAxqOxT9kPUJzQHuDB4F"
+        <ul class="footer-links footer-warranty-links">
+          <li>
+            <a href="https://creatorapp.zohopublic.in/cripumps/dms/page-perma/Product_Registration/KrzKS1kzgwg01d4XQXJ5YT0Of221qWu64kKyR4D397n3M6uJZ6ke8haPNWQpU1ZjUg9ytR7gJexgeNn9xAxqOxT9kPUJzQHuDB4F"
               target="_blank" rel="noopener noreferrer" class="warranty-link"
-              title="CRI Pumps Product Warranty Registration">CRI Pumps &nearr;</a></li>
-          <li><a href="https://support.jaquar.com/Warranty/Validate" target="_blank" rel="noopener noreferrer"
-              class="warranty-link" title="Jaquar &amp; ESSCO Warranty Validation Portal">Jaquar / ESSCO &nearr;</a>
+              title="CRI Pumps Product Warranty Registration">
+              <span class="warranty-badge">CRI</span>
+              <span class="warranty-name">CRI Pumps Portal</span>
+              <span class="warranty-icon">&nearr;</span>
+            </a>
           </li>
-          <li><a href="https://newcrm.parrywareccc.com/parryware-WarrantyPortal.aspx" target="_blank"
-              rel="noopener noreferrer" class="warranty-link" title="Parryware Warranty Portal">Parryware &nearr;</a>
+          <li>
+            <a href="https://support.jaquar.com/Warranty/Validate" target="_blank" rel="noopener noreferrer"
+              class="warranty-link" title="Jaquar &amp; ESSCO Warranty Validation Portal">
+              <span class="warranty-badge">JAQUAR</span>
+              <span class="warranty-name">Jaquar / ESSCO Portal</span>
+              <span class="warranty-icon">&nearr;</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://newcrm.parrywareccc.com/parryware-WarrantyPortal.aspx" target="_blank"
+              rel="noopener noreferrer" class="warranty-link" title="Parryware Warranty Portal">
+              <span class="warranty-badge">PARRYWARE</span>
+              <span class="warranty-name">Parryware Portal</span>
+              <span class="warranty-icon">&nearr;</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -79,15 +94,14 @@
 
     <!-- ── Footer Bottom Bar (Bottom Navbar with Social Media Links) ── -->
     <div class="footer-bottom">
-      <div class="footer-bottom-flex"
-        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-        <p style="font-size: 0.8125rem; color: #94A3B8; margin: 0;">
+      <div class="footer-bottom-flex">
+        <p class="footer-copy">
           &copy; 2024 Sathik Groups. All rights reserved.
         </p>
 
         <!-- Social Media Icons Bottom Bar -->
-        <div class="footer-social-nav" style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
-          <span style="font-size: 0.78rem; font-weight: 600; color: #94A3B8; letter-spacing: 0.03em;">Follow Us:</span>
+        <div class="footer-social-nav">
+          <span class="footer-social-label">Follow Us:</span>
 
           <!-- WhatsApp Redirect -->
           <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}" target="_blank"
@@ -130,7 +144,7 @@
           </a>
         </div>
 
-        <p style="font-size: 0.75rem; color: #64748B; text-align: right; margin: 0;">
+        <p class="footer-notice">
           Non-E-Commerce Catalogue &nbsp;•&nbsp; Enquiries via WhatsApp &amp; Quote Form
         </p>
       </div>

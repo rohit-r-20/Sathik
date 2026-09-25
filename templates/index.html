@@ -236,14 +236,12 @@ from trusted brands. Sathik Groups serves residential, commercial, and construct
             that trust with honest retail prices, 100% genuine products, and friendly expert guidance for every step of
             your build.
           </p>
-          <div class="offers-wrap" style="display: flex; gap: 1.5rem; margin-top: 1.5rem; margin-bottom: 1.5rem;">
-            <div class="s-offer-box"
-              style="display: flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <div class="offers-wrap">
+            <div class="s-offer-box">
               <span style="font-size: 1.5rem;">⭐</span>
               <span style="font-weight: 600; font-size: 0.9rem;">Quality Product Range</span>
             </div>
-            <div class="s-offer-box"
-              style="display: flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+            <div class="s-offer-box">
               <span style="font-size: 1.5rem;">🤝</span>
               <span style="font-weight: 600; font-size: 0.9rem;">Builder-Centric Service</span>
             </div>
@@ -335,7 +333,7 @@ from trusted brands. Sathik Groups serves residential, commercial, and construct
 
       <!-- 4. Industrial power tools -->
       <div class="asian-store-card">
-        <a href="{{ url_for('product.product_list', q='power tools') }}" class="asian-store-img-box">
+        <a href="{{ url_for('product.product_list', category='power-tools') }}" class="asian-store-img-box">
           <img src="{{ url_for('static', filename='images/stores/power_tools.jpg') }}" alt="Industrial power tools"
             class="asian-store-img" loading="lazy">
           <div class="asian-store-overlay">
@@ -344,7 +342,7 @@ from trusted brands. Sathik Groups serves residential, commercial, and construct
           </div>
         </a>
         <div class="asian-store-footer">
-          <a href="{{ url_for('product.product_list', q='power tools') }}" class="asian-store-knowmore">
+          <a href="{{ url_for('product.product_list', category='power-tools') }}" class="asian-store-knowmore">
             Know more
           </a>
         </div>
