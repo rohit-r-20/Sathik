@@ -640,6 +640,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     formData.append('product_name', 'Multiple Products Quote List');
     formData.append('interested_in', 'Multiple Showrooms');
+    formData.append('type', 'quote_list');
+    formData.append('items_json', JSON.stringify(quoteCart));
     formData.append('message', `[Quote Request List]\n${productDetails}\n[User Message]\n${formData.get('message')}`);
     
     fetch('/enquiry/submit', {
@@ -751,7 +753,19 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(alignBrandLockups);
   }
-  window.addEventListener('resize', alignBrandLockups);
-
+  window.recordDirectQuoteClick = function(productName, sku, waUrl) {
+    try {
+      fetch('/quotations/record-click', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_name: productName,
+          sku: sku,
+          whatsapp_url: waUrl
+        })
+      }).catch(() => {});
+    } catch(e) {}
+  };
 });
+
 

@@ -1,0 +1,425 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin - Manage Quotations | Sathik Groups{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+<style>
+  .quote-ref-badge {
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+    font-family: monospace;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid #cbd5e1;
+    display: inline-block;
+  }
+  .quote-type-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    margin-top: 0.2rem;
+    display: inline-block;
+  }
+  .quote-type-cart { background: #e0f2fe; color: #0369a1; }
+  .quote-type-product { background: #fef3c7; color: #b45309; }
+  .quote-type-direct { background: #dcfce7; color: #15803d; }
+
+  .status-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .status-new { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+  .status-contacted { background: #e0f2fe; color: #0284c7; border: 1px solid #7dd3fc; }
+  .status-quoted { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+  .status-closed { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+
+  .items-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.35rem 0.55rem;
+    font-size: 0.78rem;
+    color: #334155;
+    margin-top: 0.3rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-layout">
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div style="font-weight: 800; font-family: var(--font-heading); font-size: 1.125rem;">ADMIN PORTAL</div>
+    <ul class="admin-nav">
+      <li><a href="{{ url_for('admin.dashboard') }}">📊 Dashboard</a></li>
+      <li><a href="{{ url_for('admin.products') }}">📦 Products</a></li>
+      <li><a href="{{ url_for('admin.brands') }}">🏷️ Brands</a></li>
+      <li><a href="{{ url_for('admin.quotations') }}" class="active">📝 Quotations</a></li>
+      <li><a href="{{ url_for('admin.enquiries') }}">📩 Enquiries</a></li>
+      <li><a href="{{ url_for('admin.settings') }}">⚙️ Settings</a></li>
+    </ul>
+  </aside>
+
+  <main class="admin-main">
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <h1 style="font-size: 1.75rem; margin-bottom: 0.25rem;">Customer Quotations</h1>
+        <p style="color: var(--primary-500); font-size: 0.875rem; margin: 0;">
+          All quote requests submitted via website quote lists, product modals, and WhatsApp handoffs.
+        </p>
+      </div>
+
+      <!-- Quick Filter Pills -->
+      <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+        <a href="{{ url_for('admin.quotations') }}" class="btn btn-sm {% if not current_status %}btn-secondary{% else %}btn-outline{% endif %}">
+          All ({{ stats.total }})
+        </a>
+        <a href="{{ url_for('admin.quotations', status='new', q=search_query) }}" class="btn btn-sm {% if current_status == 'new' %}btn-secondary{% else %}btn-outline{% endif %}" style="border-color: #22c55e;">
+          🟢 New ({{ stats.new }})
+        </a>
+        <a href="{{ url_for('admin.quotations', status='contacted', q=search_query) }}" class="btn btn-sm {% if current_status == 'contacted' %}btn-secondary{% else %}btn-outline{% endif %}" style="border-color: #0284c7;">
+          🔵 Contacted ({{ stats.contacted }})
+        </a>
+        <a href="{{ url_for('admin.quotations', status='quoted', q=search_query) }}" class="btn btn-sm {% if current_status == 'quoted' %}btn-secondary{% else %}btn-outline{% endif %}" style="border-color: #f59e0b;">
+          🟡 Quoted ({{ stats.quoted }})
+        </a>
+        <a href="{{ url_for('admin.quotations', status='closed', q=search_query) }}" class="btn btn-sm {% if current_status == 'closed' %}btn-secondary{% else %}btn-outline{% endif %}">
+          ⚪ Closed ({{ stats.closed }})
+        </a>
+      </div>
+    </div>
+
+    <!-- Search Form -->
+    <div style="margin-bottom: 1.25rem;">
+      <form action="{{ url_for('admin.quotations') }}" method="GET" style="display: flex; gap: 0.5rem; max-width: 480px;">
+        {% if current_status %}<input type="hidden" name="status" value="{{ current_status }}">{% endif %}
+        <input type="text" name="q" value="{{ search_query }}" class="form-input" placeholder="Search by customer name, phone, city, or product..." style="font-size: 0.875rem;">
+        <button type="submit" class="btn btn-primary" style="white-space: nowrap; font-size: 0.875rem;">🔍 Search</button>
+        {% if search_query %}
+          <a href="{{ url_for('admin.quotations', status=current_status) }}" class="btn btn-outline" style="white-space: nowrap; font-size: 0.875rem;">Clear</a>
+        {% endif %}
+      </form>
+    </div>
+
+    <!-- Quotations Table -->
+    <div class="table-card">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th style="width: 110px;">Date &amp; Ref</th>
+            <th style="width: 220px;">Customer &amp; Contact</th>
+            <th>Items / Requested Products</th>
+            <th style="width: 140px;">Status</th>
+            <th style="width: 130px; text-align: right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if quotations %}
+            {% for q in quotations %}
+            <tr>
+              <!-- Date & Ref -->
+              <td>
+                <span class="quote-ref-badge">{{ q.quote_ref or ('#QT-' ~ loop.index) }}</span>
+                <div style="font-size: 0.72rem; color: #64748b; margin-top: 0.3rem;">
+                  {{ q.created_at[:10] if q.created_at else '' }}<br>
+                  <span style="color: #94a3b8;">{{ q.created_at[11:16] if q.created_at and q.created_at|length > 16 else '' }}</span>
+                </div>
+                {% if q.quote_type == 'quote_list' %}
+                  <span class="quote-type-tag quote-type-cart">Multi-Item List</span>
+                {% elif q.quote_type == 'direct_whatsapp' %}
+                  <span class="quote-type-tag quote-type-direct">WhatsApp Direct</span>
+                {% else %}
+                  <span class="quote-type-tag quote-type-product">Single Product</span>
+                {% endif %}
+              </td>
+
+              <!-- Customer -->
+              <td>
+                <div style="font-weight: 700; color: #0f172a; font-size: 0.92rem;">
+                  {{ q.customer_name or q.name or 'Direct Customer' }}
+                </div>
+                {% if q.city or q.address %}
+                  <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.15rem;">
+                    📍 {{ q.city or q.address }}
+                  </div>
+                {% endif %}
+                <div style="font-size: 0.8rem; margin-top: 0.35rem; color: #334155;">
+                  📞 {{ q.mobile_number or q.phone or 'Not provided' }}
+                </div>
+                {% if q.mobile_number or q.phone %}
+                  {% set raw_phone = (q.mobile_number or q.phone)|replace(' ', '')|replace('+', '')|replace('-', '') %}
+                  {% set wa_phone = ('91' ~ raw_phone) if raw_phone|length == 10 else raw_phone %}
+                  <div style="margin-top: 0.4rem; display: flex; gap: 0.35rem; flex-wrap: wrap;">
+                    <a href="https://wa.me/{{ wa_phone }}?text={{ ('Hello ' ~ (q.customer_name or 'there') ~ ', thank you for your quotation request ' ~ (q.quote_ref or '') ~ ' with Sathik Groups. We are ready with your price estimate.')|urlencode }}"
+                       target="_blank" rel="noopener noreferrer"
+                       style="background: #25D366; color: #fff; font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;">
+                      💬 Chat on WhatsApp
+                    </a>
+                    <a href="tel:{{ raw_phone }}"
+                       style="background: #f1f5f9; color: #334155; font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 600; text-decoration: none; border: 1px solid #cbd5e1;">
+                      📞 Call
+                    </a>
+                  </div>
+                {% endif %}
+                {% if q.email %}
+                  <div style="font-size: 0.72rem; color: #64748b; margin-top: 0.3rem;">
+                    ✉️ {{ q.email }}
+                  </div>
+                {% endif %}
+              </td>
+
+              <!-- Items / Requirements -->
+              <td>
+                <div style="font-weight: 700; color: #0284c7; font-size: 0.9rem;">
+                  {{ q.product_name or 'Quotation Items' }}
+                  {% if q.product_sku %}<span style="font-size: 0.75rem; color: #64748b; font-weight: 500;">(SKU: {{ q.product_sku }})</span>{% endif %}
+                </div>
+
+                {% if q['items'] and q['items']|length > 0 %}
+                  <div class="items-pill">
+                    <strong>🛒 {{ q['items']|length }} Item(s) in list:</strong>
+                    <ul style="margin: 0.3rem 0 0 1rem; padding: 0; font-size: 0.75rem;">
+                      {% for it in q['items'][:3] %}
+                        <li>{{ it.name }} {% if it.sku %}(SKU: {{ it.sku }}){% endif %}</li>
+                      {% endfor %}
+                      {% if q['items']|length > 3 %}
+                        <li style="color: #64748b; font-style: italic;">+ {{ q['items']|length - 3 }} more item(s)...</li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                {% endif %}
+
+                {% if q.quantity %}
+                  <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                    <strong>Quantity:</strong> {{ q.quantity }}
+                  </div>
+                {% endif %}
+
+                {% if q.message %}
+                  <div style="font-size: 0.78rem; color: #64748b; margin-top: 0.4rem; line-height: 1.4; max-height: 60px; overflow: hidden; text-overflow: ellipsis;">
+                    {{ q.message }}
+                  </div>
+                {% endif %}
+              </td>
+
+              <!-- Status -->
+              <td>
+                {% set st_lower = (q.status or 'new')|lower %}
+                <span class="status-pill {% if st_lower == 'new' %}status-new{% elif st_lower == 'contacted' %}status-contacted{% elif st_lower == 'quoted' %}status-quoted{% else %}status-closed{% endif %}">
+                  {{ q.status or 'New' }}
+                </span>
+
+                <form action="{{ url_for('admin.update_quotation_status', quote_id=q._id or q.id, current_status=current_status) }}" method="POST" style="margin-top: 0.5rem;">
+                  <select name="status" class="form-select" style="padding: 0.2rem 0.4rem; font-size: 0.75rem; height: auto;" onchange="this.form.submit()">
+                    <option value="New" {% if st_lower == 'new' %}selected{% endif %}>New</option>
+                    <option value="Contacted" {% if st_lower == 'contacted' %}selected{% endif %}>Contacted</option>
+                    <option value="Quoted" {% if st_lower == 'quoted' %}selected{% endif %}>Quoted</option>
+                    <option value="Closed" {% if st_lower == 'closed' %}selected{% endif %}>Closed</option>
+                  </select>
+                </form>
+              </td>
+
+              <!-- Actions -->
+              <td style="text-align: right;">
+                <div style="display: flex; gap: 0.4rem; justify-content: flex-end;">
+                  <button type="button" class="btn btn-sm btn-outline" onclick='viewQuoteDetails({{ q|tojson|safe }})' style="font-size: 0.75rem; padding: 0.3rem 0.55rem;" title="View Full Details">
+                    👁️ View
+                  </button>
+                  <form action="{{ url_for('admin.delete_quotation', quote_id=q._id or q.id) }}" method="POST" onsubmit="return confirm('Delete this quotation record permanently?');" style="display: inline;">
+                    <button type="submit" class="btn btn-sm btn-outline" style="color: #dc2626; border-color: #fca5a5; font-size: 0.75rem; padding: 0.3rem 0.55rem;" title="Delete Quotation">
+                      🗑️
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td colspan="5" style="text-align: center; color: var(--primary-500); padding: 3rem;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📝</div>
+                <strong>No customer quotations found.</strong>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;">
+                  When customers send a quote via WhatsApp or website quote request forms, they will automatically appear here.
+                </p>
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if total_pages > 1 %}
+    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+      {% for p in range(1, total_pages + 1) %}
+        <a href="{{ url_for('admin.quotations', page=p, status=current_status, q=search_query) }}"
+           class="btn btn-sm {% if p == page %}btn-primary{% else %}btn-outline{% endif %}">
+          {{ p }}
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </main>
+</div>
+
+<!-- Quotation Detail Modal -->
+<div id="quote-details-modal" class="modal-backdrop">
+  <div class="modal-card" style="max-width: 650px; max-height: 90vh; overflow-y: auto;">
+    <div class="modal-header">
+      <div>
+        <h3 id="modal-quote-ref" style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0;">Quotation Details</h3>
+        <div id="modal-quote-date" style="font-size: 0.75rem; color: #64748b; margin-top: 0.2rem;"></div>
+      </div>
+      <button type="button" onclick="closeModal('quote-details-modal')" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Customer Information Card -->
+      <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 1.25rem;">
+        <h4 style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase; margin: 0 0 0.75rem 0;">👤 Customer Details</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; font-size: 0.875rem;">
+          <div><strong>Name:</strong> <span id="modal-cust-name">-</span></div>
+          <div><strong>Phone:</strong> <span id="modal-cust-phone">-</span></div>
+          <div><strong>City / Address:</strong> <span id="modal-cust-city">-</span></div>
+          <div><strong>Email:</strong> <span id="modal-cust-email">-</span></div>
+        </div>
+        <div id="modal-wa-actions" style="margin-top: 0.75rem; display: flex; gap: 0.5rem;">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Items Section -->
+      <div style="margin-bottom: 1.25rem;">
+        <h4 style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase; margin: 0 0 0.5rem 0;">📦 Requested Items</h4>
+        <div id="modal-items-container" style="background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Message / Details -->
+      <div style="margin-bottom: 1.25rem;">
+        <h4 style="font-size: 0.85rem; font-weight: 700; color: #334155; text-transform: uppercase; margin: 0 0 0.5rem 0;">📝 Message &amp; Notes</h4>
+        <div id="modal-message-box" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.75rem; font-size: 0.85rem; white-space: pre-line; color: #334155;">
+          No additional message provided.
+        </div>
+      </div>
+
+      <!-- Status Update Form -->
+      <form id="modal-status-form" action="" method="POST" style="border-top: 1px solid #e2e8f0; padding-top: 1rem;">
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; align-items: start;">
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label">Quotation Status</label>
+            <select id="modal-status-select" name="status" class="form-select">
+              <option value="New">New</option>
+              <option value="Contacted">Contacted</option>
+              <option value="Quoted">Quoted</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label">Internal Admin Notes</label>
+            <input type="text" id="modal-notes-input" name="notes" class="form-input" placeholder="e.g. Quoted ₹45,000 for 50 bags, follow up Monday">
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn btn-outline" onclick="closeModal('quote-details-modal')">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function viewQuoteDetails(quote) {
+    if (!quote) return;
+
+    document.getElementById('modal-quote-ref').textContent = (quote.quote_ref || 'Quotation') + ' — ' + (quote.customer_name || quote.name || 'Customer');
+    document.getElementById('modal-quote-date').textContent = 'Created: ' + (quote.created_at || 'Just now');
+    document.getElementById('modal-cust-name').textContent = quote.customer_name || quote.name || 'Not provided';
+    document.getElementById('modal-cust-phone').textContent = quote.mobile_number || quote.phone || 'Not provided';
+    document.getElementById('modal-cust-city').textContent = quote.city || quote.address || 'Not provided';
+    document.getElementById('modal-cust-email').textContent = quote.email || 'None';
+
+    // WhatsApp Action
+    const waActionsEl = document.getElementById('modal-wa-actions');
+    const phone = (quote.mobile_number || quote.phone || '').replace(/[^0-9]/g, '');
+    if (phone) {
+      const waPhone = phone.length === 10 ? '91' + phone : phone;
+      const text = encodeURIComponent('Hello ' + (quote.customer_name || 'there') + ', regarding your quote request ' + (quote.quote_ref || '') + ' with Sathik Groups: ');
+      waActionsEl.innerHTML = `
+        <a href="https://wa.me/${waPhone}?text=${text}" target="_blank" rel="noopener noreferrer" class="btn btn-sm" style="background:#25D366; color:#fff; font-weight:700; display:inline-flex; align-items:center; gap:0.4rem; text-decoration:none;">
+          💬 Chat on WhatsApp (+${waPhone})
+        </a>
+        <a href="tel:${phone}" class="btn btn-sm btn-outline">
+          📞 Call Customer
+        </a>
+      `;
+    } else {
+      waActionsEl.innerHTML = '';
+    }
+
+    // Items container
+    const itemsEl = document.getElementById('modal-items-container');
+    const items = quote.items || [];
+    if (items.length > 0) {
+      let html = '<div style="display: flex; flex-direction: column; gap: 0.5rem;">';
+      items.forEach((it, idx) => {
+        html += `
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0.6rem; background: #f8fafc; border-radius: 4px; border: 1px solid #e2e8f0; font-size: 0.85rem;">
+            <div>
+              <strong>${idx + 1}. ${escapeHtml(it.name)}</strong>
+              ${it.sku ? `<span style="font-size: 0.75rem; color: #64748b; margin-left: 0.5rem;">(SKU: ${escapeHtml(it.sku)})</span>` : ''}
+              ${it.brand ? `<span style="font-size: 0.75rem; color: #0284c7; margin-left: 0.5rem;">[${escapeHtml(it.brand)}]</span>` : ''}
+            </div>
+            <div style="font-weight: 700; color: #0f172a;">Qty: ${escapeHtml(String(it.quantity || 1))}</div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      itemsEl.innerHTML = html;
+    } else {
+      itemsEl.innerHTML = `
+        <div style="font-size: 0.875rem;">
+          <strong>${escapeHtml(quote.product_name || 'General Product Enquiry')}</strong>
+          ${quote.product_sku ? `<span style="font-size: 0.75rem; color: #64748b; margin-left: 0.5rem;">(SKU: ${escapeHtml(quote.product_sku)})</span>` : ''}
+          ${quote.quantity ? `<div style="font-size: 0.8rem; color: #475569; margin-top: 0.25rem;">Requested Quantity: <strong>${escapeHtml(quote.quantity)}</strong></div>` : ''}
+        </div>
+      `;
+    }
+
+    // Message
+    const msgEl = document.getElementById('modal-message-box');
+    msgEl.textContent = quote.message || 'No additional specifications provided.';
+
+    // Status form
+    const form = document.getElementById('modal-status-form');
+    form.action = '/admin/quotations/' + (quote._id || quote.id) + '/status?current_status={{ current_status }}';
+    document.getElementById('modal-status-select').value = quote.status || 'New';
+    document.getElementById('modal-notes-input').value = quote.notes || '';
+
+    openModal('quote-details-modal');
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+</script>
+{% endblock %}

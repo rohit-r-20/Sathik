@@ -71,7 +71,7 @@
           <button type="button" class="btn btn-outline btn-block" onclick="addToQuoteCart('{{ product._id }}', '{{ product.name|escape }}', '{{ product.sku }}', '{{ product.slug }}', '{{ product.subcategory_slug }}', '{{ product.images[0].url if product.images else "" }}')" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; border-color: var(--primary-600); color: var(--primary-600);">
             <span>+ Add to Quote List</span>
           </button>
-          <a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block">
+          <a href="{{ whatsapp_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block" onclick="window.recordDirectQuoteClick && window.recordDirectQuoteClick('{{ product.name|escape }}', '{{ product.sku }}', '{{ whatsapp_url|escape }}')">
             Enquire via WhatsApp
           </a>
           <a href="tel:{{ company.phone }}" class="btn btn-outline btn-block">

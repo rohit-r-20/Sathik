@@ -1,0 +1,648 @@
+[
+  {
+    "id": "qt_1790318074933",
+    "_id": "qt_1790318074933",
+    "quote_ref": "#QT-1010",
+    "reference_id": "#QT-1010",
+    "customer_name": "Direct WhatsApp Visitor",
+    "name": "Direct WhatsApp Visitor",
+    "mobile_number": "",
+    "phone": "",
+    "email": "",
+    "city": "",
+    "address": "",
+    "quote_type": "direct_whatsapp",
+    "product_name": "UltraTech Cement 50kg Bag",
+    "product_sku": "UTC-50KG",
+    "quantity": "",
+    "items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 1,
+    "message": "Clicked Direct WhatsApp Enquiry button on product page",
+    "whatsapp_url": "https://wa.me/919940173877?text=Hi",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:34:34.933799+00:00",
+    "quote_items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790318074909",
+    "_id": "qt_1790318074909",
+    "quote_ref": "#QT-1009",
+    "reference_id": "#QT-1009",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A04%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "quoted",
+    "notes": "Sent pricing via WhatsApp PDF brochure",
+    "admin_notes": "Sent pricing via WhatsApp PDF brochure",
+    "created_at": "2026-09-25T06:34:34.909462+00:00",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790318042066",
+    "_id": "qt_1790318042066",
+    "quote_ref": "#QT-1008",
+    "reference_id": "#QT-1008",
+    "customer_name": "Direct WhatsApp Visitor",
+    "name": "Direct WhatsApp Visitor",
+    "mobile_number": "",
+    "phone": "",
+    "email": "",
+    "city": "",
+    "address": "",
+    "quote_type": "direct_whatsapp",
+    "product_name": "UltraTech Cement 50kg Bag",
+    "product_sku": "UTC-50KG",
+    "quantity": "",
+    "items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 1,
+    "message": "Clicked Direct WhatsApp Enquiry button on product page",
+    "whatsapp_url": "https://wa.me/919940173877?text=Hi",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:34:02.066324+00:00",
+    "quote_items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790318042041",
+    "_id": "qt_1790318042041",
+    "quote_ref": "#QT-1007",
+    "reference_id": "#QT-1007",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A04%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "quoted",
+    "notes": "Sent pricing via WhatsApp PDF brochure",
+    "admin_notes": "Sent pricing via WhatsApp PDF brochure",
+    "created_at": "2026-09-25T06:34:02.041650+00:00",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790318021809",
+    "_id": "qt_1790318021809",
+    "quote_ref": "#QT-1006",
+    "reference_id": "#QT-1006",
+    "customer_name": "Direct WhatsApp Visitor",
+    "name": "Direct WhatsApp Visitor",
+    "mobile_number": "",
+    "phone": "",
+    "email": "",
+    "city": "",
+    "address": "",
+    "quote_type": "direct_whatsapp",
+    "product_name": "UltraTech Cement 50kg Bag",
+    "product_sku": "UTC-50KG",
+    "quantity": "",
+    "items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 1,
+    "message": "Clicked Direct WhatsApp Enquiry button on product page",
+    "whatsapp_url": "https://wa.me/919940173877?text=Hi",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:33:41.809681+00:00",
+    "quote_items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790318021784",
+    "_id": "qt_1790318021784",
+    "quote_ref": "#QT-1005",
+    "reference_id": "#QT-1005",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A03%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:33:41.784696+00:00",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790317938049",
+    "_id": "qt_1790317938049",
+    "quote_ref": "#QT-1004",
+    "reference_id": "#QT-1004",
+    "customer_name": "Direct WhatsApp Visitor",
+    "name": "Direct WhatsApp Visitor",
+    "mobile_number": "",
+    "phone": "",
+    "email": "",
+    "city": "",
+    "address": "",
+    "quote_type": "direct_whatsapp",
+    "product_name": "UltraTech Cement 50kg Bag",
+    "product_sku": "UTC-50KG",
+    "quantity": "",
+    "items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 1,
+    "message": "Clicked Direct WhatsApp Enquiry button on product page",
+    "whatsapp_url": "https://wa.me/919940173877?text=Hi",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:32:18.049314+00:00",
+    "quote_items": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "UltraTech Cement 50kg Bag",
+        "sku": "UTC-50KG",
+        "quantity": "1",
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790317938028",
+    "_id": "qt_1790317938028",
+    "quote_ref": "#QT-1003",
+    "reference_id": "#QT-1003",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A02%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "admin_notes": "",
+    "created_at": "2026-09-25T06:32:18.028647+00:00",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790317886268",
+    "_id": "qt_1790317886268",
+    "quote_ref": "#QT-1002",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A01%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "created_at": "2026-09-25T06:31:26.268221+00:00",
+    "reference_id": "#QT-1002",
+    "admin_notes": "",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  },
+  {
+    "id": "qt_1790317854521",
+    "_id": "qt_1790317854521",
+    "quote_ref": "#QT-1001",
+    "customer_name": "Ramesh Kumar",
+    "name": "Ramesh Kumar",
+    "mobile_number": "+91 9876543210",
+    "phone": "+91 9876543210",
+    "email": "ramesh@example.com",
+    "city": "Chennai",
+    "address": "Chennai",
+    "quote_type": "quote",
+    "product_name": "Multi-item Quote Cart",
+    "product_sku": "",
+    "quantity": "",
+    "items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_count": 2,
+    "message": "Please provide best wholesale pricing for 2 items.",
+    "whatsapp_url": "https://api.whatsapp.com/send?phone=919840637307&text=%F0%9F%93%A6%20%2ANEW%20QUOTE%20REQUEST%20-%20SATHIK%20TRADERS%2A%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%F0%9F%91%A4%20%2ACustomer%3A%2A%20Ramesh%20Kumar%0A%F0%9F%93%B1%20%2APhone%3A%2A%20%2B91%209876543210%0A%E2%9C%89%EF%B8%8F%20%2AEmail%3A%2A%20ramesh%40example.com%0A%F0%9F%93%8D%20%2ALocation%3A%2A%20Chennai%0A%F0%9F%8F%B7%EF%B8%8F%20%2AProduct%20/%20Items%3A%2A%20Multi-item%20Quote%20Cart%0A%F0%9F%92%AC%20%2APreferred%20Contact%3A%2A%20WhatsApp%20Message%0A%F0%9F%93%9D%20%2ADetails%20/%20Requirements%3A%2A%0APlease%20provide%20best%20wholesale%20pricing%20for%202%20items.%0A%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%E2%94%81%0A%E2%8F%B1%EF%B8%8F%20%2ATime%3A%2A%2025-Sep-2026%2012%3A00%20PM%0A%F0%9F%8C%90%20%2ASource%3A%2A%20Sathik%20Groups%20Web%20Platform%20%28sathiktraders.com%29",
+    "preferred_contact": "WhatsApp Message",
+    "status": "New",
+    "notes": "",
+    "created_at": "2026-09-25T06:30:54.521020+00:00",
+    "reference_id": "#QT-1001",
+    "admin_notes": "",
+    "quote_items": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ],
+    "item_list": [
+      {
+        "name": "Bosch GSB 500W Drill",
+        "sku": "BSH-DR-01",
+        "quantity": 2,
+        "image": "",
+        "brand": ""
+      },
+      {
+        "name": "Stanley Measuring Tape 5m",
+        "sku": "STN-TP-05",
+        "quantity": 5,
+        "image": "",
+        "brand": ""
+      }
+    ]
+  }
+]

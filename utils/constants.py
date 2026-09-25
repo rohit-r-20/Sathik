@@ -117,7 +117,7 @@ COMPANY_INFO = {
     'city': 'Chennai',
     'state': 'Tamil Nadu',
     'pincode': '600 052',
-    'website': 'www.sathiktraders.com',
+    'website': 'www.sathikgroups.com',
     'hours': 'Mon – Sat, 9:00 AM – 7:30 PM'
 }
 

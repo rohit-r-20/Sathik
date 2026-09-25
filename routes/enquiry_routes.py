@@ -61,11 +61,37 @@ def submit_enquiry():
             except Exception as wa_err:
                 print(f"⚠️ WhatsApp processing notice: {wa_err}")
 
+            # Record quotation so it appears in the Admin Quotation section
+            try:
+                from models.quotation import QuotationModel
+                quote_payload = {
+                    'customer_name': customer_name,
+                    'mobile_number': mobile_number,
+                    'email': email,
+                    'city': address,
+                    'address': address,
+                    'interested_in': interested_in,
+                    'product_name': product_name,
+                    'product_sku': data.get('product_sku') or data.get('sku') or '',
+                    'quantity': data.get('quantity') or data.get('qty') or '',
+                    'preferred_contact': preferred_contact,
+                    'message': message,
+                    'type': data.get('type') or 'quote',
+                    'items_json': data.get('items_json') or '',
+                    'whatsapp_url': whatsapp_info.get("whatsapp_url") or ''
+                }
+                quote_record = QuotationModel.create(quote_payload)
+            except Exception as quote_err:
+                print(f"⚠️ Quotation recording notice: {quote_err}")
+                quote_record = None
+
             return jsonify({
                 "success": True,
                 "message": "Thank you! Your quote request has been received.",
                 "whatsapp_url": whatsapp_info.get("whatsapp_url"),
-                "target_phone": whatsapp_info.get("target_phone")
+                "target_phone": whatsapp_info.get("target_phone"),
+                "quotation_id": quote_record.get("id") if quote_record else None,
+                "quotation_reference": quote_record.get("reference_id") if quote_record else None
             }), 200
         else:
             return jsonify({
@@ -78,3 +104,30 @@ def submit_enquiry():
             "success": False,
             "message": "Unable to save enquiry."
         }), 500
+
+@enquiry_bp.route('/quotations/record-click', methods=['POST'])
+def record_quotation_click():
+    try:
+        data = request.get_json(silent=True) if request.is_json else request.form.to_dict()
+        if not data:
+            data = {}
+        from models.quotation import QuotationModel
+        quote_payload = {
+            'customer_name': data.get('name') or data.get('customer_name') or 'Direct WhatsApp Visitor',
+            'mobile_number': data.get('phone') or data.get('mobile_number') or '',
+            'city': data.get('city') or '',
+            'product_name': data.get('product_name') or 'Product Enquiry',
+            'product_sku': data.get('sku') or data.get('product_sku') or '',
+            'message': data.get('message') or 'Clicked Direct WhatsApp Enquiry button on product page',
+            'type': 'direct_whatsapp',
+            'whatsapp_url': data.get('whatsapp_url') or ''
+        }
+        record = QuotationModel.create(quote_payload)
+        return jsonify({
+            'ok': True,
+            'success': True,
+            'quotation_id': record['id'] if record else None,
+            'quotation_reference': record['reference_id'] if record else None
+        }), 200
+    except Exception as e:
+        return jsonify({'ok': False, 'success': False, 'error': str(e)}), 500

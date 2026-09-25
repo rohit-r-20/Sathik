@@ -72,7 +72,7 @@ def format_whatsapp_quote_message(enquiry_data):
     lines.extend([
         "━━━━━━━━━━━━━━━━━━━━━",
         f"⏱️ *Time:* {timestamp}",
-        "🌐 *Source:* Sathik Groups Web Platform (sathiktraders.com)"
+        "🌐 *Source:* Sathik Groups Web Platform (sathikgroups.com)"
     ])
     
     return "\n".join(lines)

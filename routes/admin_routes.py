@@ -5,6 +5,7 @@ from models.product import ProductModel
 from models.brand import BrandModel
 from models.category import CategoryModel
 from models.enquiry import EnquiryModel
+from models.quotation import QuotationModel
 from models.project import ProjectModel
 from models.settings import SettingModel
 from utils.constants import BUSINESSES
@@ -68,17 +69,21 @@ def admin_required(f):
 @admin_required
 def dashboard():
     stats = EnquiryModel.get_stats()
+    quote_stats = QuotationModel.get_stats()
     products, product_count = ProductModel.find_all(limit=5)
     brands = BrandModel.find_all()
     enquiries, _ = EnquiryModel.find_all(limit=5)
+    recent_quotes, _ = QuotationModel.find_all(limit=5)
     
     return render_template(
         'admin/dashboard.html',
         stats=stats,
+        quote_stats=quote_stats,
         product_count=product_count,
         brand_count=len(brands),
         recent_products=products,
-        recent_enquiries=enquiries
+        recent_enquiries=enquiries,
+        recent_quotes=recent_quotes
     )
 
 @admin_bp.route('/products')
@@ -427,6 +432,62 @@ def update_enquiry_status(enquiry_id):
     EnquiryModel.update_status(enquiry_id, status, notes)
     flash('Enquiry status updated.', 'success')
     return redirect(url_for('admin.enquiries'))
+
+@admin_bp.route('/quotations')
+@admin_required
+def quotations():
+    page = int(request.args.get('page', 1))
+    status_filter = request.args.get('status', '').strip()
+    search_query = request.args.get('q', '').strip()
+    limit = 20
+
+    quote_list, total = QuotationModel.find_all(
+        status=status_filter or None,
+        search=search_query or None,
+        page=page,
+        limit=limit
+    )
+    stats = QuotationModel.get_stats()
+    total_pages = (total + limit - 1) // limit if total > 0 else 1
+
+    return render_template(
+        'admin/quotations.html',
+        quotations=quote_list,
+        stats=stats,
+        current_status=status_filter,
+        search_query=search_query,
+        page=page,
+        total_pages=total_pages,
+        total_quotes=total
+    )
+
+@admin_bp.route('/quotations/<quote_id>/status', methods=['POST'])
+@admin_required
+def update_quotation_status(quote_id):
+    if request.is_json:
+        data = request.get_json() or {}
+        status = data.get('status', 'New')
+        notes = data.get('notes') or data.get('admin_notes')
+    else:
+        status = request.form.get('status', 'New')
+        notes = request.form.get('notes', None)
+
+    success = QuotationModel.update_status(quote_id, status, notes)
+    if request.is_json or request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return jsonify({'success': bool(success), 'status': status, 'notes': notes}), 200
+
+    flash('Quotation status updated successfully.', 'success')
+    return redirect(url_for('admin.quotations', status=request.args.get('current_status', '')))
+
+@admin_bp.route('/quotations/<quote_id>/delete', methods=['POST'])
+@admin_required
+def delete_quotation(quote_id):
+    success = QuotationModel.delete(quote_id)
+    if request.is_json or request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return jsonify({'success': bool(success)}), 200
+
+    flash('Quotation deleted successfully.', 'success')
+    return redirect(url_for('admin.quotations'))
 
 @admin_bp.route('/settings', methods=['GET', 'POST'])
 @admin_required

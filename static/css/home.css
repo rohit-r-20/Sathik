@@ -2610,12 +2610,11 @@
    ========================================================================== */
 .awards-showcase-section {
   position: relative;
-  background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.15) 0%, transparent 65%),
-              linear-gradient(180deg, #090D16 0%, #0F172A 50%, #090D16 100%);
-  padding: 1.25rem 0 1.25rem;
-  border-top: 1px solid rgba(245, 158, 11, 0.25);
-  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
-  color: #F8FAFC;
+  background: #FFFFFF;
+  padding: 1.5rem 0 1.5rem;
+  border-top: 1px solid #E2E8F0;
+  border-bottom: 1px solid #E2E8F0;
+  color: var(--primary-900);
   overflow: hidden;
 }
 
@@ -2639,17 +2638,17 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.22rem 0.75rem;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 0.24rem 0.8rem;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
   border-radius: 9999px;
-  color: #FBBF24;
-  font-size: 0.68rem;
+  color: #B45309;
+  font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 0.35rem;
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.12);
 }
 
 .awards-title {
@@ -2657,19 +2656,19 @@
   font-weight: 850;
   letter-spacing: -0.02em;
   margin: 0 0 0.3rem;
-  color: #FFFFFF;
+  color: var(--primary-900);
   line-height: 1.2;
 }
 
 .awards-title-gradient {
-  background: linear-gradient(135deg, #FFFFFF 40%, #FBBF24 85%, #F59E0B 100%);
+  background: linear-gradient(135deg, #0F172A 40%, #B45309 85%, #D97706 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .awards-subtitle {
-  font-size: 0.82rem;
-  color: #94A3B8;
+  font-size: 0.84rem;
+  color: #64748B;
   line-height: 1.45;
   margin: 0 auto;
   max-width: 720px;
@@ -2679,7 +2678,7 @@
 .awards-marquee-wrapper {
   position: relative;
   width: 100%;
-  margin: 0.35rem 0 0;
+  margin: 0.5rem 0 0;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -2696,12 +2695,12 @@
 
 .awards-fade-left {
   left: 0;
-  background: linear-gradient(90deg, #090D16 0%, rgba(9, 13, 22, 0) 100%);
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 .awards-fade-right {
   right: 0;
-  background: linear-gradient(270deg, #090D16 0%, rgba(9, 13, 22, 0) 100%);
+  background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
 }
 
 /* CONTAINER (DRAGGABLE & TOUCH SWIPABLE) */
@@ -2743,11 +2742,11 @@
 .award-trophy-card {
   flex: 0 0 155px;
   width: 155px;
-  background: linear-gradient(155deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
-  border: 1px solid rgba(245, 158, 11, 0.22);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 12px;
   padding: 5px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.06);
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   position: relative;
@@ -2758,7 +2757,7 @@
 .award-trophy-card:hover {
   transform: translateY(-4px) scale(1.02);
   border-color: #F59E0B;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12), 0 0 14px rgba(245, 158, 11, 0.2);
 }
 
 .award-card-inner {
@@ -2773,7 +2772,8 @@
   position: relative;
   height: 160px;
   width: 100%;
-  background: radial-gradient(circle at center, #1E293B 0%, #0B1120 85%);
+  background: radial-gradient(circle at center, #F8FAFC 0%, #F1F5F9 85%);
+  border: 1px solid #E2E8F0;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -2789,7 +2789,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
   transition: transform 0.3s ease;
   pointer-events: none;
   user-select: none;
@@ -2797,13 +2797,13 @@
 
 .award-trophy-card:hover .award-img {
   transform: scale(1.05);
-  filter: drop-shadow(0 8px 18px rgba(245, 158, 11, 0.35));
+  filter: drop-shadow(0 6px 14px rgba(245, 158, 11, 0.25));
 }
 
 .award-hover-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
@@ -2823,7 +2823,7 @@
   font-size: 0.68rem;
   padding: 0.3rem 0.65rem;
   border-radius: 9999px;
-  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
   transform: translateY(4px);
   transition: transform 0.2s ease;
 }
@@ -2840,9 +2840,9 @@
 }
 
 .award-meta-text {
-  font-size: 0.68rem;
-  color: #94A3B8;
-  font-weight: 600;
+  font-size: 0.7rem;
+  color: #64748B;
+  font-weight: 650;
   letter-spacing: 0.03em;
 }
 
@@ -2852,13 +2852,13 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 6;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(15, 23, 42, 0.88);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  color: #FBBF24;
-  font-size: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: #0F172A;
+  font-size: 1.3rem;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -2866,7 +2866,7 @@
   cursor: pointer;
   backdrop-filter: blur(8px);
   transition: all 0.25s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .award-nav-prev {
@@ -2879,9 +2879,9 @@
 
 .award-nav-arrow:hover {
   background: #F59E0B;
-  color: #0F172A;
+  color: #FFFFFF;
   border-color: #F59E0B;
-  box-shadow: 0 0 14px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.4);
   transform: translateY(-50%) scale(1.1);
 }
 
