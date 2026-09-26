@@ -8,7 +8,13 @@
     "subcategory_slug": "silicone-polyurethane-sealants",
     "brand_slug": "sika",
     "brand_name": "Sika",
-    "short_description": "High-performance elastomeric sealant",
+    "description": "High-performance polyurethane elastomeric sealant and bonding adhesive engineered for building construction joints, structural sealing, and weatherproofing.",
+    "short_description": "High-performance elastomeric sealant for construction joints.",
+    "features": [
+      "High elasticity polyurethane chemistry",
+      "Weather and UV resistant",
+      "Strong adhesion to concrete, brick, and steel"
+    ],
     "is_active": true,
     "id": "p_prod_1790296038",
     "_id": "p_prod_1790296038",
@@ -28,9 +34,13 @@
     "name": "ESSCO WATER HEATER",
     "slug": "essco-water-heater",
     "sku": "ULT-ESS-V006L| 10L| 15L| 25L | 35L",
-    "description": "",
-    "short_description": "WARRANTY 7 YEARS FOR TANK,4 YEARS ON HEATING ELEMENT,2 YEARS ON OTHER COMPONENT",
-    "features": [],
+    "description": "ÉSSCO energy-efficient storage water heater with glass-lined inner tank, high-density PUF insulation, and durable heating element for residential bathrooms.",
+    "short_description": "WARRANTY 7 YEARS FOR TANK, 4 YEARS ON HEATING ELEMENT, 2 YEARS ON OTHER COMPONENT",
+    "features": [
+      "Glass-lined anti-corrosion inner tank",
+      "High-density PUF insulation for heat retention",
+      "Multi-function safety valve protection"
+    ],
     "images": [
       {
         "url": "https://raw.githubusercontent.com/rohit-r-20/Sathik/main/static/uploads/WhatsApp_Image_2026-09-15_at_2.34.26_PM.jpeg",
