@@ -1,0 +1,388 @@
+{% extends 'base.html' %}
+
+{% block title %}Hardware Store in Red Hills, Chennai | Sathik Groups{% endblock %}
+
+{% block meta_description %}Sathik Groups is a hardware, sanitaryware, plumbing and building-material supplier serving Red Hills, Chennai. Explore products, brands and store information.{% endblock %}
+
+{% block canonical %}<link rel="canonical" href="https://sathikgroups.com/locations/red-hills/">{% endblock %}
+
+{% block og_title %}Hardware Store in Red Hills, Chennai | Sathik Groups{% endblock %}
+{% block og_description %}Sathik Groups is a hardware, sanitaryware, plumbing and building-material supplier serving Red Hills, Chennai. Explore products, brands and store information.{% endblock %}
+
+{% block extra_css %}
+<style>
+  .loc-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0f172a 100%);
+    color: #fff;
+    padding: 4rem 0 3rem;
+    text-align: center;
+  }
+  .loc-hero .breadcrumb {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .loc-hero .breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
+  .loc-hero .breadcrumb a:hover { color: #f97316; }
+  .loc-hero .breadcrumb span { color: rgba(255,255,255,0.35); }
+  .loc-hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .loc-hero h1 em { color: #f97316; font-style: normal; }
+  .loc-hero .loc-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.78);
+    max-width: 620px;
+    margin: 0 auto 1.8rem;
+    line-height: 1.6;
+  }
+  .loc-hero .loc-cta-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .loc-hero .loc-cta-row a {
+    padding: 0.7rem 1.6rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .loc-cta-primary { background: #f97316; color: #fff; }
+  .loc-cta-primary:hover { background: #ea6c0a; }
+  .loc-cta-outline { border: 2px solid rgba(255,255,255,0.4); color: #fff; }
+  .loc-cta-outline:hover { border-color: #f97316; color: #f97316; }
+
+  .loc-section { padding: 3.5rem 0; }
+  .loc-section-alt { background: #f8fafc; }
+  .loc-container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  .loc-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+  }
+  .loc-section-intro {
+    color: #475569;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    max-width: 780px;
+  }
+
+  .loc-service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.4rem;
+  }
+  .loc-service-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.6rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: block;
+  }
+  .loc-service-card:hover { border-color: #f97316; box-shadow: 0 4px 20px rgba(249,115,22,0.12); transform: translateY(-2px); }
+  .loc-service-card .svc-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .loc-service-card h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+  .loc-service-card p { font-size: 0.875rem; color: #64748b; line-height: 1.5; margin: 0; }
+
+  .loc-store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
+  .loc-store-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.6rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  }
+  .loc-store-card h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+  .loc-store-card .store-type { font-size: 0.78rem; font-weight: 600; color: #f97316; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+  .loc-store-card p { font-size: 0.875rem; color: #475569; line-height: 1.6; margin-bottom: 0.6rem; }
+  .loc-store-card a.store-tel { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; color: #0f172a; text-decoration: none; font-size: 0.9rem; }
+  .loc-store-card a.store-tel:hover { color: #f97316; }
+  .loc-store-card .store-hours { font-size: 0.8rem; color: #64748b; margin-top: 0.5rem; }
+
+  .loc-brand-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .loc-brand-chip {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    background: #fff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .loc-brand-chip:hover { border-color: #f97316; color: #f97316; background: #fff7ed; }
+
+  .loc-cta-strip {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: #fff;
+    padding: 3rem 0;
+    text-align: center;
+  }
+  .loc-cta-strip h2 { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .loc-cta-strip p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .loc-cta-strip a {
+    display: inline-block;
+    background: #f97316;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+  }
+  .loc-cta-strip a:hover { background: #ea6c0a; }
+
+  @media (max-width: 640px) {
+    .loc-hero { padding: 2.5rem 0 2rem; }
+    .loc-service-grid { grid-template-columns: 1fr; }
+    .loc-store-grid { grid-template-columns: 1fr; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="loc-hero" id="red-hills-hero">
+  <div class="loc-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ url_for('home.index') }}">Home</a>
+      <span>›</span>
+      <span>Red Hills, Chennai</span>
+    </nav>
+    <h1>Hardware Store in <em>Red Hills, Chennai</em></h1>
+    <p class="loc-subtitle">
+      Sathik Groups — Red Hills' trusted source for hardware materials, sanitaryware,
+      plumbing supplies, water pumps, and premium building chemicals since 1964.
+    </p>
+    <div class="loc-cta-row">
+      <a href="{{ url_for('product.product_list') }}" class="loc-cta-primary">Browse Products</a>
+      <a href="{{ url_for('home.index') }}#stores" class="loc-cta-outline">Find Our Stores</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT + SERVICES -->
+<section class="loc-section" id="red-hills-services">
+  <div class="loc-container">
+    <h2 class="loc-section-title">Your Neighbourhood Building-Materials Supplier in Red Hills</h2>
+    <p class="loc-section-intro">
+      For over six decades, Sathik Groups has been a cornerstone of Red Hills, Chennai.
+      What started in 1964 as <strong>Sathik Hardwares</strong> — a local shop for
+      agricultural products and paints — has grown into three specialist stores covering
+      hardware, plumbing, and luxury sanitaryware under one trusted name.
+      Whether you are a homeowner, a contractor, or a construction company, you will find
+      everything you need on G.N.T. Road, Red Hills.
+    </p>
+    <div class="loc-service-grid">
+      <a href="{{ url_for('product.product_list', business='hardware') }}" class="loc-service-card">
+        <div class="svc-icon">🔨</div>
+        <h3>Hardware Materials in Red Hills</h3>
+        <p>Door locks, hinges, tower bolts, tile fittings, Asian Paints, waterproofing chemicals, adhesives, fans, and LED lights from leading brands.</p>
+      </a>
+      <a href="{{ url_for('product.product_list', business='bath-kitchen') }}" class="loc-service-card">
+        <div class="svc-icon">🚿</div>
+        <h3>Sanitaryware Shop in Red Hills</h3>
+        <p>Luxury bath fittings, Jaquar shower systems, sanitary ware, bathtubs, kitchen sinks, water heaters, and modular kitchen accessories.</p>
+      </a>
+      <a href="{{ url_for('product.product_list', business='plumbing') }}" class="loc-service-card">
+        <div class="svc-icon">🔧</div>
+        <h3>Plumbing Materials in Red Hills</h3>
+        <p>CPVC/UPVC pipes, pipe fittings, ball valves, suction hoses, welding equipment, electrical wires, switches, and MCB protection units.</p>
+      </a>
+      <a href="{{ url_for('product.product_list', business='plumbing', category='pumps') }}" class="loc-service-card">
+        <div class="svc-icon">⚡</div>
+        <h3>Water Pump Dealer in Red Hills</h3>
+        <p>CRI submersible pumps, monoblock pumps, and pressure booster systems. Authorised CRI dealer serving Red Hills and Chennai.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- OUR STORES -->
+<section class="loc-section loc-section-alt" id="red-hills-stores">
+  <div class="loc-container">
+    <h2 class="loc-section-title">Our Three Stores on G.N.T. Road, Red Hills</h2>
+    <p class="loc-section-intro">
+      All three Sathik Group stores are located on G.N.T. Road, Red Hills, Chennai — 600 052.
+      Open Monday to Saturday, 9:00 AM – 7:30 PM.
+    </p>
+    <div class="loc-store-grid">
+
+      <div class="loc-store-card">
+        <div class="store-type">Hardware &amp; Paints</div>
+        <h3>Sathik Hardwares</h3>
+        <p>#128, G.N.T. Road, Red Hills<br>Chennai, Tamil Nadu – 600 052</p>
+        <p>Door locks, Asian Paints, hardware fittings, electrical fans, LED lights, and building accessories.</p>
+        <a href="tel:+919444312624" class="store-tel">📞 +91 94443 12624</a>
+        <div class="store-hours">⏰ Mon–Sat, 9:00 AM – 7:30 PM</div>
+      </div>
+
+      <div class="loc-store-card">
+        <div class="store-type">Plumbing &amp; Water Solutions</div>
+        <h3>Sathik Traders</h3>
+        <p>#06, Dharga Street, G.N.T. Road, Red Hills<br>Chennai, Tamil Nadu – 600 052</p>
+        <p>Pipes, fittings, CRI pumps, water motors, power tools, and industrial plumbing materials.</p>
+        <a href="tel:+919840637307" class="store-tel">📞 +91 98406 37307</a>
+        <div class="store-hours">⏰ Mon–Sat, 9:00 AM – 7:30 PM</div>
+      </div>
+
+      <div class="loc-store-card">
+        <div class="store-type">Bath &amp; Sanitaryware</div>
+        <h3>Sathik Enterprises</h3>
+        <p>#164/4, Old No.502, G.N.T. Road, Red Hills<br>Chennai, Tamil Nadu – 600 052</p>
+        <p>Luxury sanitaryware, Jaquar bath fittings, shower enclosures, bathtubs, and kitchen solutions.</p>
+        <a href="tel:+919840637307" class="store-tel">📞 +91 98406 37307</a>
+        <div class="store-hours">⏰ Mon–Sat, 9:00 AM – 7:30 PM</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section class="loc-section" id="red-hills-brands">
+  <div class="loc-container">
+    <h2 class="loc-section-title">Brands Available at Sathik Groups, Red Hills</h2>
+    <p class="loc-section-intro">
+      We stock products from trusted Indian and international brands across all our stores in Red Hills.
+    </p>
+    <div class="loc-brand-grid">
+      <a href="{{ url_for('brand.brand_detail', slug='asian-paints') }}" class="loc-brand-chip">Asian Paints</a>
+      <a href="{{ url_for('brand.brand_detail', slug='jaquar') }}" class="loc-brand-chip">Jaquar</a>
+      <a href="{{ url_for('brand.brand_detail', slug='cri') }}" class="loc-brand-chip">CRI Pumps</a>
+      <a href="{{ url_for('brand.brand_detail', slug='bosch') }}" class="loc-brand-chip">Bosch</a>
+      <a href="{{ url_for('brand.brand_detail', slug='dewalt') }}" class="loc-brand-chip">DeWalt</a>
+      <a href="{{ url_for('brand.brand_list') }}" class="loc-brand-chip" style="border-style:dashed;">View All Brands →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP BY CATEGORY -->
+<section class="loc-section loc-section-alt" id="red-hills-categories">
+  <div class="loc-container">
+    <h2 class="loc-section-title">Shop by Category</h2>
+    <p class="loc-section-intro">Explore our full product range organised by store and category.</p>
+    <div class="loc-service-grid">
+      <a href="{{ url_for('category.store_detail', business_slug='hardware') }}" class="loc-service-card">
+        <div class="svc-icon">🔑</div>
+        <h3>Hardware &amp; Paints Store</h3>
+        <p>Locks, hinges, paints, waterproofing chemicals, adhesives, fans, and LED lights.</p>
+      </a>
+      <a href="{{ url_for('category.store_detail', business_slug='plumbing') }}" class="loc-service-card">
+        <div class="svc-icon">🚰</div>
+        <h3>Plumbing &amp; Water Tech Store</h3>
+        <p>Pipes, fittings, water pumps, power tools, engineering hand tools, and electrical items.</p>
+      </a>
+      <a href="{{ url_for('category.store_detail', business_slug='bath-kitchen') }}" class="loc-service-card">
+        <div class="svc-icon">🛁</div>
+        <h3>Bath &amp; Sanitaryware Store</h3>
+        <p>Luxury taps, shower systems, bathtubs, kitchen sinks, water heaters, and accessories.</p>
+      </a>
+      <a href="{{ url_for('product.product_list') }}" class="loc-service-card">
+        <div class="svc-icon">📦</div>
+        <h3>Full Product Catalogue</h3>
+        <p>Browse all products across all three Sathik Groups stores in Red Hills, Chennai.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="loc-cta-strip" id="red-hills-contact">
+  <div class="loc-container">
+    <h2>Visit Us in Red Hills — or Request a Quote</h2>
+    <p>Send us a WhatsApp message or visit any of our three stores on G.N.T. Road, Red Hills, Chennai – 600 052.</p>
+    <a href="https://wa.me/{{ company.whatsapp if company else '919840637307' }}?text=Hi%2C%20I%20found%20you%20on%20your%20Red%20Hills%20page.%20I%20would%20like%20to%20know%20more%20about%20your%20products." target="_blank" rel="noopener noreferrer">
+      💬 Chat on WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sathikgroups.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hardware Store in Red Hills, Chennai",
+      "item": "https://sathikgroups.com/locations/red-hills/"
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD: LocalBusiness (page-level) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://sathikgroups.com/#business",
+  "name": "Sathik Groups",
+  "alternateName": ["Sathik Traders", "Sathik Hardwares", "Sathik Enterprises"],
+  "description": "Hardware materials, sanitaryware, plumbing supplies, water pumps, CRI pumps, and building chemicals in Red Hills, Chennai. Three stores on G.N.T. Road.",
+  "url": "https://sathikgroups.com/locations/red-hills/",
+  "telephone": "+919840637307",
+  "email": "sathiktradersredhills@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "G.N.T. Road",
+    "addressLocality": "Red Hills",
+    "addressRegion": "Tamil Nadu",
+    "postalCode": "600052",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 13.1899241,
+    "longitude": 80.1872704
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "19:30"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/sathikgroup.1964/",
+    "https://www.instagram.com/sathikenterprisesredhills/",
+    "https://youtube.com/@sathikgroups.1964",
+    "https://wa.me/919840637307"
+  ],
+  "hasMap": "https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z"
+}
+</script>
+
+{% endblock %}

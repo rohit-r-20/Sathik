@@ -9,6 +9,7 @@ CANONICAL_DOMAIN = 'https://sathikgroups.com'
 # Explicit set of public indexable routes that have canonical URLs
 PUBLIC_ENDPOINTS = {
     'home.index',
+    'home.red_hills',
     'product.product_list',
     'category.store_list',
     'category.store_detail',

@@ -43,6 +43,12 @@ def index():
 def about():
     return redirect(url_for('home.index') + '#aboutUs')
 
+@home_bp.route('/locations/red-hills/')
+@home_bp.route('/locations/red-hills')
+def red_hills():
+    """Local SEO landing page — Red Hills, Chennai."""
+    return render_template('red_hills.html', company=COMPANY_INFO)
+
 @home_bp.route('/projects')
 def projects():
     project_list = ProjectModel.find_all()
