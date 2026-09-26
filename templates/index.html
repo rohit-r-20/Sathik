@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}Sathik Groups | Premium Hardware Materials & Sanitarywares | Plumbing Solutions{% endblock %}
-{% block meta_description %}Explore premium hardware materials, sanitarywares, plumbing products, and building solutions
-from trusted brands. Sathik Groups serves residential, commercial, and construction requirements.{% endblock %}
+{% block meta_description %}Sathik Groups — Red Hills, Chennai's trusted supplier of hardware materials, sanitaryware, plumbing products, water pumps, and building chemicals. Serving residential, commercial, and construction projects across Chennai since 1964.{% endblock %}
+
+{% block canonical %}<link rel="canonical" href="https://sathikgroups.com/">{% endblock %}
+
+{% block og_description %}Sathik Groups — Red Hills, Chennai's trusted supplier of hardware materials, sanitaryware, plumbing products, water pumps, and building chemicals. Serving residential, commercial, and construction projects across Chennai since 1964.{% endblock %}
 
 {% block extra_css %}
 <link rel="preload" as="image" href="{{ url_for('static', filename='images/hero/hardware_slide.webp') }}?v=200"

@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>{% block title %}Sathik Groups | Premium Hardware Materials & Sanitarywares | Plumbing Solutions{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}Explore premium hardware materials, sanitarywares, plumbing products, and building solutions from trusted brands. Sathik Groups serves residential, commercial, and construction requirements.{% endblock %}">
+  <meta name="description" content="{% block meta_description %}Sathik Groups — Red Hills, Chennai's trusted supplier of hardware materials, sanitaryware, plumbing products, water pumps, and building chemicals. Serving residential, commercial, and construction projects across Chennai since 1964.{% endblock %}">
   {% block canonical %}
   {% if canonical_url %}
   <link rel="canonical" href="{{ canonical_url }}">
@@ -32,7 +32,7 @@
   <!-- Open Graph & Social Cards (Logo display in search previews, WhatsApp, social shares) -->
   <meta property="og:site_name" content="Sathik Groups">
   <meta property="og:title" content="{% block og_title %}Sathik Groups | Premium Hardware Materials & Sanitarywares | Plumbing Solutions{% endblock %}">
-  <meta property="og:description" content="{% block og_description %}Explore premium hardware materials, sanitarywares, plumbing products, and building solutions from trusted brands. Sathik Groups serves residential, commercial, and construction requirements.{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}Sathik Groups — Red Hills, Chennai's trusted supplier of hardware materials, sanitaryware, plumbing products, water pumps, and building chemicals. Serving residential, commercial, and construction projects across Chennai since 1964.{% endblock %}">
   <meta property="og:image" content="{{ request.url_root.rstrip('/') }}{{ url_for('static', filename='images/logo/sathik_logo.png') }}">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
@@ -41,34 +41,123 @@
   <meta property="og:url" content="{{ canonical_url or request.url }}">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{% block twitter_title %}Sathik Groups | Premium Hardware Materials & Sanitarywares | Plumbing Solutions{% endblock %}">
-  <meta name="twitter:description" content="{% block twitter_description %}Explore premium hardware materials, sanitarywares, plumbing products, and building solutions from trusted brands. Sathik Groups serves residential, commercial, and construction requirements.{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}Sathik Groups — Red Hills, Chennai's trusted supplier of hardware materials, sanitaryware, plumbing products, water pumps, and building chemicals. Serving residential, commercial, and construction projects across Chennai since 1964.{% endblock %}">
   <meta name="twitter:image" content="{{ request.url_root.rstrip('/') }}{{ url_for('static', filename='images/logo/sathik_logo.png') }}">
 
-  <!-- Google Search Structured Data: Organization & Website Logo -->
+  <!-- Structured Data: LocalBusiness — all data from verified project sources -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
+    "@id": "https://sathikgroups.com/#business",
     "name": "Sathik Groups",
     "alternateName": ["Sathik Traders", "Sathik Hardwares", "Sathik Enterprises"],
+    "description": "Sathik Groups is Red Hills, Chennai's trusted hardware, sanitaryware, plumbing and building-materials business. We supply hardware materials, door fittings, luxury sanitaryware, plumbing fixtures, water pumps, CRI pumps, and building chemicals for residential, commercial, and construction projects across Chennai.",
     "url": "https://sathikgroups.com",
-    "logo": "https://sathikgroups.com/static/images/logo/sathik_logo.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://sathikgroups.com/static/images/logo/sathik_logo.png",
+      "width": 512,
+      "height": 512
+    },
     "image": "https://sathikgroups.com/static/images/logo/sathik_logo.png",
-    "description": "Premium Hardware materials, Architectural Door Fittings, Plumbing Fixtures, Luxury Sanitaryware, and Building Chemicals in Redhills, Chennai, Tamil Nadu.",
     "telephone": "+919840637307",
+    "email": "sathiktradersredhills@gmail.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Grand Northern Trunk Rd, Redhills",
-      "addressLocality": "Chennai",
+      "streetAddress": "No.6, Dharga Street, G.N.T. Road",
+      "addressLocality": "Red Hills",
       "addressRegion": "Tamil Nadu",
       "postalCode": "600052",
       "addressCountry": "IN"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 13.1899241,
+      "longitude": 80.1872704
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "19:30"
+      }
+    ],
     "sameAs": [
-      "https://wa.me/919840637307"
+      "https://www.facebook.com/sathikgroup.1964/",
+      "https://www.instagram.com/sathikenterprisesredhills/",
+      "https://youtube.com/@sathikgroups.1964",
+      "https://wa.me/919840637307",
+      "https://g.page/r/CeOOF1EmifW0EBM/review"
+    ],
+    "hasMap": "https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z",
+    "department": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Sathik Hardwares",
+        "description": "Hardware materials, door fittings, Asian Paints, locks, and building accessories.",
+        "telephone": "+919444312624",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "#128, G.N.T. Road",
+          "addressLocality": "Red Hills",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "600052",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 13.1901444,
+          "longitude": 80.187424
+        },
+        "hasMap": "https://www.google.com/maps/place/SATHIK+HARDWARES/@13.1901444,80.1848491,17z"
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "Sathik Traders",
+        "description": "Plumbing materials, water pumps, CRI pumps, pipes, fittings, and industrial water solutions.",
+        "telephone": "+919840637307",
+        "email": "sathiktradersredhills@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "#06, Dharga Street, G.N.T. Road",
+          "addressLocality": "Red Hills",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "600052",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 13.1899241,
+          "longitude": 80.1872704
+        },
+        "hasMap": "https://www.google.com/maps/place/SATHIK+TRADERS/@13.1899241,80.1872704,17z"
+      },
+      {
+        "@type": "LocalBusiness",
+        "name": "Sathik Enterprises",
+        "description": "Luxury sanitaryware, bathware, bath fittings, shower systems, and kitchen solutions.",
+        "telephone": "+919840637307",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "#164/4, Old No.502, G.N.T. Road",
+          "addressLocality": "Red Hills",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "600052",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 13.1908874,
+          "longitude": 80.1864791
+        },
+        "hasMap": "https://www.google.com/maps/place/SATHIK+ENTERPRISES/@13.1908874,80.1839042,17z"
+      }
     ]
   }
   </script>
+  <!-- Structured Data: WebSite — enables Google Sitelinks Searchbox -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
