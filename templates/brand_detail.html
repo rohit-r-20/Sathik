@@ -262,29 +262,40 @@
   </div>
 </section>
 
-<!-- JSON-LD: BreadcrumbList -->
+<!-- JSON-LD: BreadcrumbList & Brand Entity -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
+  "@graph": [
     {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://sathikgroups.com/"
+      "@type": "BreadcrumbList",
+      "@id": "https://sathikgroups.com/brands/{{ brand.slug }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://sathikgroups.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Brands",
+          "item": "https://sathikgroups.com/brands"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ brand.name|tojson }},
+          "item": "https://sathikgroups.com/brands/{{ brand.slug }}"
+        }
+      ]
     },
     {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Brands",
-      "item": "https://sathikgroups.com/brands"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "{{ brand.name|escape }}",
-      "item": "https://sathikgroups.com/brands/{{ brand.slug }}"
+      "@type": "Brand",
+      "@id": "https://sathikgroups.com/brands/{{ brand.slug }}#brand",
+      "name": {{ brand.name|tojson }},
+      "url": "https://sathikgroups.com/brands/{{ brand.slug }}"
     }
   ]
 }
