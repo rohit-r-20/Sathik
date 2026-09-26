@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{% if brand.slug == 'cri' %}CRI Pumps Dealer in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products & Dealer | Sathik Groups{% endif %}
+{% if brand.slug == 'cri' %}CRI Pumps & Water Pump Supplier in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}
 {% endblock %}
 
-{% block meta_description %}{% if brand.slug == 'cri' %}Sathik Groups is an authorized dealer and distributor of CRI Pumps in Red Hills, Chennai. Explore genuine CRI submersible borewell pumps, motors, and water solutions.{% else %}Explore genuine {{ brand.name }} products at Sathik Groups, Red Hills, Chennai. Authorized dealer and distributor providing quotes and wholesale supply.{% endif %}{% endblock %}
+{% block meta_description %}{% if brand.slug == 'cri' %}Sathik Groups supplies genuine CRI Pumps and water solutions in Red Hills, Chennai. Explore CRI submersible borewell pumps, motors, and plumbing products.{% else %}Explore genuine {{ brand.name }} products at Sathik Groups, Red Hills, Chennai. Quality products and wholesale supply.{% endif %}{% endblock %}
 
-{% block og_title %}{% if brand.slug == 'cri' %}CRI Pumps Dealer in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}{% endblock %}
-{% block og_description %}{% if brand.slug == 'cri' %}Authorized dealer and distributor of CRI Pumps in Red Hills, Chennai. Genuine CRI submersible pumps, motors, and borewell water solutions.{% else %}Genuine {{ brand.name }} products available at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
+{% block og_title %}{% if brand.slug == 'cri' %}CRI Pumps & Water Pump Supplier in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}{% endblock %}
+{% block og_description %}{% if brand.slug == 'cri' %}Sathik Groups supplies genuine CRI Pumps and water solutions in Red Hills, Chennai. Explore CRI submersible borewell pumps, motors, and plumbing products.{% else %}Genuine {{ brand.name }} products available at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
@@ -129,13 +129,13 @@
     </nav>
 
     <div class="brand-badge-pill">
-      ✓ Authorized Dealer &amp; Distributor
+      {% if brand.slug == 'cri' %}✓ Genuine Products &amp; Supplier{% else %}✓ Genuine Products{% endif %}
     </div>
 
     <!-- Single H1 for the page -->
     <h1 class="brand-hero-title">
       {% if brand.slug == 'cri' %}
-      CRI Pumps Dealer in Red Hills, Chennai
+      CRI Pumps &amp; Water Pump Supplier in Red Hills, Chennai
       {% else %}
       {{ brand.name }} in Red Hills, Chennai
       {% endif %}
@@ -143,9 +143,9 @@
 
     <p class="brand-hero-lead">
       {% if brand.slug == 'cri' %}
-      Sathik Groups is an authorized dealer and distributor of genuine C.R.I. Pumps for Red Hills, Chennai, and surrounding areas. We supply premium stainless steel submersible borewell pumps, centrifugal motors, and energy-efficient water management solutions for residential buildings, commercial sites, and industrial developments.
+      Sathik Groups supplies genuine C.R.I. Pumps for Red Hills, Chennai, and surrounding areas. We supply premium stainless steel submersible borewell pumps, centrifugal motors, and energy-efficient water management solutions for residential buildings, commercial sites, and industrial developments.
       {% else %}
-      Explore genuine {{ brand.name }} products distributed by Sathik Groups in Red Hills, Chennai. Premium quality, manufacturer-backed warranties, and direct pricing for construction and residential projects.
+      Explore genuine {{ brand.name }} products supplied by Sathik Groups in Red Hills, Chennai. Premium quality, manufacturer-backed warranties, and direct pricing for construction and residential projects.
       {% endif %}
     </p>
 
@@ -176,7 +176,7 @@
         Genuine C.R.I. Water Pumps &amp; Motors in Red Hills
       </h2>
       <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem;">
-        C.R.I. Pumps is one of India's most respected fluid management brands, renowned for engineering excellence and robust motor performance. As a designated dealer in Red Hills, Chennai, Sathik Groups brings genuine C.R.I. borewell submersible pumps, openwell pumps, and energy-efficient motors directly to builders, plumbers, contractors, and homeowners.
+        C.R.I. Pumps is one of India's most respected fluid management brands, renowned for engineering excellence and robust motor performance. Serving Red Hills, Chennai, Sathik Groups brings genuine C.R.I. borewell submersible pumps, openwell pumps, and energy-efficient motors directly to builders, plumbers, contractors, and homeowners.
       </p>
       <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0;">
         Whether you are commissioning a domestic borewell in Red Hills, installing water booster pumps in Padiyanallur, or setting up commercial water distribution along the G.N.T. Road corridor, our store provides genuine units, original factory specifications, and dedicated technical guidance.
