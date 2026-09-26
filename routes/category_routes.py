@@ -30,6 +30,8 @@ def store_list():
         company=COMPANY_INFO
     )
 
+from utils.category_seo import get_store_seo
+
 @category_bp.route('/stores/<business_slug>')
 def store_detail(business_slug):
     biz = next((b for b in BUSINESSES if b['slug'] == business_slug), None)
@@ -50,6 +52,7 @@ def store_detail(business_slug):
     )
 
     brands = BrandModel.find_all(business_slug=business_slug)
+    seo_data = get_store_seo(business_slug=business_slug, default_name=biz.get('name'))
 
     return render_template(
         'store_detail.html',
@@ -58,7 +61,8 @@ def store_detail(business_slug):
         products=products,
         total_products=total,
         brands=brands,
-        company=COMPANY_INFO
+        company=COMPANY_INFO,
+        seo=seo_data
     )
 
 @category_bp.route('/stores/<business_slug>/<category_slug>')
@@ -78,6 +82,7 @@ def store_category_detail(business_slug, category_slug):
     )
 
     categories = CategoryModel.find_all(business_slug=business_slug)
+    seo_data = get_store_seo(business_slug=business_slug, category_slug=category_slug, default_name=category.get('name'))
 
     return render_template(
         'store_detail.html',
@@ -87,7 +92,8 @@ def store_category_detail(business_slug, category_slug):
         subcategories=subcategories,
         products=products,
         total_products=total,
-        company=COMPANY_INFO
+        company=COMPANY_INFO,
+        seo=seo_data
     )
 
 # API JSON endpoints for backward compatibility

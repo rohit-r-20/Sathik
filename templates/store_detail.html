@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{% if current_category and current_category.slug == 'pumps' %}Water Pumps & Motors Supplier in Red Hills, Chennai | Sathik Groups{% elif current_category %}{{ current_category.name }} | {{ business.name }} | Sathik Groups{% else %}{{ business.name }} Store | Sathik Groups Wholesale Catalogue{% endif %}
+{% if seo %}{{ seo.title }}{% elif current_category and current_category.slug == 'pumps' %}Water Pumps & Motors Supplier in Red Hills, Chennai | Sathik Groups{% elif current_category %}{{ current_category.name }} | {{ business.name }} | Sathik Groups{% else %}{{ business.name }} Store | Sathik Groups Wholesale Catalogue{% endif %}
 {% endblock %}
 
-{% block meta_description %}{% if current_category and current_category.slug == 'pumps' %}Explore water pumps and motors at Sathik Groups in Red Hills, Chennai. Featuring genuine CRI submersible pumps, borewell motors, and water solutions.{% elif current_category %}Explore {{ current_category.name }} at Sathik Groups, Red Hills, Chennai. Premium quality {{ business.name|lower }} materials with direct trade quotes.{% else %}Browse {{ business.name }} products at Sathik Groups in Red Hills, Chennai. Reliable wholesale hardware, plumbing, and sanitaryware supply.{% endif %}{% endblock %}
+{% block meta_description %}{% if seo %}{{ seo.meta_description }}{% elif current_category and current_category.slug == 'pumps' %}Explore water pumps and motors at Sathik Groups in Red Hills, Chennai. Featuring genuine CRI submersible pumps, borewell motors, and water solutions.{% elif current_category %}Explore {{ current_category.name }} at Sathik Groups, Red Hills, Chennai. Premium quality {{ business.name|lower }} materials with direct trade quotes.{% else %}Browse {{ business.name }} products at Sathik Groups in Red Hills, Chennai. Reliable wholesale hardware, plumbing, and sanitaryware supply.{% endif %}{% endblock %}
 
-{% block og_title %}{% if current_category and current_category.slug == 'pumps' %}Water Pumps & Motors Supplier in Red Hills, Chennai | Sathik Groups{% else %}{{ business.name }} Store | Sathik Groups{% endif %}{% endblock %}
-{% block og_description %}{% if current_category and current_category.slug == 'pumps' %}Explore water pumps and motors at Sathik Groups in Red Hills, Chennai. Featuring genuine CRI submersible pumps, borewell motors, and water solutions.{% else %}Browse {{ business.name }} products at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
+{% block og_title %}{% if seo %}{{ seo.title }}{% else %}{{ business.name }} Store | Sathik Groups{% endif %}{% endblock %}
+{% block og_description %}{% if seo %}{{ seo.meta_description }}{% else %}Browse {{ business.name }} products at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
@@ -259,24 +259,28 @@
   <div>
     <div class="store-catalog-header" style="margin-bottom: 1.5rem;">
       <div style="flex: 1;">
-        {% if current_category and current_category.slug == 'pumps' %}
+        {% if seo and seo.badge %}
+        <div style="display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.5rem;">
+          {{ seo.badge }}
+        </div>
+        {% elif current_category and current_category.slug == 'pumps' %}
         <div style="display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.5rem;">
           Water Pump Supplier &amp; Store
         </div>
+        {% endif %}
+
         <h1 class="category-section-title" style="margin: 0 0 0.5rem; font-size: clamp(1.6rem, 3.5vw, 2.25rem); font-weight: 800; color: #0f172a;">
-          Water Pumps &amp; Motors in Red Hills, Chennai
+          {% if seo %}{{ seo.h1 }}{% elif current_category %}{{ current_category.name }} — {{ business.name }}{% else %}{{ business.name }} Store{% endif %}
         </h1>
+
+        {% if seo and seo.intro %}
+        <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1rem; max-width: 820px;">
+          {{ seo.intro|safe }}
+        </p>
+        {% elif current_category and current_category.slug == 'pumps' %}
         <p style="color: #475569; font-size: 0.95rem; line-height: 1.6; margin: 0 0 0.75rem; max-width: 820px;">
           Sathik Groups supplies genuine water pumps, borewell submersible pumps, and industrial motors in Red Hills, Chennai. Explore genuine <a href="{{ url_for('brand.brand_detail', slug='cri') }}" style="color: var(--primary-600); font-weight: 600; text-decoration: underline;">C.R.I. Pumps</a> and fluid management equipment for residential, commercial, and agricultural installations. Visit our <a href="{{ url_for('home.red_hills') }}" style="color: var(--primary-600); font-weight: 600; text-decoration: underline;">Red Hills store</a> on Dharga Street for direct stock and contractor pricing.
         </p>
-        {% elif current_category %}
-        <h1 class="category-section-title" style="margin: 0 0 0.5rem; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: #0f172a;">
-          {{ current_category.name }} — {{ business.name }}
-        </h1>
-        {% else %}
-        <h1 class="category-section-title" style="margin: 0 0 0.5rem; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: #0f172a;">
-          {{ business.name }} Store
-        </h1>
         {% endif %}
         <span style="color: var(--text-muted); font-size: 0.9rem;">Showing {{ products|length }} of {{ total_products }} available items</span>
       </div>
