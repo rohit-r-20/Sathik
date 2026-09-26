@@ -62,14 +62,14 @@
       {% endif %}
       <span style="color: #475569; font-weight: 600;">Products</span>
     </div>
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div class="products-header-controls">
       <div>
         <div class="section-tag">Product Catalogue</div>
         <h1 style="font-size: clamp(1.5rem, 5vw, 2rem);">Explore Our Products</h1>
       </div>
 
       <!-- Search Input -->
-      <div style="display: flex; gap: 0.5rem; width: 100%; max-width: 28rem;">
+      <div class="products-search-box">
         <input
           type="search"
           id="search-input"
@@ -79,9 +79,9 @@
           onkeyup="if(event.key==='Enter') triggerSearch()"
           inputmode="search"
           autocomplete="off"
-          style="flex: 1;"
+          style="flex: 1; min-width: 0;"
         >
-        <button type="button" class="btn btn-secondary" onclick="triggerSearch()" style="white-space: nowrap;">
+        <button type="button" class="btn btn-secondary" onclick="triggerSearch()" style="white-space: nowrap; flex-shrink: 0;">
           🔍 Search
         </button>
       </div>
@@ -185,7 +185,7 @@
       </aside>
 
       <!-- ── Main Products Area ── -->
-      <div>
+      <div class="products-main-area">
         <!-- Store Switcher Tabs -->
         <div class="store-switcher-tabs">
           <a href="{{ url_for('product.product_list', q=search_query) }}" class="store-tab {% if not current_business %}active{% endif %}">
@@ -210,15 +210,15 @@
 
         <!-- Subcategory Element Pill Bar -->
         {% if subcategories and (current_business or current_category) %}
-        <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; background: var(--bg-surface); padding: 0.875rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
-          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-right: 0.5rem;">Elements:</span>
+        <div class="subcategory-pills-bar">
+          <span class="subcategory-pills-title">Elements:</span>
           <a href="{{ url_for('product.product_list', business=current_business, category=current_category, brand=current_brand, q=search_query) }}"
-             style="font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 20px; text-decoration: none; border: 1px solid var(--border); font-weight: 600; {% if not current_subcategory %}background: var(--primary-600); color: #fff; border-color: var(--primary-600);{% else %}background: var(--bg-light); color: var(--text-dark);{% endif %}">
+             class="subcategory-pill {% if not current_subcategory %}active{% endif %}">
             All Elements
           </a>
           {% for sub in subcategories %}
           <a href="{{ url_for('product.product_list', business=current_business, category=current_category, subcategory=sub.slug, brand=current_brand, q=search_query) }}"
-             style="font-size: 0.85rem; padding: 0.35rem 0.75rem; border-radius: 20px; text-decoration: none; border: 1px solid var(--border); font-weight: 600; {% if current_subcategory == sub.slug %}background: var(--primary-600); color: #fff; border-color: var(--primary-600);{% else %}background: var(--bg-light); color: var(--text-dark);{% endif %}">
+             class="subcategory-pill {% if current_subcategory == sub.slug %}active{% endif %}">
             {{ sub.icon or '•' }} {{ sub.name }}
           </a>
           {% endfor %}
