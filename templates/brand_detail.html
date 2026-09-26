@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if brand.slug == 'cri' %}CRI Pumps Dealer in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products & Dealer | Sathik Groups{% endif %}
+{% endblock %}
+
+{% block meta_description %}{% if brand.slug == 'cri' %}Sathik Groups is an authorized dealer and distributor of CRI Pumps in Red Hills, Chennai. Explore genuine CRI submersible borewell pumps, motors, and water solutions.{% else %}Explore genuine {{ brand.name }} products at Sathik Groups, Red Hills, Chennai. Authorized dealer and distributor providing quotes and wholesale supply.{% endif %}{% endblock %}
+
+{% block og_title %}{% if brand.slug == 'cri' %}CRI Pumps Dealer in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}{% endblock %}
+{% block og_description %}{% if brand.slug == 'cri' %}Authorized dealer and distributor of CRI Pumps in Red Hills, Chennai. Genuine CRI submersible pumps, motors, and borewell water solutions.{% else %}Genuine {{ brand.name }} products available at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+<style>
+  .brand-hero-section {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: 3.5rem 0 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .brand-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+  }
+  .brand-hero-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: #ffffff;
+  }
+  .brand-hero-lead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  .brand-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #94a3b8;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .brand-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .brand-meta-item strong {
+    color: #f1f5f9;
+  }
+  .brand-intro-card {
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+  .brand-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .brand-feature-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+  .brand-feature-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .brand-feature-desc {
+    font-size: 0.85rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .local-cta-banner {
+    background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+    border: 1px solid #bae6fd;
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Brand Hero Section -->
+<section class="brand-hero-section">
+  <div class="container">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" style="display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: #94a3b8; margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <a href="{{ url_for('home.index') }}" style="color: #38bdf8; text-decoration: none;">Home</a>
+      <span>&rsaquo;</span>
+      <a href="{{ url_for('brand.brand_list') }}" style="color: #38bdf8; text-decoration: none;">Brands</a>
+      <span>&rsaquo;</span>
+      <span style="color: #e2e8f0; font-weight: 600;">{{ brand.name }}</span>
+    </nav>
+
+    <div class="brand-badge-pill">
+      ✓ Authorized Dealer &amp; Distributor
+    </div>
+
+    <!-- Single H1 for the page -->
+    <h1 class="brand-hero-title">
+      {% if brand.slug == 'cri' %}
+      CRI Pumps Dealer in Red Hills, Chennai
+      {% else %}
+      {{ brand.name }} in Red Hills, Chennai
+      {% endif %}
+    </h1>
+
+    <p class="brand-hero-lead">
+      {% if brand.slug == 'cri' %}
+      Sathik Groups is an authorized dealer and distributor of genuine C.R.I. Pumps for Red Hills, Chennai, and surrounding areas. We supply premium stainless steel submersible borewell pumps, centrifugal motors, and energy-efficient water management solutions for residential buildings, commercial sites, and industrial developments.
+      {% else %}
+      Explore genuine {{ brand.name }} products distributed by Sathik Groups in Red Hills, Chennai. Premium quality, manufacturer-backed warranties, and direct pricing for construction and residential projects.
+      {% endif %}
+    </p>
+
+    <div class="brand-meta-bar">
+      <div class="brand-meta-item">
+        <span>📍 Store Location:</span>
+        <strong>No.6, Dharga Street, G.N.T. Road, Red Hills, Chennai - 600 052</strong>
+      </div>
+      <div class="brand-meta-item">
+        <span>📞 Contact:</span>
+        <a href="tel:+919840637307" style="color: #38bdf8; text-decoration: none; font-weight: 600;">+91 98406 37307</a>
+      </div>
+      <div class="brand-meta-item">
+        <span>🏢 Hub:</span>
+        <a href="{{ url_for('home.red_hills') }}" style="color: #38bdf8; text-decoration: underline;">Red Hills Store Guide</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand Products & Editorial Content -->
+<section class="section" style="padding-top: 2.5rem; padding-bottom: 4rem;">
+  <div class="container">
+    {% if brand.slug == 'cri' %}
+    <!-- CRI Pumps Brand Overview & Context -->
+    <div class="brand-intro-card">
+      <h2 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+        Genuine C.R.I. Water Pumps &amp; Motors in Red Hills
+      </h2>
+      <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem;">
+        C.R.I. Pumps is one of India's most respected fluid management brands, renowned for engineering excellence and robust motor performance. As a designated dealer in Red Hills, Chennai, Sathik Groups brings genuine C.R.I. borewell submersible pumps, openwell pumps, and energy-efficient motors directly to builders, plumbers, contractors, and homeowners.
+      </p>
+      <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0;">
+        Whether you are commissioning a domestic borewell in Red Hills, installing water booster pumps in Padiyanallur, or setting up commercial water distribution along the G.N.T. Road corridor, our store provides genuine units, original factory specifications, and dedicated technical guidance.
+      </p>
+
+      <div class="brand-feature-grid">
+        <div class="brand-feature-box">
+          <div class="brand-feature-title">⚡ High-Efficiency Motors</div>
+          <p class="brand-feature-desc">Copper-wound motors designed for optimal energy consumption, low voltage operation, and continuous duty cycles.</p>
+        </div>
+        <div class="brand-feature-box">
+          <div class="brand-feature-title">🛡️ Grade 304 Stainless Steel</div>
+          <p class="brand-feature-desc">Corrosion-resistant pump shells and impellers engineered to withstand tough water conditions and mineral sediments.</p>
+        </div>
+        <div class="brand-feature-box">
+          <div class="brand-feature-title">💧 Multi-Stage Borewell Pumps</div>
+          <p class="brand-feature-desc">Deep borewell submersible models delivering sustained head pressure and high discharge volume across varying depths.</p>
+        </div>
+        <div class="brand-feature-box">
+          <div class="brand-feature-title">📍 Local Chennai Availability</div>
+          <p class="brand-feature-desc">Ready stock at our Red Hills counter with fast dispatch to Karanodai, Sholavaram, Madhavaram, and North Chennai.</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Product Showcase -->
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+      <div>
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #0f172a; margin: 0;">
+          {% if brand.slug == 'cri' %}Available C.R.I. Pump Products{% else %}{{ brand.name }} Catalogue{% endif %}
+        </h2>
+        <span style="color: var(--text-muted); font-size: 0.9rem;">
+          Showing {{ products|length }} genuine item{% if products|length != 1 %}s{% endif %} available at Sathik Groups
+        </span>
+      </div>
+      <div>
+        <a href="{{ url_for('category.store_category_detail', business_slug='plumbing', category_slug='pumps') }}" style="color: var(--primary-600); font-size: 0.9rem; font-weight: 600; text-decoration: none;">
+          View All Pumps &amp; Motors Store &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      {% for p in products %}
+      <div class="product-card">
+        <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="product-image" style="display:flex; align-items:center; justify-content:center; text-decoration:none;">
+          <img src="{{ p.images[0].url if p.images else url_for('static', filename='images/placeholder.jpg') }}" alt="{{ p.name }}" onerror="this.onerror=null; this.src='/static/images/placeholder.jpg';" loading="lazy">
+        </a>
+        <div class="product-info">
+          <div class="product-top-meta" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span class="store-badge plumbing">🔧 Plumbing</span>
+            <div class="product-brand" style="margin: 0; font-size: 0.7rem; color: var(--accent); font-weight: 700;">{{ p.brand_name or brand.name }}</div>
+          </div>
+          <h4 class="product-name">
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" style="color: inherit; text-decoration:none;">{{ p.name }}</a>
+          </h4>
+          <div class="product-sku">SKU: {{ p.sku }}</div>
+          {% if p.short_description %}
+          <p style="font-size: 0.85rem; color: #64748b; line-height: 1.4; margin: 0.5rem 0 1rem;">{{ p.short_description }}</p>
+          {% endif %}
+          <div class="product-card-footer" style="display: flex; flex-direction: column; gap: 0.5rem; width: 100%; margin-top: auto;">
+            <button type="button" class="btn btn-primary btn-sm" onclick="event.preventDefault(); event.stopPropagation(); addToQuoteCart('{{ p._id }}', '{{ p.name|escape }}', '{{ p.sku }}', '{{ p.slug }}', '{{ p.subcategory_slug }}', '{{ p.images[0].url if p.images else "" }}')" style="width: 100%; text-align: center; justify-content: center; display: flex; align-items: center; gap: 0.35rem;">
+              🛒 Add to Cart
+            </button>
+            <a href="{{ url_for('product.product_detail', subcategory_slug=p.subcategory_slug, product_slug=p.slug) }}" class="btn btn-outline btn-sm" style="width: 100%; text-align: center; justify-content: center;">
+              View Details &amp; Specs
+            </a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div style="grid-column: 1 / -1; padding: 3rem; text-align: center; background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border);">
+        <p style="color: var(--text-muted); font-size: 1.1rem;">No products currently listed under this brand.</p>
+        <a href="{{ url_for('product.product_list') }}" class="btn btn-primary btn-sm" style="margin-top: 1rem;">Browse All Products</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Local Store CTA Banner linking back to Red Hills page -->
+    <div class="local-cta-banner">
+      <div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.35rem;">
+          Need CRI Pumps or Water Solutions in Red Hills, Chennai?
+        </h3>
+        <p style="color: #334155; font-size: 0.95rem; margin: 0; line-height: 1.5; max-width: 650px;">
+          Visit Sathik Groups at Dharga Street, Red Hills, or speak with our pump specialists for borehole depth recommendations, flow rate calculations, and bulk trade quotations.
+        </p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="{{ url_for('home.red_hills') }}" class="btn btn-primary" style="white-space: nowrap;">
+          📍 Red Hills Store Details
+        </a>
+        <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Groups%2C%20I%20am%20enquiring%20about%20CRI%20Pumps%20in%20Red%20Hills." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="white-space: nowrap;">
+          💬 WhatsApp Enquiry
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sathikgroups.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Brands",
+      "item": "https://sathikgroups.com/brands"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ brand.name }}",
+      "item": "https://sathikgroups.com/brands/{{ brand.slug }}"
+    }
+  ]
+}
+</script>
+{% endblock %}

@@ -28,7 +28,8 @@ def brand_detail(slug):
     products, total = ProductModel.find_all(filter_query={'brand_slug': slug}, page=page, limit=limit)
     total_pages = (total + limit - 1) // limit if total > 0 else 1
     return render_template(
-        'products.html',
+        'brand_detail.html',
+        brand=brand,
         products=products,
         current_brand=slug,
         selected_brand=brand,

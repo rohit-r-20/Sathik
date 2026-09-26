@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ product.name }}{% if not product.hide_brand_badge and product.brand_name %} by {{ product.brand_name }}{% endif %} | Sathik Groups{% endblock %}
+{% block title %}
+{% if product.slug == 'cri-submersible-pump' or product.brand_slug == 'cri' %}CRI Submersible Pump | Borewell Water Pump | Sathik Groups, Red Hills{% else %}{{ product.name }}{% if not product.hide_brand_badge and product.brand_name %} by {{ product.brand_name }}{% endif %} | Sathik Groups{% endif %}
+{% endblock %}
+
+{% block meta_description %}{% if product.slug == 'cri-submersible-pump' or product.brand_slug == 'cri' %}Buy genuine CRI Submersible Pump at Sathik Groups, Red Hills, Chennai. Premium multi-stage stainless steel borewell water pump with energy-efficient motor winding.{% else %}{{ product.short_description or (product.description|truncate(150, true, '...')) }} Available at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
+
+{% block og_title %}{% if product.slug == 'cri-submersible-pump' or product.brand_slug == 'cri' %}CRI Submersible Pump | Borewell Water Pump | Sathik Groups, Red Hills{% else %}{{ product.name }} | Sathik Groups{% endif %}{% endblock %}
+{% block og_description %}{% if product.slug == 'cri-submersible-pump' or product.brand_slug == 'cri' %}Buy genuine CRI Submersible Pump at Sathik Groups, Red Hills, Chennai. Premium multi-stage stainless steel borewell water pump.{% else %}{{ product.short_description or product.name }}{% endif %}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/product.css') }}">
@@ -15,8 +22,13 @@
       <span style="color: #94a3b8;">&rsaquo;</span>
       <a href="{{ url_for('product.product_list') }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">Products</a>
       <span style="color: #94a3b8;">&rsaquo;</span>
+      {% if product.brand_slug %}
+      <a href="{{ url_for('brand.brand_detail', slug=product.brand_slug) }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">{{ product.brand_name or product.brand_slug|title }}</a>
+      <span style="color: #94a3b8;">&rsaquo;</span>
+      {% elif product.business_slug %}
       <a href="{{ url_for('category.store_detail', business_slug=product.business_slug) }}" style="color: var(--primary-600, #0284c7); text-decoration: none; font-weight: 500;">{{ product.business_name or product.business_slug|title }} Store</a>
       <span style="color: #94a3b8;">&rsaquo;</span>
+      {% endif %}
       <span style="color: #475569; font-weight: 600;">{{ product.name }}</span>
     </div>
   </div>
@@ -43,16 +55,26 @@
 
       <!-- Product Details & Quote CTAs -->
       <div>
-        {% if not product.hide_brand_badge and product.brand_name %}
+        {% if product.brand_slug == 'cri' %}
+        <div style="margin-bottom: 0.5rem;">
+          <a href="{{ url_for('brand.brand_detail', slug='cri') }}" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8125rem; font-weight: 700; color: var(--accent); text-transform: uppercase; text-decoration: none; letter-spacing: 0.05em; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); padding: 0.25rem 0.65rem; border-radius: 4px;">
+            <span>✓ C.R.I. Pumps Authorized Dealer Page &rarr;</span>
+          </a>
+        </div>
+        {% elif not product.hide_brand_badge and product.brand_name %}
         <div style="font-size: 0.875rem; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;">
           {{ product.brand_name }}
         </div>
         {% endif %}
         <h1 style="font-size: 2.25rem; margin-bottom: 0.75rem;">{{ product.name }}</h1>
-        <div style="font-family: monospace; font-size: 0.875rem; color: var(--primary-500); margin-bottom: 1.5rem;">
+        <div style="font-family: monospace; font-size: 0.875rem; color: var(--primary-500); margin-bottom: 1rem;">
           SKU: {{ product.sku }}
         </div>
 
+        <!-- Local Availability Badge -->
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: #334155; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 0.6rem 0.85rem; margin-bottom: 1.5rem;">
+          <span>📍 In stock at our <a href="{{ url_for('home.red_hills') }}" style="color: var(--primary-600); font-weight: 600; text-decoration: underline;">Red Hills, Chennai store</a>. Fast dispatch across Chennai.</span>
+        </div>
 
         {% if product.short_description %}
         <p style="font-size: 1.0625rem; color: var(--primary-600); line-height: 1.6; margin-bottom: 1.5rem; border-left: 3px solid var(--accent); padding-left: 1rem;">
@@ -172,6 +194,92 @@
     {% endif %}
   </div>
 </section>
+
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://sathikgroups.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Products",
+      "item": "https://sathikgroups.com/products"
+    },
+    {% if product.brand_slug %}
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.brand_name or product.brand_slug|title }}",
+      "item": "https://sathikgroups.com/brands/{{ product.brand_slug }}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "{{ product.name }}",
+      "item": "{{ canonical_url or ('https://sathikgroups.com/products/' ~ product.subcategory_slug ~ '/' ~ product.slug) }}"
+    }
+    {% else %}
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.name }}",
+      "item": "{{ canonical_url or ('https://sathikgroups.com/products/' ~ product.subcategory_slug ~ '/' ~ product.slug) }}"
+    }
+    {% endif %}
+  ]
+}
+</script>
+
+<!-- JSON-LD: Product -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.name }}",
+  "image": [
+    {% if product.images %}
+      {% for img in product.images %}
+      "https://sathikgroups.com{{ img.url }}"{% if not loop.last %},{% endif %}
+      {% endfor %}
+    {% else %}
+      "https://sathikgroups.com/static/images/placeholder.jpg"
+    {% endif %}
+  ],
+  "description": "{{ (product.description or product.short_description or product.name)|replace('\"', '\\\"')|replace('\n', ' ') }}",
+  "sku": "{{ product.sku }}",
+  {% if product.brand_name or product.brand_slug %}
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ product.brand_name or product.brand_slug|title }}"
+  },
+  {% endif %}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ canonical_url or ('https://sathikgroups.com/products/' ~ product.subcategory_slug ~ '/' ~ product.slug) }}",
+    "priceCurrency": "INR",
+    "price": "0",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
+      "priceCurrency": "INR",
+      "valueAddedTaxIncluded": "true"
+    },
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "LocalBusiness",
+      "@id": "https://sathikgroups.com/#business",
+      "name": "Sathik Groups"
+    }
+  }
+}
+</script>
 {% endblock %}
 
 {% block extra_js %}
