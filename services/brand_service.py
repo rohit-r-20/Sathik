@@ -40,20 +40,18 @@ class BrandService:
     @staticmethod
     def get_by_slug(slug):
         client = get_supabase()
-        if client is None:
-            for b in BRANDS_LIST:
-                if b['slug'] == slug:
-                    return format_record(b)
-            return format_record(BRANDS_LIST[0]) if BRANDS_LIST else None
+        if client is not None:
+            try:
+                res = client.table('brands').select('*').eq('slug', slug).eq('is_active', True).limit(1).execute()
+                if res.data:
+                    return format_record(res.data[0])
+            except Exception as e:
+                print(f"BrandService.get_by_slug error: {e}")
 
-        try:
-            res = client.table('brands').select('*').eq('slug', slug).eq('is_active', True).limit(1).execute()
-            if res.data:
-                return format_record(res.data[0])
-            return None
-        except Exception as e:
-            print(f"BrandService.get_by_slug error: {e}")
-            return None
+        for b in BRANDS_LIST:
+            if b['slug'] == slug:
+                return format_record(b.copy())
+        return None
 
     @staticmethod
     def create(data):

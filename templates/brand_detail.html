@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{% if brand.slug == 'cri' %}CRI Pumps & Water Pump Supplier in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}
+{{ brand_seo.title if brand_seo else (brand.name ~ ' Products & Supply in Red Hills, Chennai | Sathik Groups') }}
 {% endblock %}
 
-{% block meta_description %}{% if brand.slug == 'cri' %}Sathik Groups supplies genuine CRI Pumps and water solutions in Red Hills, Chennai. Explore CRI submersible borewell pumps, motors, and plumbing products.{% else %}Explore genuine {{ brand.name }} products at Sathik Groups, Red Hills, Chennai. Quality products and wholesale supply.{% endif %}{% endblock %}
+{% block meta_description %}{{ brand_seo.meta_description if brand_seo else ('Explore genuine ' ~ brand.name ~ ' products supplied by Sathik Groups in Red Hills, Chennai. Quality building materials, hardware, and plumbing solutions.') }}{% endblock %}
 
-{% block og_title %}{% if brand.slug == 'cri' %}CRI Pumps & Water Pump Supplier in Red Hills, Chennai | Sathik Groups{% else %}{{ brand.name }} Products | Sathik Groups{% endif %}{% endblock %}
-{% block og_description %}{% if brand.slug == 'cri' %}Sathik Groups supplies genuine CRI Pumps and water solutions in Red Hills, Chennai. Explore CRI submersible borewell pumps, motors, and plumbing products.{% else %}Genuine {{ brand.name }} products available at Sathik Groups, Red Hills, Chennai.{% endif %}{% endblock %}
+{% block og_title %}{{ brand_seo.title if brand_seo else (brand.name ~ ' Products & Supply in Red Hills, Chennai | Sathik Groups') }}{% endblock %}
+{% block og_description %}{{ brand_seo.meta_description if brand_seo else ('Explore genuine ' ~ brand.name ~ ' products supplied by Sathik Groups in Red Hills, Chennai. Quality building materials, hardware, and plumbing solutions.') }}{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
@@ -129,24 +129,16 @@
     </nav>
 
     <div class="brand-badge-pill">
-      {% if brand.slug == 'cri' %}✓ Genuine Products &amp; Supplier{% else %}✓ Genuine Products{% endif %}
+      {{ brand_seo.badge if brand_seo else '✓ Genuine Products' }}
     </div>
 
     <!-- Single H1 for the page -->
     <h1 class="brand-hero-title">
-      {% if brand.slug == 'cri' %}
-      CRI Pumps &amp; Water Pump Supplier in Red Hills, Chennai
-      {% else %}
-      {{ brand.name }} in Red Hills, Chennai
-      {% endif %}
+      {{ brand_seo.h1 if brand_seo else (brand.name ~ ' in Red Hills, Chennai') }}
     </h1>
 
     <p class="brand-hero-lead">
-      {% if brand.slug == 'cri' %}
-      Sathik Groups supplies genuine C.R.I. Pumps for Red Hills, Chennai, and surrounding areas. We supply premium stainless steel submersible borewell pumps, centrifugal motors, and energy-efficient water management solutions for residential buildings, commercial sites, and industrial developments.
-      {% else %}
-      Explore genuine {{ brand.name }} products supplied by Sathik Groups in Red Hills, Chennai. Premium quality, manufacturer-backed warranties, and direct pricing for construction and residential projects.
-      {% endif %}
+      {{ brand_seo.intro if brand_seo else ('Explore genuine ' ~ brand.name ~ ' products supplied by Sathik Groups in Red Hills, Chennai. Quality products, manufacturer warranties, and direct pricing for residential and construction projects.') }}
     </p>
 
     <div class="brand-meta-bar">
@@ -160,7 +152,7 @@
       </div>
       <div class="brand-meta-item">
         <span>🏢 Hub:</span>
-        <a href="{{ url_for('home.red_hills') }}" style="color: #38bdf8; text-decoration: underline;">Red Hills Store Guide</a>
+        <a href="/locations/red-hills/" style="color: #38bdf8; text-decoration: underline;">Red Hills Store Guide</a>
       </div>
     </div>
   </div>
@@ -169,37 +161,26 @@
 <!-- Brand Products & Editorial Content -->
 <section class="section" style="padding-top: 2.5rem; padding-bottom: 4rem;">
   <div class="container">
-    {% if brand.slug == 'cri' %}
-    <!-- CRI Pumps Brand Overview & Context -->
+    {% if brand_seo and brand_seo.overview_text %}
+    <!-- Brand Overview & Context -->
     <div class="brand-intro-card">
       <h2 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-        Genuine C.R.I. Water Pumps &amp; Motors in Red Hills
+        {{ brand_seo.overview_title }}
       </h2>
-      <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 1rem;">
-        C.R.I. Pumps is one of India's most respected fluid management brands, renowned for engineering excellence and robust motor performance. Serving Red Hills, Chennai, Sathik Groups brings genuine C.R.I. borewell submersible pumps, openwell pumps, and energy-efficient motors directly to builders, plumbers, contractors, and homeowners.
-      </p>
-      <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: 0;">
-        Whether you are commissioning a domestic borewell in Red Hills, installing water booster pumps in Padiyanallur, or setting up commercial water distribution along the G.N.T. Road corridor, our store provides genuine units, original factory specifications, and dedicated technical guidance.
+      <p style="color: #334155; line-height: 1.7; font-size: 0.95rem; margin-bottom: {% if brand_seo.highlights %}1rem{% else %}0{% endif %};">
+        {{ brand_seo.overview_text }}
       </p>
 
+      {% if brand_seo.highlights %}
       <div class="brand-feature-grid">
+        {% for h in brand_seo.highlights %}
         <div class="brand-feature-box">
-          <div class="brand-feature-title">⚡ High-Efficiency Motors</div>
-          <p class="brand-feature-desc">Copper-wound motors designed for optimal energy consumption, low voltage operation, and continuous duty cycles.</p>
+          <div class="brand-feature-title">{{ h.title }}</div>
+          <p class="brand-feature-desc">{{ h.desc }}</p>
         </div>
-        <div class="brand-feature-box">
-          <div class="brand-feature-title">🛡️ Grade 304 Stainless Steel</div>
-          <p class="brand-feature-desc">Corrosion-resistant pump shells and impellers engineered to withstand tough water conditions and mineral sediments.</p>
-        </div>
-        <div class="brand-feature-box">
-          <div class="brand-feature-title">💧 Multi-Stage Borewell Pumps</div>
-          <p class="brand-feature-desc">Deep borewell submersible models delivering sustained head pressure and high discharge volume across varying depths.</p>
-        </div>
-        <div class="brand-feature-box">
-          <div class="brand-feature-title">📍 Local Chennai Availability</div>
-          <p class="brand-feature-desc">Ready stock at our Red Hills counter with fast dispatch to Karanodai, Sholavaram, Madhavaram, and North Chennai.</p>
-        </div>
+        {% endfor %}
       </div>
+      {% endif %}
     </div>
     {% endif %}
 
@@ -214,8 +195,8 @@
         </span>
       </div>
       <div>
-        <a href="{{ url_for('category.store_category_detail', business_slug='plumbing', category_slug='pumps') }}" style="color: var(--primary-600); font-size: 0.9rem; font-weight: 600; text-decoration: none;">
-          View All Pumps &amp; Motors Store &rarr;
+        <a href="{{ brand_seo.category_url if brand_seo else url_for('product.product_list') }}" style="color: var(--primary-600); font-size: 0.9rem; font-weight: 600; text-decoration: none;">
+          View {{ brand_seo.category_name if brand_seo else 'All Products' }} &rarr;
         </a>
       </div>
     </div>
@@ -229,7 +210,9 @@
         </a>
         <div class="product-info">
           <div class="product-top-meta" style="display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-            <span class="store-badge plumbing">🔧 Plumbing</span>
+            <span class="store-badge {{ p.business_slug }}">
+              {% if p.business_slug == 'plumbing' %}🔧 Plumbing{% elif p.business_slug == 'bath-kitchen' %}🛁 Bath &amp; Kitchen{% else %}🔨 Hardware{% endif %}
+            </span>
             <div class="product-brand" style="margin: 0; font-size: 0.7rem; color: var(--accent); font-weight: 700;">{{ p.brand_name or brand.name }}</div>
           </div>
           <h4 class="product-name">
@@ -261,17 +244,17 @@
     <div class="local-cta-banner">
       <div>
         <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.35rem;">
-          Need CRI Pumps or Water Solutions in Red Hills, Chennai?
+          {{ brand_seo.cta_heading if brand_seo else ('Need ' ~ brand.name ~ ' Products in Red Hills, Chennai?') }}
         </h3>
         <p style="color: #334155; font-size: 0.95rem; margin: 0; line-height: 1.5; max-width: 650px;">
-          Visit Sathik Groups at Dharga Street, Red Hills, or speak with our pump specialists for borehole depth recommendations, flow rate calculations, and bulk trade quotations.
+          {{ brand_seo.cta_text if brand_seo else ('Visit Sathik Groups at Dharga Street, Red Hills, or speak with our product specialists for availability and trade quotations.') }}
         </p>
       </div>
       <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <a href="{{ url_for('home.red_hills') }}" class="btn btn-primary" style="white-space: nowrap;">
+        <a href="/locations/red-hills/" class="btn btn-primary" style="white-space: nowrap;">
           📍 Red Hills Store Details
         </a>
-        <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Groups%2C%20I%20am%20enquiring%20about%20CRI%20Pumps%20in%20Red%20Hills." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="white-space: nowrap;">
+        <a href="https://wa.me/919840637307?text=Hi%20Sathik%20Groups%2C%20I%20am%20enquiring%20about%20{{ brand.name|urlencode }}%20in%20Red%20Hills." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="white-space: nowrap;">
           💬 WhatsApp Enquiry
         </a>
       </div>
@@ -300,7 +283,7 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "{{ brand.name }}",
+      "name": "{{ brand.name|escape }}",
       "item": "https://sathikgroups.com/brands/{{ brand.slug }}"
     }
   ]

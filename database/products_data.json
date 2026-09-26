@@ -1,6 +1,7 @@
 [
   {
     "name": "Sika Bond & Seal Polyurethane",
+    "slug": "sika-bond-seal-polyurethane",
     "sku": "SIKA-SEAL-PU",
     "business_slug": "hardware",
     "category_slug": "roof-waterproofing-adhesives",
@@ -86,7 +87,7 @@
     "_id": "p_bath_quartz_sink",
     "name": "Quartz Kitchen Sink",
     "slug": "quartz-kitchen-sink",
-    "sku": "CERA-SNK-QZ",
+    "sku": "SNK-QZ-01",
     "description": "Luxurious composite double bowl kitchen sink with scratch-resistant, heat-resistant, and germ-block surface technology.",
     "short_description": "Luxurious black quartz double bowl kitchen sink.",
     "features": [
@@ -109,8 +110,8 @@
     "business_slug": "bath-kitchen",
     "category_slug": "kitchenware",
     "subcategory_slug": "kitchen-sinks-taps",
-    "brand_slug": "cera",
-    "brand_name": "CERA",
+    "brand_slug": "standard",
+    "brand_name": "Standard",
     "is_active": true,
     "is_featured": true,
     "is_new": true,

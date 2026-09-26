@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, abort, request
 from models.brand import BrandModel
 from models.product import ProductModel
 from utils.constants import COMPANY_INFO
+from utils.brand_seo import get_brand_seo
 
 brand_bp = Blueprint('brand', __name__)
 
@@ -27,9 +28,11 @@ def brand_detail(slug):
     limit = 24
     products, total = ProductModel.find_all(filter_query={'brand_slug': slug}, page=page, limit=limit)
     total_pages = (total + limit - 1) // limit if total > 0 else 1
+    brand_seo = get_brand_seo(brand)
     return render_template(
         'brand_detail.html',
         brand=brand,
+        brand_seo=brand_seo,
         products=products,
         current_brand=slug,
         selected_brand=brand,

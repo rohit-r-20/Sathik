@@ -21,7 +21,7 @@ STORE_VERTICAL_SEO = {
     },
     'bath-kitchen': {
         'title': 'Sanitaryware in Red Hills, Chennai | Sathik Groups',
-        'meta_description': 'Premium sanitaryware, bathroom fixtures, and kitchen fittings supplier in Red Hills, Chennai. Featuring Jaquar, Hindware, CERA, and modern bath solutions.',
+        'meta_description': 'Premium sanitaryware, bathroom fixtures, and kitchen fittings supplier in Red Hills, Chennai. Featuring Jaquar, Hindware, and modern bath solutions.',
         'h1': 'Sanitaryware in Red Hills, Chennai',
         'badge': 'Sanitaryware & Bath Fixtures Store',
         'intro': 'Explore luxury sanitaryware, designer bathroom fixtures, diverters, shower systems, and stainless steel kitchen sinks at Sathik Groups in Red Hills, Chennai. Quality brands and wholesale rates for homeowners, architects, and interior contractors. Consult our specialists at the <a href="/locations/red-hills/" style="color: var(--primary-600); font-weight: 600; text-decoration: underline;">Red Hills store</a>.'
